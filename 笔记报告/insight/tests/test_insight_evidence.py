@@ -281,6 +281,61 @@ class InsightEvidenceTests(unittest.TestCase):
         top_note = next(row for row in content_rows if row["metric"] == "top_note_reads")
         self.assertEqual(top_note["scope"]["reads_coverage"], {"observed": 1, "total": 21})
 
+    def test_incomplete_note_reads_can_use_explicit_top20_aggregate(self):
+        payload = dealer_fixture()
+        payload["dealer"]["notes"] = [
+            {"note_id": "observed", "reads": 100},
+            {"note_id": "missing"},
+        ]
+        payload["dealer"]["content"]["top_20_read_share"] = 0.75
+
+        rows = build_evidence_packet("dealer", payload, history_fixture(), period_fixture())["evidence"]
+        top20 = next(row for row in rows if row["metric"] == "top_20_read_share")
+
+        self.assertEqual(top20["value"], 0.75)
+        self.assertEqual(top20["scope"]["evidence_basis"], "explicit_top20_aggregate")
+
+    def test_note_level_evidence_does_not_require_aggregate_note_count(self):
+        payload = dealer_fixture()
+        payload["dealer"]["content"].pop("notes")
+        payload["dealer"]["notes"] = [
+            {"note_id": "n-top", "title": "Top title", "reads": 100, "publish_date": "2026-07-30"},
+            {"note_id": "n-long", "title": "Long title", "reads": 10, "publish_date": "2026-07-10"},
+            {"note_id": "n-mid", "title": "Mid title", "reads": 50, "publish_date": "2026-07-20"},
+        ]
+
+        rows = build_evidence_packet("dealer", payload, history_fixture(), period_fixture())["evidence"]
+        content_rows = [row for row in rows if row["module"] == "content_patterns"]
+        metrics = {row["metric"] for row in content_rows}
+
+        self.assertTrue({"top_note_reads", "title_token_frequency", "long_tail_age_days", "hotspot_recency_days"} <= metrics)
+
+    def test_dealer_city_sample_size_is_scoped_to_city_and_cohort(self):
+        payload = dealer_fixture()
+        rows = build_evidence_packet("dealer", payload, history_fixture(), period_fixture())["evidence"]
+        city_row = next(row for row in rows if row["metric"] == "city_content_efficiency")
+
+        self.assertEqual(city_row["scope"]["cohort"], "core_kpi")
+        self.assertEqual(city_row["sample_size"], 1)
+        self.assertEqual(city_row["confidence"], "validate")
+        self.assertEqual(city_row["scope"]["recommendation_mode"], "test_only")
+
+    def test_note_candidates_are_scoped_by_cohort_when_notes_are_mixed(self):
+        payload = dealer_fixture()
+        payload["dealer"]["notes"] = [
+            {"note_id": "core-low", "cohort": "core_kpi", "collects": 1, "comments": 1},
+            {"note_id": "core-high", "cohort": "core_kpi", "collects": 10, "comments": 10},
+            {"note_id": "store-low", "cohort": "expanded_store", "collects": 100, "comments": 100},
+            {"note_id": "store-high", "cohort": "expanded_store", "collects": 101, "comments": 101},
+        ]
+
+        rows = build_evidence_packet("dealer", payload, history_fixture(), period_fixture())["evidence"]
+        candidates = [row for row in rows if row["metric"] == "high_save_note_candidate"]
+
+        self.assertEqual({row["scope"]["cohort"] for row in candidates}, {"core_kpi", "expanded_store"})
+        self.assertTrue(any(row["scope"].get("note_id") == "core-high" for row in candidates))
+        self.assertTrue(any(row["scope"].get("note_id") == "store-high" for row in candidates))
+
     def test_note_rows_without_dates_emit_hotspot_unavailable_instead_of_zero_recency(self):
         payload = dealer_fixture()
         payload["dealer"]["notes"] = [{"note_id": "undated", "title": "No date", "reads": 100}]
