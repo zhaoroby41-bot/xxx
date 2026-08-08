@@ -1,4 +1,4 @@
-"""Evidence-bound AI insight generation with an offline deterministic fallback."""
+﻿"""Evidence-bound AI insight generation with an offline deterministic fallback."""
 
 from __future__ import annotations
 
@@ -7,8 +7,12 @@ import urllib.request
 from pathlib import Path
 from typing import Any, Mapping
 
-from .ai_contract import validate_ai_result
-from .insight_evidence import REQUIRED_MODULES
+try:
+    from .ai_contract import validate_ai_result
+    from .insight_evidence import REQUIRED_MODULES
+except ImportError:  # pragma: no cover - keeps direct script execution working.
+    from ai_contract import validate_ai_result
+    from insight_evidence import REQUIRED_MODULES
 
 
 _PROMPT_PATH = Path(__file__).resolve().parents[1] / "config" / "ai_prompt.json"
@@ -126,23 +130,22 @@ def build_rule_fallback(packet: dict) -> dict:
             continue
         ready = statuses.get(module) == "ready"
         selected = _select_fallback_evidence(rows)
-        metric = str(selected.get("metric") or "当前证据")
         if ready:
-            judgement = f"数据显示，{metric}值得持续跟踪。"
-            why = "该判断仅基于当前已链接证据，建议结合后续周期验证。"
-            impact = "建议将该信号纳入本期运营复盘。"
+            judgement = "\u6570\u636e\u8bc1\u636e\u663e\u793a\u5f53\u524d\u6a21\u5757\u5b58\u5728\u53ef\u8ddf\u8fdb\u4fe1\u53f7\u3002"
+            why = "\u8be5\u5224\u65ad\u4ec5\u57fa\u4e8e\u5f53\u524d\u5df2\u94fe\u63a5\u8bc1\u636e\uff0c\u9700\u8981\u7ed3\u5408\u540e\u7eed\u5468\u671f\u9a8c\u8bc1\u3002"
+            impact = "\u5efa\u8bae\u5c06\u8be5\u4fe1\u53f7\u7eb3\u5165\u672c\u671f\u8fd0\u8425\u590d\u76d8\u3002"
             confidence = "medium"
             statement_type = "inference"
         else:
-            judgement = f"当前{metric}的可用证据有限。"
-            why = "数据显示资料不足，建议验证后再形成明确判断。"
-            impact = "建议优先补充该模块所需的观察资料。"
+            judgement = "\u5f53\u524d\u6a21\u5757\u7684\u53ef\u7528\u8bc1\u636e\u6709\u9650\u3002"
+            why = "\u6570\u636e\u663e\u793a\u8d44\u6599\u4e0d\u8db3\uff0c\u9700\u8981\u9a8c\u8bc1\u540e\u518d\u5f62\u6210\u660e\u786e\u5224\u65ad\u3002"
+            impact = "\u5efa\u8bae\u4f18\u5148\u8865\u5145\u8be5\u6a21\u5757\u6240\u9700\u7684\u89c2\u5bdf\u8d44\u6599\u3002"
             confidence = "low"
             statement_type = "recommendation"
         insights.append({
             "id": f"rule-{module}",
             "module": module,
-            "title": f"{module} 观察",
+            "title": f"{module} \u89c2\u5bdf",
             "judgement": judgement,
             "why": why,
             "impact": impact,
@@ -151,14 +154,14 @@ def build_rule_fallback(packet: dict) -> dict:
             "confidence": confidence,
             "scope": {},
             "actions": [{
-                "owner": "渠道运营",
-                "action": "复核证据并安排下一步验证",
-                "deadline": "下一周期",
-                "success_metric": "下个周期完成1次证据复核并输出1条模块结论",
+                "owner": "\u6e20\u9053\u8fd0\u8425",
+                "action": "\u590d\u6838\u8bc1\u636e\u5e76\u5b89\u6392\u4e0b\u4e00\u6b65\u9a8c\u8bc1\u3002",
+                "deadline": "\u4e0b\u4e00\u5468\u671f",
+                "success_metric": "\u4e0b\u4e2a\u5468\u671f\u5b8c\u62101\u6b21\u8bc1\u636e\u590d\u6838\u5e76\u8f93\u51fa1\u6761\u6a21\u5757\u7ed3\u8bba\u3002",
             }],
         })
     return {
-        "executive_summary": "本报告基于已提供证据生成，建议在后续周期继续验证。",
+        "executive_summary": "\u672c\u62a5\u544a\u57fa\u4e8e\u5df2\u63d0\u4f9b\u8bc1\u636e\u751f\u6210\uff0c\u5efa\u8bae\u5728\u540e\u7eed\u5468\u671f\u7ee7\u7eed\u9a8c\u8bc1\u3002",
         "generation": {"mode": "rule_fallback", "provider": "deterministic_rules"},
         "insights": insights,
     }
@@ -201,5 +204,8 @@ def _strip_secrets(value: Any, secrets: set[str]) -> Any:
     if isinstance(value, list):
         return [_strip_secrets(item, secrets) for item in value]
     if isinstance(value, dict):
-        return {key: _strip_secrets(item, secrets) for key, item in value.items()}
+        return {
+            _strip_secrets(key, secrets) if isinstance(key, str) else key: _strip_secrets(item, secrets)
+            for key, item in value.items()
+        }
     return value

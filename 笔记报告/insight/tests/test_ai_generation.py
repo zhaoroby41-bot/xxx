@@ -94,6 +94,20 @@ class AIGenerationTests(unittest.TestCase):
         self.assertNotIn("secret-token", json.dumps(result, ensure_ascii=False))
         self.assertNotIn("secret-token", cache_path.read_text(encoding="utf-8"))
 
+    def test_provider_echoed_secret_in_field_name_is_redacted(self):
+        source_packet = packet()
+        provider_result = valid_result(source_packet)
+        provider_result["generation"]["secret-token-field"] = "provider echo"
+
+        def transport(request, timeout):
+            return FakeResponse({"choices": [{"message": {"content": json.dumps(provider_result)}}]})
+
+        cache_path = self.tmp_path / "ai.json"
+        result = generate_ai_insights(source_packet, cache_path=cache_path, env=ai_env(), transport=transport)
+
+        self.assertNotIn("secret-token", json.dumps(result, ensure_ascii=False))
+        self.assertNotIn("secret-token", cache_path.read_text(encoding="utf-8"))
+
     def test_no_key_uses_valid_same_month_cache(self):
         source_packet = packet()
         cache = write_cache(self.tmp_path / "ai.json", source_packet, valid_result(source_packet))
