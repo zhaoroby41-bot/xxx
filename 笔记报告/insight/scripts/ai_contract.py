@@ -61,6 +61,10 @@ def _validate_top_level(result: dict, errors: list[str]) -> None:
     for field in _TOP_LEVEL_FIELDS:
         if field not in result:
             errors.append("missing_top_level")
+    if "executive_summary" in result and not isinstance(result["executive_summary"], str):
+        errors.append("invalid_top_level")
+    if "generation" in result and not isinstance(result["generation"], dict):
+        errors.append("invalid_top_level")
     if "insights" in result and not isinstance(result["insights"], list):
         errors.append("invalid_insights")
 
@@ -86,6 +90,9 @@ def _validate_insight(insight: Any, evidence_by_id: dict[str, dict], allowed_ent
     missing_fields = _INSIGHT_FIELDS - set(insight)
     if missing_fields:
         errors.append("incomplete_insight")
+    for field in ("id", "module", "title", "judgement", "why", "impact", "statement_type", "confidence"):
+        if field in insight and not isinstance(insight.get(field), str):
+            errors.append("invalid_insight_field")
     module = insight.get("module")
     if module not in REQUIRED_MODULES:
         errors.append("invalid_module")
@@ -103,6 +110,9 @@ def _validate_insight(insight: Any, evidence_by_id: dict[str, dict], allowed_ent
 def _validate_evidence_links(evidence_ids: Any, module: Any, evidence_by_id: dict[str, dict], errors: list[str]) -> list[dict]:
     if not isinstance(evidence_ids, list) or not all(isinstance(value, str) for value in evidence_ids):
         errors.append("invalid_evidence_ids")
+        return []
+    if not evidence_ids:
+        errors.append("missing_evidence")
         return []
     linked_rows: list[dict] = []
     for evidence_id in evidence_ids:
@@ -125,8 +135,12 @@ def _validate_numbers(insight: dict, linked_rows: list[dict], errors: list[str])
             errors.append("invalid_insight_text")
             continue
         for number, is_percent in _text_numbers(value):
-            expected = number / 100 if is_percent else number
-            if not any(math.isclose(expected, candidate, rel_tol=1e-9, abs_tol=1e-9) for candidate in supported):
+            expected_values = (number / 100, number) if is_percent else (number,)
+            if not any(
+                math.isclose(expected, candidate, rel_tol=1e-9, abs_tol=1e-9)
+                for expected in expected_values
+                for candidate in supported
+            ):
                 errors.append("unsupported_number")
 
 
@@ -172,7 +186,10 @@ def _validate_actions(actions: Any, allowed_entity_ids: set[str], errors: list[s
         errors.append("invalid_actions")
         return
     for action in actions:
-        if not isinstance(action, dict) or any(not action.get(field) for field in _ACTION_FIELDS):
+        if (
+            not isinstance(action, dict)
+            or any(not isinstance(action.get(field), str) or not action.get(field).strip() for field in _ACTION_FIELDS)
+        ):
             errors.append("incomplete_action")
             continue
         if "scope" in action:
@@ -183,6 +200,8 @@ def _validate_module_coverage(insights: Any, module_status: Any, errors: list[st
     if not isinstance(module_status, dict):
         errors.append("invalid_module_status")
         return
+    if set(module_status) != REQUIRED_MODULES:
+        errors.append("invalid_module_status")
     present_modules = {
         insight.get("module") for insight in insights
         if isinstance(insight, dict) and insight.get("module") in REQUIRED_MODULES

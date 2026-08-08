@@ -87,6 +87,12 @@ class AIContractTests(unittest.TestCase):
         with self.assertRaisesRegex(AIContractError, "unknown_evidence"):
             validate_ai_result(value, evidence_packet(), {"dealer-1"})
 
+    def test_empty_evidence_ids_are_rejected(self):
+        value = valid_ai_result()
+        value["insights"][0]["evidence_ids"] = []
+        with self.assertRaisesRegex(AIContractError, "missing_evidence"):
+            validate_ai_result(value, evidence_packet(), {"dealer-1"})
+
     def test_unknown_entity_is_rejected(self):
         value = valid_ai_result()
         value["insights"][0]["scope"]["entity_ids"] = ["peer-dealer"]
@@ -105,11 +111,31 @@ class AIContractTests(unittest.TestCase):
         with self.assertRaisesRegex(AIContractError, "unsupported_number"):
             validate_ai_result(value, evidence_packet(), {"dealer-1"})
 
+    def test_percent_text_accepts_percent_point_evidence_values(self):
+        packet = evidence_packet()
+        packet["evidence"][0]["value"] = 25
+        result = validate_ai_result(valid_ai_result(), packet, {"dealer-1"})
+        self.assertEqual(result["insights"][0]["evidence_ids"], ["ev-1"])
+
     def test_action_requires_owner_deadline_and_metric(self):
         value = valid_ai_result()
         value["insights"][0]["actions"] = [{"action": "增加场景内容"}]
         with self.assertRaisesRegex(AIContractError, "incomplete_action"):
             validate_ai_result(value, evidence_packet(), {"dealer-1"})
+
+    def test_action_fields_must_be_non_empty_strings(self):
+        value = valid_ai_result()
+        value["insights"][0]["actions"][0]["owner"] = 3
+        with self.assertRaisesRegex(AIContractError, "incomplete_action"):
+            validate_ai_result(value, evidence_packet(), {"dealer-1"})
+
+    def test_top_level_and_insight_fields_have_strict_types(self):
+        value = valid_ai_result()
+        value["executive_summary"] = {"text": "bad"}
+        value["insights"][0]["title"] = ["bad"]
+        with self.assertRaises(AIContractError) as raised:
+            validate_ai_result(value, evidence_packet(), {"dealer-1"})
+        self.assertTrue({"invalid_top_level", "invalid_insight_field"} <= set(raised.exception.errors))
 
     def test_invalid_module_statement_type_and_confidence_are_rejected(self):
         value = valid_ai_result()
@@ -124,6 +150,12 @@ class AIContractTests(unittest.TestCase):
         packet = evidence_packet()
         packet["module_status"]["content_patterns"] = "ready"
         with self.assertRaisesRegex(AIContractError, "missing_ready_module_insight"):
+            validate_ai_result(valid_ai_result(), packet, {"dealer-1"})
+
+    def test_module_status_must_cover_every_required_module(self):
+        packet = evidence_packet()
+        packet["module_status"].pop("content_patterns")
+        with self.assertRaisesRegex(AIContractError, "invalid_module_status"):
             validate_ai_result(valid_ai_result(), packet, {"dealer-1"})
 
     def test_insight_cannot_cite_evidence_from_another_module(self):
