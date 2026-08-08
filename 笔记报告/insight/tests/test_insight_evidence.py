@@ -183,6 +183,24 @@ class InsightEvidenceTests(unittest.TestCase):
         self.assertTrue({"category_share_similarity", "network_posting_frequency", "tier_candidate_count"} <= metrics)
         self.assertTrue(any(row["metric"] == "tier_candidate_count" and row["scope"].get("tier") == "S" for row in matrix_rows))
 
+    def test_apple_unknown_quadrant_is_unavailable_not_c_tier(self):
+        payload = apple_fixture()
+        payload["apple"]["dealer_quadrants"] = [
+            {"cohort": "core_kpi", "quadrant": "mystery", "notes": 5, "reads_per_note": 200}
+        ]
+        rows = build_evidence_packet("apple", payload, history_fixture(), period_fixture())["evidence"]
+        matrix_rows = [row for row in rows if row["module"] == "matrix_health"]
+
+        self.assertFalse(
+            any(
+                row["metric"] in {"quadrant_distribution", "network_posting_frequency", "tier_candidate_count"}
+                for row in matrix_rows
+            )
+        )
+        unavailable = next(row for row in matrix_rows if row["metric"] == "dealer_quadrant_unavailable")
+        self.assertEqual(unavailable["confidence"], "validate")
+        self.assertEqual(unavailable["scope"]["availability"], "insufficient_data")
+
     def test_dealer_matrix_excludes_accounts_without_valid_notes_from_ready_calculations(self):
         rows = build_evidence_packet("dealer", dealer_fixture(), history_fixture(), period_fixture())["evidence"]
         matrix_rows = [row for row in rows if row["module"] == "matrix_health"]
@@ -197,6 +215,16 @@ class InsightEvidenceTests(unittest.TestCase):
         metrics = {row["metric"] for row in rows if row["module"] == "growth_diagnosis"}
         self.assertIn("q1_reads_pacing_gap", metrics)
         self.assertNotIn("q4_reads_pacing_gap", metrics)
+
+    def test_pacing_elapsed_ratio_uses_kpi_container_value(self):
+        payload = dealer_fixture()
+        payload["dealer"]["kpi"]["elapsed_ratio"] = 0.4
+        payload["dealer"]["kpi"]["reads"]["elapsed_ratio"] = 0.1
+
+        rows = build_evidence_packet("dealer", payload, history_fixture(), period_fixture())["evidence"]
+        pacing_row = next(row for row in rows if row["metric"] == "q4_reads_pacing_gap")
+
+        self.assertEqual(pacing_row["comparison"], {"elapsed_ratio": 0.4})
 
     def test_top_20_read_share_requires_real_note_rows_or_explicit_top_20_aggregate(self):
         rows = build_evidence_packet("dealer", dealer_fixture(), history_fixture(), period_fixture())["evidence"]
@@ -222,6 +250,37 @@ class InsightEvidenceTests(unittest.TestCase):
         self.assertTrue(any(row["metric"] == "high_save_note_candidate" and row["scope"].get("candidate_unit") == "note" for row in user_rows))
         self.assertTrue(any(row["metric"] == "high_comment_note_candidate" and row["scope"].get("candidate_unit") == "note" for row in user_rows))
 
+    def test_incomplete_note_reads_do_not_support_top20_or_viral_rate(self):
+        payload = dealer_fixture()
+        payload["dealer"]["notes"] = [
+            {"note_id": "known-reads", "title": "Known", "reads": 100, "publish_date": "2026-07-30"}
+        ] + [
+            {
+                "note_id": "missing-reads-{}".format(index),
+                "title": "Missing",
+                "publish_date": "2026-07-{:02d}".format((index % 20) + 1),
+            }
+            for index in range(20)
+        ]
+        rows = build_evidence_packet("dealer", payload, history_fixture(), period_fixture())["evidence"]
+        matrix_rows = [row for row in rows if row["module"] == "matrix_health"]
+        content_rows = [row for row in rows if row["module"] == "content_patterns"]
+
+        self.assertFalse(any(row["metric"] == "top_20_read_share" for row in matrix_rows))
+        self.assertFalse(any(row["metric"] == "viral_rate" for row in content_rows))
+
+        top20_unavailable = next(row for row in matrix_rows if row["metric"] == "top_20_read_share_unavailable")
+        viral_unavailable = next(row for row in content_rows if row["metric"] == "viral_rate_unavailable")
+        self.assertEqual(top20_unavailable["confidence"], "validate")
+        self.assertEqual(viral_unavailable["confidence"], "validate")
+        self.assertEqual(top20_unavailable["scope"]["availability"], "insufficient_data")
+        self.assertEqual(viral_unavailable["scope"]["availability"], "insufficient_data")
+        self.assertEqual(top20_unavailable["scope"]["reads_coverage"], {"observed": 1, "total": 21})
+        self.assertEqual(viral_unavailable["scope"]["reads_coverage"], {"observed": 1, "total": 21})
+
+        top_note = next(row for row in content_rows if row["metric"] == "top_note_reads")
+        self.assertEqual(top_note["scope"]["reads_coverage"], {"observed": 1, "total": 21})
+
     def test_note_rows_without_dates_emit_hotspot_unavailable_instead_of_zero_recency(self):
         payload = dealer_fixture()
         payload["dealer"]["notes"] = [{"note_id": "undated", "title": "No date", "reads": 100}]
@@ -240,6 +299,21 @@ class InsightEvidenceTests(unittest.TestCase):
         self.assertTrue(all(row["confidence"] == "validate" for row in packet["evidence"]))
         self.assertTrue(all(row["scope"].get("availability") == "insufficient_data" for row in packet["evidence"]))
         self.assertEqual(packet["data_scope"]["quality_status"], "failed")
+
+    def test_evidence_ids_are_globally_unique_for_normal_and_failed_packets(self):
+        normal_packet = build_evidence_packet("dealer", dealer_fixture(), history_fixture(), period_fixture())
+
+        failed_payload = dealer_fixture()
+        failed_payload["quality"]["quality_status"] = "failed"
+        failed_packet = build_evidence_packet("dealer", failed_payload, history_fixture(), period_fixture())
+
+        for packet in (normal_packet, failed_packet):
+            evidence_ids = [row["evidence_id"] for row in packet["evidence"]]
+            self.assertEqual(len(evidence_ids), len(set(evidence_ids)))
+
+        failed_ids = [row["evidence_id"] for row in failed_packet["evidence"]]
+        self.assertEqual(len(failed_ids), len(REQUIRED_MODULES))
+        self.assertEqual(len(failed_ids), len(set(failed_ids)))
 
     def test_content_and_user_signals_keep_core_and_expanded_cohorts_separate(self):
         payload = dealer_fixture()

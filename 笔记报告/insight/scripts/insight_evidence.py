@@ -77,6 +77,7 @@ def build_evidence_packet(role: str, payload: dict, history_context: dict, perio
 
 
 def _evidence_packet(role: str, payload: dict, history_context: dict, period: dict, rows: list[dict]) -> dict:
+    rows = _with_unique_evidence_ids(rows)
     rows.sort(key=lambda row: (REQUIRED_MODULES.index(row["module"]), row["evidence_id"]))
     module_status = {
         module: "ready" if any(
@@ -115,11 +116,12 @@ def _growth_evidence(role: str, payload: dict, history: dict, period: dict) -> l
                 output_metric = ("fans" if metric == "new_fans" else metric) + "_change_vs_" + suffix
                 rows.append(_row(role, root, month, module, output_metric, change, comparison={"baseline": source}, scope={"history_source": source, "cohort": "all_scoped_accounts"}))
 
+    kpi_container = _mapping(root.get("kpi") if role == "dealer" else root.get("network_kpis"))
     for metric in ("reads", "interactions", "fans"):
-        values = _mapping(_mapping(root).get("kpi") if role == "dealer" else _mapping(root).get("network_kpis")).get(metric, {})
+        values = _mapping(kpi_container.get(metric))
         gap = values.get("pacing_gap")
         if _finite(gap):
-            elapsed_ratio = _number(values.get("elapsed_ratio", _mapping(root).get("elapsed_ratio")))
+            elapsed_ratio = _number(kpi_container.get("elapsed_ratio"))
             quarter = _fiscal_quarter_key(period.get("fiscal_quarter"))
             rows.append(_row(role, root, month, module, quarter + "_" + metric + "_pacing_gap", gap, comparison={"elapsed_ratio": elapsed_ratio} if elapsed_ratio is not None else None, scope={"cohort": "core_kpi", "fiscal_quarter": period.get("fiscal_quarter")}))
 
@@ -143,11 +145,15 @@ def _matrix_health_evidence(role: str, payload: dict, history: dict, period: dic
     explicit_top_20_share = _number(content.get("top_20_read_share"))
     if explicit_top_20_share is None:
         explicit_top_20_share = _number(root.get("top_20_read_share"))
-    top_20_share = _top_20_note_read_share(notes) if notes else explicit_top_20_share
+    reads_coverage = _note_reads_coverage(notes) if notes else None
+    top_20_share = _top_20_note_read_share(notes) if notes and _note_reads_are_complete(notes) else (explicit_top_20_share if not notes else None)
     if top_20_share is not None:
         rows.append(_row(role, root, month, module, "top_20_read_share", top_20_share, scope={"evidence_basis": "note_rows" if notes else "explicit_top20_aggregate", "cohort": "all_scoped_accounts"}, sample_size=min(20, len(_ranked_notes_by_reads(notes))) if notes else None))
     else:
-        rows.append(_unavailable_row(role, root, month, module, "top_20_read_share_unavailable", {"evidence_basis": "note_rows_or_explicit_top20_aggregate", "cohort": "all_scoped_accounts"}))
+        unavailable_scope = {"evidence_basis": "note_rows_or_explicit_top20_aggregate", "cohort": "all_scoped_accounts"}
+        if notes:
+            unavailable_scope.update({"evidence_basis": "complete_note_reads_required", "reads_coverage": reads_coverage})
+        rows.append(_unavailable_row(role, root, month, module, "top_20_read_share_unavailable", unavailable_scope))
     if note_count is not None and note_count > 0:
         long_tail_share = _long_tail_share(categories, note_count)
         if long_tail_share is not None:
@@ -195,17 +201,21 @@ def _content_pattern_scope_rows(role: str, root: dict, month: str, module: str, 
         rows.append(_row(role, root, month, module, "long_tail_note_count", _long_tail_count(categories, total_notes), scope={**aggregate_scope, "pattern_type": "long_tail"}, sample_size=int(total_notes)))
         if notes:
             ranked_notes = _ranked_notes_by_reads(notes)
-            note_scope = {"cohort": cohort, "evidence_basis": "note_rows"}
+            reads_coverage = _note_reads_coverage(notes)
+            reads_are_complete = _note_reads_are_complete(notes)
+            note_scope = {"cohort": cohort, "evidence_basis": "note_rows", "reads_coverage": reads_coverage}
             rows.append(_row(role, root, month, module, "top_20_note_count", min(20, len(ranked_notes)), scope={**note_scope, "pattern_type": "top_20"}, sample_size=len(ranked_notes)))
             total_note_reads = sum(reads for _, reads in ranked_notes)
             for rank, (note, reads) in enumerate(ranked_notes[:20], start=1):
                 note_id = _note_id(note)
-                rows.append(_row(role, root, month, module, "top_note_reads", reads, comparison={"read_share": reads / total_note_reads} if total_note_reads else None, scope={**note_scope, "pattern_type": "top_20", "note_id": note_id, "note_rank": rank}, sample_size=len(ranked_notes)))
-            if threshold is not None:
+                read_share = {"read_share": reads / total_note_reads} if reads_are_complete and total_note_reads else None
+                rows.append(_row(role, root, month, module, "top_note_reads", reads, comparison=read_share, scope={**note_scope, "pattern_type": "top_20", "note_id": note_id, "note_rank": rank}, sample_size=len(ranked_notes)))
+            if threshold is not None and reads_are_complete:
                 rows.append(_row(role, root, month, module, "viral_threshold_reads", threshold * 2, scope={**note_scope, "pattern_type": "viral", "threshold_basis": "two_times_reads_per_note"}))
                 rows.append(_row(role, root, month, module, "viral_rate", _viral_rate(notes, threshold, categories), scope={**note_scope, "pattern_type": "viral"}, sample_size=len(notes)))
             else:
-                rows.append(_unavailable_row(role, root, month, module, "viral_rate_unavailable", {**note_scope, "pattern_type": "viral"}, sample_size=len(notes)))
+                evidence_basis = "complete_note_reads_required" if not reads_are_complete else "reads_per_note"
+                rows.append(_unavailable_row(role, root, month, module, "viral_rate_unavailable", {**note_scope, "pattern_type": "viral", "evidence_basis": evidence_basis}, sample_size=len(notes)))
             hotspot_recency = _hotspot_recency(notes, month)
             if hotspot_recency is None:
                 rows.append(_unavailable_row(role, root, month, module, "hotspot_recency_unavailable", {**note_scope, "pattern_type": "hotspot", "evidence_basis": "publication_date"}, sample_size=len(notes)))
@@ -482,13 +492,24 @@ def _add_note_user_candidates(role: str, root: dict, month: str, module: str, no
 def _apple_matrix_rows(root: dict, month: str) -> list[dict]:
     rows: list[dict] = []
     quadrants = [item for item in _mapping(root).get("dealer_quadrants", []) if isinstance(item, dict)]
+    tier_by_quadrant = {
+        "high_supply_high_efficiency": "S",
+        "low_supply_high_efficiency": "A",
+        "high_supply_low_efficiency": "B",
+        "low_supply_low_efficiency": "C",
+    }
     valid_quadrants = [
         item for item in quadrants
-        if (_number(item.get("notes")) or 0) > 0 and _number(item.get("reads_per_note")) is not None
+        if (
+            str(item.get("quadrant")) in tier_by_quadrant
+            and (notes := _number(item.get("notes"))) is not None
+            and notes > 0
+            and _number(item.get("reads_per_note")) is not None
+        )
     ]
     for item in quadrants:
         if item not in valid_quadrants:
-            rows.append(_unavailable_row("apple", root, month, "matrix_health", "dealer_quadrant_unavailable", {"cohort": str(item.get("cohort", "expanded_store")), "evidence_basis": "finite_notes_and_reads_per_note"}))
+            rows.append(_unavailable_row("apple", root, month, "matrix_health", "dealer_quadrant_unavailable", {"cohort": str(item.get("cohort", "expanded_store")), "quadrant": str(item.get("quadrant", "unclassified")), "evidence_basis": "known_quadrant_with_finite_notes_and_reads_per_note"}))
     counts = Counter(str(item.get("quadrant", "unclassified")) for item in valid_quadrants)
     for quadrant, count in sorted(counts.items()):
         rows.append(_row("apple", root, month, "matrix_health", "quadrant_distribution", count, scope={"quadrant": quadrant, "cohort": "network", "evidence_basis": "valid_dealer_quadrants"}, sample_size=len(valid_quadrants)))
@@ -496,18 +517,12 @@ def _apple_matrix_rows(root: dict, month: str) -> list[dict]:
     by_cohort: dict[str, list[dict]] = defaultdict(list)
     for item in valid_quadrants:
         by_cohort[str(item.get("cohort", "expanded_store"))].append(item)
-    tier_by_quadrant = {
-        "high_supply_high_efficiency": "S",
-        "low_supply_high_efficiency": "A",
-        "high_supply_low_efficiency": "B",
-        "low_supply_low_efficiency": "C",
-    }
     for cohort, members in sorted(by_cohort.items()):
         account_count = _int(_mapping(account_counts).get(cohort))
         notes = [_number(item.get("notes")) for item in members]
         if account_count and all(value is not None for value in notes):
             rows.append(_row("apple", root, month, "matrix_health", "network_posting_frequency", sum(notes) / account_count, scope={"cohort": cohort, "unit": "notes_per_account"}, sample_size=account_count))
-        tiers = Counter(tier_by_quadrant.get(str(item.get("quadrant")), "C") for item in members)
+        tiers = Counter(tier_by_quadrant[str(item.get("quadrant"))] for item in members)
         for tier, count in sorted(tiers.items()):
             rows.append(_row("apple", root, month, "matrix_health", "tier_candidate_count", count, scope={"tier": tier, "cohort": cohort, "basis": "dealer_quadrant"}, sample_size=len(members)))
     return rows
@@ -751,6 +766,15 @@ def _ranked_notes_by_reads(notes: list[dict]) -> list[tuple[dict, float]]:
     )
 
 
+def _note_reads_coverage(notes: list[dict]) -> dict[str, int]:
+    return {"observed": sum(_number(note.get("reads")) is not None for note in notes), "total": len(notes)}
+
+
+def _note_reads_are_complete(notes: list[dict]) -> bool:
+    coverage = _note_reads_coverage(notes)
+    return coverage["total"] > 0 and coverage["observed"] == coverage["total"]
+
+
 def _top_20_note_read_share(notes: list[dict]) -> float | None:
     ranked = _ranked_notes_by_reads(notes)
     total_reads = sum(reads for _, reads in ranked)
@@ -787,7 +811,7 @@ def _actions(role: str, root: dict) -> list[dict]:
 
 
 def _row(role: str, root: dict, month: str, module: str, metric: str, value: Any, *, comparison: Any = None, scope: dict | None = None, sample_size: int | None = None, confidence: str = "supported") -> dict:
-    return evidence(_evidence_id(role, root, month, scope or {}, metric), module, metric, value, comparison=comparison, scope=scope, sample_size=sample_size, confidence=confidence)
+    return evidence(_evidence_id(role, root, month, module, scope or {}, metric), module, metric, value, comparison=comparison, scope=scope, sample_size=sample_size, confidence=confidence)
 
 
 def _unavailable_row(role: str, root: dict, month: str, module: str, metric: str, scope: dict | None = None, *, sample_size: int | None = None) -> dict:
@@ -800,14 +824,24 @@ def _or_placeholder(role: str, root: dict, month: str, module: str, rows: list[d
     return [_row(role, root, month, module, "insufficient_data", 0, scope={"availability": "insufficient_data"}, confidence="validate")]
 
 
-def _evidence_id(role: str, root: dict, month: str, scope: dict, metric: str) -> str:
+def _evidence_id(role: str, root: dict, month: str, module: str, scope: dict, metric: str) -> str:
     if role == "dealer":
         subject = str(root.get("dealer_id", "unknown-dealer"))
         prefix = f"dealer:{subject}:{month}"
     else:
         prefix = f"apple:{month}"
     parts = [str(scope[key]) for key in ("cohort", "city", "region", "category", "account_id", "note_id", "note_rank", "token", "scenario", "horizon_days", "quadrant", "tier", "pattern_type", "format") if scope.get(key) not in (None, "")]
-    return ":".join([prefix, *parts, metric])
+    return ":".join([prefix, module, *parts, metric])
+
+
+def _with_unique_evidence_ids(rows: list[dict]) -> list[dict]:
+    occurrences: dict[str, int] = defaultdict(int)
+    for row in rows:
+        evidence_id = row["evidence_id"]
+        occurrences[evidence_id] += 1
+        if occurrences[evidence_id] > 1:
+            row["evidence_id"] = evidence_id + ":" + str(occurrences[evidence_id])
+    return rows
 
 
 def _top_category_read_share(categories: list[dict], total_reads: float | None) -> float | None:
