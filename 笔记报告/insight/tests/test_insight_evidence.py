@@ -78,7 +78,7 @@ def apple_fixture():
             "network_kpis": copy.deepcopy(dealer["kpi"]),
             "account_counts": {"core_kpi": 1, "expanded_store": 1},
             "dealer_quadrants": [{"dealer_id": "dealer-a", "cohort": "core_kpi", "notes": 5, "reads_per_note": 200, "quadrant": "high_supply_high_efficiency"}],
-            "city_summaries": [{"city": "Shanghai", "accounts": 2, "reads": 1000, "new_fans": 10}],
+            "city_summaries": [{"city": "Shanghai", "account_count": 2, "identified_coverage": 1}],
             "category_mix_performance": [{"region": "East", "cohort": "core_kpi", "category": "promotion", "notes": 3, "reads": 800, "reads_per_note": 266.67, "interaction_rate": 0.16}],
             "actions": {"immediate": [{"id": "network-action-1", "rule_id": "category_scale", "confidence": "supported", "priority": "high", "category": "promotion", "affected_dealer_count": 1, "affected_account_count": 1, "evidence": [{"metric": "recommendation_count", "value": 1}]}]},
             "replicable_cases": {"city": [{"city": "Shanghai", "region": "East", "cohort": "core_kpi", "dealer_ids": ["dealer-a"], "evidence": [{"metric": "reads_per_note", "value": 200, "benchmark": 150}]}]},
@@ -92,6 +92,12 @@ def sparse_city_fixture():
         {"author_id": "sparse-1", "account_name": "Sparse Account", "city": "Small City", "region": "West", "confidence": "inferred", "cohort": "core_kpi", "metrics": {"reads": 10, "likes": 1, "collects": 1, "comments": 0, "shares": 0, "new_fans": 0}},
     ]
     payload["dealer"]["content"]["by_city_cohort"] = [{"city": "Small City", "region": "West", "cohort": "core_kpi", "content": {"notes": 1, "reads": 10, "reads_per_note": 10, "categories": []}}]
+    return payload
+
+
+def apple_fixture_with_scoped_city_data():
+    payload = apple_fixture()
+    payload["dealers"] = [dealer_fixture()["dealer"]]
     return payload
 
 
@@ -138,6 +144,44 @@ class InsightEvidenceTests(unittest.TestCase):
         packet = build_evidence_packet("dealer", {"source_month": "2026-07", "dealer": {"dealer_id": "empty"}}, {}, period_fixture())
         self.assertEqual(set(packet["module_status"].values()), {"insufficient_data"})
         self.assertEqual({row["module"] for row in packet["evidence"]}, set(REQUIRED_MODULES))
+
+    def test_apple_city_summary_without_numeric_basis_is_insufficient_not_null_ready_evidence(self):
+        packet = build_evidence_packet("apple", apple_fixture(), history_fixture(), period_fixture())
+        rows = [row for row in packet["evidence"] if row["module"] == "regional_strategy"]
+        self.assertEqual(packet["module_status"]["regional_strategy"], "insufficient_data")
+        self.assertTrue(all(row["scope"].get("availability") == "insufficient_data" for row in rows))
+        self.assertTrue(all(row["value"] is not None for row in rows))
+
+    def test_apple_city_evidence_uses_scoped_account_and_city_content_data_when_available(self):
+        packet = build_evidence_packet("apple", apple_fixture_with_scoped_city_data(), history_fixture(), period_fixture())
+        row = next(row for row in packet["evidence"] if row["metric"] == "city_content_efficiency")
+        self.assertEqual(row["value"], 200)
+        self.assertEqual(row["sample_size"], 1)
+        self.assertEqual(row["confidence"], "validate")
+        self.assertEqual(row["scope"]["recommendation_mode"], "test_only")
+
+    def test_aggregate_content_evidence_is_explicit_about_missing_note_level_rows(self):
+        rows = build_evidence_packet("apple", apple_fixture(), history_fixture(), period_fixture())["evidence"]
+        content_rows = [row for row in rows if row["module"] == "content_patterns"]
+        self.assertTrue(any(row["metric"] == "aggregate_reads_per_note" for row in content_rows))
+        self.assertFalse(any(row["metric"] == "hotspot_recency_days" for row in content_rows))
+        hotspot = next(row for row in content_rows if row["scope"].get("pattern_type") == "hotspot")
+        self.assertEqual(hotspot["scope"]["availability"], "insufficient_data")
+        self.assertTrue(all(row["value"] is not None for row in content_rows))
+
+    def test_hotspot_recency_uses_source_month_end(self):
+        payload = dealer_fixture()
+        payload["dealer"]["notes"] = [{"note_id": "recent", "title": "Recent", "reads": 100, "publish_date": "2026-07-30"}]
+        rows = build_evidence_packet("dealer", payload, history_fixture(), period_fixture())["evidence"]
+        hotspot = next(row for row in rows if row["metric"] == "hotspot_recency_days")
+        self.assertEqual(hotspot["value"], 1)
+
+    def test_apple_matrix_includes_category_share_similarity_posting_frequency_and_tiers(self):
+        rows = build_evidence_packet("apple", apple_fixture(), history_fixture(), period_fixture())["evidence"]
+        matrix_rows = [row for row in rows if row["module"] == "matrix_health"]
+        metrics = {row["metric"] for row in matrix_rows}
+        self.assertTrue({"category_share_similarity", "network_posting_frequency", "tier_candidate_count"} <= metrics)
+        self.assertTrue(any(row["metric"] == "tier_candidate_count" and row["scope"].get("tier") == "S" for row in matrix_rows))
 
 
 if __name__ == "__main__":
