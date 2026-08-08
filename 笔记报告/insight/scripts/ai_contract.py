@@ -61,7 +61,7 @@ def _validate_top_level(result: dict, errors: list[str]) -> None:
     for field in _TOP_LEVEL_FIELDS:
         if field not in result:
             errors.append("missing_top_level")
-    if "executive_summary" in result and not isinstance(result["executive_summary"], str):
+    if "executive_summary" in result and not _non_empty_string(result["executive_summary"]):
         errors.append("invalid_top_level")
     if "generation" in result and not isinstance(result["generation"], dict):
         errors.append("invalid_top_level")
@@ -91,7 +91,7 @@ def _validate_insight(insight: Any, evidence_by_id: dict[str, dict], allowed_ent
     if missing_fields:
         errors.append("incomplete_insight")
     for field in ("id", "module", "title", "judgement", "why", "impact", "statement_type", "confidence"):
-        if field in insight and not isinstance(insight.get(field), str):
+        if field in insight and not _non_empty_string(insight.get(field)):
             errors.append("invalid_insight_field")
     module = insight.get("module")
     if module not in REQUIRED_MODULES:
@@ -188,7 +188,7 @@ def _validate_actions(actions: Any, allowed_entity_ids: set[str], errors: list[s
     for action in actions:
         if (
             not isinstance(action, dict)
-            or any(not isinstance(action.get(field), str) or not action.get(field).strip() for field in _ACTION_FIELDS)
+            or any(not _non_empty_string(action.get(field)) for field in _ACTION_FIELDS)
         ):
             errors.append("incomplete_action")
             continue
@@ -224,6 +224,10 @@ def _validate_finite_values(value: Any, errors: list[str]) -> None:
     elif isinstance(value, (list, tuple)):
         for item in value:
             _validate_finite_values(item, errors)
+
+
+def _non_empty_string(value: Any) -> bool:
+    return isinstance(value, str) and bool(value.strip())
 
 
 def _unique(errors: list[str]) -> list[str]:

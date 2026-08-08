@@ -137,6 +137,14 @@ class AIContractTests(unittest.TestCase):
             validate_ai_result(value, evidence_packet(), {"dealer-1"})
         self.assertTrue({"invalid_top_level", "invalid_insight_field"} <= set(raised.exception.errors))
 
+    def test_top_level_and_insight_strings_must_not_be_blank(self):
+        value = valid_ai_result()
+        value["executive_summary"] = " "
+        value["insights"][0]["title"] = ""
+        with self.assertRaises(AIContractError) as raised:
+            validate_ai_result(value, evidence_packet(), {"dealer-1"})
+        self.assertTrue({"invalid_top_level", "invalid_insight_field"} <= set(raised.exception.errors))
+
     def test_invalid_module_statement_type_and_confidence_are_rejected(self):
         value = valid_ai_result()
         value["insights"][0]["module"] = "not-a-module"
