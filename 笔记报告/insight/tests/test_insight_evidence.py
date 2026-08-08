@@ -120,7 +120,7 @@ class InsightEvidenceTests(unittest.TestCase):
     def test_matrix_health_includes_concentration_and_quadrants(self):
         rows = build_evidence_packet("apple", apple_fixture(), history_fixture(), period_fixture())["evidence"]
         metrics = {row["metric"] for row in rows if row["module"] == "matrix_health"}
-        self.assertTrue({"top_20_read_share", "quadrant_distribution", "content_homogeneity"} <= metrics)
+        self.assertTrue({"top_20_read_share_unavailable", "quadrant_distribution", "content_homogeneity"} <= metrics)
 
     def test_dealer_packet_never_contains_peer_identity(self):
         packet = build_evidence_packet("dealer", dealer_fixture(), history_fixture(), period_fixture())
@@ -182,6 +182,45 @@ class InsightEvidenceTests(unittest.TestCase):
         metrics = {row["metric"] for row in matrix_rows}
         self.assertTrue({"category_share_similarity", "network_posting_frequency", "tier_candidate_count"} <= metrics)
         self.assertTrue(any(row["metric"] == "tier_candidate_count" and row["scope"].get("tier") == "S" for row in matrix_rows))
+
+    def test_dealer_matrix_excludes_accounts_without_valid_notes_from_ready_calculations(self):
+        rows = build_evidence_packet("dealer", dealer_fixture(), history_fixture(), period_fixture())["evidence"]
+        matrix_rows = [row for row in rows if row["module"] == "matrix_health"]
+        self.assertFalse(any(row["metric"] in {"account_quadrant", "tier_candidate", "posting_frequency"} for row in matrix_rows))
+        unavailable = [row for row in matrix_rows if row["metric"] == "account_matrix_unavailable"]
+        self.assertEqual(len(unavailable), 2)
+        self.assertTrue(all(row["scope"]["availability"] == "insufficient_data" for row in unavailable))
+
+    def test_pacing_metric_name_uses_the_supplied_fiscal_quarter(self):
+        q1_period = {**period_fixture(), "fiscal_quarter": "Q1", "fiscal_month": 1}
+        rows = build_evidence_packet("dealer", dealer_fixture(), history_fixture(), q1_period)["evidence"]
+        metrics = {row["metric"] for row in rows if row["module"] == "growth_diagnosis"}
+        self.assertIn("q1_reads_pacing_gap", metrics)
+        self.assertNotIn("q4_reads_pacing_gap", metrics)
+
+    def test_top_20_read_share_requires_real_note_rows_or_explicit_top_20_aggregate(self):
+        rows = build_evidence_packet("dealer", dealer_fixture(), history_fixture(), period_fixture())["evidence"]
+        matrix_rows = [row for row in rows if row["module"] == "matrix_health"]
+        self.assertFalse(any(row["metric"] == "top_20_read_share" for row in matrix_rows))
+        unavailable = next(row for row in matrix_rows if row["metric"] == "top_20_read_share_unavailable")
+        self.assertEqual(unavailable["scope"]["availability"], "insufficient_data")
+        self.assertEqual(unavailable["scope"]["evidence_basis"], "note_rows_or_explicit_top20_aggregate")
+
+    def test_note_rows_emit_top_title_long_tail_and_note_level_user_candidates(self):
+        payload = dealer_fixture()
+        payload["dealer"]["notes"] = [
+            {"note_id": "n-top", "title": "Apple Promo", "reads": 100, "collects": 10, "comments": 3, "publish_date": "2026-07-30"},
+            {"note_id": "n-long", "title": "Local Service", "reads": 10, "collects": 1, "comments": 20, "publish_date": "2026-07-10"},
+            {"note_id": "n-mid", "title": "Student Value", "reads": 50, "collects": 5, "comments": 2, "publish_date": "2026-07-20"},
+        ]
+        rows = build_evidence_packet("dealer", payload, history_fixture(), period_fixture())["evidence"]
+        content_rows = [row for row in rows if row["module"] == "content_patterns"]
+        user_rows = [row for row in rows if row["module"] == "user_signals"]
+        self.assertTrue(any(row["metric"] == "top_note_reads" and row["scope"].get("note_id") == "n-top" for row in content_rows))
+        self.assertTrue(any(row["metric"] == "title_token_frequency" and row["scope"].get("token") == "apple" for row in content_rows))
+        self.assertTrue(any(row["metric"] == "long_tail_age_days" and row["scope"].get("note_id") == "n-long" for row in content_rows))
+        self.assertTrue(any(row["metric"] == "high_save_note_candidate" and row["scope"].get("candidate_unit") == "note" for row in user_rows))
+        self.assertTrue(any(row["metric"] == "high_comment_note_candidate" and row["scope"].get("candidate_unit") == "note" for row in user_rows))
 
 
 if __name__ == "__main__":
