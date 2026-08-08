@@ -252,7 +252,7 @@ class InsightModelTests(unittest.TestCase):
         scoped = build_insight.build_dealer_payload(payload, selected["dealer_id"])
         self.assertEqual(
             set(scoped),
-            {"schema_version", "source_month", "generated_at", "data_freshness", "quality", "dealer"},
+            {"schema_version", "source_month", "period", "generated_at", "data_freshness", "quality", "history", "dealer"},
         )
         self.assertEqual(scoped["dealer"], selected)
         serialized = json.dumps(scoped, ensure_ascii=False)
@@ -303,6 +303,64 @@ class InsightModelTests(unittest.TestCase):
                     (output_dir / "dealers" / f"{dealer['dealer_id']}.json").read_text(encoding="utf-8")
                 )
                 self.assertEqual(scoped["dealer"]["dealer_id"], dealer["dealer_id"])
+
+    def test_versioned_dealer_artifact_contains_no_peer_identity(self):
+        accounts, notes, kpis = self.sample_inputs()
+        payload = build_insight.build_insight_payload(
+            accounts,
+            notes,
+            kpis,
+            self.CATEGORY_MAPPING,
+            {},
+            {
+                "source_files": {},
+                "matched_kpi_accounts": 2,
+                "unmatched_kpi_ids": [],
+                "quality_status": "ready",
+                "errors": [],
+            },
+            "2026-07",
+        )
+        with tempfile.TemporaryDirectory() as temp_dir:
+            output_dir = Path(temp_dir)
+            build_insight.attach_ai_artifacts(payload, output_dir, use_provider=False)
+            build_insight.write_versioned_artifacts(output_dir, payload)
+
+            selected = payload["dealers"][0]
+            peer = payload["dealers"][1]
+            artifact = json.loads(
+                (output_dir / "months" / "2026-07" / "dealers" / f"{selected['dealer_id']}.json").read_text(encoding="utf-8")
+            )
+            serialized = json.dumps(artifact, ensure_ascii=False)
+            self.assertIn(selected["dealer_id"], serialized)
+            self.assertNotIn(peer["dealer_id"], serialized)
+            self.assertNotIn(peer["name"], serialized)
+            self.assertIn("ai_insights", artifact["dealer"])
+            self.assertIn("evidence", artifact["dealer"])
+
+    def test_apple_month_artifact_has_period_history_evidence_and_ai(self):
+        accounts, notes, kpis = self.sample_inputs()
+        payload = build_insight.build_insight_payload(
+            accounts,
+            notes,
+            kpis,
+            self.CATEGORY_MAPPING,
+            {},
+            {"source_files": {}, "matched_kpi_accounts": 2, "unmatched_kpi_ids": [], "quality_status": "ready", "errors": []},
+            "2026-07",
+        )
+        with tempfile.TemporaryDirectory() as temp_dir:
+            output_dir = Path(temp_dir)
+            build_insight.attach_ai_artifacts(payload, output_dir, use_provider=False)
+            build_insight.write_versioned_artifacts(output_dir, payload)
+
+            apple = json.loads((output_dir / "months" / "2026-07" / "apple.json").read_text(encoding="utf-8"))
+            self.assertEqual(apple["schema_version"], "2.0")
+            self.assertEqual(apple["period"]["fiscal_quarter"], "Q4")
+            self.assertIn("history", apple)
+            self.assertIn("evidence", apple["apple"])
+            self.assertIn("ai_insights", apple["apple"])
+            self.assertEqual(apple["metadata"]["logic_version"], "2026-08-08.1")
 
     def test_apple_category_performance_is_segmented_by_region_and_cohort(self):
         accounts, notes, kpis = self.sample_inputs()
@@ -875,9 +933,62 @@ class MonthlySourceTests(unittest.TestCase):
             with (output_dir / "quality_report.json").open(encoding="utf-8") as handle:
                 self.assertEqual(json.load(handle)["source_month"], "2026-07")
             with (output_dir / "insight_data.json").open(encoding="utf-8") as handle:
-                self.assertEqual(json.load(handle)["schema_version"], "1.0")
+                payload = json.load(handle)
+                self.assertEqual(payload["schema_version"], "2.0")
+                self.assertIn("period", payload)
+                self.assertIn("ai_insights", payload["apple"])
+            self.assertTrue((output_dir / "month_index.json").exists())
+            self.assertTrue((output_dir / "months" / "2026-07" / "apple.json").exists())
+            self.assertTrue((output_dir / "dealer_index.json").exists())
 
         self.assertEqual({path: path.read_bytes() if path.exists() else None for path in production_paths}, production_bytes)
+
+    def test_cli_accepts_ai_and_versioned_month_output(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            data_root = Path(temp_dir)
+            output_dir = data_root / "test-output"
+            monthly_dir = data_root / "2026-07\u722c\u866b\u6570\u636e"
+            monthly_dir.mkdir()
+            self.make_monthly_workbook(monthly_dir / "curated.xlsx")
+            kpi_dir = data_root / "\u5386\u53f2\u6570\u636e\u5bfc\u5165" / "\u7ecf\u9500\u5546KPI"
+            kpi_dir.mkdir(parents=True)
+            self.make_kpi_workbook(kpi_dir / "FY26.xlsx")
+
+            result = build_insight.main([
+                "--month", "2026-07",
+                "--data-root", str(data_root),
+                "--output-dir", str(output_dir),
+                "--ai",
+            ])
+
+            self.assertEqual(result, 0)
+            self.assertTrue((output_dir / "month_index.json").exists())
+            self.assertTrue((output_dir / "months" / "2026-07" / "apple.json").exists())
+            self.assertTrue((output_dir / "insight_data.json").exists())
+            self.assertTrue((output_dir / "dealer_index.json").exists())
+
+    def test_cli_no_compat_skips_latest_paths(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            data_root = Path(temp_dir)
+            output_dir = data_root / "test-output"
+            monthly_dir = data_root / "2026-07\u722c\u866b\u6570\u636e"
+            monthly_dir.mkdir()
+            self.make_monthly_workbook(monthly_dir / "curated.xlsx")
+            kpi_dir = data_root / "\u5386\u53f2\u6570\u636e\u5bfc\u5165" / "\u7ecf\u9500\u5546KPI"
+            kpi_dir.mkdir(parents=True)
+            self.make_kpi_workbook(kpi_dir / "FY26.xlsx")
+
+            result = build_insight.main([
+                "--month", "2026-07",
+                "--data-root", str(data_root),
+                "--output-dir", str(output_dir),
+                "--no-compat",
+            ])
+
+            self.assertEqual(result, 0)
+            self.assertTrue((output_dir / "months" / "2026-07" / "apple.json").exists())
+            self.assertFalse((output_dir / "insight_data.json").exists())
+            self.assertFalse((output_dir / "dealer_index.json").exists())
 
     def test_failed_quality_writes_report_returns_nonzero_and_does_not_publish_insight(self):
         with tempfile.TemporaryDirectory() as temp_dir:

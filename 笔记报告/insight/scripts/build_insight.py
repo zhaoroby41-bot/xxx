@@ -5,6 +5,7 @@ import calendar
 import hashlib
 import json
 import math
+import os
 import re
 import sys
 from collections import Counter, defaultdict
@@ -15,10 +16,20 @@ from typing import Any
 
 from openpyxl import load_workbook
 
+try:
+    from .ai_generation import generate_ai_insights, load_prompt
+    from .fiscal_history import apple_period, build_history_context
+    from .insight_evidence import build_evidence_packet
+except ImportError:  # pragma: no cover - keeps direct script execution working.
+    from ai_generation import generate_ai_insights, load_prompt
+    from fiscal_history import apple_period, build_history_context
+    from insight_evidence import build_evidence_packet
+
 
 MONTHLY_ACCOUNT_SHEET = "\u5c0f\u7ea2\u4e66\u603b\u6570\u636e"
 MONTHLY_NOTE_SHEET = "\u5c0f\u7ea2\u4e66\u7b14\u8bb0\u6570\u636e\u5e93"
 KPI_QUARTER = "Q4"
+LOGIC_VERSION = "2026-08-08.1"
 
 
 class SourceDiscoveryError(RuntimeError):
@@ -491,10 +502,26 @@ def build_dealer_payload(payload: dict, dealer_id: str) -> dict:
     return {
         "schema_version": payload.get("schema_version"),
         "source_month": payload.get("source_month"),
+        "period": payload.get("period"),
         "generated_at": payload.get("generated_at"),
         "data_freshness": (payload.get("metadata") or {}).get("data_freshness"),
         "quality": _scoped_quality(payload),
+        "history": payload.get("history"),
         "dealer": dealer,
+    }
+
+
+def build_apple_month_payload(payload: dict) -> dict:
+    return {
+        "schema_version": payload.get("schema_version"),
+        "source_month": payload.get("source_month"),
+        "period": payload.get("period"),
+        "generated_at": payload.get("generated_at"),
+        "metadata": payload.get("metadata"),
+        "source_files": payload.get("source_files", {}),
+        "quality": _scoped_quality(payload),
+        "history": payload.get("history"),
+        "apple": payload.get("apple"),
     }
 
 
@@ -515,6 +542,44 @@ def write_dealer_scoped_artifacts(output_dir: Path, payload: dict) -> None:
     _write_json(output_dir / "dealer_index.json", build_dealer_index(payload))
     for dealer_id in dealer_ids:
         _write_json(output_dir / "dealers" / f"{dealer_id}.json", build_dealer_payload(payload, dealer_id))
+
+
+def load_month_index(path: Path) -> dict:
+    try:
+        value = json.loads(path.read_text(encoding="utf-8"))
+    except FileNotFoundError:
+        return {"schema_version": "2.0", "months": []}
+    if not isinstance(value, dict):
+        return {"schema_version": "2.0", "months": []}
+    value.setdefault("months", [])
+    return value
+
+
+def write_versioned_artifacts(output_dir: Path, payload: dict) -> dict[str, dict]:
+    output_dir = Path(output_dir)
+    month = payload["source_month"]
+    month_dir = output_dir / "months" / month
+    dealer_payloads = {
+        dealer["dealer_id"]: build_dealer_payload(payload, dealer["dealer_id"])
+        for dealer in payload.get("dealers", [])
+        if isinstance(dealer.get("dealer_id"), str)
+    }
+    _write_json(month_dir / "apple.json", build_apple_month_payload(payload))
+    for dealer_id, dealer_payload in dealer_payloads.items():
+        if not re.fullmatch(r"[a-z0-9-]+", dealer_id):
+            raise ValueError(f"Unsafe dealer_id for artifact path: {dealer_id}")
+        _write_json(month_dir / "dealers" / f"{dealer_id}.json", dealer_payload)
+
+    index_path = output_dir / "month_index.json"
+    index = load_month_index(index_path)
+    months = sorted(set(index.get("months") or []) | {month})
+    index.update({
+        "schema_version": "2.0",
+        "latest_month": max(months),
+        "months": months,
+    })
+    _write_json(index_path, index)
+    return dealer_payloads
 
 
 def _failed_quality_report(month: str, error: Exception) -> dict:
@@ -552,6 +617,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--data-root", type=Path, default=_default_data_root())
     parser.add_argument("--output-dir", type=Path, default=Path(__file__).resolve().parents[1] / "generated")
     parser.add_argument("--quality-only", action="store_true")
+    parser.add_argument("--ai", action="store_true", help="Generate validated AI insights or use a validated fallback.")
+    parser.add_argument("--no-compat", action="store_true", help="Do not update legacy latest-path JSON files.")
     args = parser.parse_args(argv)
     output_path = args.output_dir / "quality_report.json"
     try:
@@ -586,10 +653,13 @@ def main(argv: list[str] | None = None) -> int:
         payload = build_insight_payload(
             accounts, notes, kpis, _category_mapping(), _region_overrides(), report, month, q4_actuals
         )
-        insight_path = args.output_dir / "insight_data.json"
-        _write_json(insight_path, payload)
-        write_dealer_scoped_artifacts(args.output_dir, payload)
-        print(f"Insight data: {insight_path} ({len(payload['dealers'])} dealers)")
+        attach_ai_artifacts(payload, args.output_dir, use_provider=args.ai)
+        if not args.no_compat:
+            insight_path = args.output_dir / "insight_data.json"
+            _write_json(insight_path, payload)
+            write_dealer_scoped_artifacts(args.output_dir, payload)
+        write_versioned_artifacts(args.output_dir, payload)
+        print(f"Insight data: {args.output_dir / 'months' / month} ({len(payload['dealers'])} dealers)")
     return 0
 
 
@@ -973,13 +1043,14 @@ def build_insight_payload(
     payload_quality["publishable"] = True
     generated_at = datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
     payload = {
-        "schema_version": "1.0",
+        "schema_version": "2.0",
         "source_month": month,
         "previous_month": previous_month(month),
         "generated_at": generated_at,
         "metadata": {
             "generated_at": generated_at,
             "data_freshness": quality_report.get("data_freshness"),
+            "logic_version": LOGIC_VERSION,
         },
         "source_files": quality_report.get("source_files", {}),
         "quality": payload_quality,
@@ -996,6 +1067,86 @@ def build_insight_payload(
     payload = _clean_non_finite(payload)
     json.dumps(payload, ensure_ascii=False, allow_nan=False)
     return payload
+
+
+def summarize_payload_for_history(payload: dict) -> dict:
+    apple = payload.get("apple") or {}
+    network = apple.get("network_kpis") or {}
+    reads = network.get("reads") if isinstance(network.get("reads"), dict) else {}
+    interactions = network.get("interactions") if isinstance(network.get("interactions"), dict) else {}
+    fans = network.get("fans") if isinstance(network.get("fans"), dict) else {}
+    dealer_contents = [
+        dealer.get("content") for dealer in payload.get("dealers", [])
+        if isinstance(dealer, dict) and isinstance(dealer.get("content"), dict)
+    ]
+    notes = sum(safe_number(content.get("notes")) for content in dealer_contents)
+    content_reads = sum(safe_number(content.get("reads")) for content in dealer_contents)
+    content_interactions = sum(safe_number(content.get("interactions")) for content in dealer_contents)
+    content_fans = sum(safe_number(content.get("new_fans")) for content in dealer_contents)
+    categories = apple.get("category_mix_performance") or []
+    category_reads_per_note = [
+        safe_number(item.get("reads_per_note")) for item in categories
+        if isinstance(item, dict) and item.get("reads_per_note") is not None
+    ]
+    category_baseline = median(category_reads_per_note) if category_reads_per_note else None
+    viral_categories = [
+        item for item in categories
+        if isinstance(item, dict) and category_baseline is not None and safe_number(item.get("reads_per_note")) >= category_baseline
+    ]
+    return {
+        "month": payload["source_month"],
+        "reads": safe_number(reads.get("actual") if reads else content_reads),
+        "notes": notes,
+        "interactions": safe_number(interactions.get("actual") if interactions else content_interactions),
+        "new_fans": safe_number(fans.get("actual") if fans else content_fans),
+        "viral_rate": len(viral_categories) / len(categories) if categories else None,
+    }
+
+
+def load_history_rows(output_dir: Path, current_month: str) -> list[dict]:
+    index = load_month_index(Path(output_dir) / "month_index.json")
+    rows = []
+    for month in sorted(month for month in index.get("months", []) if isinstance(month, str) and month < current_month):
+        apple_path = Path(output_dir) / "months" / month / "apple.json"
+        try:
+            historical_payload = json.loads(apple_path.read_text(encoding="utf-8"))
+        except (FileNotFoundError, json.JSONDecodeError):
+            continue
+        if isinstance(historical_payload, dict):
+            try:
+                rows.append(summarize_payload_for_history(historical_payload))
+            except (KeyError, TypeError, ValueError):
+                continue
+    return rows
+
+
+def attach_ai_artifacts(payload: dict, output_dir: Path, *, use_provider: bool) -> None:
+    prompt = load_prompt()
+    period = apple_period(payload["source_month"])
+    history = build_history_context(summarize_payload_for_history(payload), load_history_rows(output_dir, payload["source_month"]))
+    payload["period"] = period
+    payload["history"] = history
+    payload["metadata"]["logic_version"] = LOGIC_VERSION
+    payload["metadata"]["prompt_version"] = prompt["prompt_version"]
+
+    env = os.environ if use_provider else {}
+    cache_root = Path(output_dir) / ".ai_cache" / payload["source_month"]
+    apple_packet = build_evidence_packet("apple", payload, history, period)
+    payload["apple"]["evidence"] = apple_packet["evidence"]
+    payload["apple"]["ai_insights"] = generate_ai_insights(
+        apple_packet,
+        cache_path=cache_root / "apple.json",
+        env=env,
+    )
+    for dealer in payload.get("dealers", []):
+        scoped_payload = build_dealer_payload(payload, dealer["dealer_id"])
+        dealer_packet = build_evidence_packet("dealer", scoped_payload, history, period)
+        dealer["evidence"] = dealer_packet["evidence"]
+        dealer["ai_insights"] = generate_ai_insights(
+            dealer_packet,
+            cache_path=cache_root / "dealers" / f"{dealer['dealer_id']}.json",
+            env=env,
+        )
 
 
 def q4_elapsed_ratio(month: str) -> float:

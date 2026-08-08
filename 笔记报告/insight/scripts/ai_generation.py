@@ -1,4 +1,4 @@
-﻿"""Evidence-bound AI insight generation with an offline deterministic fallback."""
+"""Evidence-bound AI insight generation with an offline deterministic fallback."""
 
 from __future__ import annotations
 
