@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小红书矩阵笔记内容分析周报</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'PingFang SC', 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #0f0c29 0%, #1a1a2e 50%, #16213e 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container { max-width: 1400px; margin: 0 auto; }
+        /* Header */
+        .report-header {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        .report-header::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 3px;
+            background: linear-gradient(90deg, #ff2442, #ff6b6b, #ffa502);
+            border-radius: 2px;
+        }
+        .report-header h1 {
+            font-size: 36px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ff2442, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+        .report-header .subtitle {
+            font-size: 16px;
+            color: #8892b0;
+            letter-spacing: 2px;
+        }
+        .report-header .period {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 6px 20px;
+            background: rgba(255, 36, 66, 0.1);
+            border: 1px solid rgba(255, 36, 66, 0.3);
+            border-radius: 20px;
+            font-size: 14px;
+            color: #ff6b6b;
+        }
+        /* KPI Cards */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+        .kpi-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 28px 24px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .kpi-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            border-radius: 16px 16px 0 0;
+        }
+        .kpi-card:nth-child(1)::before { background: linear-gradient(90deg, #ff2442, #ff6b6b); }
+        .kpi-card:nth-child(2)::before { background: linear-gradient(90deg, #667eea, #764ba2); }
+        .kpi-card:nth-child(3)::before { background: linear-gradient(90deg, #f093fb, #f5576c); }
+        .kpi-card:nth-child(4)::before { background: linear-gradient(90deg, #4facfe, #00f2fe); }
+        .kpi-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        .kpi-card .kpi-icon { font-size: 28px; margin-bottom: 12px; }
+        .kpi-card .kpi-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+        .kpi-card .kpi-label {
+            font-size: 13px;
+            color: #8892b0;
+            margin-bottom: 10px;
+        }
+        .kpi-card .kpi-change {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 12px;
+        }
+        .kpi-change.up { color: #00e676; background: rgba(0, 230, 118, 0.1); }
+        .kpi-change.down { color: #ff5252; background: rgba(255, 82, 82, 0.1); }
+        /* Section */
+        .section {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
+            padding: 36px;
+            margin-bottom: 30px;
+        }
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 22px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 28px;
+        }
+        .section-title .icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+        .section-title .icon.red { background: rgba(255, 36, 66, 0.15); }
+        .section-title .icon.purple { background: rgba(102, 126, 234, 0.15); }
+        .section-title .icon.orange { background: rgba(255, 165, 2, 0.15); }
+        .section-title .icon.blue { background: rgba(79, 172, 254, 0.15); }
+        .section-title .icon.green { background: rgba(0, 230, 118, 0.15); }
+        /* Charts */
+        .chart-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+        .chart-box {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 14px;
+            padding: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .chart-box h4 {
+            font-size: 14px;
+            color: #8892b0;
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+        .chart-box canvas { max-height: 280px; }
+        /* Tables */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+        }
+        .data-table th {
+            text-align: left;
+            padding: 12px 16px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #8892b0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .data-table td {
+            padding: 14px 16px;
+            font-size: 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+        .data-table tr:hover td { background: rgba(255, 255, 255, 0.02); }
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .badge-s { background: rgba(255, 36, 66, 0.15); color: #ff6b6b; }
+        .badge-a { background: rgba(102, 126, 234, 0.15); color: #667eea; }
+        .badge-b { background: rgba(255, 165, 2, 0.15); color: #ffa502; }
+        .badge-c { background: rgba(136, 146, 176, 0.15); color: #8892b0; }
+        /* Insight Cards */
+        .insight-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 20px;
+        }
+        .insight-card {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            border-left: 3px solid;
+        }
+        .insight-card.positive { border-color: #00e676; }
+        .insight-card.warning { border-color: #ffa502; }
+        .insight-card.negative { border-color: #ff5252; }
+        .insight-card h5 {
+            font-size: 13px;
+            color: #8892b0;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        .insight-card p {
+            font-size: 14px;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+        /* Attribution */
+        .attribution-block {
+            background: rgba(102, 126, 234, 0.05);
+            border: 1px solid rgba(102, 126, 234, 0.15);
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-top: 20px;
+        }
+        .attribution-block h5 {
+            font-size: 14px;
+            color: #667eea;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .attribution-block p {
+            font-size: 14px;
+            color: #b0b8d0;
+            line-height: 1.8;
+        }
+        .attribution-block .factor {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(102, 126, 234, 0.1);
+            padding: 2px 10px;
+            border-radius: 8px;
+            margin: 2px 4px;
+            font-weight: 500;
+            color: #667eea;
+        }
+        /* Formula */
+        .formula-box {
+            background: linear-gradient(135deg, rgba(255, 36, 66, 0.08), rgba(255, 165, 2, 0.08));
+            border: 1px solid rgba(255, 36, 66, 0.2);
+            border-radius: 14px;
+            padding: 24px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .formula-box h5 {
+            font-size: 13px;
+            color: #ff6b6b;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .formula-box .formula {
+            font-size: 16px;
+            color: #fff;
+            font-weight: 600;
+            line-height: 2;
+        }
+        .formula-box .formula .tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 4px 12px;
+            border-radius: 8px;
+            margin: 0 4px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .formula-box .result {
+            margin-top: 12px;
+            font-size: 20px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ff2442, #ffa502);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        /* Action Items */
+        .action-list {
+            list-style: none;
+            margin-top: 16px;
+        }
+        .action-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .action-list li:last-child { border-bottom: none; }
+        .action-list .action-num {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            background: rgba(255, 36, 66, 0.15);
+            color: #ff6b6b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .action-list .action-content h5 {
+            font-size: 14px;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+        .action-list .action-content p {
+            font-size: 13px;
+            color: #8892b0;
+            line-height: 1.6;
+        }
+        /* Progress Bar */
+        .progress-bar {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+        .progress-bar .fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 1s ease;
+        }
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+            .chart-row { grid-template-columns: 1fr; }
+            .insight-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 768px) {
+            .kpi-grid { grid-template-columns: 1fr; }
+            body { padding: 20px 12px; }
+            .section { padding: 24px 16px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- Header -->
+    <div class="report-header">
+        <h1>📕 小红书矩阵笔记内容分析周报</h1>
+        <div class="subtitle">XIAOHONGSHU MATRIX CONTENT ANALYTICS</div>
+        <div class="period">📅 2026年第20周 · 5.12 – 5.18 · 53家经销商矩阵</div>
+    </div>
+
+    <!-- KPI Overview -->
+    <div class="kpi-grid">
+        <div class="kpi-card">
+            <div class="kpi-icon">📝</div>
+            <div class="kpi-value">212</div>
+            <div class="kpi-label">本周发布量（条）</div>
+            <div class="kpi-change down">🔻 5% 环比</div>
+            <div class="progress-bar"><div class="fill" style="width:78%;background:linear-gradient(90deg,#ff2442,#ff6b6b)"></div></div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-icon">👁️</div>
+            <div class="kpi-value">1,254万</div>
+            <div class="kpi-label">总曝光量</div>
+            <div class="kpi-change up">📈 18% 环比</div>
+            <div class="progress-bar"><div class="fill" style="width:92%;background:linear-gradient(90deg,#667eea,#764ba2)"></div></div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-icon">💬</div>
+            <div class="kpi-value">21.3万</div>
+            <div class="kpi-label">总互动量（赞/评/转/藏）</div>
+            <div class="kpi-change up">📈 22% 环比</div>
+            <div class="progress-bar"><div class="fill" style="width:88%;background:linear-gradient(90deg,#f093fb,#f5576c)"></div></div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-icon">👥</div>
+            <div class="kpi-value">+8,450</div>
+            <div class="kpi-label">粉丝净增 · 总量 145.2万</div>
+            <div class="kpi-change up">📈 12% 环比</div>
+            <div class="progress-bar"><div class="fill" style="width:85%;background:linear-gradient(90deg,#4facfe,#00f2fe)"></div></div>
+        </div>
+    </div>
+
+    <!-- 维度一：整体数据表现 -->
+    <div class="section">
+        <div class="section-title">
+            <div class="icon red">📊</div>
+            维度一：矩阵整体数据表现
+        </div>
+
+        <div class="chart-row">
+            <div class="chart-box" style="grid-column: 1 / -1;">
+                <h4>矩阵指标环比增长率趋势</h4>
+                <canvas id="growthTrend"></canvas>
+            </div>
+        </div>
+
+        <!-- 归因分析 -->
+        <div class="attribution-block">
+            <h5>🔍 归因分析 — 为什么曝光📈18% 但发布量🔻5%？</h5>
+            <p>
+                本周曝光逆势增长的核心驱动因素：<br>
+                ① <span class="factor">两款主推车型降价政策发布</span> — 价格敏感型内容天然获得平台搜索流量加权，贡献约 60% 增量曝光；<br>
+                ② <span class="factor">3篇爆文进入搜索推荐池</span> — 长尾流量持续7天未衰减，单篇贡献曝光 80万+；<br>
+                ③ <span class="factor">周五晚间发布时间卡位</span> — 本周 Top10 爆文中 6 篇发布于周五 18:00–21:00。<br><br>
+                发布量下降原因：<span class="factor">部分门店筹备车展</span>致产能下降，影响约 8 家经销商本周停更或减产。
+            </p>
+        </div>
+
+    </div>
+
+    <!-- 维度二：矩阵生态健康度 -->
+    <div class="section">
+        <div class="section-title">
+            <div class="icon purple">🏥</div>
+            维度二：矩阵生态健康度
+        </div>
+
+        <div class="chart-row">
+            <div class="chart-box">
+                <h4>发布行为类型分布</h4>
+                <canvas id="publishBehavior"></canvas>
+            </div>
+            <div class="chart-box">
+                <h4>各账号周发布频率分布</h4>
+                <canvas id="frequencyDist"></canvas>
+            </div>
+            <div class="chart-box" style="min-height:600px;max-height:600px;overflow-y:auto;">
+                <h4>全矩阵账号数据总览（53家）</h4>
+                <table class="data-table">
+                    <thead><tr><th>#</th><th>账号</th><th>发布</th><th>均阅读</th><th>梯队</th></tr></thead>
+                    <tbody>
+                        <!-- 按均阅读降序排列所有账号，S级均阅读用 style="color:#00e676" 高亮 -->
+                        <tr><td>1</td><td>示例账号A</td><td>20条</td><td style="color:#00e676">25,000</td><td><span class="badge badge-s">S</span></td></tr>
+                        <tr><td>2</td><td>示例账号B</td><td>15条</td><td>3,500</td><td><span class="badge badge-a">A</span></td></tr>
+                        <tr><td>3</td><td>示例账号C</td><td>12条</td><td>800</td><td><span class="badge badge-b">B</span></td></tr>
+                        <tr><td>4</td><td>示例账号D</td><td>8条</td><td>90</td><td><span class="badge badge-c">C</span></td></tr>
+                        <!-- ... 按实际数据填充全部账号 ... -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="chart-row" style="align-items:stretch">
+            <div class="chart-box" style="min-height:600px;display:flex;flex-direction:column">
+                <h4>账号效能分布（均阅读 vs 笔记数）</h4>
+                <canvas id="scatterChart" style="flex:1"></canvas>
+            </div>
+        </div>
+
+        <div class="insight-grid">
+            <div class="insight-card positive">
+                <h5>✅ 稳定输出型（32家 · 60%）</h5>
+                <p>代表：Coodoo<br>平均每 1-2 天发布 1 篇，方差极小。矩阵主力基石，日常科普与产品种草持续覆盖。</p>
+            </div>
+            <div class="insight-card warning">
+                <h5>⚡ 脉冲爆发型（13家 · 25%）</h5>
+                <p>代表：时代印象<br>长尾期停更，单日密集发布多篇。极度依赖线下 Event 事件驱动，流量波动大。</p>
+            </div>
+            <div class="insight-card negative">
+                <h5>🚨 同质化限流（30+家受影响）</h5>
+                <p>超 30 家经销商发布完全一致的官方素材，90% 跟发账号被关入"小黑屋"（无发现页推荐），预估损失曝光 300万+。</p>
+            </div>
+        </div>
+
+        <div class="attribution-block">
+            <h5>🔍 归因分析 — 同质化限流的根本原因</h5>
+            <p>
+                小红书对图文矩阵的查重机制极度严格：<br>
+                ① <span class="factor">图片 MD5 指纹完全一致</span> — 官方素材未经任何二次处理直接发布；<br>
+                ② <span class="factor">首段文案 100% 相同</span> — 触发文本去重算法，直接折叠后续发布者的流量；<br>
+                ③ <span class="factor">发布时间集中在同一小时</span> — 加剧系统判定为"矩阵刷量"行为。<br><br>
+                <strong>解法：</strong>必须执行「首段重写 + 封面重绘 + 发布时间错峰」三件套，每篇至少 30% 内容差异化。
+            </p>
+        </div>
+    </div>
+
+    <!-- 维度三：爆款归因 -->
+    <div class="section">
+        <div class="section-title">
+            <div class="icon orange">🎯</div>
+            维度三：内容监测与爆款归因
+        </div>
+
+        <div class="chart-row">
+            <div class="chart-box">
+                <h4>爆文曝光生命周期对比（小时）</h4>
+                <canvas id="lifecycleChart"></canvas>
+            </div>
+            <div class="chart-box">
+                <h4>Top 20 爆款特征占比</h4>
+                <canvas id="featureRadar"></canvas>
+            </div>
+        </div>
+
+        <!-- 爆款公式 -->
+        <div class="formula-box">
+            <h5>🧪 爆款高概率特征公式（基于 Top 20 决策树提取）</h5>
+            <div class="formula">
+                <span class="tag">#特定标签</span> +
+                <span class="tag">标题含数字</span> +
+                <span class="tag">首图含真人</span> +
+                <span class="tag">周五晚发布</span> +
+                <span class="tag">首句含Emoji</span>
+            </div>
+            <div class="result">= 爆款率飙升 340% ↑</div>
+        </div>
+
+        <div class="chart-row" style="margin-top:24px">
+            <div class="chart-box">
+                <h4>各特征对爆款贡献权重</h4>
+                <canvas id="featureWeight"></canvas>
+            </div>
+            <div class="chart-box">
+                <h4>发布时间 vs 曝光量热力分布</h4>
+                <canvas id="timeHeat"></canvas>
+            </div>
+        </div>
+
+        <div class="attribution-block">
+            <h5>🔍 归因分析 — 长尾型 vs 一波流型的本质差异</h5>
+            <p>
+                <strong>长尾复利型（占爆文 35%）：</strong><br>
+                ① 标题精准命中<span class="factor">用户搜索高频词</span>（如"隐藏技巧"、"省钱攻略"）；<br>
+                ② 内容信息密度高，触发<span class="factor">收藏行为</span>（收藏率 > 8%），被系统收入搜索推荐池；<br>
+                ③ 发布后第 7 天仍有每天数十次搜索点击。<br><br>
+                <strong>一波流型（占爆文 65%）：</strong><br>
+                ① 依赖<span class="factor">发现页推荐</span>获取初始流量，但内容缺乏搜索关键词锚点；<br>
+                ② 第 4 小时出现断崖式下跌 — 大概率触发平台<span class="factor">营销词限流审查</span>；<br>
+                ③ 优化方向：在标题和正文中植入 2-3 个长尾搜索词，延长内容生命周期。
+            </p>
+        </div>
+    </div>
+</div>
+
+    <!-- 维度四：用户反馈信号 -->
+    <div class="section">
+        <div class="section-title">
+            <div class="icon blue">💡</div>
+            维度四：用户反馈信号与心智洞察
+        </div>
+
+        <div class="chart-row">
+            <div class="chart-box">
+                <h4>互动结构分布（赞 / 藏 / 评 / 转）</h4>
+                <canvas id="interactionStructure"></canvas>
+            </div>
+            <div class="chart-box">
+                <h4>用户决策阶段推断</h4>
+                <canvas id="decisionStage"></canvas>
+            </div>
+        </div>
+
+        <div class="insight-grid">
+            <div class="insight-card positive">
+                <h5>📌 高收藏率内容（占比 42%）</h5>
+                <p>用户处于「信息收集期」，内容干货感强。代表类型：技巧盘点、参数对比、隐藏功能合集。建议持续产出此类内容建立品牌专业形象。</p>
+            </div>
+            <div class="insight-card warning">
+                <h5>💬 高评论率内容（占比 28%）</h5>
+                <p>用户有明确疑问或购买意向。代表类型：价格讨论、使用体验分享。建议在评论区设置引导话术，推动转化。</p>
+            </div>
+            <div class="insight-card positive">
+                <h5>🔄 高转发率内容（占比 18%）</h5>
+                <p>内容具备社交货币属性。代表类型：限时优惠、抽奖活动、情绪共鸣类。适合作为裂变传播的种子内容。</p>
+            </div>
+        </div>
+
+        <div class="attribution-block">
+            <h5>🔍 归因分析 — 互动结构揭示的用户心智变化</h5>
+            <p>
+                本周收藏率环比上升 15%，说明：<br>
+                ① 降价政策内容触发用户<span class="factor">主动信息囤积行为</span>，处于购买决策前的比价阶段；<br>
+                ② 矩阵内容正在从「品牌曝光」向<span class="factor">「决策辅助」</span>阶段迁移，这是转化漏斗收窄的积极信号；<br>
+                ③ 建议下周加大「对比评测 + 限时优惠」组合内容，承接收藏用户的转化需求。<br><br>
+                <strong>异常信号：</strong>3 篇笔记出现「高互动 + 低收藏」模式（互动/收藏比 > 5:1），可能引发争议性讨论，建议排查内容是否涉及敏感话题。
+            </p>
+        </div>
+    </div>
+
+    <!-- 维度五：行动指南 -->
+    <div class="section">
+        <div class="section-title">
+            <div class="icon green">🚀</div>
+            维度五：下周行动指南
+        </div>
+
+        <ul class="action-list">
+            <li>
+                <div class="action-num">1</div>
+                <div class="action-content">
+                    <h5>内容方向：加大「降价解读 + 对比评测」产出</h5>
+                    <p>本周降价类内容曝光效率是日常内容的 3.2 倍。下周趁热度未退，每家经销商至少产出 1 篇降价解读 + 1 篇竞品对比，标题必须含具体数字（如"直降8000"）。</p>
+                </div>
+            </li>
+            <li>
+                <div class="action-num">2</div>
+                <div class="action-content">
+                    <h5>发布节奏：锁定周五 18:00–21:00 黄金窗口</h5>
+                    <p>本周 60% 爆文发布于该时段。建议将核心内容（降价/评测/攻略）集中在周五晚间发布，日常种草内容分散在周二至周四。</p>
+                </div>
+            </li>
+            <li>
+                <div class="action-num">3</div>
+                <div class="action-content">
+                    <h5>素材差异化 SOP（发给全部经销商执行）</h5>
+                    <p>① 封面：禁止直接使用官方渲染图，必须加入门店实景/真人手持元素；<br>② 首段：前 50 字必须原创重写，植入本地化信息（城市名/门店名）；<br>③ 发布时间：同一素材各账号错峰 ≥ 2 小时发布。</p>
+                </div>
+            </li>
+            <li>
+                <div class="action-num">4</div>
+                <div class="action-content">
+                    <h5>热点借势：520 情人节 + 618 预热</h5>
+                    <p>下周二为 520，建议产出「送礼指南」类内容；同时 618 预热期开启，可提前布局「618 必买清单」「提前锁价攻略」等搜索长尾词内容。</p>
+                </div>
+            </li>
+            <li>
+                <div class="action-num">5</div>
+                <div class="action-content">
+                    <h5>重点关注账号</h5>
+                    <p>🔴 需辅导（连续3周C档）：账号 #17、#23、#41、#48 — 建议安排 1v1 内容指导；<br>🟢 标杆复制：Coodoo 的「每日一更 + 搜索词精准命中」模式，整理为 SOP 推广至全矩阵。</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Footer -->
+    <div style="text-align:center;padding:40px 0 20px;color:#555;font-size:12px;">
+        <p>本报告由 AI 数据分析引擎自动生成 · 数据截止 2026-05-18 23:59</p>
+        <p style="margin-top:4px;">© 2026 Brand Matrix Analytics · Confidential</p>
+    </div>
+</div>
+
+<script>
+// Chart.js 全局配置
+Chart.defaults.color = '#8892b0';
+Chart.defaults.borderColor = 'rgba(255,255,255,0.06)';
+Chart.defaults.font.family = '-apple-system, PingFang SC, sans-serif';
+
+// 1. 曝光·笔记数·互动 环比趋势增长率
+new Chart(document.getElementById('growthTrend'), {
+    type: 'line',
+    data: {
+        labels: ['W13', 'W14', 'W15', 'W16', 'W17', 'W18', 'W19', 'W20'],
+        datasets: [{
+            label: '曝光环比增长率(%)',
+            data: [null, 5.9, 18.1, -7.1, 16.5, 6.5, 8.4, 18.1],
+            borderColor: '#667eea',
+            backgroundColor: 'rgba(102,126,234,0.08)',
+            fill: false,
+            tension: 0.4,
+            pointBackgroundColor: '#667eea',
+            pointRadius: 5,
+            pointHoverRadius: 7
+        }, {
+            label: '笔记数环比增长率(%)',
+            data: [null, 8.0, 12.5, -3.2, 5.0, -2.1, 3.8, -5.0],
+            borderColor: '#ffa502',
+            backgroundColor: 'rgba(255,165,2,0.08)',
+            fill: false,
+            tension: 0.4,
+            pointBackgroundColor: '#ffa502',
+            pointRadius: 5,
+            pointHoverRadius: 7
+        }, {
+            label: '互动环比增长率(%)',
+            data: [null, 11.0, 26.4, -6.1, 22.2, 18.2, 12.2, 21.7],
+            borderColor: '#00e676',
+            backgroundColor: 'rgba(0,230,118,0.08)',
+            fill: false,
+            tension: 0.4,
+            pointBackgroundColor: '#00e676',
+            pointRadius: 5,
+            pointHoverRadius: 7
+        }]
+    },
+    options: {
+        responsive: true,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+            legend: { position: 'top', labels: { usePointStyle: true, padding: 20 } },
+            tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + (ctx.parsed.y !== null ? ctx.parsed.y + '%' : 'N/A') } }
+        },
+        scales: {
+            y: {
+                grid: { color: 'rgba(255,255,255,0.04)' },
+                ticks: { callback: v => v + '%', stepSize: 20 },
+                title: { display: true, text: '环比增长率 (%)' }
+            },
+            x: { grid: { display: false } }
+        }
+    }
+});
+
+// 4. 发布行为类型
+new Chart(document.getElementById('publishBehavior'), {
+    type: 'pie',
+    data: {
+        labels: ['稳定输出型 (32家)', '脉冲爆发型 (13家)', '低频/停更 (8家)'],
+        datasets: [{
+            data: [32, 13, 8],
+            backgroundColor: ['#00e676', '#ffa502', '#ff5252'],
+            borderWidth: 0
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: { position: 'bottom', labels: { padding: 16, usePointStyle: true } }
+        }
+    }
+});
+
+// 5. 发布频率分布
+new Chart(document.getElementById('frequencyDist'), {
+    type: 'bar',
+    data: {
+        labels: ['0篇', '1-2篇', '3-4篇', '5-6篇', '7+篇'],
+        datasets: [{
+            label: '账号数',
+            data: [8, 12, 18, 10, 5],
+            backgroundColor: ['#ff5252', '#ffa502', '#667eea', '#4facfe', '#00e676'],
+            borderRadius: 6,
+            barThickness: 36
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: {
+            y: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { stepSize: 5 } },
+            x: { grid: { display: false } }
+        }
+    }
+});
+
+// 6. 爆文生命周期
+new Chart(document.getElementById('lifecycleChart'), {
+    type: 'line',
+    data: {
+        labels: ['1h', '3h', '6h', '12h', '24h', '48h', '72h', '7d'],
+        datasets: [{
+            label: '长尾复利型',
+            data: [100, 85, 72, 60, 52, 45, 40, 35],
+            borderColor: '#00e676',
+            backgroundColor: 'rgba(0,230,118,0.05)',
+            fill: true,
+            tension: 0.3,
+            pointRadius: 3
+        }, {
+            label: '一波流型',
+            data: [100, 90, 40, 15, 8, 4, 2, 1],
+            borderColor: '#ff5252',
+            backgroundColor: 'rgba(255,82,82,0.05)',
+            fill: true,
+            tension: 0.3,
+            pointRadius: 3
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: { legend: { position: 'top', labels: { usePointStyle: true } } },
+        scales: {
+            y: { title: { display: true, text: '流量留存%' }, grid: { color: 'rgba(255,255,255,0.04)' } },
+            x: { grid: { display: false } }
+        }
+    }
+});
+
+// 7. 爆款特征雷达图
+new Chart(document.getElementById('featureRadar'), {
+    type: 'radar',
+    data: {
+        labels: ['标题含数字', '首句Emoji', '真人封面', '周五晚发布', '特定标签', '信息密度高'],
+        datasets: [{
+            label: '爆文占比',
+            data: [80, 95, 72, 60, 85, 68],
+            borderColor: '#ff6b6b',
+            backgroundColor: 'rgba(255,107,107,0.15)',
+            pointBackgroundColor: '#ff6b6b',
+            pointRadius: 4
+        }, {
+            label: '普通笔记占比',
+            data: [35, 40, 25, 30, 45, 30],
+            borderColor: '#667eea',
+            backgroundColor: 'rgba(102,126,234,0.1)',
+            pointBackgroundColor: '#667eea',
+            pointRadius: 4
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            r: {
+                grid: { color: 'rgba(255,255,255,0.06)' },
+                angleLines: { color: 'rgba(255,255,255,0.06)' },
+                ticks: { display: false },
+                suggestedMin: 0,
+                suggestedMax: 100
+            }
+        },
+        plugins: { legend: { position: 'top', labels: { usePointStyle: true } } }
+    }
+});
+
+// 8. 特征权重
+new Chart(document.getElementById('featureWeight'), {
+    type: 'bar',
+    data: {
+        labels: ['首句Emoji', '特定标签', '标题含数字', '真人封面', '信息密度', '周五晚发布'],
+        datasets: [{
+            label: '贡献权重',
+            data: [95, 85, 80, 72, 68, 60],
+            backgroundColor: [
+                'rgba(255,107,107,0.7)', 'rgba(255,165,2,0.7)', 'rgba(102,126,234,0.7)',
+                'rgba(79,172,254,0.7)', 'rgba(0,230,118,0.7)', 'rgba(240,147,251,0.7)'
+            ],
+            borderRadius: 6,
+            barThickness: 28
+        }]
+    },
+    options: {
+        indexAxis: 'y',
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: {
+            x: { grid: { color: 'rgba(255,255,255,0.04)' }, max: 100, ticks: { callback: v => v + '%' } },
+            y: { grid: { display: false } }
+        }
+    }
+});
+
+// 9. 发布时间热力
+new Chart(document.getElementById('timeHeat'), {
+    type: 'bar',
+    data: {
+        labels: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+        datasets: [{
+            label: '上午(8-12)',
+            data: [12, 15, 18, 14, 10, 8, 6],
+            backgroundColor: 'rgba(79,172,254,0.5)',
+            borderRadius: 4
+        }, {
+            label: '下午(12-18)',
+            data: [20, 22, 25, 28, 18, 12, 10],
+            backgroundColor: 'rgba(102,126,234,0.6)',
+            borderRadius: 4
+        }, {
+            label: '晚间(18-22)',
+            data: [35, 38, 42, 45, 85, 50, 30],
+            backgroundColor: 'rgba(255,107,107,0.7)',
+            borderRadius: 4
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: { legend: { position: 'top', labels: { usePointStyle: true, boxWidth: 8 } } },
+        scales: {
+            y: { stacked: true, grid: { color: 'rgba(255,255,255,0.04)' }, title: { display: true, text: '曝光指数' } },
+            x: { stacked: true, grid: { display: false } }
+        }
+    }
+});
+
+// 10. 互动结构
+new Chart(document.getElementById('interactionStructure'), {
+    type: 'doughnut',
+    data: {
+        labels: ['点赞 (35%)', '收藏 (42%)', '评论 (15%)', '转发 (8%)'],
+        datasets: [{
+            data: [35, 42, 15, 8],
+            backgroundColor: ['#ff6b6b', '#667eea', '#ffa502', '#00e676'],
+            borderWidth: 0,
+            hoverOffset: 8
+        }]
+    },
+    options: {
+        responsive: true,
+        cutout: '60%',
+        plugins: {
+            legend: { position: 'bottom', labels: { padding: 14, usePointStyle: true } }
+        }
+    }
+});
+
+// 11. 用户决策阶段
+new Chart(document.getElementById('decisionStage'), {
+    type: 'bar',
+    data: {
+        labels: ['认知阶段\n(纯曝光)', '兴趣阶段\n(点赞)', '考虑阶段\n(收藏)', '意向阶段\n(评论)', '传播阶段\n(转发)'],
+        datasets: [{
+            label: '内容占比',
+            data: [12, 35, 42, 15, 8],
+            backgroundColor: [
+                'rgba(136,146,176,0.4)', 'rgba(255,107,107,0.6)', 'rgba(102,126,234,0.7)',
+                'rgba(255,165,2,0.7)', 'rgba(0,230,118,0.6)'
+            ],
+            borderRadius: 8,
+            barThickness: 40
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: {
+            y: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { callback: v => v + '%' } },
+            x: { grid: { display: false } }
+        }
+    }
+});
+
+// 12. 账号效能散点图（均阅读 vs 笔记数）
+new Chart(document.getElementById('scatterChart'), {
+    type: 'scatter',
+    data: {
+        datasets: [{
+            label: 'S级',
+            data: [{x:29,y:48070},{x:35,y:30789},{x:21,y:11834},{x:18,y:9561},{x:12,y:7292},{x:31,y:6939}],
+            backgroundColor: 'rgba(255,107,107,0.8)',
+            pointRadius: 8
+        },{
+            label: 'A级',
+            data: [{x:27,y:4421},{x:22,y:3527},{x:35,y:3193},{x:19,y:2999},{x:13,y:1673},{x:14,y:1148},{x:17,y:1082},{x:11,y:1062},{x:18,y:1021},{x:60,y:1014},{x:23,y:950}],
+            backgroundColor: 'rgba(102,126,234,0.8)',
+            pointRadius: 6
+        },{
+            label: 'B级',
+            data: [{x:9,y:799},{x:17,y:767},{x:26,y:710},{x:16,y:668},{x:12,y:652},{x:16,y:608},{x:23,y:549},{x:27,y:423},{x:10,y:300},{x:8,y:271}],
+            backgroundColor: 'rgba(255,165,2,0.7)',
+            pointRadius: 5
+        },{
+            label: 'C级',
+            data: [{x:11,y:119},{x:24,y:115},{x:8,y:112},{x:17,y:110},{x:11,y:86},{x:14,y:81},{x:9,y:73},{x:5,y:70},{x:11,y:57},{x:5,y:48},{x:2,y:47},{x:3,y:32},{x:34,y:22},{x:2,y:8}],
+            backgroundColor: 'rgba(136,146,176,0.6)',
+            pointRadius: 4
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { position: 'top', labels: { usePointStyle: true, padding: 16 } } },
+        scales: {
+            x: { title: { display: true, text: '发布数量（条）' }, grid: { color: 'rgba(255,255,255,0.04)' } },
+            y: { title: { display: true, text: '均阅读数' }, grid: { color: 'rgba(255,255,255,0.04)' } }
+        }
+    }
+});
+</script>
+</body>
+</html>

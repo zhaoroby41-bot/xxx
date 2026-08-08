@@ -1,0 +1,17 @@
+# Source data and generated monthly artifacts are local-only.
+/数据/
+/笔记报告/insight/generated/
+/笔记报告_fixed/
+
+# Python and test caches.
+__pycache__/
+*.py[cod]
+
+# Local task orchestration and isolated worktrees.
+/.superpowers/
+/.worktrees/
+
+# Browser and OS artifacts.
+/edge-profile/
+Thumbs.db
+.DS_Store

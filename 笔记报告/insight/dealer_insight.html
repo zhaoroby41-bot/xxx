@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>经销商运营 Insight</title>
+  <link rel="stylesheet" href="assets/insight.css">
+</head>
+<body class="dealer-page">
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="经销商视角导航">
+      <div class="sidebar__brand">
+        <span class="sidebar__mark" aria-hidden="true">XI</span>
+        <p class="sidebar__title">
+          经销商 Insight
+          <span class="sidebar__subtitle">小红书运营分析</span>
+        </p>
+      </div>
+
+      <nav class="sidebar__nav">
+        <a class="sidebar__link" href="#overview" aria-current="page">
+          <i class="icon-slot" data-lucide="layout-dashboard" aria-hidden="true"></i>
+          <span>总览</span>
+        </a>
+        <a class="sidebar__link" href="#kpi-progress">
+          <i class="icon-slot" data-lucide="gauge" aria-hidden="true"></i>
+          <span>KPI 进度</span>
+        </a>
+        <a class="sidebar__link" href="#content-strategy">
+          <i class="icon-slot" data-lucide="chart-scatter" aria-hidden="true"></i>
+          <span>内容策略</span>
+        </a>
+        <a class="sidebar__link" href="#city-accounts">
+          <i class="icon-slot" data-lucide="map-pinned" aria-hidden="true"></i>
+          <span>城市与账号</span>
+        </a>
+        <a class="sidebar__link" href="#actions">
+          <i class="icon-slot" data-lucide="list-checks" aria-hidden="true"></i>
+          <span>行动建议</span>
+        </a>
+      </nav>
+
+      <div class="sidebar__footer"><a href="index.html">返回角色入口</a></div>
+    </aside>
+
+    <div class="workspace">
+      <header class="top-toolbar">
+        <div class="top-toolbar__context">
+          <span class="top-toolbar__eyebrow">报告月</span>
+          <strong id="report-month">加载中</strong>
+        </div>
+        <div class="top-toolbar__meta" aria-live="polite">
+          <span class="freshness-badge" id="freshness-badge">更新时间加载中</span>
+          <span class="quality-badge status--unknown" id="scope-badge">范围加载中</span>
+        </div>
+      </header>
+
+      <main class="main-canvas">
+        <section class="dashboard-section" id="overview" aria-labelledby="dealer-name">
+          <header class="page-header dealer-page-header">
+            <div>
+              <div class="dealer-identity-line">
+                <h1 id="dealer-name">经销商数据加载中</h1>
+                <span class="status-badge status--unknown" id="dealer-cohort">范围加载中</span>
+              </div>
+            </div>
+          </header>
+
+          <form class="filter-row dealer-filter-row" aria-label="经销商数据筛选" onsubmit="return false">
+            <div class="filter-group dealer-filter-group">
+              <label for="dealer-filter">经销商</label>
+              <select class="filter-control" id="dealer-filter" data-filter-key="dealerId" disabled>
+                <option>加载中</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label for="city-filter">城市</label>
+              <select class="filter-control" id="city-filter" data-filter-key="city" disabled>
+                <option>全部城市</option>
+              </select>
+            </div>
+            <div class="filter-group dealer-filter-group">
+              <label for="account-filter">账号</label>
+              <select class="filter-control" id="account-filter" data-filter-key="accountId" disabled>
+                <option>全部账号</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label for="format-filter">内容形式</label>
+              <select class="filter-control" id="format-filter" data-filter-key="format" disabled>
+                <option>全部形式</option>
+              </select>
+            </div>
+            <div class="filter-group dealer-filter-group">
+              <label for="category-filter">统一分类</label>
+              <select class="filter-control" id="category-filter" data-filter-key="category" disabled>
+                <option>全部分类</option>
+              </select>
+            </div>
+          </form>
+          <p class="dealer-filter-compatibility" id="filter-compatibility" role="status" hidden></p>
+
+          <div id="data-state" aria-live="polite"></div>
+
+          <div id="dashboard-content" hidden>
+            <div class="dealer-summary" id="operating-summary" aria-live="polite"></div>
+
+            <div class="section-heading dealer-section-heading">
+              <h2>FY26 Q4 核心 KPI</h2>
+              <span class="section-heading__meta">核心 KPI 分层</span>
+            </div>
+            <div class="metric-strip dealer-kpi-strip" id="kpi-cards"></div>
+
+            <div class="section-heading dealer-section-heading">
+              <h2>当前运营表现</h2>
+              <span class="section-heading__meta" id="operating-scope-meta">当前内容范围</span>
+            </div>
+            <div class="dealer-operating-strip" id="operating-metrics"></div>
+
+            <section class="dashboard-section" id="expanded-store-section" aria-labelledby="expanded-store-title" hidden>
+              <div class="section-heading">
+                <h2 id="expanded-store-title">扩展门店经营观察</h2>
+                <span class="section-heading__meta">不关联 FY26 KPI 目标</span>
+              </div>
+              <div class="dealer-operating-strip" id="expanded-store-metrics"></div>
+            </section>
+
+            <section class="dashboard-section" id="kpi-progress" aria-labelledby="kpi-progress-title">
+              <div class="section-heading">
+                <h2 id="kpi-progress-title">KPI 进度</h2>
+                <span class="section-heading__meta">实色为完成率，刻度为时间进度</span>
+              </div>
+              <div class="panel dealer-progress-panel">
+                <div class="panel__body dealer-bullet-list" id="kpi-progress-list"></div>
+              </div>
+            </section>
+
+            <section class="dashboard-section" id="content-strategy" aria-labelledby="content-strategy-title">
+              <div class="section-heading">
+                <h2 id="content-strategy-title">内容策略</h2>
+                <span class="section-heading__meta">供给与效率使用生成数据中的同组基准</span>
+              </div>
+              <div class="panel-grid dealer-content-grid">
+                <article class="chart-panel">
+                  <header class="panel__header">
+                    <h3>分类供给与单篇阅读</h3>
+                    <span class="panel__meta" id="category-scope-meta">当前内容范围</span>
+                  </header>
+                  <div class="panel__body">
+                    <div class="chart-panel__canvas dealer-chart-canvas">
+                      <canvas id="category-chart" aria-label="分类供给占比与单篇阅读散点图"></canvas>
+                      <div class="chart-fallback" id="category-chart-fallback" hidden>图表不可用，分类明细表仍可查看。</div>
+                    </div>
+                    <div id="category-table"></div>
+                  </div>
+                </article>
+
+                <article class="chart-panel">
+                  <header class="panel__header">
+                    <h3>图文 / 视频供给</h3>
+                    <span class="panel__meta" id="format-scope-meta">当前内容范围</span>
+                  </header>
+                  <div class="panel__body">
+                    <div class="chart-panel__canvas dealer-chart-canvas">
+                      <canvas id="format-chart" aria-label="图文与视频笔记数对比图"></canvas>
+                      <div class="chart-fallback" id="format-chart-fallback" hidden>图表不可用，形式明细仍可查看。</div>
+                    </div>
+                    <div id="format-table"></div>
+                  </div>
+                </article>
+              </div>
+            </section>
+
+            <section class="dashboard-section" id="city-accounts" aria-labelledby="city-accounts-title">
+              <div class="section-heading">
+                <h2 id="city-accounts-title">城市与账号表现</h2>
+                <span class="section-heading__meta">核心 KPI 与扩展门店分层展示</span>
+              </div>
+              <div class="table-panel" id="account-table"></div>
+            </section>
+
+            <section class="dashboard-section" id="actions" aria-labelledby="actions-title">
+              <div class="section-heading">
+                <h2 id="actions-title">行动建议</h2>
+                <span class="section-heading__meta">建议、证据与置信度均来自生成数据</span>
+              </div>
+              <div class="panel">
+                <div class="panel__body" id="action-list"></div>
+              </div>
+            </section>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script src="assets/insight-core.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+  <script src="assets/dealer-dashboard.js"></script>
+</body>
+</html>

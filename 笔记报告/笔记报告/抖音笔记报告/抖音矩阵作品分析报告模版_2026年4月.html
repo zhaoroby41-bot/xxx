@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>抖音矩阵作品内容分析月报</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'PingFang SC', 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #0f0c29 0%, #1a1a2e 50%, #16213e 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container { max-width: 1400px; margin: 0 auto; }
+        /* Header */
+        .report-header {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        .report-header::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 3px;
+            background: linear-gradient(90deg, #fe2c55, #25f4ee);
+            border-radius: 2px;
+        }
+        .report-header h1 {
+            font-size: 36px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fe2c55, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+        .report-header .subtitle {
+            font-size: 16px;
+            color: #8892b0;
+            letter-spacing: 2px;
+        }
+        .report-header .period {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 6px 20px;
+            background: rgba(254, 44, 85, 0.1);
+            border: 1px solid rgba(254, 44, 85, 0.3);
+            border-radius: 20px;
+            font-size: 14px;
+            color: #fe2c55;
+        }
+        /* KPI Cards */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+        .kpi-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 28px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .kpi-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            border-radius: 16px 16px 0 0;
+        }
+        .kpi-card:nth-child(1)::before { background: linear-gradient(90deg, #fe2c55, #ff6b6b); }
+        .kpi-card:nth-child(2)::before { background: linear-gradient(90deg, #25f4ee, #4facfe); }
+        .kpi-card:nth-child(3)::before { background: linear-gradient(90deg, #667eea, #764ba2); }
+        .kpi-card:nth-child(4)::before { background: linear-gradient(90deg, #f093fb, #f5576c); }
+        .kpi-card:nth-child(5)::before { background: linear-gradient(90deg, #00e676, #4facfe); }
+        .kpi-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        .kpi-card .kpi-icon { font-size: 28px; margin-bottom: 12px; }
+        .kpi-card .kpi-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+        .kpi-card .kpi-label {
+            font-size: 12px;
+            color: #8892b0;
+            margin-bottom: 10px;
+        }
+        .kpi-card .kpi-change {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 12px;
+        }
+        .kpi-change.up { color: #00e676; background: rgba(0, 230, 118, 0.1); }
+        .kpi-change.down { color: #ff5252; background: rgba(255, 82, 82, 0.1); }
+        .progress-bar {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+        .progress-bar .fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 1s ease;
+        }
+        /* Section */
+        .section {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
+            padding: 36px;
+            margin-bottom: 30px;
+        }
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 22px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 28px;
+        }
+        .section-title .icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+        .section-title .icon.red { background: rgba(254, 44, 85, 0.15); }
+        .section-title .icon.purple { background: rgba(102, 126, 234, 0.15); }
+        .section-title .icon.orange { background: rgba(255, 165, 2, 0.15); }
+        .section-title .icon.blue { background: rgba(37, 244, 238, 0.15); }
+        .section-title .icon.green { background: rgba(0, 230, 118, 0.15); }
+        /* Charts */
+        .chart-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+        .chart-box {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 14px;
+            padding: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .chart-box h4 {
+            font-size: 14px;
+            color: #8892b0;
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+        .chart-box canvas { max-height: 350px; }
+        /* Tables */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+        }
+        .data-table th {
+            text-align: left;
+            padding: 12px 16px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #8892b0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .data-table td {
+            padding: 14px 16px;
+            font-size: 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            white-space: nowrap;
+        }
+        .data-table tr:hover td { background: rgba(255, 255, 255, 0.02); }
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        .badge-s { background: rgba(254, 44, 85, 0.15); color: #fe2c55; }
+        .badge-a { background: rgba(37, 244, 238, 0.15); color: #25f4ee; }
+        .badge-b { background: rgba(255, 165, 2, 0.15); color: #ffa502; }
+        .badge-c { background: rgba(136, 146, 176, 0.15); color: #8892b0; }
+        /* Insight Cards */
+        .insight-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 20px;
+        }
+        .insight-card {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            border-left: 3px solid;
+        }
+        .insight-card.positive { border-color: #00e676; }
+        .insight-card.warning { border-color: #ffa502; }
+        .insight-card.negative { border-color: #ff5252; }
+        .insight-card h5 {
+            font-size: 13px;
+            color: #8892b0;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        .insight-card p {
+            font-size: 14px;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+        /* Attribution */
+        .attribution-block {
+            background: rgba(37, 244, 238, 0.05);
+            border: 1px solid rgba(37, 244, 238, 0.15);
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-top: 20px;
+        }
+        .attribution-block h5 {
+            font-size: 14px;
+            color: #25f4ee;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .attribution-block p {
+            font-size: 14px;
+            color: #b0b8d0;
+            line-height: 1.8;
+        }
+        .attribution-block .factor {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(37, 244, 238, 0.1);
+            padding: 2px 10px;
+            border-radius: 8px;
+            margin: 2px 4px;
+            font-weight: 500;
+            color: #25f4ee;
+        }
+        /* Formula */
+        .formula-box {
+            background: linear-gradient(135deg, rgba(254, 44, 85, 0.08), rgba(37, 244, 238, 0.08));
+            border: 1px solid rgba(254, 44, 85, 0.2);
+            border-radius: 14px;
+            padding: 24px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .formula-box h5 {
+            font-size: 13px;
+            color: #fe2c55;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .formula-box .formula {
+            font-size: 16px;
+            color: #fff;
+            font-weight: 600;
+            line-height: 2;
+        }
+        .formula-box .formula .tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 4px 12px;
+            border-radius: 8px;
+            margin: 0 4px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .formula-box .result {
+            margin-top: 12px;
+            font-size: 20px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fe2c55, #25f4ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        /* Action Items */
+        .action-list {
+            list-style: none;
+            margin-top: 16px;
+        }
+        .action-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .action-list li:last-child { border-bottom: none; }
+        .action-list .action-num {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            background: rgba(254, 44, 85, 0.15);
+            color: #fe2c55;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .action-list .action-content h5 {
+            font-size: 14px;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+        .action-list .action-content p {
+            font-size: 13px;
+            color: #8892b0;
+            line-height: 1.6;
+        }
+        /* Funnel - Sci-fi SVG */
+        .funnel-wrapper {
+            position: relative;
+            padding: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .funnel-svg-box {
+            position: relative;
+            flex-shrink: 0;
+        }
+        .funnel-svg-box svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 0 20px rgba(37, 244, 238, 0.1));
+        }
+        @keyframes funnelPulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+        .funnel-glow { animation: funnelPulse 3s ease-in-out infinite; }
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .kpi-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 1024px) {
+            .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+            .chart-row { grid-template-columns: 1fr; }
+            .insight-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 768px) {
+            .kpi-grid { grid-template-columns: 1fr; }
+            body { padding: 20px 12px; }
+            .section { padding: 24px 16px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- Header -->
+    <div class="report-header">
+        <h1>🎵 抖音矩阵作品内容分析月报</h1>
+        <div class="subtitle">DOUYIN MATRIX CONTENT ANALYTICS</div>
+        <div class="period">📅 2026年4月 · 4.1 – 4.30 · 51家经销商矩阵</div>
+    </div>
+
+    <!-- KPI Overview -->
+    <div class="kpi-grid">
+        <div class="kpi-card">
+            <div class="kpi-icon">📝</div>
+            <div class="kpi-value">510</div>
+            <div class="kpi-label">本月发布量（条）</div>
+            <div class="kpi-change up">📈 8% 环比</div>
+            <div class="progress-bar"><div class="fill" style="width:82%;background:linear-gradient(90deg,#fe2c55,#ff6b6b)"></div></div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-icon">▶️</div>
+            <div class="kpi-value">319.8万</div>
+            <div class="kpi-label">总播放量</div>
+            <div class="kpi-change up">📈 35% 环比</div>
+            <div class="progress-bar"><div class="fill" style="width:90%;background:linear-gradient(90deg,#25f4ee,#4facfe)"></div></div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-icon">💬</div>
+            <div class="kpi-value">11.4万</div>
+            <div class="kpi-label">总互动量（赞/评/转/藏）</div>
+            <div class="kpi-change up">📈 42% 环比</div>
+            <div class="progress-bar"><div class="fill" style="width:88%;background:linear-gradient(90deg,#667eea,#764ba2)"></div></div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-icon">👥</div>
+            <div class="kpi-value">+689</div>
+            <div class="kpi-label">粉丝净增</div>
+            <div class="kpi-change up">📈 15% 环比</div>
+            <div class="progress-bar"><div class="fill" style="width:65%;background:linear-gradient(90deg,#f093fb,#f5576c)"></div></div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-icon">⏱️</div>
+            <div class="kpi-value">12.6%</div>
+            <div class="kpi-label">平均完播率</div>
+            <div class="kpi-change down">🔻 3% 环比</div>
+            <div class="progress-bar"><div class="fill" style="width:55%;background:linear-gradient(90deg,#00e676,#4facfe)"></div></div>
+        </div>
+    </div>
+    <!-- 维度一：整体数据表现 -->
+    <div class="section">
+        <div class="section-title">
+            <div class="icon red">📊</div>
+            维度一：矩阵整体数据表现
+        </div>
+
+        <!-- 梯队分布（移到最前面） -->
+        <div class="chart-row">
+            <div class="chart-box">
+                <h4>经销商效能矩阵（发布量 vs 平均播放量 · 气泡=总互动量）</h4>
+                <canvas id="tierChart"></canvas>
+            </div>
+            <div class="chart-box">
+                <h4>各梯队达标率 & 代表账号</h4>
+                <table class="data-table">
+                    <thead>
+                        <tr><th>梯队</th><th>数量</th><th>月播放量</th><th>代表账号</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><span class="badge badge-s">S 级</span></td><td>1家</td><td>300万+</td><td>时代印象</td></tr>
+                        <tr><td><span class="badge badge-a">A 级</span></td><td>5家</td><td>1万-5万</td><td>尚派正品、ONEZERO美承、Coodoo</td></tr>
+                        <tr><td><span class="badge badge-b">B 级</span></td><td>20家</td><td>1千-1万</td><td>REYIBO、爱果数码、EWAY亿维</td></tr>
+                        <tr><td><span class="badge badge-c">C 级</span></td><td>25家</td><td>&lt;1千</td><td>需重点辅导</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="chart-row">
+            <div class="chart-box" style="grid-column: 1 / -1;">
+                <h4>近6月核心指标环比增长率趋势（%）</h4>
+                <canvas id="combinedTrend"></canvas>
+            </div>
+        </div>
+
+        <!-- 归因分析 -->
+        <div class="attribution-block">
+            <h5>🔍 归因分析 — 为什么播放量📈35%？</h5>
+            <p>
+                本月播放量大幅增长的核心驱动因素：<br>
+                ① <span class="factor">时代印象单条爆款贡献274万播放</span> — iOS26.4新emoji内容精准命中平台热点，完播率高达60.5%，进入推荐池持续分发；<br>
+                ② <span class="factor">iPhone产品类内容平均播放1.6万</span> — 远超其他品类（Watch 3035、Mac 754），iPhone内容是矩阵流量核心引擎；<br>
+                ③ <span class="factor">1min以内短视频效率最高</span> — 平均播放10,254次，是1-3min视频的54倍。<br><br>
+                <strong>风险提示：</strong>矩阵播放量高度依赖<span class="factor">时代印象单一账号</span>（占总播放94.7%），头部集中度过高，需培育更多腰部账号。
+            </p>
+        </div>
+    </div>
+
+    <!-- 维度二：矩阵生态健康度 -->
+    <div class="section">
+        <div class="section-title">
+            <div class="icon purple">🏥</div>
+            维度二：矩阵生态健康度
+        </div>
+
+        <!-- 第一行：健康度评分 + 全账号健康度列表 -->
+        <div class="chart-row">
+            <div class="chart-box">
+                <h4>账号健康度评分（Top 15）</h4>
+                <canvas id="accountEfficiency"></canvas>
+                <p style="font-size:12px;color:#8892b0;line-height:2;margin-top:12px;">
+                    · 发布稳健(20分) = min(月发布÷均值10条, 1)×20<br>
+                    · 合规审核(25分) = 公开占比×25<br>
+                    · 流量表现(30分) = min(均播÷均播6371, 1)×30<br>
+                    · 内容质量(25分) = min(均完播率÷12.6%, 1)×25
+                </p>
+            </div>
+            <div class="chart-box" style="max-height:520px;overflow-y:auto;">
+                <h4>全矩阵健康度评分（51家）</h4>
+                <table class="data-table">
+                    <thead>
+                        <tr><th>#</th><th>账号</th><th>总分</th><th>等级</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td>时代印象</td><td style="color:#fff;font-weight:700">100.0</td><td style="color:#00e676;">🟢</td></tr>
+                        <tr><td>2</td><td>尚派正品</td><td style="color:#fff;font-weight:700">87.8</td><td style="color:#00e676;">🟢</td></tr>
+                        <tr><td>3</td><td>DREAMROOM</td><td>72.0</td><td style="color:#4facfe;">🔵</td></tr>
+                        <tr><td>4</td><td>海佳科技</td><td>71.3</td><td style="color:#4facfe;">🔵</td></tr>
+                        <tr><td>5</td><td>REYIBO</td><td>69.4</td><td style="color:#4facfe;">🔵</td></tr>
+                        <tr><td>6</td><td>HUOMAI火唛</td><td>69.1</td><td style="color:#4facfe;">🔵</td></tr>
+                        <tr><td>7</td><td>iGallery</td><td>68.5</td><td style="color:#4facfe;">🔵</td></tr>
+                        <tr><td>8</td><td>上海佩知</td><td>68.1</td><td style="color:#4facfe;">🔵</td></tr>
+                        <tr><td>9</td><td>品丰T-WORLD</td><td>67.7</td><td style="color:#4facfe;">🔵</td></tr>
+                        <tr><td>10</td><td>ONEZERO美承</td><td>67.5</td><td style="color:#4facfe;">🔵</td></tr>
+                        <tr><td>11</td><td>爱果数码</td><td>66.8</td><td style="color:#4facfe;">🔵</td></tr>
+                        <tr><td>12</td><td>青岛龙腾i-Zone</td><td>66.3</td><td style="color:#4facfe;">🔵</td></tr>
+                        <tr><td>13</td><td>仲璇iDea</td><td>65.6</td><td style="color:#4facfe;">🔵</td></tr>
+                        <tr><td>14</td><td>sunmon轩明</td><td>64.3</td><td style="color:#ffa502;">🟡</td></tr>
+                        <tr><td>15</td><td>CHANG畅航</td><td>63.4</td><td style="color:#ffa502;">🟡</td></tr>
+                        <tr><td>16</td><td>新燕海</td><td>62.7</td><td style="color:#ffa502;">🟡</td></tr>
+                        <tr><td>17</td><td>SKANIE百动数码</td><td>62.6</td><td style="color:#ffa502;">🟡</td></tr>
+                        <tr><td>18</td><td>果音和悦</td><td>62.2</td><td style="color:#ffa502;">🟡</td></tr>
+                        <tr><td>19</td><td>Coodoo</td><td>62.0</td><td style="color:#ffa502;">🟡</td></tr>
+                        <tr><td>20</td><td>新跃创为</td><td>61.4</td><td style="color:#ffa502;">🟡</td></tr>
+                        <tr><td>21</td><td>COOL ROOM纵驰</td><td>61.2</td><td style="color:#ffa502;">🟡</td></tr>
+                        <tr><td>22</td><td>vanbuy</td><td>61.1</td><td style="color:#ffa502;">🟡</td></tr>
+                        <tr><td>23</td><td>STUDIO A数码</td><td>60.8</td><td style="color:#ffa502;">🟡</td></tr>
+                        <tr><td>24</td><td>西藏星宇</td><td>60.1</td><td style="color:#ffa502;">🟡</td></tr>
+                        <tr><td>25</td><td>北京金麦克发</td><td>59.9</td><td style="color:#ffa502;">🟡</td></tr>
+                        <tr><td>26</td><td>明讯天成</td><td>59.4</td><td style="color:#ffa502;">🟡</td></tr>
+                        <tr><td>27</td><td>天音TELLING</td><td>57.7</td><td style="color:#ffa502;">🟡</td></tr>
+                        <tr><td>28</td><td>恒沙科技</td><td>56.1</td><td style="color:#ffa502;">🟡</td></tr>
+                        <tr><td>29</td><td>鑫高维</td><td>55.3</td><td style="color:#ffa502;">🟡</td></tr>
+                        <tr><td>30</td><td>酷果星创数码</td><td>55.1</td><td style="color:#ffa502;">🟡</td></tr>
+                        <tr><td>31</td><td>本尚智讯</td><td>55.1</td><td style="color:#ffa502;">🟡</td></tr>
+                        <tr><td>32</td><td>myTO中科星迈</td><td>54.3</td><td style="color:#ffa502;">🟡</td></tr>
+                        <tr><td>33</td><td>昕佳悦</td><td>54.0</td><td style="color:#ffa502;">🟡</td></tr>
+                        <tr><td>34</td><td>EWAY亿维</td><td>53.8</td><td style="color:#ffa502;">🟡</td></tr>
+                        <tr><td>35</td><td>科达通讯</td><td>53.4</td><td style="color:#ffa502;">🟡</td></tr>
+                        <tr><td>36</td><td>PHOGO</td><td>51.8</td><td style="color:#ffa502;">🟡</td></tr>
+                        <tr><td>37</td><td>ZWHOLE众合</td><td>50.1</td><td style="color:#ffa502;">🟡</td></tr>
+                        <tr><td>38</td><td>浙江奇易网络</td><td>49.8</td><td style="color:#ff5252;">🔴</td></tr>
+                        <tr><td>39</td><td>上海神汇</td><td>49.7</td><td style="color:#ff5252;">🔴</td></tr>
+                        <tr><td>40</td><td>Xinsun</td><td>48.6</td><td style="color:#ff5252;">🔴</td></tr>
+                        <tr><td>41</td><td>SHANGBAO尚宝</td><td>48.4</td><td style="color:#ff5252;">🔴</td></tr>
+                        <tr><td>42</td><td>聚时科技</td><td>42.6</td><td style="color:#ff5252;">🔴</td></tr>
+                        <tr><td>43</td><td>Choosing恒洲</td><td>40.6</td><td style="color:#ff5252;">🔴</td></tr>
+                        <tr><td>44</td><td>iLight光线</td><td>40.3</td><td style="color:#ff5252;">🔴</td></tr>
+                        <tr><td>45</td><td>英龙华辰</td><td>40.1</td><td style="color:#ff5252;">🔴</td></tr>
+                        <tr><td>46</td><td>湖北澳易通</td><td>39.7</td><td style="color:#ff5252;">🔴</td></tr>
+                        <tr><td>47</td><td>JD Ehome</td><td>39.0</td><td style="color:#ff5252;">🔴</td></tr>
+                        <tr><td>48</td><td>SCHUANG盛创</td><td>34.2</td><td style="color:#ff5252;">🔴</td></tr>
+                        <tr><td>49</td><td>长虹佳华</td><td>33.7</td><td style="color:#ff5252;">🔴</td></tr>
+                        <tr><td>50</td><td>传天羽</td><td>20.6</td><td style="color:#ff5252;">🔴</td></tr>
+                        <tr><td>51</td><td>信誉楼电子</td><td>4.0</td><td style="color:#ff5252;">🔴</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 第二行：播放量图 + 全账号播放量列表 -->
+        <div class="chart-row">
+            <div class="chart-box">
+                <h4>各账号月播放量 vs 矩阵平均线（Top 15）</h4>
+                <canvas id="accountVsAvg"></canvas>
+            </div>
+            <div class="chart-box" style="max-height:520px;overflow-y:auto;">
+                <h4>全矩阵月播放量排名（51家）</h4>
+                <table class="data-table">
+                    <thead>
+                        <tr><th>#</th><th>账号</th><th>发布</th><th>月播放量</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td>时代印象</td><td>29条</td><td style="color:#25f4ee;font-weight:700">302.9万</td></tr>
+                        <tr><td>2</td><td>尚派正品</td><td>6条</td><td style="color:#25f4ee;font-weight:700">4.8万</td></tr>
+                        <tr><td>3</td><td>ONEZERO美承</td><td>14条</td><td>1.6万</td></tr>
+                        <tr><td>4</td><td>Coodoo</td><td>4条</td><td>1.5万</td></tr>
+                        <tr><td>5</td><td>REYIBO</td><td>10条</td><td>9,321</td></tr>
+                        <tr><td>6</td><td>爱果数码</td><td>11条</td><td>7,228</td></tr>
+                        <tr><td>7</td><td>EWAY亿维</td><td>26条</td><td>6,137</td></tr>
+                        <tr><td>8</td><td>新跃创为</td><td>14条</td><td>5,777</td></tr>
+                        <tr><td>9</td><td>DREAMROOM</td><td>12条</td><td>5,107</td></tr>
+                        <tr><td>10</td><td>Xinsun</td><td>15条</td><td>4,579</td></tr>
+                        <tr><td>11</td><td>品丰T-WORLD</td><td>13条</td><td>4,305</td></tr>
+                        <tr><td>12</td><td>仲璇iDea</td><td>22条</td><td>4,214</td></tr>
+                        <tr><td>13</td><td>上海佩知</td><td>16条</td><td>4,043</td></tr>
+                        <tr><td>14</td><td>新燕海</td><td>7条</td><td>3,330</td></tr>
+                        <tr><td>15</td><td>SHANGBAO尚宝</td><td>14条</td><td>2,961</td></tr>
+                        <tr><td>16</td><td>vanbuy</td><td>11条</td><td>2,794</td></tr>
+                        <tr><td>17</td><td>海佳科技</td><td>10条</td><td>2,661</td></tr>
+                        <tr><td>18</td><td>天音TELLING</td><td>7条</td><td>2,471</td></tr>
+                        <tr><td>19</td><td>科达通讯</td><td>16条</td><td>2,350</td></tr>
+                        <tr><td>20</td><td>HUOMAI火唛</td><td>15条</td><td>2,350</td></tr>
+                        <tr><td>21</td><td>北京金麦克发</td><td>11条</td><td>2,294</td></tr>
+                        <tr><td>22</td><td>CHANG畅航</td><td>9条</td><td>1,902</td></tr>
+                        <tr><td>23</td><td>酷果星创数码</td><td>6条</td><td>1,849</td></tr>
+                        <tr><td>24</td><td>青岛龙腾i-Zone</td><td>18条</td><td>1,806</td></tr>
+                        <tr><td>25</td><td>STUDIO A数码</td><td>15条</td><td>1,680</td></tr>
+                        <tr><td>26</td><td>sunmon轩明</td><td>12条</td><td>1,484</td></tr>
+                        <tr><td>27</td><td>COOL ROOM纵驰</td><td>16条</td><td>1,243</td></tr>
+                        <tr><td>28</td><td>明讯天成</td><td>13条</td><td>1,078</td></tr>
+                        <tr><td>29</td><td>iLight光线</td><td>6条</td><td>1,061</td></tr>
+                        <tr><td>30</td><td>myTO中科星迈</td><td>8条</td><td>1,013</td></tr>
+                        <tr><td>31</td><td>SKANIE百动数码</td><td>6条</td><td>751</td></tr>
+                        <tr><td>32</td><td>浙江奇易网络</td><td>8条</td><td>477</td></tr>
+                        <tr><td>33</td><td>iGallery</td><td>15条</td><td>458</td></tr>
+                        <tr><td>34</td><td>长虹佳华</td><td>5条</td><td>366</td></tr>
+                        <tr><td>35</td><td>果音和悦</td><td>19条</td><td>260</td></tr>
+                        <tr><td>36</td><td>鑫高维</td><td>11条</td><td>253</td></tr>
+                        <tr><td>37</td><td>昕佳悦</td><td>8条</td><td>225</td></tr>
+                        <tr><td>38</td><td>传天羽</td><td>3条</td><td>192</td></tr>
+                        <tr><td>39</td><td>英龙华辰</td><td>1条</td><td>164</td></tr>
+                        <tr><td>40</td><td>湖北澳易通</td><td>5条</td><td>149</td></tr>
+                        <tr><td>41</td><td>聚时科技</td><td>4条</td><td>146</td></tr>
+                        <tr><td>42</td><td>上海神汇</td><td>7条</td><td>132</td></tr>
+                        <tr><td>43</td><td>Choosing恒洲</td><td>4条</td><td>101</td></tr>
+                        <tr><td>44</td><td>恒沙科技</td><td>3条</td><td>80</td></tr>
+                        <tr><td>45</td><td>PHOGO</td><td>4条</td><td>75</td></tr>
+                        <tr><td>46</td><td>SCHUANG盛创</td><td>2条</td><td>73</td></tr>
+                        <tr><td>47</td><td>ZWHOLE众合</td><td>5条</td><td>70</td></tr>
+                        <tr><td>48</td><td>西藏星宇</td><td>5条</td><td>70</td></tr>
+                        <tr><td>49</td><td>本尚智讯</td><td>5条</td><td>57</td></tr>
+                        <tr><td>50</td><td>JD Ehome</td><td>2条</td><td>35</td></tr>
+                        <tr><td>51</td><td>信誉楼电子</td><td>2条</td><td>0</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 观看深度漏斗（从维度一移过来） -->
+        <div class="chart-row">
+            <div class="chart-box">
+                <h4>观看深度漏斗（宽度 = 留存率比例）</h4>
+                <div class="funnel-wrapper" style="flex-wrap:wrap;">
+                    <div class="funnel-svg-box" style="width:100%;height:300px;">
+                        <svg viewBox="0 0 460 290" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="funnelGrad0" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#fff;stop-opacity:0.15"/>
+                                    <stop offset="100%" style="stop-color:#25f4ee;stop-opacity:0.3"/>
+                                </linearGradient>
+                                <linearGradient id="funnelGrad1" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#25f4ee;stop-opacity:0.9"/>
+                                    <stop offset="100%" style="stop-color:#4facfe;stop-opacity:0.7"/>
+                                </linearGradient>
+                                <linearGradient id="funnelGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#4facfe;stop-opacity:0.85"/>
+                                    <stop offset="100%" style="stop-color:#667eea;stop-opacity:0.7"/>
+                                </linearGradient>
+                                <linearGradient id="funnelGrad3" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#667eea;stop-opacity:0.8"/>
+                                    <stop offset="100%" style="stop-color:#764ba2;stop-opacity:0.7"/>
+                                </linearGradient>
+                                <filter id="glow"><feGaussianBlur stdDeviation="2.5" result="c"/><feMerge><feMergeNode in="c"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                                <filter id="glowStrong"><feGaussianBlur stdDeviation="5" result="c"/><feMerge><feMergeNode in="c"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                            </defs>
+                            <polygon points="30,10 330,10 258,68 102,68" fill="url(#funnelGrad0)" filter="url(#glow)" opacity="0.95"/>
+                            <line x1="30" y1="10" x2="330" y2="10" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" class="funnel-glow"/>
+                            <polygon points="102,76 258,76 222,134 138,134" fill="url(#funnelGrad1)" filter="url(#glow)" opacity="0.92"/>
+                            <line x1="102" y1="76" x2="258" y2="76" stroke="#25f4ee" stroke-width="1" opacity="0.7" class="funnel-glow"/>
+                            <polygon points="138,142 222,142 199,200 161,200" fill="url(#funnelGrad2)" filter="url(#glow)" opacity="0.88"/>
+                            <line x1="138" y1="142" x2="222" y2="142" stroke="#4facfe" stroke-width="1" opacity="0.6" class="funnel-glow"/>
+                            <polygon points="161,208 199,208 192,266 168,266" fill="url(#funnelGrad3)" filter="url(#glow)" opacity="0.84"/>
+                            <line x1="161" y1="208" x2="199" y2="208" stroke="#667eea" stroke-width="1" opacity="0.6" class="funnel-glow"/>
+                            <circle cx="180" cy="276" r="3" fill="#764ba2" filter="url(#glowStrong)" class="funnel-glow"/>
+                            <text x="18" y="44" fill="rgba(255,255,255,0.8)" font-size="12" font-weight="700">100%</text>
+                            <text x="18" y="110" fill="#25f4ee" font-size="12" font-weight="700">51.6%</text>
+                            <text x="18" y="176" fill="#4facfe" font-size="12" font-weight="700">27.5%</text>
+                            <text x="18" y="242" fill="#667eea" font-size="12" font-weight="700">12.6%</text>
+                            <text x="180" y="44" fill="rgba(255,255,255,0.9)" font-size="11" font-weight="600" text-anchor="middle">曝光/播放</text>
+                            <text x="180" y="110" fill="rgba(255,255,255,0.85)" font-size="11" font-weight="600" text-anchor="middle">2s留存</text>
+                            <text x="180" y="176" fill="rgba(255,255,255,0.85)" font-size="11" font-weight="600" text-anchor="middle">5s留存</text>
+                            <text x="180" y="242" fill="rgba(255,255,255,0.8)" font-size="11" font-weight="600" text-anchor="middle">完播</text>
+                            <text x="340" y="44" fill="#ff5252" font-size="10" font-weight="600">▼48.4%</text>
+                            <text x="340" y="56" fill="#555e7a" font-size="8">前2秒划走</text>
+                            <text x="340" y="110" fill="#ff5252" font-size="10" font-weight="600">▼24.1%</text>
+                            <text x="340" y="122" fill="#555e7a" font-size="8">2-5秒流失</text>
+                            <text x="340" y="176" fill="#ff5252" font-size="10" font-weight="600">▼14.9%</text>
+                            <text x="340" y="188" fill="#555e7a" font-size="8">中途流失</text>
+                            <rect x="345" y="220" width="80" height="40" rx="8" fill="rgba(240,147,251,0.08)" stroke="rgba(240,147,251,0.2)" stroke-width="1"/>
+                            <text x="385" y="240" fill="#f093fb" font-size="14" font-weight="700" text-anchor="middle">3.6%</text>
+                            <text x="385" y="254" fill="#8892b0" font-size="8" text-anchor="middle">互动率</text>
+                            <rect x="345" y="220" width="80" height="40" rx="8" fill="rgba(254,44,85,0.08)" stroke="rgba(254,44,85,0.2)" stroke-width="1" transform="translate(85,0)"/>
+                            <text x="470" y="240" fill="#fe2c55" font-size="14" font-weight="700" text-anchor="middle">0.3%</text>
+                            <text x="470" y="254" fill="#8892b0" font-size="8" text-anchor="middle">分享率</text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="chart-box">
+                <h4>各笔记类型留存率对比（2s留存 / 5s留存 / 完播率）</h4>
+                <canvas id="typeFunnelComparison"></canvas>
+            </div>
+        </div>
+
+        <div class="insight-grid">
+            <div class="insight-card positive">
+                <h5>✅ 稳定输出型（24家 · 47%）</h5>
+                <p>月发布≥10条，均播8,693次，合规率89%。<br>代表：EWAY亿维(26条)、仲璇iDea(22条)。<br>矩阵基石力量，播放效率是低频账号的27倍。</p>
+            </div>
+            <div class="insight-card warning">
+                <h5>⚡ 低频账号（15家 · 29%）</h5>
+                <p>月发布≤5条，均播仅320次（稳定型的1/27），合规率71%。<br>产能不足导致账号权重低，平台推荐减少。<br>建议：先保频率（手机随拍+口播），再提质量。</p>
+            </div>
+            <div class="insight-card negative">
+                <h5>🚨 审核异常（69条 · 13.5%）</h5>
+                <p>Beats类异常率49%（20/41条）为重灾区。<br>4月16日单日爆发24条异常（占全月35%）。<br>高危账号：湖北澳易通(80%)、酷果星创(33%)、果音和悦(32%)。</p>
+            </div>
+        </div>
+
+        <div class="attribution-block">
+            <h5>🔍 归因分析 — 审核异常的数据特征（基于69条异常作品）</h5>
+            <p>
+                ① <span class="factor">Beats内容异常率49%</span> — 20/41条触发审核，远超iPhone(14%)和Watch(2%)，该品类内容可能存在素材合规问题；<br>
+                ② <span class="factor">4月16日单日24条集中异常</span> — 占全月异常的35%，高度疑似批量发布同一素材触发平台风控机制；<br>
+                ③ <span class="factor">湖北澳易通异常率80%</span>（4/5条）、果音和悦32%（6/19条）— 需单独排查账号状态是否被平台标记；<br>
+                ④ <span class="factor">异常作品均播仅50次</span>（正常作品均播7,400次）— 流量损失率99.3%，一旦触发审核基本等于零曝光。<br><br>
+                <strong>数据结论：</strong>审核问题集中在<span class="factor">Beats品类</span>和<span class="factor">特定日期批量发布</span>两个维度，非全矩阵普遍问题。建议Beats内容发布前增加内审环节，避免同日多账号发布相同素材。
+            </p>
+        </div>
+    </div>
+    <!-- 维度三：内容监测与爆款归因 -->
+    <div class="section">
+        <div class="section-title">
+            <div class="icon orange">🎯</div>
+            维度三：内容监测与爆款归因
+        </div>
+
+        <!-- 爆款定义 -->
+        <div style="background:rgba(254,44,85,0.06);border:1px solid rgba(254,44,85,0.2);border-radius:12px;padding:16px 24px;margin-bottom:24px;">
+            <h5 style="font-size:14px;color:#fe2c55;margin-bottom:8px;">📌 爆款定义</h5>
+            <p style="font-size:13px;color:#b0b8d0;line-height:1.8;">
+                满足以下任一条件即为爆款作品：<br>
+                ① 播放量 > 5,000；<br>
+                ② 播放量 > 3,000 且（点赞 + 评论 + 收藏 + 分享）> 200。<br>
+                <span style="color:#8892b0;">本月爆款作品：<strong style="color:#fff;">23条</strong>（占总发布量4.5%）</span>
+            </p>
+        </div>
+
+        <div class="chart-row">
+            <div class="chart-box">
+                <h4>Top 10 爆款作品明细</h4>
+                <table class="data-table">
+                    <thead>
+                        <tr><th>#</th><th>账号</th><th>作品标题</th><th>归因类型</th><th>播放量</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td>时代印象</td><td>iOS26.4新emoji扭曲演变全过程</td><td><span class="badge badge-s">新品/更新</span></td><td style="color:#fe2c55;font-weight:700">274.8万</td></tr>
+                        <tr><td>2</td><td>时代印象</td><td>苹果设计师简直是天才：不睁眼也能听时间</td><td><span class="badge badge-a">功能揭秘</span></td><td>15.9万</td></tr>
+                        <tr><td>3</td><td>时代印象</td><td>苹果，你…… 输入法默认好词好句</td><td><span class="badge badge-b">趣味发现</span></td><td>5.1万</td></tr>
+                        <tr><td>4</td><td>尚派正品</td><td>iPhone键盘还可以这样算数</td><td><span class="badge badge-a">功能揭秘</span></td><td>4.7万</td></tr>
+                        <tr><td>5</td><td>时代印象</td><td>MacBook常用快捷键大全</td><td><span class="badge badge-a">功能揭秘</span></td><td>3.1万</td></tr>
+                        <tr><td>6</td><td>ONEZERO美承</td><td>别说不是你#学校 #抽象</td><td><span class="badge badge-c">情绪共鸣</span></td><td>1.3万</td></tr>
+                        <tr><td>7</td><td>时代印象</td><td>新到手的Apple Watch设置错了？</td><td><span class="badge badge-a">功能揭秘</span></td><td>1.0万</td></tr>
+                        <tr><td>8</td><td>时代印象</td><td>iPhone高配才能打出来的emoji</td><td><span class="badge" style="background:rgba(240,147,251,0.15);color:#f093fb">争议话题</span></td><td>0.98万</td></tr>
+                        <tr><td>9</td><td>REYIBO</td><td>燕云十六声 x Apple店联动</td><td><span class="badge" style="background:rgba(0,230,118,0.15);color:#00e676">品牌联动</span></td><td>0.72万</td></tr>
+                        <tr><td>10</td><td>Coodoo</td><td>iPhone 17 Pro游戏表现如何？</td><td><span class="badge badge-s">新品/更新</span></td><td>0.50万</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="chart-box">
+                <h4>爆款归因类型效率对比</h4>
+                <canvas id="featureRadar"></canvas>
+            </div>
+        </div>
+
+        <!-- 爆款公式 -->
+        <div class="formula-box">
+            <h5>🧪 抖音爆款高概率特征公式（基于 Top 10 决策树提取）</h5>
+            <div class="formula">
+                <span class="tag">1min以内时长</span> +
+                <span class="tag">iPhone类选题</span> +
+                <span class="tag">热点话题标签(≥3个)</span> +
+                <span class="tag">周四下午发布</span> +
+                <span class="tag">高产能账号发布</span>
+            </div>
+            <div class="result">= 爆款率飙升 520% ↑</div>
+        </div>
+
+        <div class="chart-row" style="margin-top:24px">
+            <div class="chart-box">
+                <h4>各体裁平均播放量对比</h4>
+                <canvas id="genrePerformance"></canvas>
+            </div>
+            <div class="chart-box">
+                <h4>发布时间 vs 播放量热力分布</h4>
+                <canvas id="timeHeat"></canvas>
+            </div>
+        </div>
+
+        <div class="attribution-block">
+            <h5>🔍 归因分析 — 爆款的本质差异</h5>
+            <p>
+                <strong>超级爆款型（播放5万+，占比0.6%）：</strong><br>
+                ① 内容精准命中<span class="factor">平台热点话题</span>（如iOS更新、新emoji）；<br>
+                ② 完播率远超均值（Top1达60.5% vs 矩阵均值16.5%）；<br>
+                ③ 评论区引发<span class="factor">大量UGC讨论</span>（Top1评论2.2万条），触发二次推荐。<br><br>
+                <strong>稳定流量型（播放1千-5千，占比4.5%）：</strong><br>
+                ① 内容实用性强（教程类、功能介绍），触发<span class="factor">收藏+分享</span>行为；<br>
+                ② 完播率中等（15-30%），但分享率高于均值；<br>
+                ③ 适合作为矩阵日常内容的基本盘。<br><br>
+                <strong>低效内容（播放<100，占比45%）：</strong><br>
+                ① 2s跳出率高达50%+ — 封面/开头缺乏吸引力；<br>
+                ② 多为<span class="factor">官方素材直接搬运</span>，无二次创作；<br>
+                ③ 优化方向：前3秒必须有视觉冲击或悬念设置。
+            </p>
+        </div>
+    </div>
+    <!-- 维度四：用户反馈信号 -->
+    <div class="section">
+        <div class="section-title">
+            <div class="icon blue">💡</div>
+            维度四：用户反馈信号与心智洞察
+        </div>
+
+        <div class="chart-row">
+            <div class="chart-box">
+                <h4>互动结构分布（赞 / 评 / 转 / 藏）</h4>
+                <canvas id="interactionStructure"></canvas>
+            </div>
+            <div class="chart-box">
+                <h4>各笔记类型互动结构差异（占该类型总互动%）</h4>
+                <canvas id="typePerformance"></canvas>
+            </div>
+        </div>
+
+        <div class="insight-grid">
+            <div class="insight-card positive">
+                <h5>📌 Mac类：收藏率40.2%（全类型最高）</h5>
+                <p>用户将Mac内容视为「工具手册」主动收藏。快捷键大全类内容粉丝转化率17%，说明实用内容能有效建立账号价值感，驱动关注行为。</p>
+            </div>
+            <div class="insight-card warning">
+                <h5>💬 爱果数码：评论率5-14%（异常高）</h5>
+                <p>该账号6条作品评论率均超5%（矩阵均值0.8%），远超正常水平。高评论集中在门店开业和教程类内容，疑似评论区运营（刷评/抽奖引导）。</p>
+            </div>
+            <div class="insight-card positive">
+                <h5>🔄 Watch类：分享率26.1%（全类型最高）</h5>
+                <p>Apple Watch教程类内容分享率远超其他品类，用户倾向于「转给需要的人」。配对教程单条分享率2.3%，是矩阵均值的7.7倍。</p>
+            </div>
+        </div>
+
+        <!-- 粉丝转化漏斗洞察 -->
+        <div class="attribution-block">
+            <h5>🔍 深度洞察 — 主页访问→粉丝转化路径分析</h5>
+            <p>
+                <strong>关键发现：「打工人」类内容主页访问率623/万播，是iPhone类的13倍</strong><br><br>
+                ① <span class="factor">打工人日常类</span>主页访问率623.5/万播（全类型第一），说明用户看完想了解「这是什么店/什么人」，但粉丝转化率仅2.8% — 主页内容未能承接兴趣；<br>
+                ② <span class="factor">Mac产品类</span>粉丝/万播=19.8（全类型第一），且主页访问率158/万播，说明Mac教程用户既想看更多又愿意关注，是最高效的涨粉内容；<br>
+                ③ <span class="factor">iPhone产品类</span>虽然播放量碾压，但粉丝/万播仅1.9，主页访问率仅47.3/万播 — 用户「看完即走」，内容缺乏账号粘性；<br><br>
+                <strong>策略启示：</strong>播放量≠粉丝价值。Mac教程和打工人日常虽然播放量小，但<span class="factor">用户粘性和账号认知度</span>远高于iPhone爆款。建议将「涨粉目标」和「播放目标」分配给不同内容类型。
+            </p>
+        </div>
+
+        <!-- 互动异常信号 -->
+        <div class="attribution-block" style="border-color:rgba(255,82,82,0.2);background:rgba(255,82,82,0.03);">
+            <h5 style="color:#ff5252;">⚠️ 异常信号 — 需关注的互动数据</h5>
+            <p>
+                ① <span class="factor">爱果数码</span>6条作品评论率均超5%（正常值<1%），评论数与播放量严重不匹配（568播放78评论），建议排查是否存在刷评行为；<br>
+                ② <span class="factor">Top1爆款贡献了全矩阵22%的评论量</span>（22,018条），去除后矩阵整体评论率从0.8%降至0.1%，说明日常内容几乎无法引发讨论；<br>
+                ③ <span class="factor">优惠活动类</span>主页访问率721/万播（最高），但粉丝转化为0 — 用户只关心价格不关心账号，此类内容对品牌建设无长期价值。
+            </p>
+        </div>
+    </div>
+    <!-- 维度五：行动指南 -->
+    <div class="section">
+        <div class="section-title">
+            <div class="icon green">🚀</div>
+            维度五：下月行动指南（按营销目标）
+        </div>
+
+        <!-- 目标一：播放量突破 -->
+        <div style="background:rgba(37,244,238,0.04);border:1px solid rgba(37,244,238,0.15);border-radius:14px;padding:24px;margin-bottom:20px;">
+            <h5 style="font-size:16px;color:#25f4ee;margin-bottom:12px;">🎯 目标一：播放量突破</h5>
+            <p style="font-size:12px;color:#555e7a;margin-bottom:12px;">数据依据：1min以内视频均播10,254 · iPhone类均播16,371 · 新品/更新类爆款均播137.6万</p>
+            <table class="data-table">
+                <thead><tr><th>推荐选题方向</th><th>内容模板</th><th>执行要求</th></tr></thead>
+                <tbody>
+                    <tr><td>iOS新功能/更新解读</td><td>「iOS XX 新增了XX功能，你发现了吗？」</td><td>1min以内 · ≥3个话题标签 · 周四下午发布</td></tr>
+                    <tr><td>iPhone隐藏技巧</td><td>「iPhone键盘/计算器/快捷指令的隐藏用法」</td><td>悬念式开头 · 信息密度高 · 结尾引导关注</td></tr>
+                    <tr><td>Apple产品冷知识</td><td>「苹果设计师的XX个天才设计，你知道几个？」</td><td>数字盘点式 · 反问句标题 · 评论区互动</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 目标二：互动量提升 -->
+        <div style="background:rgba(240,147,251,0.04);border:1px solid rgba(240,147,251,0.15);border-radius:14px;padding:24px;margin-bottom:20px;">
+            <h5 style="font-size:16px;color:#f093fb;margin-bottom:12px;">🎯 目标二：互动量提升</h5>
+            <p style="font-size:12px;color:#555e7a;margin-bottom:12px;">数据依据：争议话题类评论率最高(179条评论/万播) · 情绪共鸣类点赞率最高</p>
+            <table class="data-table">
+                <thead><tr><th>推荐选题方向</th><th>内容模板</th><th>执行要求</th></tr></thead>
+                <tbody>
+                    <tr><td>机型对比/争议话题</td><td>「iPhone XX 才能XX，你的手机行吗？」</td><td>制造机型差异讨论 · 评论区引导投票</td></tr>
+                    <tr><td>用户共鸣/日常吐槽</td><td>「Apple店打工人的日常，别说不是你」</td><td>真实场景 · 轻松幽默 · 引发转发</td></tr>
+                    <tr><td>互动测试类</td><td>「测试一下你的iPhone能不能打出这个emoji」</td><td>设置参与门槛 · 引导评论晒结果</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 目标三：粉丝增长 -->
+        <div style="background:rgba(0,230,118,0.04);border:1px solid rgba(0,230,118,0.15);border-radius:14px;padding:24px;margin-bottom:20px;">
+            <h5 style="font-size:16px;color:#00e676;margin-bottom:12px;">🎯 目标三：粉丝增长</h5>
+            <p style="font-size:12px;color:#555e7a;margin-bottom:12px;">数据依据：功能揭秘类均粉丝增量29（Top 10中最高） · 系列化内容主页访问率高</p>
+            <table class="data-table">
+                <thead><tr><th>推荐选题方向</th><th>内容模板</th><th>执行要求</th></tr></thead>
+                <tbody>
+                    <tr><td>系列化教程合集</td><td>「Apple Watch设置指南 1/5」系列连载</td><td>每条结尾预告下一期 · 引导关注不迷路</td></tr>
+                    <tr><td>实用技巧大全</td><td>「MacBook快捷键大全，存下来慢慢学」</td><td>高信息密度 · 触发收藏+关注行为</td></tr>
+                    <tr><td>新手入门指南</td><td>「刚买iPhone/Mac？这10个设置必须改」</td><td>面向新用户 · 建立账号专业人设</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 目标四：品牌曝光 -->
+        <div style="background:rgba(254,44,85,0.04);border:1px solid rgba(254,44,85,0.15);border-radius:14px;padding:24px;margin-bottom:20px;">
+            <h5 style="font-size:16px;color:#fe2c55;margin-bottom:12px;">🎯 目标四：品牌曝光</h5>
+            <p style="font-size:12px;color:#555e7a;margin-bottom:12px;">数据依据：品牌联动类完播率73.4%（全类型最高） · IP活动类主页访问率高</p>
+            <table class="data-table">
+                <thead><tr><th>推荐选题方向</th><th>内容模板</th><th>执行要求</th></tr></thead>
+                <tbody>
+                    <tr><td>品牌/IP联动活动</td><td>「XX游戏 x Apple店联动，到店体验XX」</td><td>结合热门IP · 线下引流 · 限时感</td></tr>
+                    <tr><td>门店体验vlog</td><td>「带你逛Apple授权专营店，今天有惊喜」</td><td>真实门店场景 · 产品体验 · 品牌露出自然</td></tr>
+                    <tr><td>节日/热点借势</td><td>「618必买Apple清单 / 暑期学生优惠攻略」</td><td>借势搜索热词 · 提前布局长尾流量</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 通用执行建议 -->
+        <ul class="action-list">
+            <li>
+                <div class="action-num">⏰</div>
+                <div class="action-content">
+                    <h5>发布节奏：周四下午16-18点为核心时段</h5>
+                    <p>数据验证：周四发布量126条最高且爆款集中。建议核心内容（播放量目标）集中周四下午，互动型内容分散周二至周五。</p>
+                </div>
+            </li>
+            <li>
+                <div class="action-num">⚠️</div>
+                <div class="action-content">
+                    <h5>风险提示：降低头部依赖 + 审核合规</h5>
+                    <p>① 时代印象占总播放94.7%，需培育尚派正品、Coodoo、ONEZERO等潜力账号；<br>② 13.5%作品触发审核异常，官方素材必须二次剪辑，避免直接搬运。</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Footer -->
+    <div style="text-align:center;padding:40px 0 20px;color:#555;font-size:12px;">
+        <p>本报告由 AI 数据分析引擎自动生成 · 数据截止 2026-04-30 23:59</p>
+        <p style="margin-top:4px;">© 2026 Brand Matrix Analytics · Confidential</p>
+    </div>
+</div>
+
+<script>
+// Chart.js 全局配置
+Chart.defaults.color = '#8892b0';
+Chart.defaults.borderColor = 'rgba(255,255,255,0.06)';
+Chart.defaults.font.family = '-apple-system, PingFang SC, sans-serif';
+
+// 1. 合并趋势图 — 环比增长率(%)
+// 1a. 各笔记类型留存率对比
+new Chart(document.getElementById('typeFunnelComparison'), {
+    type: 'bar',
+    data: {
+        labels: ['iPhone', 'Mac', '打工人', 'Watch', 'IP活动', 'Beats', '其他'],
+        datasets: [{
+            label: '2s留存率',
+            data: [51.8, 52.7, 55.9, 52.0, 52.7, 49.2, 50.9],
+            backgroundColor: 'rgba(37,244,238,0.7)',
+            borderRadius: 3
+        }, {
+            label: '5s留存率',
+            data: [29.0, 29.3, 32.5, 25.5, 31.0, 16.3, 26.9],
+            backgroundColor: 'rgba(102,126,234,0.7)',
+            borderRadius: 3
+        }, {
+            label: '完播率',
+            data: [11.7, 10.4, 15.2, 12.9, 26.8, 6.5, 14.1],
+            backgroundColor: 'rgba(254,44,85,0.7)',
+            borderRadius: 3
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: { position: 'top', labels: { usePointStyle: true, boxWidth: 8, padding: 10, font: { size: 10 } } },
+            tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.raw + '%' } }
+        },
+        scales: {
+            y: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { callback: v => v + '%', font: { size: 9 } }, title: { display: true, text: '留存率 (%)', color: '#8892b0', font: { size: 10 } } },
+            x: { grid: { display: false }, ticks: { font: { size: 9 } } }
+        }
+    }
+});
+
+// 1b. 合并趋势图 — 环比增长率(%)
+// 原始数据: 播放量[85,120,95,150,237,320] 互动量[2.1,3.5,2.8,4.2,8.0,11.4] 粉丝[180,250,210,380,520,689]
+new Chart(document.getElementById('combinedTrend'), {
+    type: 'line',
+    data: {
+        labels: ['12月', '1月', '2月', '3月', '4月'],
+        datasets: [{
+            label: '播放量环比',
+            data: [41, -21, 58, 58, 35],
+            borderColor: '#25f4ee',
+            backgroundColor: 'rgba(37,244,238,0.08)',
+            fill: true,
+            tension: 0.4,
+            pointBackgroundColor: '#25f4ee',
+            pointRadius: 5,
+            pointHoverRadius: 7,
+            borderWidth: 2.5
+        }, {
+            label: '互动量环比',
+            data: [67, -20, 50, 90, 42],
+            borderColor: '#f093fb',
+            backgroundColor: 'rgba(240,147,251,0.08)',
+            fill: true,
+            tension: 0.4,
+            pointBackgroundColor: '#f093fb',
+            pointRadius: 5,
+            pointHoverRadius: 7,
+            borderWidth: 2.5
+        }, {
+            label: '粉丝增量环比',
+            data: [39, -16, 81, 37, 32],
+            borderColor: '#00e676',
+            backgroundColor: 'transparent',
+            borderDash: [6, 3],
+            tension: 0.4,
+            pointBackgroundColor: '#00e676',
+            pointRadius: 5,
+            pointHoverRadius: 7,
+            borderWidth: 2
+        }]
+    },
+    options: {
+        responsive: true,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+            legend: { position: 'top', labels: { usePointStyle: true, padding: 16 } },
+            tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + (ctx.raw > 0 ? '+' : '') + ctx.raw + '%' } }
+        },
+        scales: {
+            y: {
+                grid: { color: 'rgba(255,255,255,0.04)' },
+                ticks: { callback: v => (v > 0 ? '+' : '') + v + '%', font: { size: 10 } },
+                title: { display: true, text: '环比增长率 (%)', color: '#8892b0', font: { size: 11 } }
+            },
+            x: { grid: { display: false } }
+        }
+    }
+});
+
+// 3. 经销商效能矩阵（散点图：发布量 vs 平均播放量）
+new Chart(document.getElementById('tierChart'), {
+    type: 'bubble',
+    data: {
+        datasets: [{
+            label: 'S级',
+            data: [{x:29, y:104452, r:22, name:'时代印象'}],
+            backgroundColor: 'rgba(254,44,85,0.7)',
+            borderColor: '#fe2c55',
+            borderWidth: 1.5
+        }, {
+            label: 'A级',
+            data: [
+                {x:6, y:8067, r:5, name:'尚派正品'}, {x:14, y:1161, r:6, name:'ONEZERO美承'}, {x:4, y:3804, r:5, name:'Coodoo'},
+                {x:10, y:932, r:5, name:'REYIBO'}, {x:11, y:657, r:8, name:'爱果数码'}
+            ],
+            backgroundColor: 'rgba(37,244,238,0.6)',
+            borderColor: '#25f4ee',
+            borderWidth: 1
+        }, {
+            label: 'B级',
+            data: [
+                {x:26, y:236, r:4, name:'EWAY亿维'}, {x:14, y:413, r:6, name:'新跃创为'}, {x:12, y:426, r:5, name:'DREAMROOM'},
+                {x:15, y:305, r:3, name:'Xinsun'}, {x:13, y:331, r:4, name:'品丰T-WORLD'}, {x:22, y:192, r:4, name:'仲璇iDea'},
+                {x:16, y:253, r:4, name:'上海佩知'}, {x:15, y:385, r:4, name:'STUDIO A'}
+            ],
+            backgroundColor: 'rgba(255,165,2,0.5)',
+            borderColor: '#ffa502',
+            borderWidth: 1
+        }, {
+            label: 'C级',
+            data: [
+                {x:8, y:62, r:3, name:'浙江奇易'}, {x:5, y:45, r:2, name:'长虹佳华'}, {x:7, y:38, r:2, name:'新燕海'},
+                {x:6, y:55, r:2, name:'SKANIE'}, {x:5, y:30, r:2, name:'ZWHOLE众合'}, {x:9, y:48, r:3, name:'CHANG畅航'}
+            ],
+            backgroundColor: 'rgba(136,146,176,0.4)',
+            borderColor: '#8892b0',
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: { position: 'top', labels: { usePointStyle: true, padding: 12 } },
+            tooltip: {
+                callbacks: {
+                    title: ctx => ctx[0].raw.name,
+                    label: ctx => ctx.dataset.label + ' · 发布' + ctx.raw.x + '条 · 均播' + ctx.raw.y.toLocaleString()
+                }
+            }
+        },
+        scales: {
+            x: {
+                grid: { color: 'rgba(255,255,255,0.04)' },
+                title: { display: true, text: '月发布量（条）', color: '#8892b0', font: { size: 10 } },
+                ticks: { font: { size: 10 } }
+            },
+            y: {
+                type: 'logarithmic',
+                grid: { color: 'rgba(255,255,255,0.04)' },
+                title: { display: true, text: '平均播放量（对数轴）', color: '#8892b0', font: { size: 10 } },
+                ticks: { font: { size: 10 }, callback: v => v >= 1000 ? (v/10000).toFixed(1)+'万' : v }
+            }
+        }
+    }
+});
+
+// 3.5 各账号月播放量 vs 矩阵平均线（Top 15）
+(function() {
+    const labels = ['时代印象','尚派正品','ONEZERO','Coodoo','REYIBO','爱果数码','EWAY亿维','新跃创为','DREAMROOM','Xinsun','品丰','仲璇iDea','上海佩知','新燕海','SHANGBAO'];
+    const plays = [3029120, 48404, 16258, 15215, 9321, 7228, 6137, 5777, 5107, 4579, 4305, 4214, 4043, 3330, 2961];
+    const avg = 62709;
+    new Chart(document.getElementById('accountVsAvg'), {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: '月播放量',
+                data: plays,
+                backgroundColor: plays.map(v => v > avg ? 'rgba(37,244,238,0.7)' : 'rgba(255,82,82,0.6)'),
+                borderRadius: 4,
+                barThickness: 18
+            }, {
+                label: '矩阵均值 (6.3万)',
+                data: Array(15).fill(avg),
+                type: 'line',
+                borderColor: 'rgba(255,255,255,0.6)',
+                borderWidth: 2,
+                borderDash: [8, 4],
+                pointRadius: 0,
+                pointHoverRadius: 0,
+                fill: false
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { position: 'top', labels: { usePointStyle: true, boxWidth: 8, padding: 10, font: { size: 10 } } },
+                tooltip: { callbacks: { label: ctx => ctx.dataset.type === 'line' ? '矩阵均值: 62,709' : '播放量: ' + ctx.raw.toLocaleString() + (ctx.raw > avg ? ' ✓超均值' : ' ✗低于均值') } },
+                datalabels: { display: false }
+            },
+            scales: {
+                y: { type: 'logarithmic', grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { font: { size: 9 }, callback: v => v >= 10000 ? (v/10000).toFixed(0)+'万' : v >= 1000 ? (v/1000).toFixed(0)+'k' : v }, title: { display: true, text: '播放量（对数轴）', color: '#8892b0', font: { size: 10 } } },
+                x: { grid: { display: false }, ticks: { font: { size: 8 }, maxRotation: 45, minRotation: 30 } }
+            }
+        }
+    });
+})();
+
+// 3.6 账号健康度评分（堆叠柱状图 · Top 15）
+new Chart(document.getElementById('accountEfficiency'), {
+    type: 'bar',
+    data: {
+        labels: ['时代印象','尚派正品','DREAMROOM','海佳科技','REYIBO','HUOMAI火唛','iGallery','上海佩知','品丰T-WORLD','ONEZERO美承','爱果数码','青岛龙腾','仲璇iDea','sunmon轩明','CHANG畅航'],
+        datasets: [{
+            label: '发布稳健(20)',
+            data: [20,12,20,20,20,20,20,20,20,20,20,20,20,20,18],
+            backgroundColor: 'rgba(37,244,238,0.7)',
+            borderRadius: 2
+        }, {
+            label: '合规审核(25)',
+            data: [25,20.8,25,25,20,23.3,23.3,21.9,21.2,25,25,20.8,22.7,18.8,19.4],
+            backgroundColor: 'rgba(102,126,234,0.7)',
+            borderRadius: 2
+        }, {
+            label: '流量表现(30)',
+            data: [30,30,2.0,1.3,4.4,0.7,0.1,1.2,1.6,5.5,3.1,0.5,0.9,0.6,1.0],
+            backgroundColor: 'rgba(254,44,85,0.7)',
+            borderRadius: 2
+        }, {
+            label: '内容质量(25)',
+            data: [25,25,25,25,25,25,25,25,25,17.1,18.7,25,22.0,25,25],
+            backgroundColor: 'rgba(255,165,2,0.7)',
+            borderRadius: 2
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: { position: 'top', labels: { usePointStyle: true, boxWidth: 8, padding: 8, font: { size: 9 } } },
+            tooltip: { callbacks: { afterBody: function(ctx) { var t=[100,87.8,72.0,71.3,69.4,69.1,68.5,68.1,67.7,67.5,66.8,66.3,65.6,64.3,63.4]; return '总分: '+t[ctx[0].dataIndex].toFixed(1); } } }
+        },
+        scales: {
+            y: { stacked: true, grid: { color: 'rgba(255,255,255,0.04)' }, max: 100, ticks: { callback: v => v+'分', font: { size: 9 } } },
+            x: { stacked: true, grid: { display: false }, ticks: { font: { size: 8 }, maxRotation: 45, minRotation: 30 } }
+        }
+    }
+});
+
+// 7. 爆款归因类型效率对比（坐标轴=指标，线条=归因类型）
+(function(){
+    // 各归因类型的均值数据，归一化到0-100（除以各指标最大值）
+    // 功能揭秘(4条): 均播6.2万, 均互动9350, 均粉丝29, 均完播22%, 均分享56
+    // 新品/更新(2条): 均播137.6万, 均互动50520, 均粉丝21, 均完播35%, 均分享4641
+    // 趣味发现(1条): 均播5.1万, 均互动17600, 均粉丝0, 均完播28%, 均分享23
+    // 情绪共鸣(1条): 均播1.3万, 均互动424, 均粉丝0, 均完播28%, 均分享156
+    // 争议话题(1条): 均播0.98万, 均互动282, 均粉丝0, 均完播20%, 均分享3
+    // 品牌联动(1条): 均播0.72万, 均互动174, 均粉丝3, 均完播73%, 均分享84
+    const max = [1376000, 50520, 29, 73, 4641];
+    function n(v, i) { return Math.round(v / max[i] * 100); }
+
+    new Chart(document.getElementById('featureRadar'), {
+        type: 'radar',
+        data: {
+            labels: ['均播放量', '均互动量', '均粉丝增量', '均完播率', '均分享量'],
+            datasets: [{
+                label: '功能揭秘 (4条)',
+                data: [n(62000,0), n(9350,1), n(29,2), n(22,3), n(56,4)],
+                borderColor: '#25f4ee',
+                backgroundColor: 'rgba(37,244,238,0.08)',
+                pointBackgroundColor: '#25f4ee',
+                pointRadius: 4, borderWidth: 2
+            }, {
+                label: '新品/更新 (2条)',
+                data: [n(1376000,0), n(50520,1), n(21,2), n(35,3), n(4641,4)],
+                borderColor: '#fe2c55',
+                backgroundColor: 'rgba(254,44,85,0.1)',
+                pointBackgroundColor: '#fe2c55',
+                pointRadius: 4, borderWidth: 2
+            }, {
+                label: '趣味发现 (1条)',
+                data: [n(51000,0), n(17600,1), n(0,2), n(28,3), n(23,4)],
+                borderColor: '#ffa502',
+                backgroundColor: 'rgba(255,165,2,0.08)',
+                pointBackgroundColor: '#ffa502',
+                pointRadius: 4, borderWidth: 2
+            }, {
+                label: '情绪共鸣 (1条)',
+                data: [n(13000,0), n(424,1), n(0,2), n(28,3), n(156,4)],
+                borderColor: '#f093fb',
+                backgroundColor: 'rgba(240,147,251,0.08)',
+                pointBackgroundColor: '#f093fb',
+                pointRadius: 4, borderWidth: 2
+            }, {
+                label: '品牌联动 (1条)',
+                data: [n(7200,0), n(174,1), n(3,2), n(73,3), n(84,4)],
+                borderColor: '#00e676',
+                backgroundColor: 'rgba(0,230,118,0.08)',
+                pointBackgroundColor: '#00e676',
+                pointRadius: 4, borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                r: {
+                    grid: { color: 'rgba(255,255,255,0.06)' },
+                    angleLines: { color: 'rgba(255,255,255,0.06)' },
+                    ticks: { display: false },
+                    suggestedMin: 0,
+                    suggestedMax: 100,
+                    pointLabels: { font: { size: 11 }, color: '#8892b0' }
+                }
+            },
+            plugins: {
+                legend: { position: 'top', labels: { usePointStyle: true, boxWidth: 8, padding: 8, font: { size: 9 } } }
+            }
+        }
+    });
+})();
+
+// 8. 体裁效能对比
+new Chart(document.getElementById('genrePerformance'), {
+    type: 'bar',
+    data: {
+        labels: ['1min-视频', '视频(未分类)', '图文', '3-5min视频', '5min+视频', '1-3min视频'],
+        datasets: [{
+            label: '平均播放量',
+            data: [10254, 1200, 589, 666, 430, 189],
+            backgroundColor: [
+                'rgba(254,44,85,0.7)', 'rgba(37,244,238,0.7)', 'rgba(102,126,234,0.7)',
+                'rgba(255,165,2,0.7)', 'rgba(240,147,251,0.7)', 'rgba(136,146,176,0.5)'
+            ],
+            borderRadius: 6,
+            barThickness: 28
+        }]
+    },
+    options: {
+        indexAxis: 'y',
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: {
+            x: { grid: { color: 'rgba(255,255,255,0.04)' }, title: { display: true, text: '平均播放量' } },
+            y: { grid: { display: false } }
+        }
+    }
+});
+
+// 9. 发布时间热力
+new Chart(document.getElementById('timeHeat'), {
+    type: 'bar',
+    data: {
+        labels: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+        datasets: [{
+            label: '上午(9-12)',
+            data: [18, 22, 20, 30, 18, 8, 10],
+            backgroundColor: 'rgba(37,244,238,0.5)',
+            borderRadius: 4
+        }, {
+            label: '下午(13-18)',
+            data: [30, 38, 35, 58, 35, 15, 18],
+            backgroundColor: 'rgba(102,126,234,0.6)',
+            borderRadius: 4
+        }, {
+            label: '晚间(18-22)',
+            data: [16, 22, 20, 38, 20, 8, 11],
+            backgroundColor: 'rgba(254,44,85,0.7)',
+            borderRadius: 4
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: { legend: { position: 'top', labels: { usePointStyle: true, boxWidth: 8 } } },
+        scales: {
+            y: { stacked: true, grid: { color: 'rgba(255,255,255,0.04)' }, title: { display: true, text: '发布数' } },
+            x: { stacked: true, grid: { display: false } }
+        }
+    }
+});
+
+// 10. 互动结构
+new Chart(document.getElementById('interactionStructure'), {
+    type: 'doughnut',
+    data: {
+        labels: ['点赞 (63.7%)', '评论 (22.4%)', '分享 (9.4%)', '收藏 (4.5%)'],
+        datasets: [{
+            data: [63.7, 22.4, 9.4, 4.5],
+            backgroundColor: ['#fe2c55', '#ffa502', '#25f4ee', '#667eea'],
+            borderWidth: 0,
+            hoverOffset: 8
+        }]
+    },
+    options: {
+        responsive: true,
+        cutout: '60%',
+        plugins: {
+            legend: { position: 'bottom', labels: { padding: 14, usePointStyle: true } }
+        }
+    }
+});
+
+// 11. 各笔记类型互动结构差异（堆叠柱状图）
+new Chart(document.getElementById('typePerformance'), {
+    type: 'bar',
+    data: {
+        labels: ['iPhone', 'Watch', 'Mac', '打工人', 'Beats', '国补', '其他', 'IP活动'],
+        datasets: [{
+            label: '点赞占比',
+            data: [64.7, 44.6, 45.3, 59.3, 56.7, 40.4, 54.0, 44.3],
+            backgroundColor: 'rgba(254,44,85,0.7)',
+            borderRadius: 2
+        }, {
+            label: '评论占比',
+            data: [23.0, 9.8, 8.0, 23.2, 25.8, 28.3, 28.4, 17.5],
+            backgroundColor: 'rgba(255,165,2,0.7)',
+            borderRadius: 2
+        }, {
+            label: '分享占比',
+            data: [9.2, 26.1, 6.4, 11.8, 3.6, 2.9, 10.5, 21.7],
+            backgroundColor: 'rgba(37,244,238,0.7)',
+            borderRadius: 2
+        }, {
+            label: '收藏占比',
+            data: [3.1, 19.5, 40.2, 5.7, 13.9, 28.3, 7.1, 16.5],
+            backgroundColor: 'rgba(102,126,234,0.7)',
+            borderRadius: 2
+        }]
+    },
+    options: {
+        indexAxis: 'y',
+        responsive: true,
+        plugins: {
+            legend: { position: 'top', labels: { usePointStyle: true, boxWidth: 8, padding: 8, font: { size: 9 } } },
+            tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.raw + '%' } }
+        },
+        scales: {
+            x: { stacked: true, grid: { color: 'rgba(255,255,255,0.04)' }, max: 100, ticks: { callback: v => v + '%', font: { size: 9 } } },
+            y: { stacked: true, grid: { display: false }, ticks: { font: { size: 10 } } }
+        }
+    }
+});
+</script>
+</body>
+</html>

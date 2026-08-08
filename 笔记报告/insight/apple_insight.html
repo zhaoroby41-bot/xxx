@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Apple 网络运营 Insight</title>
+  <link rel="stylesheet" href="assets/insight.css">
+</head>
+<body class="apple-page">
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Apple 视角导航">
+      <div class="sidebar__brand">
+        <span class="sidebar__mark" aria-hidden="true">XI</span>
+        <p class="sidebar__title">
+          Apple Insight
+          <span class="sidebar__subtitle">经销商网络管理</span>
+        </p>
+      </div>
+
+      <nav class="sidebar__nav">
+        <a class="sidebar__link" href="#network-overview" aria-current="page">
+          <i class="icon-slot" data-lucide="layout-dashboard" aria-hidden="true"></i>
+          <span>网络总览</span>
+        </a>
+        <a class="sidebar__link" href="#kpi-health">
+          <i class="icon-slot" data-lucide="activity" aria-hidden="true"></i>
+          <span>KPI 健康度</span>
+        </a>
+        <a class="sidebar__link" href="#dealer-segments">
+          <i class="icon-slot" data-lucide="chart-scatter" aria-hidden="true"></i>
+          <span>经销商分层</span>
+        </a>
+        <a class="sidebar__link" href="#regional-content">
+          <i class="icon-slot" data-lucide="map-pinned" aria-hidden="true"></i>
+          <span>区域与内容</span>
+        </a>
+        <a class="sidebar__link" href="#operating-actions">
+          <i class="icon-slot" data-lucide="list-checks" aria-hidden="true"></i>
+          <span>运营动作</span>
+        </a>
+      </nav>
+
+      <div class="sidebar__footer"><a href="index.html">返回角色入口</a></div>
+    </aside>
+
+    <div class="workspace">
+      <header class="top-toolbar">
+        <div class="top-toolbar__context">
+          <span class="top-toolbar__eyebrow">报告月</span>
+          <strong id="report-month">加载中</strong>
+        </div>
+        <div class="top-toolbar__meta" aria-live="polite">
+          <span class="freshness-badge" id="freshness-badge">更新时间加载中</span>
+          <span class="quality-badge status--unknown" id="quality-badge">质量范围加载中</span>
+        </div>
+      </header>
+
+      <main class="main-canvas">
+        <section class="dashboard-section" id="network-overview" aria-labelledby="apple-title">
+          <header class="page-header apple-page-header">
+            <div>
+              <h1 id="apple-title">Apple 经销商网络运营</h1>
+              <p>FY26 Q4 核心 KPI 健康度与扩展门店经营观察</p>
+            </div>
+            <span class="status-badge status--unknown" id="reconciliation-badge">契约核对中</span>
+          </header>
+
+          <form class="filter-row apple-filter-row" aria-label="Apple 网络数据筛选" onsubmit="return false">
+            <div class="filter-group">
+              <label for="region-filter">区域</label>
+              <select class="filter-control" id="region-filter" data-filter-key="region" disabled>
+                <option>加载中</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label for="cohort-filter">账号分层</label>
+              <select class="filter-control" id="cohort-filter" data-filter-key="cohort" disabled>
+                <option>加载中</option>
+              </select>
+            </div>
+            <div class="filter-group apple-category-filter">
+              <label for="category-filter">统一分类</label>
+              <select class="filter-control" id="category-filter" data-filter-key="category" disabled>
+                <option>加载中</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label for="status-filter">KPI 状态</label>
+              <select class="filter-control" id="status-filter" data-filter-key="status" disabled>
+                <option>加载中</option>
+              </select>
+            </div>
+          </form>
+          <p class="apple-filter-scope" id="filter-scope" role="status"></p>
+
+          <div id="data-state" aria-live="polite"></div>
+
+          <div id="dashboard-content" hidden>
+            <div class="apple-summary" id="network-summary" aria-live="polite"></div>
+
+            <div class="section-heading">
+              <h2>全网加权 KPI</h2>
+              <span class="section-heading__meta">仅核心 KPI 账号关联 FY26 目标</span>
+            </div>
+            <div class="metric-strip apple-kpi-strip" id="network-kpi-cards"></div>
+
+            <div class="apple-overview-grid">
+              <article class="panel">
+                <header class="panel__header">
+                  <h2>账号范围与质量</h2>
+                  <span class="panel__meta" id="freshness-label">数据快照</span>
+                </header>
+                <div class="panel__body apple-scope-grid" id="scope-metrics"></div>
+              </article>
+              <article class="chart-panel">
+                <header class="panel__header">
+                  <h2>KPI 状态分布</h2>
+                  <span class="panel__meta" id="status-total">账号数加载中</span>
+                </header>
+                <div class="panel__body apple-status-layout">
+                  <div class="chart-panel__canvas apple-status-canvas">
+                    <canvas id="status-chart" aria-label="核心 KPI 账号状态分布图"></canvas>
+                    <div class="chart-fallback" id="status-fallback" hidden>图表不可用，状态明细仍可查看。</div>
+                  </div>
+                  <div class="apple-status-list" id="status-list"></div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="dashboard-section" id="kpi-health" aria-labelledby="kpi-health-title" data-apple-content hidden>
+          <div class="section-heading">
+            <h2 id="kpi-health-title">KPI 健康度</h2>
+            <span class="section-heading__meta">排名与状态保持生成器顺序</span>
+          </div>
+          <div class="table-panel" id="risk-table"></div>
+        </section>
+
+        <section class="dashboard-section" id="dealer-segments" aria-labelledby="dealer-segments-title" data-apple-content hidden>
+          <div class="section-heading">
+            <h2 id="dealer-segments-title">经销商分层</h2>
+            <span class="section-heading__meta">标准化供给 × 标准化效率</span>
+          </div>
+          <article class="chart-panel">
+            <div class="panel__body">
+              <div class="chart-panel__canvas apple-quadrant-canvas">
+                <canvas id="quadrant-chart" aria-label="经销商供给效率四象限图"></canvas>
+                <div class="chart-fallback" id="quadrant-fallback" hidden>图表不可用，经销商分层表仍可查看。</div>
+              </div>
+              <div id="quadrant-table"></div>
+            </div>
+          </article>
+        </section>
+
+        <section class="dashboard-section" id="regional-content" aria-labelledby="regional-content-title" data-apple-content hidden>
+          <div class="section-heading">
+            <h2 id="regional-content-title">区域与内容</h2>
+            <span class="section-heading__meta">区域、城市与内容分类保持各自生成粒度</span>
+          </div>
+          <div class="panel-grid apple-coverage-grid">
+            <article class="table-panel">
+              <header class="panel__header"><h3>区域覆盖</h3><span class="panel__meta" id="region-count"></span></header>
+              <div id="region-table"></div>
+            </article>
+            <article class="table-panel">
+              <header class="panel__header"><h3>城市覆盖</h3><span class="panel__meta" id="city-count"></span></header>
+              <div id="city-table"></div>
+            </article>
+          </div>
+
+          <article class="chart-panel apple-category-panel">
+            <header class="panel__header">
+              <h3>分类供给与表现</h3>
+              <span class="panel__meta" id="category-scope"></span>
+            </header>
+            <div class="panel__body">
+              <div class="chart-panel__canvas apple-category-canvas">
+                <canvas id="category-chart" aria-label="分类笔记供给与单篇阅读对比图"></canvas>
+                <div class="chart-fallback" id="category-fallback" hidden>图表不可用，分类表现表仍可查看。</div>
+              </div>
+              <div id="category-table"></div>
+            </div>
+          </article>
+
+          <article class="table-panel apple-cases-panel">
+            <header class="panel__header"><h3>可复制案例</h3><span class="panel__meta">证据来自生成数据</span></header>
+            <div id="replicable-table"></div>
+          </article>
+        </section>
+
+        <section class="dashboard-section" id="operating-actions" aria-labelledby="operating-actions-title" data-apple-content hidden>
+          <div class="section-heading">
+            <h2 id="operating-actions-title">运营动作</h2>
+            <span class="section-heading__meta">阶段、规则、证据与案例均来自生成数据</span>
+          </div>
+          <div class="apple-action-phases" id="action-phases"></div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script src="assets/insight-core.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+  <script src="assets/apple-dashboard.js"></script>
+</body>
+</html>

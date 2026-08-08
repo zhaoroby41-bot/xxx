@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>小红书经销商运营 Insight</title>
+  <link rel="stylesheet" href="assets/insight.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="主导航">
+      <div class="sidebar__brand">
+        <span class="sidebar__mark" aria-hidden="true">XI</span>
+        <p class="sidebar__title">
+          运营 Insight
+          <span class="sidebar__subtitle">小红书经销商分析</span>
+        </p>
+      </div>
+
+      <nav class="sidebar__nav">
+        <a class="sidebar__link" href="index.html" aria-current="page">
+          <i class="icon-slot" data-lucide="layout-dashboard" aria-hidden="true"></i>
+          <span>概览</span>
+        </a>
+        <a class="sidebar__link" href="dealer_insight.html">
+          <i class="icon-slot" data-lucide="store" aria-hidden="true"></i>
+          <span>经销商视角</span>
+        </a>
+        <a class="sidebar__link" href="apple_insight.html">
+          <i class="icon-slot" data-lucide="network" aria-hidden="true"></i>
+          <span>Apple 视角</span>
+        </a>
+      </nav>
+
+      <div class="sidebar__footer">共享指标与数据口径</div>
+    </aside>
+
+    <div class="workspace">
+      <header class="top-toolbar">
+        <div class="top-toolbar__context">
+          <span class="top-toolbar__eyebrow">报告期</span>
+          <strong id="report-month">加载中</strong>
+        </div>
+        <div class="top-toolbar__meta" aria-live="polite">
+          <span class="freshness-badge" id="freshness-badge">更新时间加载中</span>
+          <span class="quality-badge status--unknown" id="quality-badge">质量状态加载中</span>
+        </div>
+      </header>
+
+      <main class="main-canvas">
+        <header class="page-header">
+          <div>
+            <h1>小红书经销商运营 Insight</h1>
+          </div>
+        </header>
+
+        <section class="dashboard-section" aria-labelledby="role-entry-title">
+          <div class="section-heading">
+            <h2 id="role-entry-title">选择视角</h2>
+          </div>
+          <div class="role-entry-grid">
+            <article class="role-entry">
+              <div class="role-entry__identity">
+                <span class="role-entry__icon" aria-hidden="true">
+                  <i class="icon-slot" data-lucide="store"></i>
+                </span>
+                <div>
+                  <h2>经销商视角</h2>
+                  <p>账号、门店与内容运营</p>
+                </div>
+              </div>
+              <a class="button button--primary" href="dealer_insight.html">
+                <span>进入视角</span>
+                <i data-lucide="arrow-right" aria-hidden="true"></i>
+              </a>
+            </article>
+
+            <article class="role-entry">
+              <div class="role-entry__identity">
+                <span class="role-entry__icon" aria-hidden="true">
+                  <i class="icon-slot" data-lucide="network"></i>
+                </span>
+                <div>
+                  <h2>Apple 视角</h2>
+                  <p>网络、区域与经销商管理</p>
+                </div>
+              </div>
+              <a class="button button--secondary" href="apple_insight.html">
+                <span>进入视角</span>
+                <i data-lucide="arrow-right" aria-hidden="true"></i>
+              </a>
+            </article>
+          </div>
+        </section>
+
+        <section class="dashboard-section" aria-labelledby="data-scope-title">
+          <div class="section-heading">
+            <h2 id="data-scope-title">数据范围</h2>
+            <span class="section-heading__meta" id="scope-month">当前报告期</span>
+          </div>
+          <div id="data-root"></div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script src="assets/insight-core.js"></script>
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+  <script>
+    (function () {
+      "use strict";
+
+      const core = window.InsightCore;
+      const dataRoot = document.getElementById("data-root");
+      const reportMonth = document.getElementById("report-month");
+      const scopeMonth = document.getElementById("scope-month");
+      const freshnessBadge = document.getElementById("freshness-badge");
+      const qualityBadge = document.getElementById("quality-badge");
+
+      const qualityLabels = {
+        ready: "数据就绪",
+        ready_with_warnings: "数据可用，有提示",
+        failed: "数据不可用",
+        blocked: "数据不可用",
+      };
+
+      function displayMonth(value) {
+        const parts = String(value).split("-");
+        return `${parts[0]}年${Number(parts[1])}月`;
+      }
+
+      function displayFreshness(value) {
+        const date = new Date(value);
+        if (Number.isNaN(date.getTime())) {
+          return "更新时间未知";
+        }
+        return `更新于 ${new Intl.DateTimeFormat("zh-CN", {
+          month: "numeric",
+          day: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false,
+        }).format(date)}`;
+      }
+
+      function qualityClass(quality) {
+        if (quality.quality_status === "failed" || quality.quality_status === "blocked") {
+          return "status--critical";
+        }
+        if (Array.isArray(quality.errors) && quality.errors.length > 0) {
+          return "status--critical";
+        }
+        if (Array.isArray(quality.warnings) && quality.warnings.length > 0) {
+          return "status--warning";
+        }
+        return "status--normal";
+      }
+
+      function renderScope(data) {
+        const quality = data.quality || {};
+        const cohorts = quality.account_cohorts || {};
+        const category = quality.category_completeness || {};
+        const city = quality.city_identification || {};
+        const cards = [
+          { label: "核心 KPI 账号", value: core.formatNumber(cohorts.core_kpi), context: [{ label: "范围", value: "目标关联账号" }] },
+          { label: "扩展门店账号", value: core.formatNumber(cohorts.expanded_store), context: [{ label: "范围", value: "内容观察账号" }] },
+          { label: "分类完整率", value: core.formatPercent(category.rate), context: [{ label: "有分类笔记", value: core.formatNumber(category.present) }] },
+          { label: "城市识别率", value: core.formatPercent(city.rate), context: [{ label: "已识别账号", value: core.formatNumber(city.identified) }] },
+        ];
+
+        dataRoot.innerHTML = `<div class="scope-grid">${cards.map(core.renderMetricCard).join("")}</div>`;
+        const month = displayMonth(data.source_month);
+        reportMonth.textContent = month;
+        scopeMonth.textContent = month;
+        const freshness = data.metadata && data.metadata.data_freshness
+          ? data.metadata.data_freshness
+          : quality.data_freshness || {};
+        freshnessBadge.textContent = displayFreshness(freshness.source_snapshot_at);
+        qualityBadge.textContent = qualityLabels[quality.quality_status] || "质量状态待确认";
+        qualityBadge.className = `quality-badge ${qualityClass(quality)}`;
+      }
+
+      core.renderLoading(dataRoot);
+      core.initIcons();
+      core.loadData()
+        .then(renderScope)
+        .catch(function (error) {
+          reportMonth.textContent = "不可用";
+          freshnessBadge.textContent = "更新时间不可用";
+          qualityBadge.textContent = "加载失败";
+          qualityBadge.className = "quality-badge status--critical";
+          core.renderError(dataRoot, error);
+        });
+    })();
+  </script>
+</body>
+</html>
