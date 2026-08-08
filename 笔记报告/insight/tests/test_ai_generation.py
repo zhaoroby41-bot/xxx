@@ -78,6 +78,21 @@ class AIGenerationTests(unittest.TestCase):
         self.assertEqual(json.loads(captured["body"]["messages"][2]["content"]), source_packet)
         self.assertEqual(captured["authorization"], "Bearer secret-token")
         self.assertNotIn("secret-token", json.dumps(result, ensure_ascii=False))
+        self.assertNotIn("secret-token", cache_path.read_text(encoding="utf-8"))
+
+    def test_provider_echoed_secret_is_redacted_before_cache_and_return(self):
+        source_packet = packet()
+        provider_result = valid_result(source_packet)
+        provider_result["generation"]["provider_note"] = "secret-token"
+
+        def transport(request, timeout):
+            return FakeResponse({"choices": [{"message": {"content": json.dumps(provider_result)}}]})
+
+        cache_path = self.tmp_path / "ai.json"
+        result = generate_ai_insights(source_packet, cache_path=cache_path, env=ai_env(), transport=transport)
+
+        self.assertNotIn("secret-token", json.dumps(result, ensure_ascii=False))
+        self.assertNotIn("secret-token", cache_path.read_text(encoding="utf-8"))
 
     def test_no_key_uses_valid_same_month_cache(self):
         source_packet = packet()
@@ -91,6 +106,37 @@ class AIGenerationTests(unittest.TestCase):
         self.assertEqual(result["generation"]["mode"], "rule_fallback")
         self.assertEqual({item["module"] for item in result["insights"]}, set(REQUIRED_MODULES))
         validate_ai_result(result, source_packet, {"dealer-1"})
+
+    def test_rule_fallback_selects_higher_priority_available_evidence(self):
+        source_packet = packet()
+        source_packet["evidence"] = [
+            {
+                "evidence_id": "low-first",
+                "module": "growth_diagnosis",
+                "metric": "low",
+                "value": 0.1,
+                "comparison": None,
+                "scope": {"entity_ids": ["dealer-1"]},
+                "sample_size": 1,
+                "confidence": "validate",
+            },
+            {
+                "evidence_id": "high-second",
+                "module": "growth_diagnosis",
+                "metric": "high",
+                "value": 0.2,
+                "comparison": None,
+                "scope": {"entity_ids": ["dealer-1"]},
+                "sample_size": 10,
+                "confidence": "supported",
+            },
+        ] + [row for row in packet()["evidence"] if row["module"] != "growth_diagnosis"]
+
+        result = generate_ai_insights(source_packet, cache_path=self.tmp_path / "missing.json", env={})
+        growth = next(item for item in result["insights"] if item["module"] == "growth_diagnosis")
+
+        self.assertEqual(growth["evidence_ids"], ["high-second"])
+        self.assertIn("1", growth["actions"][0]["success_metric"])
 
     def test_provider_contract_failure_falls_back_to_valid_cache(self):
         source_packet = packet()

@@ -35,9 +35,8 @@ def generate_ai_insights(
 
     if has_provider_config:
         try:
-            result = validate_ai_result(
-                _provider_request(packet, load_prompt(), env, transport), packet, allowed_entity_ids
-            )
+            raw = _strip_secrets(_provider_request(packet, load_prompt(), env, transport), _env_secrets(env))
+            result = validate_ai_result(raw, packet, allowed_entity_ids)
             result["generation"].update({"mode": "ai", "model": env["INSIGHT_AI_MODEL"]})
             _write_cache(cache_path, packet, result)
             return _json_copy(result)
@@ -126,9 +125,7 @@ def build_rule_fallback(packet: dict) -> dict:
         if not rows:
             continue
         ready = statuses.get(module) == "ready"
-        selected = next(
-            (row for row in rows if row.get("scope", {}).get("availability") != "insufficient_data"), rows[0]
-        )
+        selected = _select_fallback_evidence(rows)
         metric = str(selected.get("metric") or "当前证据")
         if ready:
             judgement = f"数据显示，{metric}值得持续跟踪。"
@@ -157,7 +154,7 @@ def build_rule_fallback(packet: dict) -> dict:
                 "owner": "渠道运营",
                 "action": "复核证据并安排下一步验证",
                 "deadline": "下一周期",
-                "success_metric": "形成可复核的模块结论",
+                "success_metric": "下个周期完成1次证据复核并输出1条模块结论",
             }],
         })
     return {
@@ -169,3 +166,40 @@ def build_rule_fallback(packet: dict) -> dict:
 
 def _json_copy(value: Any) -> Any:
     return json.loads(json.dumps(value, ensure_ascii=False, allow_nan=False))
+
+
+def _select_fallback_evidence(rows: list[dict]) -> dict:
+    confidence_rank = {"supported": 3, "signal": 2, "validate": 1}
+
+    def score(row: dict) -> tuple[int, int, float, str]:
+        scope = row.get("scope") if isinstance(row.get("scope"), dict) else {}
+        available = 0 if scope.get("availability") == "insufficient_data" else 1
+        confidence = confidence_rank.get(str(row.get("confidence", "supported")), 0)
+        sample_size = row.get("sample_size")
+        sample = float(sample_size) if isinstance(sample_size, (int, float)) else 0.0
+        return (available, confidence, sample, str(row.get("evidence_id", "")))
+
+    return max(rows, key=score)
+
+
+def _env_secrets(env: Mapping[str, str]) -> set[str]:
+    return {
+        str(value)
+        for key, value in env.items()
+        if value and ("KEY" in key.upper() or "TOKEN" in key.upper())
+    }
+
+
+def _strip_secrets(value: Any, secrets: set[str]) -> Any:
+    if not secrets:
+        return _json_copy(value)
+    if isinstance(value, str):
+        redacted = value
+        for secret in secrets:
+            redacted = redacted.replace(secret, "[redacted]")
+        return redacted
+    if isinstance(value, list):
+        return [_strip_secrets(item, secrets) for item in value]
+    if isinstance(value, dict):
+        return {key: _strip_secrets(item, secrets) for key, item in value.items()}
+    return value
