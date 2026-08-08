@@ -222,6 +222,50 @@ class InsightEvidenceTests(unittest.TestCase):
         self.assertTrue(any(row["metric"] == "high_save_note_candidate" and row["scope"].get("candidate_unit") == "note" for row in user_rows))
         self.assertTrue(any(row["metric"] == "high_comment_note_candidate" and row["scope"].get("candidate_unit") == "note" for row in user_rows))
 
+    def test_note_rows_without_dates_emit_hotspot_unavailable_instead_of_zero_recency(self):
+        payload = dealer_fixture()
+        payload["dealer"]["notes"] = [{"note_id": "undated", "title": "No date", "reads": 100}]
+        rows = build_evidence_packet("dealer", payload, history_fixture(), period_fixture())["evidence"]
+        content_rows = [row for row in rows if row["module"] == "content_patterns"]
+        self.assertFalse(any(row["metric"] == "hotspot_recency_days" for row in content_rows))
+        unavailable = next(row for row in content_rows if row["metric"] == "hotspot_recency_unavailable")
+        self.assertEqual(unavailable["confidence"], "validate")
+        self.assertEqual(unavailable["scope"]["availability"], "insufficient_data")
+
+    def test_failed_quality_gate_blocks_every_business_module(self):
+        payload = dealer_fixture()
+        payload["quality"]["quality_status"] = "failed"
+        packet = build_evidence_packet("dealer", payload, history_fixture(), period_fixture())
+        self.assertEqual(set(packet["module_status"].values()), {"insufficient_data"})
+        self.assertTrue(all(row["confidence"] == "validate" for row in packet["evidence"]))
+        self.assertTrue(all(row["scope"].get("availability") == "insufficient_data" for row in packet["evidence"]))
+        self.assertEqual(packet["data_scope"]["quality_status"], "failed")
+
+    def test_content_and_user_signals_keep_core_and_expanded_cohorts_separate(self):
+        payload = dealer_fixture()
+        payload["dealer"]["content_by_cohort"] = {
+            "core_kpi": {"notes": 3, "reads": 600, "reads_per_note": 200, "categories": [{"category": "promotion", "notes": 3, "reads": 600, "reads_per_note": 200}]},
+            "expanded_store": {"notes": 2, "reads": 400, "reads_per_note": 200, "categories": [{"category": "service", "notes": 2, "reads": 400, "reads_per_note": 200}]},
+        }
+        payload["dealer"]["accounts"][0]["metrics"]["notes"] = 3
+        payload["dealer"]["accounts"][1]["metrics"]["notes"] = 2
+        rows = build_evidence_packet("dealer", payload, history_fixture(), period_fixture())["evidence"]
+        aggregate_rows = [row for row in rows if row["metric"] == "aggregate_reads_per_note"]
+        signal_rows = [row for row in rows if row["metric"] == "likes_per_read"]
+        self.assertEqual({row["scope"].get("cohort") for row in aggregate_rows}, {"core_kpi", "expanded_store"})
+        self.assertEqual({row["scope"].get("cohort") for row in signal_rows}, {"core_kpi", "expanded_store"})
+        self.assertNotIn("all_scoped_accounts", {row["scope"].get("cohort") for row in signal_rows})
+
+    def test_apple_quadrants_without_numeric_supply_or_efficiency_are_unavailable(self):
+        payload = apple_fixture()
+        payload["apple"]["dealer_quadrants"] = [{"cohort": "core_kpi", "quadrant": "high_supply_high_efficiency"}]
+        rows = build_evidence_packet("apple", payload, history_fixture(), period_fixture())["evidence"]
+        matrix_rows = [row for row in rows if row["module"] == "matrix_health"]
+        self.assertFalse(any(row["metric"] in {"quadrant_distribution", "network_posting_frequency", "tier_candidate_count"} for row in matrix_rows))
+        unavailable = next(row for row in matrix_rows if row["metric"] == "dealer_quadrant_unavailable")
+        self.assertEqual(unavailable["confidence"], "validate")
+        self.assertEqual(unavailable["scope"]["availability"], "insufficient_data")
+
 
 if __name__ == "__main__":
     unittest.main()
