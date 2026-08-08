@@ -88,9 +88,13 @@ def _comparison(current: dict, baseline: dict | None, metrics: tuple[str, ...]) 
 
 
 def build_history_context(current: dict, history: list[dict]) -> dict:
-    _parse_month(current["month"])
+    parsed_current = _parse_month(current["month"])
     ordered = sorted((row for row in history if row["month"] < current["month"]), key=lambda row: row["month"])
-    previous = ordered[-1] if ordered else None
+    if parsed_current.month == 1:
+        previous_month = f"{parsed_current.year - 1:04d}-12"
+    else:
+        previous_month = f"{parsed_current.year:04d}-{parsed_current.month - 1:02d}"
+    previous = next((row for row in ordered if row["month"] == previous_month), None)
     year_ago_month = f"{int(current['month'][:4]) - 1}{current['month'][4:]}"
     year_ago = next((row for row in ordered if row["month"] == year_ago_month), None)
     window = ordered[-12:]

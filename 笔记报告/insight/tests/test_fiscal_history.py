@@ -59,6 +59,14 @@ class FiscalHistoryTests(unittest.TestCase):
         self.assertEqual(result["comparisons"]["previous_month"]["reads"]["absolute_change"], 10)
         self.assertAlmostEqual(result["comparisons"]["year_ago"]["reads"]["ratio_change"], 0.3)
 
+    def test_history_context_does_not_skip_a_missing_previous_month(self):
+        result = build_history_context(
+            {"month": "2026-08", "reads": 130},
+            [{"month": "2026-06", "reads": 120}],
+        )
+        self.assertIsNone(result["previous_month"])
+        self.assertIsNone(result["comparisons"]["previous_month"]["reads"]["absolute_change"])
+
     def test_missing_history_metrics_remain_null(self):
         result = build_history_context({"month": "2026-07", "reads": 20}, [])
         self.assertIsNone(result["previous_month"])
