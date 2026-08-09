@@ -36,8 +36,8 @@
       throw new Error("数据文件不是有效的 JSON，请重新生成数据。", { cause: error });
     }
 
-    if (!data || data.schema_version !== "1.0") {
-      throw new Error("数据版本不受支持，需要 schema_version 1.0。");
+    if (!data || !["1.0", "2.0"].includes(data.schema_version)) {
+      throw new Error("数据版本不受支持，需要 schema_version 1.0 或 2.0。");
     }
 
     if (!/^\d{4}-(0[1-9]|1[0-2])$/.test(data.source_month || "")) {

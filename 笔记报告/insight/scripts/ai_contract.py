@@ -136,8 +136,10 @@ def _validate_numbers(insight: dict, linked_rows: list[dict], errors: list[str])
             continue
         for number, is_percent in _text_numbers(value):
             expected_values = (number / 100, number) if is_percent else (number,)
+            # Percentages in the UI are deliberately rounded to one decimal place.
+            abs_tolerance = 0.001 if is_percent else 1e-9
             if not any(
-                math.isclose(expected, candidate, rel_tol=1e-9, abs_tol=1e-9)
+                math.isclose(expected, candidate, rel_tol=1e-9, abs_tol=abs_tolerance)
                 for expected in expected_values
                 for candidate in supported
             ):

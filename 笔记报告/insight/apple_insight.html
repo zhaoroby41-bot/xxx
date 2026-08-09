@@ -6,6 +6,21 @@
   <meta name="color-scheme" content="light">
   <title>Apple 网络运营 Insight</title>
   <link rel="stylesheet" href="assets/insight.css">
+  <script>
+    if (new URLSearchParams(location.search).get("embed") === "overview") {
+      document.documentElement.dataset.embed = "overview";
+    }
+  </script>
+  <style>
+    #network-summary { display: none; }
+    #reconciliation-badge { display: none; }
+    html[data-embed="overview"] .sidebar { display: none; }
+    html[data-embed="overview"] .workspace { margin-left: 0; }
+    html[data-embed="overview"] .top-toolbar { display: none; }
+    html[data-embed="overview"] .main-canvas { padding: 22px; }
+    html[data-embed="overview"] #dashboard-content > .section-heading { display: none; }
+    html[data-embed="overview"] [data-apple-content] { display: none !important; }
+  </style>
 </head>
 <body class="apple-page">
   <div class="app-shell">
@@ -76,18 +91,6 @@
             <div class="filter-group">
               <label for="cohort-filter">账号分层</label>
               <select class="filter-control" id="cohort-filter" data-filter-key="cohort" disabled>
-                <option>加载中</option>
-              </select>
-            </div>
-            <div class="filter-group apple-category-filter">
-              <label for="category-filter">统一分类</label>
-              <select class="filter-control" id="category-filter" data-filter-key="category" disabled>
-                <option>加载中</option>
-              </select>
-            </div>
-            <div class="filter-group">
-              <label for="status-filter">KPI 状态</label>
-              <select class="filter-control" id="status-filter" data-filter-key="status" disabled>
                 <option>加载中</option>
               </select>
             </div>
@@ -201,9 +204,9 @@
     </div>
   </div>
 
-  <script src="assets/insight-core.js"></script>
+  <script src="assets/insight-core.js?v=20260808-2"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
-  <script src="assets/apple-dashboard.js"></script>
+  <script src="assets/apple-dashboard.js?v=20260809-2"></script>
 </body>
 </html>

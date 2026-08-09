@@ -1,0 +1,910 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>运营数据分析 Proposal Demo</title>
+<style>:root{--bg:#eef3f8;--ink:#1d1d1f;--muted:#6e6e73;--line:#dfe5ec;--blue:#007aff;--nav:#111113}*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif;color:var(--ink)}.shell{display:grid;grid-template-columns:228px minmax(0,1fr);min-height:100vh}aside{padding:25px 18px;background:var(--nav);color:#f5f5f7}.brand{font-size:19px;font-weight:750;margin-bottom:35px}.brand small{display:block;color:#9a9aa0;font-size:12px;font-weight:400;margin-top:5px}.nav{padding:12px;border-radius:8px;background:#b7ff2a;color:#111;font-weight:700;margin-bottom:10px}.nav.dim{background:transparent;color:#b8b8bd}.note{color:#92929a;font-size:12px;line-height:1.75;margin-top:32px}main{padding:24px 30px 42px;min-width:0}header{display:flex;align-items:start;justify-content:space-between;margin:6px 0 22px}h1{margin:0;font-size:26px}h2{margin:0 0 6px;font-size:21px}p{margin:7px 0;color:var(--muted)}.pill{padding:7px 10px;border:1px solid #cfe2ff;border-radius:999px;background:#edf5ff;color:#0066cc;font-size:12px}.section{margin-top:26px}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.card{padding:19px;border:1px solid var(--line);border-radius:8px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.025)}.card article{min-height:124px;padding:17px;border:1px solid var(--line);border-top:4px solid #34c759;border-radius:8px;background:#fff}.card article span,.card article small{display:block;color:var(--muted);font-size:13px}.card article strong{display:block;font-size:29px;margin:8px 0}.overview-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}.counts{display:flex;gap:38px;margin-top:22px}.counts strong{display:block;font-size:28px}.counts small{color:var(--muted)}.status{display:grid;grid-template-columns:88px 1fr 26px;gap:10px;align-items:center;margin:11px 0;font-size:13px}.status i{height:9px;border-radius:99px;background:#e8eef4;overflow:hidden}.status b{display:block;height:100%;border-radius:99px;background:#34c759}.status:nth-child(3) b{background:#f5a623}.status:nth-child(4) b{background:#e04b4b}iframe{display:block;width:100%;border:0;background:transparent;min-height:1200px}@media(max-width:900px){.shell{grid-template-columns:1fr}aside{display:none}main{padding:18px}.grid,.overview-grid{grid-template-columns:1fr}}</style></head>
+<body><div class="shell"><aside><div class="brand">运营数据分析<small>Proposal Demo · 单文件完整快照</small></div><div class="nav">Apple Insight</div><div class="nav dim">经销商 Insight</div><div class="note">此文件已内嵌 Apple 总览与完整历史报告，可直接双击打开。</div></aside><main>
+<header><div><h1>运营数据分析</h1><p>Apple 经销商网络与小红书矩阵运营洞察</p></div><span class="pill">FY26 Q4 · 2026-07-31</span></header>
+<section class="section"><h2>Apple Insight</h2><p>FY26 KPI 网络总览</p><div class="grid"><article><span>阅读量</span><strong>38.1%</strong><small>实际 / 目标：871.0万 / 2284.0万 </small></article><article><span>互动量</span><strong>36.2%</strong><small>实际 / 目标：52.0万 / 143.9万 </small></article><article><span>新增粉丝</span><strong>25.1%</strong><small>实际 / 目标：1.1万 / 4.3万 </small></article></div><div class="overview-grid"><article class="card"><h2>账号范围与质量</h2><div class="counts"><div><strong>54</strong><small>经销商 KPI 账号</small></div><div><strong>192</strong><small>扩展门店账号</small></div><div><strong>246</strong><small>报告覆盖账号</small></div></div></article><article class="card"><h2>KPI 状态分布</h2><div class="status"><span>领先</span><i><b style="width:13.2%"></b></i><strong>5</strong></div><div class="status"><span>正常</span><i><b style="width:100.0%"></b></i><strong>38</strong></div><div class="status"><span>预警</span><i><b style="width:18.4%"></b></i><strong>7</strong></div><div class="status"><span>严重落后</span><i><b style="width:10.5%"></b></i><strong>4</strong></div><div class="status"><span>目标未关联</span><i><b style="width:0.0%"></b></i><strong>0</strong></div></article></div></section>
+<section class="section"><iframe id="full-report" title="小红书矩阵笔记商业分析报告" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;zh-CN&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+&lt;title&gt;小红书矩阵笔记商业分析报告 2025-2026&lt;/title&gt;
+&lt;script&gt;
+  if (new URLSearchParams(location.search).get(&quot;embed&quot;) === &quot;apple&quot;) {
+    document.documentElement.dataset.embed = &quot;apple&quot;;
+  }
+&lt;/script&gt;
+&lt;script src=&quot;https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;style&gt;
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, &quot;PingFang SC&quot;, &quot;Microsoft YaHei&quot;, sans-serif;
+  background: #eef3f8;
+  color: #1d1d1f;
+  min-height: 100vh;
+  padding: 20px;
+}
+.container { max-width: 1400px; margin: 0 auto; }
+.header {
+  text-align: center;
+  padding: 40px 20px;
+  background: #fff;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  border: 1px solid #dfe5ec;
+}
+.header h1 { font-size: 2.2em; color: #1d1d1f; margin-bottom: 10px; }
+.header p { color: #6e6e73; font-size: 1em; }
+.section {
+  background: #fff;
+  border-radius: 8px;
+  padding: 28px;
+  margin-bottom: 28px;
+  border: 1px solid #dfe5ec;
+}
+.section-title {
+  font-size: 1.4em;
+  font-weight: 700;
+  color: #007aff;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #dfe5ec;
+}
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.kpi-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 18px;
+  border: 1px solid #dfe5ec;
+  border-top: 3px solid #007aff;
+  text-align: center;
+}
+.kpi-card .value { font-size: 1.8em; font-weight: 700; color: #1d1d1f; }
+.kpi-card .label { font-size: 0.8em; color: #6e6e73; margin-top: 4px; }
+.kpi-card .trend { font-size: 0.85em; margin-top: 6px; }
+.trend-up { color: #248a3d; }
+.trend-down { color: #d94141; }
+.chart-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
+.chart-box {
+  background: #f7f9fb;
+  border-radius: 8px;
+  padding: 20px;
+  min-height: 320px;
+}
+.chart-box.full { grid-column: 1 / -1; min-height: 400px; }
+.chart-box h3 { font-size: 1em; color: #3a3a3c; margin-bottom: 14px; }
+.chart-box canvas { max-height: 300px; }
+.chart-box.full canvas { max-height: 380px; }
+.attribution-block {
+  background: #f2f7ff;
+  border-left: 3px solid #007aff;
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin: 12px 0;
+}
+.attribution-block h4 { color: #0b4aa2; margin-bottom: 8px; }
+.factor { display: inline-block; background: #dcecff; color: #0b4aa2; border-radius: 4px; padding: 2px 8px; font-size: 0.8em; margin: 2px; }
+.formula-box {
+  background: #fff8eb;
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin: 12px 0;
+}
+.formula-box h4 { color: #a05a00; margin-bottom: 10px; }
+.tag { display: inline-block; background: #ffe7bd; color: #8d5400; border-radius: 12px; padding: 3px 10px; font-size: 0.82em; margin: 3px; }
+.data-table { width: 100%; border-collapse: collapse; font-size: 0.88em; }
+.data-table th { background: #f2f7ff; color: #0b4aa2; padding: 10px 12px; text-align: left; }
+.data-table td { padding: 9px 12px; border-bottom: 1px solid #e8edf3; }
+.data-table tr:hover td { background: #f7f9fb; }
+.badge { display: inline-block; border-radius: 4px; padding: 2px 8px; font-size: 0.78em; font-weight: 700; }
+.badge-s { background: rgba(0,230,118,0.2); color: #00e676; }
+.badge-a { background: rgba(33,150,243,0.2); color: #64b5f6; }
+.badge-b { background: rgba(255,193,7,0.2); color: #ffd54f; }
+.badge-c { background: rgba(158,158,158,0.2); color: #bdbdbd; }
+.s-reads { color: #00e676; font-weight: 700; }
+.goal-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 18px;
+  margin: 12px 0;
+  border: 1px solid #dfe5ec;
+  border-left: 4px solid #007aff;
+}
+.goal-card h4 { color: #0b4aa2; margin-bottom: 10px; font-size: 1em; }
+.goal-card .meta { font-size: 0.85em; color: #6e6e73; margin: 4px 0; }
+.action-list { list-style: none; }
+.action-list li {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid #e8edf3;
+}
+.action-list .num {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: #007aff; color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.85em; font-weight: 700; flex-shrink: 0;
+}
+.scroll-table { max-height: 600px; overflow-y: auto; }
+.insight-block {
+  background: #fff3f6;
+  border-left: 3px solid #ff2d55;
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin: 12px 0;
+}
+.insight-block h4 { color: #b42342; margin-bottom: 8px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+html[data-embed=&quot;apple&quot;] body { padding: 0; background: transparent; }
+html[data-embed=&quot;apple&quot;] .container { max-width: none; margin: 0; }
+html[data-embed=&quot;apple&quot;] .header {
+  margin: 0 0 20px;
+  padding: 24px 28px;
+  border: 0;
+  border-bottom: 1px solid #dfe5ec;
+  border-radius: 0;
+  text-align: left;
+  box-shadow: none;
+}
+html[data-embed=&quot;apple&quot;] .header h1 { font-size: 28px; }
+html[data-embed=&quot;apple&quot;] .header p { margin-top: 6px; }
+html[data-embed=&quot;apple&quot;] .section { margin: 0 0 20px; padding: 24px; box-shadow: none; }
+html[data-embed=&quot;apple&quot;] .section-title { color: #1d1d1f; font-size: 19px; }
+html[data-embed=&quot;apple&quot;] .kpi-card { text-align: left; min-height: 132px; }
+html[data-embed=&quot;apple&quot;] .kpi-card .value { font-size: 27px; }
+html[data-embed=&quot;apple&quot;] .chart-box { border: 1px solid #e4e8ed; }
+html[data-embed=&quot;apple&quot;] .attribution-block,
+html[data-embed=&quot;apple&quot;] .insight-block,
+html[data-embed=&quot;apple&quot;] .formula-box,
+html[data-embed=&quot;apple&quot;] .goal-card { box-shadow: none; }
+html[data-embed=&quot;apple&quot;] .header { display: none; }
+html[data-embed=&quot;apple&quot;] .badge-s { background: rgba(48, 184, 90, .12); color: #248a3d; }
+html[data-embed=&quot;apple&quot;] .badge-a { background: rgba(0, 122, 255, .10); color: #0b4aa2; }
+html[data-embed=&quot;apple&quot;] .badge-b { background: rgba(255, 149, 0, .12); color: #8d5400; }
+html[data-embed=&quot;apple&quot;] .badge-c { background: #f2f2f7; color: #6e6e73; }
+html[data-embed=&quot;apple&quot;] .s-reads { color: #248a3d; }
+html[data-embed=&quot;apple&quot;] h3[style] { color: #1d1d1f !important; }
+html[data-embed=&quot;apple&quot;] strong[style] { color: #0b4aa2 !important; }
+html[data-embed=&quot;apple&quot;] a { color: #007aff; }
+@media (max-width: 768px) {
+  .chart-row, .two-col { grid-template-columns: 1fr; }
+  .chart-box.full { grid-column: 1; }
+}
+&lt;/style&gt;
+&lt;script&gt;document.documentElement.dataset.embed = &quot;apple&quot;;&lt;/script&gt;&lt;/head&gt;
+&lt;body&gt;
+&lt;div class=&quot;container&quot;&gt;
+&lt;div class=&quot;header&quot;&gt;
+  &lt;h1&gt;📊 小红书矩阵笔记商业分析报告&lt;/h1&gt;
+  &lt;p&gt;Mono渠道 · 2026年7月&lt;/p&gt;
+  &lt;p style=&quot;margin-top:8px;color:#666;font-size:0.85em;&quot;&gt;数据截止：2026-07-31 · 共 2585 条笔记 · 54 个账号&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;!-- 核心KPI --&gt;
+&lt;div class=&quot;section&quot;&gt;
+  &lt;div class=&quot;section-title&quot;&gt;📈 整体数据表现（2026Q4）&lt;/div&gt;
+  &lt;div class=&quot;kpi-grid&quot;&gt;
+    &lt;div class=&quot;kpi-card&quot;&gt;
+      &lt;div class=&quot;value&quot;&gt;1,327万&lt;/div&gt;
+      &lt;div class=&quot;label&quot;&gt;累计总阅读数&lt;/div&gt;
+      &lt;div class=&quot;trend trend-up&quot;&gt;📈 覆盖规模持续扩大&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;kpi-card&quot;&gt;
+      &lt;div class=&quot;value&quot;&gt;2,585&lt;/div&gt;
+      &lt;div class=&quot;label&quot;&gt;发布笔记总数&lt;/div&gt;
+      &lt;div class=&quot;trend trend-up&quot;&gt;📈 Q4起规模化提速&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;kpi-card&quot;&gt;
+      &lt;div class=&quot;value&quot;&gt;641&lt;/div&gt;
+      &lt;div class=&quot;label&quot;&gt;爆款笔记数&lt;/div&gt;
+      &lt;div class=&quot;trend&quot;&gt;爆款率 24.8%&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;kpi-card&quot;&gt;
+      &lt;div class=&quot;value&quot;&gt;580,750&lt;/div&gt;
+      &lt;div class=&quot;label&quot;&gt;累计总互动量&lt;/div&gt;
+      &lt;div class=&quot;trend trend-up&quot;&gt;📈 点赞+收藏+评论+分享&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;kpi-card&quot;&gt;
+      &lt;div class=&quot;value&quot;&gt;3,219&lt;/div&gt;
+      &lt;div class=&quot;label&quot;&gt;矩阵总新增粉丝&lt;/div&gt;
+      &lt;div class=&quot;trend trend-up&quot;&gt;📈 2026Q2爆发 +3034&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;kpi-card&quot;&gt;
+      &lt;div class=&quot;value&quot;&gt;5,137&lt;/div&gt;
+      &lt;div class=&quot;label&quot;&gt;篇均阅读数&lt;/div&gt;
+      &lt;div class=&quot;trend&quot;&gt;行业中等偏上水平&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;kpi-card&quot;&gt;
+      &lt;div class=&quot;value&quot;&gt;30&lt;/div&gt;
+      &lt;div class=&quot;label&quot;&gt;活跃账号数&lt;/div&gt;
+      &lt;div class=&quot;trend&quot;&gt;on line 渠道矩阵规模&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;kpi-card&quot;&gt;
+      &lt;div class=&quot;value&quot;&gt;74.5%&lt;/div&gt;
+      &lt;div class=&quot;label&quot;&gt;图片笔记占比&lt;/div&gt;
+      &lt;div class=&quot;trend&quot;&gt;图片 1926 / 视频 659&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;chart-row&quot;&gt;
+    &lt;div class=&quot;chart-box full&quot;&gt;
+      &lt;h3&gt;📊 矩阵月度核心指标趋势（绝对值）&lt;/h3&gt;
+      &lt;canvas id=&quot;chartMonthly&quot;&gt;&lt;/canvas&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;chart-row&quot;&gt;
+    &lt;div class=&quot;chart-box&quot;&gt;
+      &lt;h3&gt;📊 季度环比增长率（%）&lt;/h3&gt;
+      &lt;canvas id=&quot;chartQoQ&quot;&gt;&lt;/canvas&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;chart-box&quot;&gt;
+      &lt;h3&gt;🥧 笔记类型分布&lt;/h3&gt;
+      &lt;canvas id=&quot;chartType&quot;&gt;&lt;/canvas&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;attribution-block&quot;&gt;
+    &lt;h4&gt;📌 关键增长归因&lt;/h4&gt;
+    &lt;span class=&quot;factor&quot;&gt;规模提速&lt;/span&gt; 2025Q3起发布量从154条/季跃升至711条/季（+361%），矩阵由试水期进入规模化运营期。&lt;br&gt;&lt;br&gt;
+    &lt;span class=&quot;factor&quot;&gt;互动爆发&lt;/span&gt; 2025Q4互动量 220,536，环比Q3 +351%，核心驱动来自「Apple产品诚顺」的「XX有什么功能是你用了很久突然才知道的」系列话题笔记席卷平台。&lt;br&gt;&lt;br&gt;
+    &lt;span class=&quot;factor&quot;&gt;2026Q2异常&lt;/span&gt; 阅读量骤降至46.8万（环比-88%），爆款率跌至10%，但粉丝新增反升至3,034——数据截止于5月17日，仅为半季数据，且部分账号经历内容策略调整，粉丝转化效率提升。&lt;br&gt;&lt;br&gt;
+    &lt;span class=&quot;factor&quot;&gt;爆款率下行&lt;/span&gt; 从2025Q1的48%降至2026Q2的10%，规模化发布的同时素材质量参差不齐，头部账号与长尾账号分化加剧。
+  &lt;/div&gt;
+
+  &lt;h3 style=&quot;margin:20px 0 12px;color:#ccc;&quot;&gt;🏆 经销商梯队效能分布（S/A/B/C）&lt;/h3&gt;
+  &lt;div class=&quot;attribution-block&quot;&gt;
+    &lt;span class=&quot;badge badge-s&quot;&gt;S级&lt;/span&gt; &lt;strong&gt;均阅读 &amp;gt; 5000&lt;/strong&gt;：Apple产品诚顺(19445)、Apple产品京东自营(8932)、Apple教育数码产品(8319)、高飞易(7852)、霖盎(8027)、Apple授权经销商潮界(8161) — 共 &lt;strong&gt;6家&lt;/strong&gt;&lt;br&gt;&lt;br&gt;
+    &lt;span class=&quot;badge badge-a&quot;&gt;A级&lt;/span&gt; &lt;strong&gt;均阅读 2000-5000&lt;/strong&gt;：Apple产品权益智选(4339)、爱租机(3630)、Apple产品银行分期购(2925)、智联心选(4973)、Apple授权经销商爱派购(3696) — 共 &lt;strong&gt;5家&lt;/strong&gt;&lt;br&gt;&lt;br&gt;
+    &lt;span class=&quot;badge badge-b&quot;&gt;B级&lt;/span&gt; &lt;strong&gt;均阅读 500-2000&lt;/strong&gt;：Apple授权经销商易通(1778)、Apple授权经销商鑫亚宝宇(1041)、Apple电竞玩家(1068)、Apple授权经销商电竞周边(1383)、Apple授权经销商权益智选(571)、恒天辉(697)、Apple欣远(692) — 共 &lt;strong&gt;7家&lt;/strong&gt;&lt;br&gt;&lt;br&gt;
+    &lt;span class=&quot;badge badge-c&quot;&gt;C级&lt;/span&gt; &lt;strong&gt;均阅读 &amp;lt; 500&lt;/strong&gt;：润森数码(408)、Apple授权经销商扬笛(485)、古霖(428)、Apple经销商卓瓦(323)、丰年时代(317)、授权经销商游戏主题(403)、羽通(404)等 — 共 &lt;strong&gt;12家&lt;/strong&gt;，占比40%
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 维度二：矩阵生态健康度 --&gt;
+&lt;div class=&quot;section&quot;&gt;
+  &lt;div class=&quot;section-title&quot;&gt;🏥 维度二：矩阵生态健康度&lt;/div&gt;
+
+  &lt;div class=&quot;chart-row&quot;&gt;
+    &lt;div class=&quot;chart-box full&quot; style=&quot;min-height:500px;&quot;&gt;
+      &lt;h3&gt;🎯 账号效能分布散点图（X轴=发布数量，Y轴=均阅读数，按梯队分色）&lt;/h3&gt;
+      &lt;canvas id=&quot;chartScatter&quot; style=&quot;max-height:460px;&quot;&gt;&lt;/canvas&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;chart-row&quot;&gt;
+    &lt;div class=&quot;chart-box&quot; style=&quot;min-height:720px;&quot;&gt;
+      &lt;h3&gt;📊 各账号发布频率分布（Top 30）&lt;/h3&gt;
+      &lt;canvas id=&quot;chartFreq&quot; style=&quot;max-height:680px;&quot;&gt;&lt;/canvas&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;chart-box&quot;&gt;
+      &lt;h3&gt;📋 全矩阵账号数据总览（30家）&lt;/h3&gt;
+      &lt;div class=&quot;scroll-table&quot;&gt;
+        &lt;table class=&quot;data-table&quot;&gt;
+          &lt;thead&gt;&lt;tr&gt;&lt;th&gt;#&lt;/th&gt;&lt;th&gt;账号名称&lt;/th&gt;&lt;th&gt;发布数&lt;/th&gt;&lt;th&gt;均阅读&lt;/th&gt;&lt;th&gt;爆款率&lt;/th&gt;&lt;th&gt;梯队&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+          &lt;tbody&gt;
+            &lt;tr&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;Apple产品诚顺&lt;/td&gt;&lt;td&gt;324&lt;/td&gt;&lt;td class=&quot;s-reads&quot;&gt;19,445&lt;/td&gt;&lt;td&gt;67%&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;badge badge-s&quot;&gt;S&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;Apple产品京东自营&lt;/td&gt;&lt;td&gt;24&lt;/td&gt;&lt;td class=&quot;s-reads&quot;&gt;8,932&lt;/td&gt;&lt;td&gt;38%&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;badge badge-s&quot;&gt;S&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;3&lt;/td&gt;&lt;td&gt;Apple教育数码产品&lt;/td&gt;&lt;td&gt;120&lt;/td&gt;&lt;td class=&quot;s-reads&quot;&gt;8,319&lt;/td&gt;&lt;td&gt;37%&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;badge badge-s&quot;&gt;S&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;Apple授权经销商潮界&lt;/td&gt;&lt;td&gt;54&lt;/td&gt;&lt;td class=&quot;s-reads&quot;&gt;8,161&lt;/td&gt;&lt;td&gt;24%&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;badge badge-s&quot;&gt;S&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;5&lt;/td&gt;&lt;td&gt;高飞易 Apple授权经销商&lt;/td&gt;&lt;td&gt;100&lt;/td&gt;&lt;td class=&quot;s-reads&quot;&gt;7,852&lt;/td&gt;&lt;td&gt;13%&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;badge badge-s&quot;&gt;S&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;6&lt;/td&gt;&lt;td&gt;霖盎 Apple授权经销商&lt;/td&gt;&lt;td&gt;27&lt;/td&gt;&lt;td class=&quot;s-reads&quot;&gt;8,027&lt;/td&gt;&lt;td&gt;19%&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;badge badge-s&quot;&gt;S&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;7&lt;/td&gt;&lt;td&gt;智联心选&lt;/td&gt;&lt;td&gt;87&lt;/td&gt;&lt;td&gt;4,973&lt;/td&gt;&lt;td&gt;16%&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;badge badge-a&quot;&gt;A&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;8&lt;/td&gt;&lt;td&gt;Apple产品 权益智选&lt;/td&gt;&lt;td&gt;139&lt;/td&gt;&lt;td&gt;4,339&lt;/td&gt;&lt;td&gt;34%&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;badge badge-a&quot;&gt;A&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;9&lt;/td&gt;&lt;td&gt;爱租机&lt;/td&gt;&lt;td&gt;550&lt;/td&gt;&lt;td&gt;3,630&lt;/td&gt;&lt;td&gt;25%&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;badge badge-a&quot;&gt;A&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;10&lt;/td&gt;&lt;td&gt;Apple授权经销商爱派购&lt;/td&gt;&lt;td&gt;22&lt;/td&gt;&lt;td&gt;3,696&lt;/td&gt;&lt;td&gt;18%&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;badge badge-a&quot;&gt;A&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;11&lt;/td&gt;&lt;td&gt;Apple 产品银行分期购&lt;/td&gt;&lt;td&gt;186&lt;/td&gt;&lt;td&gt;2,925&lt;/td&gt;&lt;td&gt;25%&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;badge badge-a&quot;&gt;A&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;12&lt;/td&gt;&lt;td&gt;Apple授权经销商易通&lt;/td&gt;&lt;td&gt;108&lt;/td&gt;&lt;td&gt;1,778&lt;/td&gt;&lt;td&gt;13%&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;badge badge-b&quot;&gt;B&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;13&lt;/td&gt;&lt;td&gt;Apple授权经销商电竞周边&lt;/td&gt;&lt;td&gt;33&lt;/td&gt;&lt;td&gt;1,383&lt;/td&gt;&lt;td&gt;6%&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;badge badge-b&quot;&gt;B&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;14&lt;/td&gt;&lt;td&gt;Apple 电竞玩家&lt;/td&gt;&lt;td&gt;73&lt;/td&gt;&lt;td&gt;1,068&lt;/td&gt;&lt;td&gt;22%&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;badge badge-b&quot;&gt;B&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;15&lt;/td&gt;&lt;td&gt;Apple 授权经销商鑫亚宝宇&lt;/td&gt;&lt;td&gt;78&lt;/td&gt;&lt;td&gt;1,041&lt;/td&gt;&lt;td&gt;14%&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;badge badge-b&quot;&gt;B&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;16&lt;/td&gt;&lt;td&gt;Apple欣远授权运动主题&lt;/td&gt;&lt;td&gt;107&lt;/td&gt;&lt;td&gt;692&lt;/td&gt;&lt;td&gt;12%&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;badge badge-b&quot;&gt;B&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;17&lt;/td&gt;&lt;td&gt;恒天辉Apple授权经销商&lt;/td&gt;&lt;td&gt;29&lt;/td&gt;&lt;td&gt;697&lt;/td&gt;&lt;td&gt;21%&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;badge badge-b&quot;&gt;B&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;18&lt;/td&gt;&lt;td&gt;Apple授权经销商 权益智选&lt;/td&gt;&lt;td&gt;24&lt;/td&gt;&lt;td&gt;571&lt;/td&gt;&lt;td&gt;8%&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;badge badge-b&quot;&gt;B&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;19&lt;/td&gt;&lt;td&gt;Apple授权经销商 扬笛&lt;/td&gt;&lt;td&gt;74&lt;/td&gt;&lt;td&gt;485&lt;/td&gt;&lt;td&gt;8%&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;badge badge-c&quot;&gt;C&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;20&lt;/td&gt;&lt;td&gt;古霖Apple授权经销商&lt;/td&gt;&lt;td&gt;21&lt;/td&gt;&lt;td&gt;428&lt;/td&gt;&lt;td&gt;14%&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;badge badge-c&quot;&gt;C&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;21&lt;/td&gt;&lt;td&gt;羽通Apple授权经销商&lt;/td&gt;&lt;td&gt;32&lt;/td&gt;&lt;td&gt;404&lt;/td&gt;&lt;td&gt;6%&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;badge badge-c&quot;&gt;C&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;22&lt;/td&gt;&lt;td&gt;Apple授权经销商游戏主题&lt;/td&gt;&lt;td&gt;36&lt;/td&gt;&lt;td&gt;403&lt;/td&gt;&lt;td&gt;8%&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;badge badge-c&quot;&gt;C&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;23&lt;/td&gt;&lt;td&gt;润森数码 Apple授权经销商&lt;/td&gt;&lt;td&gt;95&lt;/td&gt;&lt;td&gt;408&lt;/td&gt;&lt;td&gt;6%&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;badge badge-c&quot;&gt;C&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;24&lt;/td&gt;&lt;td&gt;Apple经销商卓瓦&lt;/td&gt;&lt;td&gt;58&lt;/td&gt;&lt;td&gt;323&lt;/td&gt;&lt;td&gt;7%&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;badge badge-c&quot;&gt;C&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;25&lt;/td&gt;&lt;td&gt;丰年时代Apple授权经销商&lt;/td&gt;&lt;td&gt;37&lt;/td&gt;&lt;td&gt;317&lt;/td&gt;&lt;td&gt;8%&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;badge badge-c&quot;&gt;C&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;26&lt;/td&gt;&lt;td&gt;Apple 授权经销商金文&lt;/td&gt;&lt;td&gt;25&lt;/td&gt;&lt;td&gt;251&lt;/td&gt;&lt;td&gt;4%&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;badge badge-c&quot;&gt;C&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;27&lt;/td&gt;&lt;td&gt;浙江芯珀电子商务&lt;/td&gt;&lt;td&gt;7&lt;/td&gt;&lt;td&gt;153&lt;/td&gt;&lt;td&gt;0%&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;badge badge-c&quot;&gt;C&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;28&lt;/td&gt;&lt;td&gt;Apple 授权经销商易机数码&lt;/td&gt;&lt;td&gt;66&lt;/td&gt;&lt;td&gt;94&lt;/td&gt;&lt;td&gt;2%&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;badge badge-c&quot;&gt;C&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;29&lt;/td&gt;&lt;td&gt;极炬脉冲Apple本地服务&lt;/td&gt;&lt;td&gt;30&lt;/td&gt;&lt;td&gt;113&lt;/td&gt;&lt;td&gt;0%&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;badge badge-c&quot;&gt;C&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;30&lt;/td&gt;&lt;td&gt;Apple 百利时代授权经销商&lt;/td&gt;&lt;td&gt;19&lt;/td&gt;&lt;td&gt;105&lt;/td&gt;&lt;td&gt;0%&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;badge badge-c&quot;&gt;C&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+          &lt;/tbody&gt;
+        &lt;/table&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;attribution-block&quot;&gt;
+    &lt;h4&gt;🔍 发布行为分析&lt;/h4&gt;
+    &lt;span class=&quot;factor&quot;&gt;稳定输出型&lt;/span&gt; 爱租机(550条)、Apple产品诚顺(324条)、Apple产品银行分期购(186条)——持续高频发布，是矩阵稳定性的压舱石。&lt;br&gt;&lt;br&gt;
+    &lt;span class=&quot;factor&quot;&gt;高效精耕型&lt;/span&gt; Apple产品京东自营(24条/均阅读8932)、霖盎(27条/均阅读8027)——发布少但质量极高，以精准选题驱动高曝光。&lt;br&gt;&lt;br&gt;
+    &lt;span class=&quot;factor&quot;&gt;低效堆量型&lt;/span&gt; Apple授权经销商易机数码(66条/均阅读94)、极炬脉冲(30条/均阅读113)——发布量不少但曝光极低，内容或缺乏差异化，或受限流影响。
+  &lt;/div&gt;
+
+  &lt;div class=&quot;attribution-block&quot;&gt;
+    &lt;h4&gt;⚠️ 内容同质化风险&lt;/h4&gt;
+    &lt;span class=&quot;factor&quot;&gt;高风险&lt;/span&gt; 30家账号均定位「Apple授权经销商」，选题高度集中在产品推荐/比较/促销，C级12家账号的选题与S级账号高度重叠，导致平台算法将流量向头部账号集中分发，形成「马太效应」。&lt;br&gt;&lt;br&gt;
+    Apple产品诚顺以47.5%的总阅读量占比主导全矩阵流量，建议C/B级账号向差异化垂类（使用场景、生活方式、维修服务、以旧换新攻略）突破，减少正面竞争。
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 维度三：爆款归因 --&gt;
+&lt;div class=&quot;section&quot;&gt;
+  &lt;div class=&quot;section-title&quot;&gt;🔥 维度三：内容监测与爆款归因&lt;/div&gt;
+
+  &lt;div class=&quot;chart-row&quot;&gt;
+    &lt;div class=&quot;chart-box full&quot; style=&quot;min-height:740px;&quot;&gt;
+      &lt;h3&gt;🏆 Top 20 爆款笔记阅读数排行&lt;/h3&gt;
+      &lt;canvas id=&quot;chartTop20&quot; style=&quot;max-height:700px;&quot;&gt;&lt;/canvas&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;formula-box&quot;&gt;
+    &lt;h4&gt;💡 爆款概率公式（基于Top20数据提炼）&lt;/h4&gt;
+    &lt;tag class=&quot;tag&quot;&gt;悬念疑问句标题&lt;/tag&gt;
+    &lt;tag class=&quot;tag&quot;&gt;「你用了很久突然才知道」句式&lt;/tag&gt;
+    &lt;tag class=&quot;tag&quot;&gt;产品隐藏功能/冷知识&lt;/tag&gt;
+    &lt;tag class=&quot;tag&quot;&gt;高信息密度图片&lt;/tag&gt;
+    &lt;tag class=&quot;tag&quot;&gt;Emoji情绪强化&lt;/tag&gt;
+    &lt;tag class=&quot;tag&quot;&gt;‼️感叹符&lt;/tag&gt;
+    &lt;tag class=&quot;tag&quot;&gt;纠结党/学生党人群定向&lt;/tag&gt;
+    &lt;br&gt;&lt;br&gt;
+    公式：&lt;strong style=&quot;color:#ff8a80;&quot;&gt;[悬念问句] + [功能冷知识] + [高密度信息图] = 爆款率提升 ×3~5倍&lt;/strong&gt;&lt;br&gt;&lt;br&gt;
+    验证案例：「iPhone/iPad/Mac/AirPods/Apple Watch有什么功能是你用了很久突然才知道的」系列5篇合计阅读 &lt;strong&gt;248.3万&lt;/strong&gt;，互动 &lt;strong&gt;198,074&lt;/strong&gt;，平均互动率 &lt;strong&gt;7.97%&lt;/strong&gt;（行业均值约1-2%）。
+  &lt;/div&gt;
+
+  &lt;div class=&quot;two-col&quot;&gt;
+    &lt;div class=&quot;attribution-block&quot;&gt;
+      &lt;h4&gt;♻️ 长尾复利型爆款（持续引流）&lt;/h4&gt;
+      &lt;span class=&quot;factor&quot;&gt;典型案例&lt;/span&gt;「预算3k vs 5k！新款iPad选购指南」(2025-03-05) 阅读34万——选购攻略类内容命中平台搜索词「iPad怎么选」，持续获得搜索推荐流量，发布数月后仍有稳定曝光。同类：「3步搞定iPhone数据迁移」「注册Apple ID保姆级教程」。&lt;br&gt;&lt;br&gt;
+      特征：&lt;span class=&quot;factor&quot;&gt;实用工具性&lt;/span&gt; &lt;span class=&quot;factor&quot;&gt;搜索词高匹配&lt;/span&gt; &lt;span class=&quot;factor&quot;&gt;信息永不过时&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;attribution-block&quot;&gt;
+      &lt;h4&gt;⚡ 一波流型爆款（短期爆发）&lt;/h4&gt;
+      &lt;span class=&quot;factor&quot;&gt;典型案例&lt;/span&gt;「iPhone SE4配色一览」(2025-01-08) 阅读31.5万——新品发布节点流量红利，热度随话题消退快速回落；「如果你看不见小马，说明2026你：」(2026-02-10) 阅读16.8万——热梗类内容传播快但无长尾价值。&lt;br&gt;&lt;br&gt;
+      特征：&lt;span class=&quot;factor&quot;&gt;依赖热点节点&lt;/span&gt; &lt;span class=&quot;factor&quot;&gt;互动率偏低&lt;/span&gt; &lt;span class=&quot;factor&quot;&gt;流量衰减快&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;attribution-block&quot;&gt;
+    &lt;h4&gt;📐 小红书爆款标题结构拆解（Top20高频特征）&lt;/h4&gt;
+    &lt;strong&gt;结构一：&lt;/strong&gt; [产品名] + [场景痛点/悬念] → 「男朋友拍照有救了‼️ iPhone屏幕共享」&lt;br&gt;
+    &lt;strong&gt;结构二：&lt;/strong&gt; [价格/预算对比] + [人群定向] → 「预算3k vs 5k！新款iPad选购指南/学生党必看」&lt;br&gt;
+    &lt;strong&gt;结构三：&lt;/strong&gt; [互动召唤问句] + [归属感制造] → 「iPhone有什么功能是你用了很久突然才知道的」&lt;br&gt;
+    &lt;strong&gt;结构四：&lt;/strong&gt; [数字强化] + [稀缺感] → 「iPhone17隐藏功能｜30个宝藏技巧！」「Macbook隐藏技巧｜巨好用但90%的人不知道」&lt;br&gt;&lt;br&gt;
+    &lt;span class=&quot;factor&quot;&gt;共性：口语化&lt;/span&gt; &lt;span class=&quot;factor&quot;&gt;有具体数字&lt;/span&gt; &lt;span class=&quot;factor&quot;&gt;制造信息差&lt;/span&gt; &lt;span class=&quot;factor&quot;&gt;有用户视角&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 维度四：用户洞察 --&gt;
+&lt;div class=&quot;section&quot;&gt;
+  &lt;div class=&quot;section-title&quot;&gt;👥 维度四：用户反馈信号与心智洞察&lt;/div&gt;
+
+  &lt;div class=&quot;chart-row&quot;&gt;
+    &lt;div class=&quot;chart-box&quot;&gt;
+      &lt;h3&gt;🥧 互动结构分布（总互动580,750）&lt;/h3&gt;
+      &lt;canvas id=&quot;chartInteraction&quot;&gt;&lt;/canvas&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;chart-box&quot;&gt;
+      &lt;h3&gt;📊 月度粉丝增长趋势&lt;/h3&gt;
+      &lt;canvas id=&quot;chartFans&quot;&gt;&lt;/canvas&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;two-col&quot;&gt;
+    &lt;div class=&quot;insight-block&quot;&gt;
+      &lt;h4&gt;💎 高收藏驱动：用户处于「决策前期」&lt;/h4&gt;
+      收藏量 189,679（占互动32.7%），高收藏笔记集中在选购攻略、功能教程、参数对比类内容。用户行为模式：「先收藏备用，有购买需求时再翻出来看」，说明矩阵内容在用户购买决策链的&lt;strong style=&quot;color:#ce93d8;&quot;&gt;中上游&lt;/strong&gt;发挥着种草作用。
+    &lt;/div&gt;
+    &lt;div class=&quot;insight-block&quot;&gt;
+      &lt;h4&gt;💬 高评论信号：话题引发强讨论&lt;/h4&gt;
+      「据说只有真正的苹果手机才能打出面」评论13,928（占该笔记互动92%），说明话题性内容能快速激活用户参与欲。评论密集=用户有真实疑问或购买意向，是&lt;strong style=&quot;color:#ce93d8;&quot;&gt;获客黄金信号&lt;/strong&gt;，需第一时间回复转化。
+    &lt;/div&gt;
+    &lt;div class=&quot;insight-block&quot;&gt;
+      &lt;h4&gt;👍 高点赞特征：情感共鸣+实用价值&lt;/h4&gt;
+      点赞最高笔记：iPhone功能系列（47,273赞）、iPad功能系列（20,474赞），均为「用了很久才知道」系列，触发用户「我也不知道！」的情感共鸣 + 实用信息带来的即时价值感，&lt;strong style=&quot;color:#ce93d8;&quot;&gt;点赞=情绪+认可双驱动&lt;/strong&gt;。
+    &lt;/div&gt;
+    &lt;div class=&quot;insight-block&quot;&gt;
+      &lt;h4&gt;🔗 高分享行为：社交货币属性&lt;/h4&gt;
+      分享量63,443，分享率较高的笔记多为「iPhone SE4配色」「深度对比选购」等有社交分享价值的内容（帮朋友参谋买手机），说明矩阵内容已具备一定的&lt;strong style=&quot;color:#ce93d8;&quot;&gt;口碑裂变&lt;/strong&gt;基础。
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;attribution-block&quot;&gt;
+    &lt;h4&gt;🧠 用户心智定位分析&lt;/h4&gt;
+    综合互动结构判断，矩阵内容在用户心智中的定位正在从「促销广告账号」向「Apple产品知识顾问」转变——高收藏率、高点赞的内容均非促销类，而是功能科普和选购指南。这是&lt;strong&gt;极其正确的内容方向&lt;/strong&gt;，建议继续深化「教育型内容」比例（目标占比60%以上），同时控制硬广类内容频率（建议不超过20%）。
+  &lt;/div&gt;
+
+  &lt;div class=&quot;attribution-block&quot;&gt;
+    &lt;h4&gt;⚠️ 异常信号监测&lt;/h4&gt;
+    &lt;span class=&quot;factor&quot;&gt;2026年4-5月粉丝暴增&lt;/span&gt; 2026-04新增粉丝1,436、2026-05新增1,598，但阅读量同期骤降——可能原因：① 部分账号开启了平台付费涨粉工具；② 存在有奖互动活动（如「三月0元宠粉免费送」笔记的粉丝转化）。建议核查粉丝质量（活跃度/真实度）。&lt;br&gt;&lt;br&gt;
+    &lt;span class=&quot;factor&quot;&gt;易机数码异常低效&lt;/span&gt; 66条笔记均阅读仅94，明显低于矩阵均值5137，建议排查是否存在账号违规/限流。
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 维度五：行动指南 --&gt;
+&lt;div class=&quot;section&quot;&gt;
+  &lt;div class=&quot;section-title&quot;&gt;🚀 维度五：下阶段行动指南&lt;/div&gt;
+
+  &lt;div class=&quot;goal-card&quot;&gt;
+    &lt;h4&gt;🎯 目标一：提升爆款率（当前24.8% → 目标35%）&lt;/h4&gt;
+    &lt;div class=&quot;meta&quot;&gt;&lt;strong&gt;推荐主体：&lt;/strong&gt;所有A/B级账号（重点：Apple产品权益智选、Apple产品银行分期购、智联心选）&lt;/div&gt;
+    &lt;div class=&quot;meta&quot;&gt;&lt;strong&gt;内容方向：&lt;/strong&gt;复制「XX有什么功能是你用了很久突然才知道的」系列句式，围绕自己账号定位的产品线（分期/教育/运动）输出定制化版本&lt;/div&gt;
+    &lt;div class=&quot;meta&quot;&gt;&lt;strong&gt;具体选题举例：&lt;/strong&gt;「用信用卡分期买iPhone，有什么坑是你踩了才知道的？」/ 「学生党用iPad上了三年网课，才发现这3个功能」&lt;/div&gt;
+    &lt;div class=&quot;meta&quot;&gt;&lt;strong&gt;预期效果：&lt;/strong&gt;参考诚顺账号同类内容，可获得均阅读5000~20000，爆款转化率60%以上&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;goal-card&quot;&gt;
+    &lt;h4&gt;📢 目标二：品牌曝光（季度曝光稳定在500万+）&lt;/h4&gt;
+    &lt;div class=&quot;meta&quot;&gt;&lt;strong&gt;推荐主体：&lt;/strong&gt;Apple产品诚顺（S级核心账号）+ Apple教育数码产品（视频方向）&lt;/div&gt;
+    &lt;div class=&quot;meta&quot;&gt;&lt;strong&gt;内容方向：&lt;/strong&gt;围绕Apple新品发布节点（iOS系统更新、新款产品发布）进行首发解读，抢占热点流量红利&lt;/div&gt;
+    &lt;div class=&quot;meta&quot;&gt;&lt;strong&gt;具体选题举例：&lt;/strong&gt;「iOS 26 最值得升级的5个新功能‼️」/ 「2026下半年苹果新品提前剧透」&lt;/div&gt;
+    &lt;div class=&quot;meta&quot;&gt;&lt;strong&gt;预期效果：&lt;/strong&gt;节点类内容参考「iPhone SE4配色一览」(31.5万阅读)，热点期单篇曝光可达10~30万&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;goal-card&quot;&gt;
+    &lt;h4&gt;🔍 目标三：SEO长尾搜索流量（建立搜索流量护城河）&lt;/h4&gt;
+    &lt;div class=&quot;meta&quot;&gt;&lt;strong&gt;推荐主体：&lt;/strong&gt;霖盎、高飞易、Apple授权经销商易通（发布频率稳定、质量中等，适合做SEO内容库）&lt;/div&gt;
+    &lt;div class=&quot;meta&quot;&gt;&lt;strong&gt;核心搜索关键词：&lt;/strong&gt;「iPad怎么选」「iPhone以旧换新划算吗」「苹果授权经销商和官方有什么区别」「Apple ID怎么注册」「iPhone数据迁移教程」&lt;/div&gt;
+    &lt;div class=&quot;meta&quot;&gt;&lt;strong&gt;内容建议：&lt;/strong&gt;每月至少发布4篇搜索词命中型内容，标题直接包含完整搜索词，正文用Q&amp;A结构覆盖用户关联问题&lt;/div&gt;
+    &lt;div class=&quot;meta&quot;&gt;&lt;strong&gt;预期效果：&lt;/strong&gt;参考「3步搞定iPhone数据迁移」(15.1万阅读)，持续引流周期预计3~12个月&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;goal-card&quot;&gt;
+    &lt;h4&gt;🔧 目标四：异常账号修复（提升矩阵整体效能）&lt;/h4&gt;
+    &lt;div class=&quot;meta&quot;&gt;&lt;strong&gt;重点修复账号：&lt;/strong&gt;&lt;/div&gt;
+    &lt;div class=&quot;meta&quot;&gt;① &lt;strong&gt;Apple授权经销商易机数码&lt;/strong&gt;（均阅读94）：停止当前内容策略，改为参考B级账号选题，先测试3~5篇「功能教程类」内容，判断是否存在限流&lt;/div&gt;
+    &lt;div class=&quot;meta&quot;&gt;② &lt;strong&gt;极炬脉冲Apple本地服务 / Apple百利时代授权经销商&lt;/strong&gt;（均阅读&amp;lt;120）：内容过于本地化/广告化，建议加入「本地化场景」+「通用功能科普」的混合策略&lt;/div&gt;
+    &lt;div class=&quot;meta&quot;&gt;③ &lt;strong&gt;润森数码（均阅读408）&lt;/strong&gt;：95条笔记发布量不小但效果差，建议减量提质，先暂停至每月8篇，专注测试封面和标题优化&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;goal-card&quot;&gt;
+    &lt;h4&gt;📅 发布节奏与热点借势建议&lt;/h4&gt;
+    &lt;ul class=&quot;action-list&quot;&gt;
+      &lt;li&gt;
+        &lt;div class=&quot;num&quot;&gt;1&lt;/div&gt;
+        &lt;div&gt;&lt;strong&gt;最佳发布时间：&lt;/strong&gt;工作日 12:00-13:00 和 20:00-22:00（根据爆款发布时间分布，下午茶时段和睡前刷手机时段互动率最高）&lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;div class=&quot;num&quot;&gt;2&lt;/div&gt;
+        &lt;div&gt;&lt;strong&gt;近期可借势热点：&lt;/strong&gt;WWDC 2026（Apple开发者大会，通常6月举行）——提前布局新功能预测内容，会后第一时间发布功能解读&lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;div class=&quot;num&quot;&gt;3&lt;/div&gt;
+        &lt;div&gt;&lt;strong&gt;618大促节点：&lt;/strong&gt;6月初发布「618苹果产品选购攻略」「这几款Apple产品618值得入手吗」，结合促销信息，选购指南类内容在大促前7天流量最高&lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;div class=&quot;num&quot;&gt;4&lt;/div&gt;
+        &lt;div&gt;&lt;strong&gt;发布频率建议：&lt;/strong&gt;S级账号保持4~6篇/周；A级账号2~4篇/周；B/C级账号先控制在1~2篇/周，保证质量后再提频&lt;/div&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;div class=&quot;num&quot;&gt;5&lt;/div&gt;
+        &lt;div&gt;&lt;strong&gt;视频比例提升：&lt;/strong&gt;当前视频占比25.5%，建议逐步提升至35~40%，视频笔记在Apple新功能演示类内容中互动率比图文高约40%（参考「拍烟花」视频23,455互动）&lt;/div&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 商业机会验证（XHS Business Idea Validator方法论） --&gt;
+&lt;div class=&quot;section&quot;&gt;
+  &lt;div class=&quot;section-title&quot;&gt;💼 商业机会验证&lt;/div&gt;
+  &lt;p style=&quot;color:#aaa;margin-bottom:16px;&quot;&gt;从需求验证、竞争格局、内容机会三个维度系统评估&lt;/p&gt;
+
+  &lt;div class=&quot;two-col&quot;&gt;
+    &lt;div class=&quot;formula-box&quot;&gt;
+      &lt;h4&gt;✅ 需求验证：市场需求真实存在&lt;/h4&gt;
+      &lt;span class=&quot;tag&quot;&gt;总阅读1327万&lt;/span&gt; &lt;span class=&quot;tag&quot;&gt;641条爆款&lt;/span&gt; &lt;span class=&quot;tag&quot;&gt;收藏率1.43%&lt;/span&gt;&lt;br&gt;&lt;br&gt;
+      数据印证：Apple产品相关内容在小红书有稳定且真实的用户需求。高收藏率（18.97万）证明用户在&lt;strong style=&quot;color:#ff8a80;&quot;&gt;主动收集购买决策信息&lt;/strong&gt;，而非被动浏览。选购攻略、功能教程、以旧换新是三大核心需求点。
+    &lt;/div&gt;
+    &lt;div class=&quot;formula-box&quot;&gt;
+      &lt;h4&gt;⚔️ 竞争格局：头部垄断，长尾蓝海&lt;/h4&gt;
+      &lt;span class=&quot;tag&quot;&gt;诚顺占47.5%阅读&lt;/span&gt; &lt;span class=&quot;tag&quot;&gt;前6账号占82%阅读&lt;/span&gt;&lt;br&gt;&lt;br&gt;
+      Apple产品诚顺一家独大（总阅读630万），是矩阵内其他账号的3~5倍。但这恰好说明：&lt;strong style=&quot;color:#ff8a80;&quot;&gt;差异化细分赛道（分期购/教育/运动场景）竞争压力小&lt;/strong&gt;，存在明显的内容白地。
+    &lt;/div&gt;
+    &lt;div class=&quot;formula-box&quot;&gt;
+      &lt;h4&gt;📊 内容机会：4大未被充分开发的方向&lt;/h4&gt;
+      &lt;span class=&quot;tag&quot;&gt;① 以旧换新攻略&lt;/span&gt; 政策敏感期高流量，爱租机模式可复制&lt;br&gt;
+      &lt;span class=&quot;tag&quot;&gt;② 本地化服务场景&lt;/span&gt; 「附近Apple维修/换屏」搜索词高但矩阵覆盖极少&lt;br&gt;
+      &lt;span class=&quot;tag&quot;&gt;③ 分期购省钱攻略&lt;/span&gt; 消费降级背景下，「如何用最少的钱用上苹果」类内容搜索量上涨&lt;br&gt;
+      &lt;span class=&quot;tag&quot;&gt;④ 女性/学生场景&lt;/span&gt; 当前内容男性向偏重，女性用户（iPad手绘/拍照）场景内容稀缺
+    &lt;/div&gt;
+    &lt;div class=&quot;formula-box&quot;&gt;
+      &lt;h4&gt;🎯 商业验证结论&lt;/h4&gt;
+      &lt;strong style=&quot;color:#00e676;&quot;&gt;✅ 推荐继续投入&lt;/strong&gt;&lt;br&gt;&lt;br&gt;
+      综合需求真实性（爆款率24.8%）、用户决策意图（高收藏）、内容白地空间，Apple经销商矩阵在小红书的商业价值&lt;strong style=&quot;color:#ff8a80;&quot;&gt;显著&lt;/strong&gt;。核心建议：压缩C级账号资源投入，将预算集中向S/A级账号倾斜，ROI可提升2~3倍。
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div style=&quot;text-align:center;padding:20px;color:#555;font-size:0.82em;&quot;&gt;
+  报告生成时间：2026年6月8日 · 数据来源：on line渠道 2025年至今全部笔记.xlsx · 方法论参考：XHS Business Idea Validator
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+const months = [&#x27;2025-01&#x27;,&#x27;2025-02&#x27;,&#x27;2025-03&#x27;,&#x27;2025-04&#x27;,&#x27;2025-05&#x27;,&#x27;2025-06&#x27;,&#x27;2025-07&#x27;,&#x27;2025-08&#x27;,&#x27;2025-09&#x27;,&#x27;2025-10&#x27;,&#x27;2025-11&#x27;,&#x27;2025-12&#x27;,&#x27;2026-01&#x27;,&#x27;2026-02&#x27;,&#x27;2026-03&#x27;,&#x27;2026-04&#x27;,&#x27;2026-05&#x27;];
+const notesData = [44,35,40,40,50,64,105,119,236,226,208,277,244,181,328,264,124];
+const readsData = [551488,315347,515574,263483,500023,853060,486883,602102,1242186,1299862,1237958,1178241,1321616,1369385,1074278,209104,258908];
+const interactionData = [12149,7349,12036,10527,9397,12476,12022,18610,18303,97336,77559,45641,80819,66355,75006,17640,7525];
+const viralData = [18,16,23,20,29,38,46,40,53,44,48,65,73,33,55,33,7];
+const fansData = [0,0,2,8,0,4,5,7,11,1,11,7,84,21,24,1436,1598];
+
+// Chart 1: Monthly trend
+const ctx1 = document.getElementById(&#x27;chartMonthly&#x27;).getContext(&#x27;2d&#x27;);
+new Chart(ctx1, {
+  type: &#x27;line&#x27;,
+  data: {
+    labels: months,
+    datasets: [
+      { label: &#x27;月阅读数&#x27;, data: readsData, borderColor: &#x27;#ff2442&#x27;, backgroundColor: &#x27;rgba(255,36,66,0.1)&#x27;, tension: 0.4, yAxisID: &#x27;y&#x27; },
+      { label: &#x27;月互动量&#x27;, data: interactionData, borderColor: &#x27;#2196f3&#x27;, backgroundColor: &#x27;rgba(33,150,243,0.1)&#x27;, tension: 0.4, yAxisID: &#x27;y&#x27; },
+      { label: &#x27;发布笔记数&#x27;, data: notesData, borderColor: &#x27;#00e676&#x27;, backgroundColor: &#x27;rgba(0,230,118,0.1)&#x27;, tension: 0.4, yAxisID: &#x27;y2&#x27; },
+      { label: &#x27;爆款数&#x27;, data: viralData, borderColor: &#x27;#ffd54f&#x27;, backgroundColor: &#x27;rgba(255,213,79,0.1)&#x27;, tension: 0.4, yAxisID: &#x27;y2&#x27; }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: true,
+    plugins: { legend: { labels: { color: &#x27;#ccc&#x27; } } },
+    scales: {
+      x: { ticks: { color: &#x27;#aaa&#x27;, maxRotation: 45 }, grid: { color: &#x27;rgba(255,255,255,0.05)&#x27; } },
+      y: { position: &#x27;left&#x27;, ticks: { color: &#x27;#aaa&#x27;, callback: v =&gt; v &gt;= 1000000 ? (v/10000).toFixed(0)+&#x27;万&#x27; : v &gt;= 10000 ? (v/10000).toFixed(1)+&#x27;万&#x27; : v }, grid: { color: &#x27;rgba(255,255,255,0.05)&#x27; } },
+      y2: { position: &#x27;right&#x27;, ticks: { color: &#x27;#aaa&#x27; }, grid: { drawOnChartArea: false } }
+    }
+  }
+});
+
+// Chart 2: QoQ growth rate
+const quarters = [&#x27;2025-Q1&#x27;,&#x27;2025-Q2&#x27;,&#x27;2025-Q3&#x27;,&#x27;2025-Q4&#x27;,&#x27;2026-Q1&#x27;,&#x27;2026-Q2&#x27;];
+const qReads = [1382409,1616566,2331171,3716061,3765279,468012];
+const qInteraction = [31534,32400,48935,220536,222180,25165];
+const qNotes = [119,154,460,711,753,388];
+function qoqRate(arr) {
+  return arr.map((v, i) =&gt; i === 0 ? 0 : Math.round((v - arr[i-1]) / arr[i-1] * 100));
+}
+const ctx2 = document.getElementById(&#x27;chartQoQ&#x27;).getContext(&#x27;2d&#x27;);
+new Chart(ctx2, {
+  type: &#x27;bar&#x27;,
+  data: {
+    labels: quarters,
+    datasets: [
+      { label: &#x27;阅读量环比%&#x27;, data: qoqRate(qReads), backgroundColor: &#x27;rgba(255,36,66,0.6)&#x27; },
+      { label: &#x27;互动量环比%&#x27;, data: qoqRate(qInteraction), backgroundColor: &#x27;rgba(33,150,243,0.6)&#x27; },
+      { label: &#x27;发布量环比%&#x27;, data: qoqRate(qNotes), backgroundColor: &#x27;rgba(0,230,118,0.6)&#x27; }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: true,
+    plugins: { legend: { labels: { color: &#x27;#ccc&#x27; } } },
+    scales: {
+      x: { ticks: { color: &#x27;#aaa&#x27; }, grid: { color: &#x27;rgba(255,255,255,0.05)&#x27; } },
+      y: { ticks: { color: &#x27;#aaa&#x27;, callback: v =&gt; v + &#x27;%&#x27; }, grid: { color: &#x27;rgba(255,255,255,0.05)&#x27; } }
+    }
+  }
+});
+
+// Chart 3: Note type pie
+const ctx3 = document.getElementById(&#x27;chartType&#x27;).getContext(&#x27;2d&#x27;);
+new Chart(ctx3, {
+  type: &#x27;doughnut&#x27;,
+  data: {
+    labels: [&#x27;图片笔记&#x27;, &#x27;视频笔记&#x27;],
+    datasets: [{ data: [1926, 659], backgroundColor: [&#x27;#ff2442&#x27;,&#x27;#2196f3&#x27;], borderWidth: 0 }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { labels: { color: &#x27;#ccc&#x27; } } }
+  }
+});
+
+// Chart 4: Scatter - author efficiency
+const ctx4 = document.getElementById(&#x27;chartScatter&#x27;).getContext(&#x27;2d&#x27;);
+const sData = [{x:324,y:19445,label:&#x27;Apple产品诚顺&#x27;},{x:24,y:8932,label:&#x27;京东自营&#x27;},{x:120,y:8319,label:&#x27;Apple教育&#x27;},{x:54,y:8161,label:&#x27;潮界&#x27;},{x:100,y:7852,label:&#x27;高飞易&#x27;},{x:27,y:8027,label:&#x27;霖盎&#x27;}];
+const aData = [{x:87,y:4973,label:&#x27;智联心选&#x27;},{x:139,y:4339,label:&#x27;权益智选&#x27;},{x:550,y:3630,label:&#x27;爱租机&#x27;},{x:22,y:3696,label:&#x27;爱派购&#x27;},{x:186,y:2925,label:&#x27;分期购&#x27;}];
+const bData = [{x:108,y:1778,label:&#x27;易通&#x27;},{x:33,y:1383,label:&#x27;电竞周边&#x27;},{x:73,y:1068,label:&#x27;电竞玩家&#x27;},{x:78,y:1041,label:&#x27;鑫亚宝宇&#x27;},{x:107,y:692,label:&#x27;欣远&#x27;},{x:29,y:697,label:&#x27;恒天辉&#x27;},{x:24,y:571,label:&#x27;权益智选2&#x27;}];
+const cData = [{x:74,y:485,label:&#x27;扬笛&#x27;},{x:95,y:408,label:&#x27;润森&#x27;},{x:32,y:404,label:&#x27;羽通&#x27;},{x:36,y:403,label:&#x27;游戏主题&#x27;},{x:21,y:428,label:&#x27;古霖&#x27;},{x:58,y:323,label:&#x27;卓瓦&#x27;},{x:37,y:317,label:&#x27;丰年&#x27;},{x:25,y:251,label:&#x27;金文&#x27;},{x:7,y:153,label:&#x27;芯珀&#x27;},{x:66,y:94,label:&#x27;易机&#x27;},{x:30,y:113,label:&#x27;极炬&#x27;},{x:19,y:105,label:&#x27;百利&#x27;}];
+new Chart(ctx4, {
+  type: &#x27;scatter&#x27;,
+  data: {
+    datasets: [
+      { label: &#x27;S级&#x27;, data: sData, backgroundColor: &#x27;rgba(0,230,118,0.8)&#x27;, pointRadius: 8 },
+      { label: &#x27;A级&#x27;, data: aData, backgroundColor: &#x27;rgba(33,150,243,0.8)&#x27;, pointRadius: 7 },
+      { label: &#x27;B级&#x27;, data: bData, backgroundColor: &#x27;rgba(255,193,7,0.8)&#x27;, pointRadius: 6 },
+      { label: &#x27;C级&#x27;, data: cData, backgroundColor: &#x27;rgba(158,158,158,0.6)&#x27;, pointRadius: 5 }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { labels: { color: &#x27;#ccc&#x27; } }, tooltip: { callbacks: { label: ctx =&gt; `${ctx.raw.label || &#x27;&#x27;}: 发布${ctx.raw.x}篇, 均阅读${ctx.raw.y}` } } },
+    scales: {
+      x: { title: { display: true, text: &#x27;发布数量（篇）&#x27;, color: &#x27;#aaa&#x27; }, ticks: { color: &#x27;#aaa&#x27; }, grid: { color: &#x27;rgba(255,255,255,0.05)&#x27; } },
+      y: { title: { display: true, text: &#x27;均阅读数&#x27;, color: &#x27;#aaa&#x27; }, ticks: { color: &#x27;#aaa&#x27; }, grid: { color: &#x27;rgba(255,255,255,0.05)&#x27; } }
+    }
+  }
+});
+
+// Chart 5: Frequency bar (top15)
+const authors15 = [&#x27;爱租机&#x27;,&#x27;Apple产品诚顺&#x27;,&#x27;Apple产品银行分期购&#x27;,&#x27;Apple产品权益智选&#x27;,&#x27;Apple教育数码产品&#x27;,&#x27;Apple授权经销商易通&#x27;,&#x27;高飞易&#x27;,&#x27;Apple欣远授权运动&#x27;,&#x27;润森数码&#x27;,&#x27;智联心选&#x27;,&#x27;Apple电竞玩家&#x27;,&#x27;Apple授权经销商鑫亚宝宇&#x27;,&#x27;Apple授权经销商扬笛&#x27;,&#x27;Apple产品京东自营&#x27;,&#x27;Apple授权经销商潮界&#x27;];
+const notes15 = [550,324,186,139,120,108,100,107,95,87,73,78,74,24,54];
+const ctx5 = document.getElementById(&#x27;chartFreq&#x27;).getContext(&#x27;2d&#x27;);
+new Chart(ctx5, {
+  type: &#x27;bar&#x27;,
+  data: {
+    labels: authors15.map(a =&gt; a.replace(&#x27;Apple&#x27;,&#x27;&#x27;).replace(&#x27;授权经销商&#x27;,&#x27;&#x27;).trim().substring(0,6)),
+    datasets: [{ label: &#x27;发布数量&#x27;, data: notes15, backgroundColor: &#x27;rgba(255,36,66,0.7)&#x27; }]
+  },
+  options: {
+    indexAxis: &#x27;y&#x27;, responsive: true, maintainAspectRatio: true,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { ticks: { color: &#x27;#aaa&#x27; }, grid: { color: &#x27;rgba(255,255,255,0.05)&#x27; } },
+      y: { ticks: { color: &#x27;#aaa&#x27;, font: { size: 11 } }, grid: { color: &#x27;rgba(255,255,255,0.05)&#x27; } }
+    }
+  }
+});
+
+// Chart 6: Top 20 reads
+const top20titles = [&#x27;iPhone隐藏功能&#x27;,&#x27;iPhone17拼豆图纸&#x27;,&#x27;原相机拍烟花&#x27;,&#x27;iPad隐藏功能&#x27;,&#x27;苹果手机打面&#x27;,&#x27;AirPods功能&#x27;,&#x27;iPad选购指南&#x27;,&#x27;iPhone17vsPro&#x27;,&#x27;AppleWatch功能&#x27;,&#x27;iPhoneSE4配色&#x27;,&#x27;Mac隐藏功能&#x27;,&#x27;爱马仕包包&#x27;,&#x27;苹果新机便宜&#x27;,&#x27;大疆Pocket3&#x27;,&#x27;iPad神仙软件&#x27;,&#x27;iPad国补速看&#x27;,&#x27;iPhone选购&#x27;,&#x27;看不见小马&#x27;,&#x27;动态粒子码&#x27;,&#x27;iPhone数据迁移&#x27;];
+const top20reads = [1080843,471421,436856,402688,382067,368455,340725,335654,334064,315055,267485,239817,230645,202477,197849,173912,172595,168139,160797,151243];
+const ctx6 = document.getElementById(&#x27;chartTop20&#x27;).getContext(&#x27;2d&#x27;);
+new Chart(ctx6, {
+  type: &#x27;bar&#x27;,
+  data: {
+    labels: top20titles,
+    datasets: [{ label: &#x27;阅读数&#x27;, data: top20reads, backgroundColor: top20reads.map((v,i) =&gt; i===0?&#x27;rgba(255,36,66,0.9)&#x27;:i&lt;3?&#x27;rgba(255,36,66,0.7)&#x27;:&#x27;rgba(255,36,66,0.5)&#x27;) }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { ticks: { color: &#x27;#aaa&#x27;, maxRotation: 45, font: { size: 10 } }, grid: { color: &#x27;rgba(255,255,255,0.05)&#x27; } },
+      y: { ticks: { color: &#x27;#aaa&#x27;, callback: v =&gt; (v/10000).toFixed(0)+&#x27;万&#x27; }, grid: { color: &#x27;rgba(255,255,255,0.05)&#x27; } }
+    }
+  }
+});
+
+// Chart 7: Interaction structure pie
+const ctx7 = document.getElementById(&#x27;chartInteraction&#x27;).getContext(&#x27;2d&#x27;);
+new Chart(ctx7, {
+  type: &#x27;doughnut&#x27;,
+  data: {
+    labels: [&#x27;点赞 278,917&#x27;, &#x27;收藏 189,679&#x27;, &#x27;评论 48,711&#x27;, &#x27;分享 63,443&#x27;],
+    datasets: [{ data: [278917,189679,48711,63443], backgroundColor: [&#x27;#ff2442&#x27;,&#x27;#9c27b0&#x27;,&#x27;#2196f3&#x27;,&#x27;#00e676&#x27;], borderWidth: 0 }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { labels: { color: &#x27;#ccc&#x27;, font: { size: 11 } } } }
+  }
+});
+
+// Chart 8: Fans monthly
+const ctx8 = document.getElementById(&#x27;chartFans&#x27;).getContext(&#x27;2d&#x27;);
+new Chart(ctx8, {
+  type: &#x27;bar&#x27;,
+  data: {
+    labels: months,
+    datasets: [{ label: &#x27;新增粉丝&#x27;, data: fansData, backgroundColor: fansData.map(v =&gt; v&gt;100?&#x27;rgba(0,230,118,0.8)&#x27;:&#x27;rgba(255,36,66,0.5)&#x27;) }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: true,
+    plugins: { legend: { labels: { color: &#x27;#ccc&#x27; } } },
+    scales: {
+      x: { ticks: { color: &#x27;#aaa&#x27;, maxRotation: 45 }, grid: { color: &#x27;rgba(255,255,255,0.05)&#x27; } },
+      y: { ticks: { color: &#x27;#aaa&#x27; }, grid: { color: &#x27;rgba(255,255,255,0.05)&#x27; } }
+    }
+  }
+});
+&lt;/script&gt;
+&lt;script&gt;
+  // The report surface is rendered from the monthly workbook artifact. Keeping the
+  // data separately makes the same page refreshable without editing report copy.
+  (() =&gt; {
+    const escapeHtml = value =&gt; String(value ?? &quot;&quot;).replace(/[&amp;&lt;&gt;&#x27;&quot;]/g, char =&gt; ({
+      &quot;&amp;&quot;: &quot;&amp;amp;&quot;, &quot;&lt;&quot;: &quot;&amp;lt;&quot;, &quot;&gt;&quot;: &quot;&amp;gt;&quot;, &quot;&#x27;&quot;: &quot;&amp;#39;&quot;, &#x27;&quot;&#x27;: &quot;&amp;quot;&quot;
+    })[char]);
+    const format = value =&gt; {
+      const amount = Number(value || 0);
+      if (Math.abs(amount) &gt;= 100000000) return `${(amount / 100000000).toFixed(2)}亿`;
+      if (Math.abs(amount) &gt;= 10000) return `${(amount / 10000).toFixed(1)}万`;
+      return new Intl.NumberFormat(&quot;zh-CN&quot;).format(Math.round(amount));
+    };
+    const rate = (numerator, denominator) =&gt; denominator ? `${(numerator / denominator * 100).toFixed(1)}%` : &quot;-&quot;;
+    const scale = (value, max) =&gt; `${Math.max(2, Math.round((Number(value || 0) / Math.max(1, max)) * 100))}%`;
+    const fetchReport = async () =&gt; ({&quot;schema_version&quot;: &quot;1.0&quot;, &quot;generated_at&quot;: &quot;2026-08-09 17:32&quot;, &quot;source&quot;: {&quot;month&quot;: &quot;2026-07&quot;, &quot;workbook&quot;: &quot;小红书数据final.xlsx&quot;, &quot;cutoff&quot;: &quot;2026-07-31&quot;, &quot;fiscal_period&quot;: &quot;FY26 Q4&quot;}, &quot;summary&quot;: {&quot;accounts&quot;: 246, &quot;active_accounts&quot;: 246, &quot;latest_note_month&quot;: &quot;2026-07&quot;, &quot;lifetime&quot;: {&quot;reads&quot;: 277860742, &quot;likes&quot;: 7241128, &quot;collects&quot;: 2175510, &quot;comments&quot;: 2130237, &quot;shares&quot;: 817637, &quot;new_fans&quot;: 12069, &quot;notes&quot;: 48236, &quot;interactions&quot;: 11546875}, &quot;analysis_month&quot;: {&quot;reads&quot;: 7824730, &quot;likes&quot;: 144118, &quot;collects&quot;: 38369, &quot;comments&quot;: 183490, &quot;shares&quot;: 19600, &quot;new_fans&quot;: 8339, &quot;notes&quot;: 3370, &quot;interactions&quot;: 365977}, &quot;current_month&quot;: {&quot;reads&quot;: 10659328, &quot;likes&quot;: 300089, &quot;collects&quot;: 66836, &quot;comments&quot;: 201967, &quot;shares&quot;: 0, &quot;new_fans&quot;: 14542, &quot;notes&quot;: 246, &quot;interactions&quot;: 568892}, &quot;current_month_notes&quot;: {&quot;reads&quot;: 7824730, &quot;likes&quot;: 144118, &quot;collects&quot;: 38369, &quot;comments&quot;: 183490, &quot;shares&quot;: 19600, &quot;new_fans&quot;: 8339, &quot;notes&quot;: 3370, &quot;interactions&quot;: 365977}, &quot;viral_threshold&quot;: 10000, &quot;viral_notes&quot;: 86}, &quot;monthly&quot;: [{&quot;month&quot;: &quot;2025-08&quot;, &quot;reads&quot;: 3366049, &quot;likes&quot;: 82214, &quot;collects&quot;: 20902, &quot;comments&quot;: 30215, &quot;shares&quot;: 29331, &quot;new_fans&quot;: 20, &quot;notes&quot;: 1783, &quot;interactions&quot;: 133331}, {&quot;month&quot;: &quot;2025-09&quot;, &quot;reads&quot;: 5813130, &quot;likes&quot;: 137804, &quot;collects&quot;: 30950, &quot;comments&quot;: 38703, &quot;shares&quot;: 20514, &quot;new_fans&quot;: 30, &quot;notes&quot;: 1842, &quot;interactions&quot;: 207457}, {&quot;month&quot;: &quot;2025-10&quot;, &quot;reads&quot;: 9659870, &quot;likes&quot;: 266258, &quot;collects&quot;: 74076, &quot;comments&quot;: 21842, &quot;shares&quot;: 35135, &quot;new_fans&quot;: 37, &quot;notes&quot;: 1565, &quot;interactions&quot;: 362176}, {&quot;month&quot;: &quot;2025-11&quot;, &quot;reads&quot;: 13847737, &quot;likes&quot;: 564613, &quot;collects&quot;: 136189, &quot;comments&quot;: 92437, &quot;shares&quot;: 45243, &quot;new_fans&quot;: 107, &quot;notes&quot;: 1928, &quot;interactions&quot;: 793239}, {&quot;month&quot;: &quot;2025-12&quot;, &quot;reads&quot;: 12460200, &quot;likes&quot;: 422565, &quot;collects&quot;: 124595, &quot;comments&quot;: 105646, &quot;shares&quot;: 33855, &quot;new_fans&quot;: 79, &quot;notes&quot;: 2289, &quot;interactions&quot;: 652806}, {&quot;month&quot;: &quot;2026-01&quot;, &quot;reads&quot;: 15669182, &quot;likes&quot;: 816114, &quot;collects&quot;: 203177, &quot;comments&quot;: 90861, &quot;shares&quot;: 44919, &quot;new_fans&quot;: 50, &quot;notes&quot;: 2180, &quot;interactions&quot;: 1110152}, {&quot;month&quot;: &quot;2026-02&quot;, &quot;reads&quot;: 10154223, &quot;likes&quot;: 640248, &quot;collects&quot;: 117626, &quot;comments&quot;: 65007, &quot;shares&quot;: 19157, &quot;new_fans&quot;: 91, &quot;notes&quot;: 1804, &quot;interactions&quot;: 822881}, {&quot;month&quot;: &quot;2026-03&quot;, &quot;reads&quot;: 9562018, &quot;likes&quot;: 326867, &quot;collects&quot;: 75549, &quot;comments&quot;: 99763, &quot;shares&quot;: 37153, &quot;new_fans&quot;: 103, &quot;notes&quot;: 2745, &quot;interactions&quot;: 502179}, {&quot;month&quot;: &quot;2026-04&quot;, &quot;reads&quot;: 9934599, &quot;likes&quot;: 399798, &quot;collects&quot;: 96703, &quot;comments&quot;: 119840, &quot;shares&quot;: 30922, &quot;new_fans&quot;: 92, &quot;notes&quot;: 2948, &quot;interactions&quot;: 616341}, {&quot;month&quot;: &quot;2026-05&quot;, &quot;reads&quot;: 6307373, &quot;likes&quot;: 126084, &quot;collects&quot;: 64907, &quot;comments&quot;: 186504, &quot;shares&quot;: 12089, &quot;new_fans&quot;: 263, &quot;notes&quot;: 2717, &quot;interactions&quot;: 377495}, {&quot;month&quot;: &quot;2026-06&quot;, &quot;reads&quot;: 9153516, &quot;likes&quot;: 636692, &quot;collects&quot;: 73041, &quot;comments&quot;: 119566, &quot;shares&quot;: 17116, &quot;new_fans&quot;: 2504, &quot;notes&quot;: 3148, &quot;interactions&quot;: 829299}, {&quot;month&quot;: &quot;2026-07&quot;, &quot;reads&quot;: 7824730, &quot;likes&quot;: 144118, &quot;collects&quot;: 38369, &quot;comments&quot;: 183490, &quot;shares&quot;: 19600, &quot;new_fans&quot;: 8339, &quot;notes&quot;: 3370, &quot;interactions&quot;: 365977}], &quot;categories&quot;: [{&quot;reads&quot;: 3396280, &quot;likes&quot;: 73887, &quot;collects&quot;: 16241, &quot;comments&quot;: 65155, &quot;shares&quot;: 8527, &quot;new_fans&quot;: 2017, &quot;notes&quot;: 857, &quot;interactions&quot;: 155283, &quot;category&quot;: &quot;产品种草&quot;, &quot;avg_reads&quot;: 3963}, {&quot;reads&quot;: 2287371, &quot;likes&quot;: 40963, &quot;collects&quot;: 5542, &quot;comments&quot;: 37303, &quot;shares&quot;: 3227, &quot;new_fans&quot;: 1524, &quot;notes&quot;: 1143, &quot;interactions&quot;: 83808, &quot;category&quot;: &quot;其他&quot;, &quot;avg_reads&quot;: 2001}, {&quot;reads&quot;: 1699115, &quot;likes&quot;: 18003, &quot;collects&quot;: 9838, &quot;comments&quot;: 68945, &quot;shares&quot;: 3640, &quot;new_fans&quot;: 574, &quot;notes&quot;: 440, &quot;interactions&quot;: 96786, &quot;category&quot;: &quot;使用技巧&quot;, &quot;avg_reads&quot;: 3862}, {&quot;reads&quot;: 299757, &quot;likes&quot;: 7434, &quot;collects&quot;: 5595, &quot;comments&quot;: 9581, &quot;shares&quot;: 3841, &quot;new_fans&quot;: 3732, &quot;notes&quot;: 604, &quot;interactions&quot;: 22610, &quot;category&quot;: &quot;营销活动&quot;, &quot;avg_reads&quot;: 496}, {&quot;reads&quot;: 100566, &quot;likes&quot;: 1010, &quot;collects&quot;: 500, &quot;comments&quot;: 1743, &quot;shares&quot;: 203, &quot;new_fans&quot;: 280, &quot;notes&quot;: 236, &quot;interactions&quot;: 3253, &quot;category&quot;: &quot;促销优惠&quot;, &quot;avg_reads&quot;: 426}, {&quot;reads&quot;: 24498, &quot;likes&quot;: 2441, &quot;collects&quot;: 537, &quot;comments&quot;: 663, &quot;shares&quot;: 132, &quot;new_fans&quot;: 195, &quot;notes&quot;: 66, &quot;interactions&quot;: 3641, &quot;category&quot;: &quot;节日营销&quot;, &quot;avg_reads&quot;: 371}, {&quot;reads&quot;: 9657, &quot;likes&quot;: 175, &quot;collects&quot;: 58, &quot;comments&quot;: 43, &quot;shares&quot;: 20, &quot;new_fans&quot;: 7, &quot;notes&quot;: 20, &quot;interactions&quot;: 276, &quot;category&quot;: &quot;系统功能&quot;, &quot;avg_reads&quot;: 483}, {&quot;reads&quot;: 7486, &quot;likes&quot;: 205, &quot;collects&quot;: 58, &quot;comments&quot;: 57, &quot;shares&quot;: 10, &quot;new_fans&quot;: 10, &quot;notes&quot;: 4, &quot;interactions&quot;: 320, &quot;category&quot;: &quot;未分类&quot;, &quot;avg_reads&quot;: 1872}], &quot;formats&quot;: [{&quot;name&quot;: &quot;图片&quot;, &quot;count&quot;: 2076}, {&quot;name&quot;: &quot;视频&quot;, &quot;count&quot;: 1294}], &quot;top_notes&quot;: [{&quot;note_id&quot;: &quot;6a66d343000000000f03de6f&quot;, &quot;title&quot;: &quot;谁懂这两个的区别？你一般会用哪个？&quot;, &quot;url&quot;: &quot;https://www.xiaohongshu.com/discovery/item/6a66d343000000000f03de6f&quot;, &quot;author_id&quot;: &quot;5d106ebb0000000012026c80&quot;, &quot;category&quot;: &quot;其他&quot;, &quot;format&quot;: &quot;图片&quot;, &quot;published&quot;: &quot;2026-07-27&quot;, &quot;reads&quot;: 548454, &quot;likes&quot;: 1874, &quot;collects&quot;: 262, &quot;comments&quot;: 1425, &quot;shares&quot;: 1585, &quot;new_fans&quot;: 23, &quot;account&quot;: &quot;时代印象&quot;}, {&quot;note_id&quot;: &quot;6a5eecd2000000001c00d66b&quot;, &quot;title&quot;: &quot;原来苹果的好热??和安卓不一样&quot;, &quot;url&quot;: &quot;https://www.xiaohongshu.com/discovery/item/6a5eecd2000000001c00d66b&quot;, &quot;author_id&quot;: &quot;5d106ebb0000000012026c80&quot;, &quot;category&quot;: &quot;使用技巧&quot;, &quot;format&quot;: &quot;视频&quot;, &quot;published&quot;: &quot;2026-07-21&quot;, &quot;reads&quot;: 392813, &quot;likes&quot;: 1522, &quot;collects&quot;: 404, &quot;comments&quot;: 31232, &quot;shares&quot;: 44, &quot;new_fans&quot;: 36, &quot;account&quot;: &quot;时代印象&quot;}, {&quot;note_id&quot;: &quot;6a47f617000000001c024d6e&quot;, &quot;title&quot;: &quot;原来苹果和安卓打出“好热”??是不一样的&quot;, &quot;url&quot;: &quot;https://www.xiaohongshu.com/discovery/item/6a47f617000000001c024d6e&quot;, &quot;author_id&quot;: &quot;5ee360c200000000010001b1&quot;, &quot;category&quot;: &quot;使用技巧&quot;, &quot;format&quot;: &quot;视频&quot;, &quot;published&quot;: &quot;2026-07-04&quot;, &quot;reads&quot;: 361679, &quot;likes&quot;: 2076, &quot;collects&quot;: 192, &quot;comments&quot;: 26153, &quot;shares&quot;: 64, &quot;new_fans&quot;: 15, &quot;account&quot;: &quot;仲璇i:Dea&quot;}, {&quot;note_id&quot;: &quot;6a685365000000000f0178b7&quot;, &quot;title&quot;: &quot;打心火❤️‍??测测你是不是用的苹果&quot;, &quot;url&quot;: &quot;https://www.xiaohongshu.com/discovery/item/6a685365000000000f0178b7&quot;, &quot;author_id&quot;: &quot;64f178000000000006030522&quot;, &quot;category&quot;: &quot;产品种草&quot;, &quot;format&quot;: &quot;视频&quot;, &quot;published&quot;: &quot;2026-07-28&quot;, &quot;reads&quot;: 325207, &quot;likes&quot;: 1275, &quot;collects&quot;: 274, &quot;comments&quot;: 17632, &quot;shares&quot;: 39, &quot;new_fans&quot;: 61, &quot;account&quot;: &quot;PEEZ&quot;}, {&quot;note_id&quot;: &quot;6a674cdf000000000503bdad&quot;, &quot;title&quot;: &quot;苹果不需要明星代言，因为明星全在用&quot;, &quot;url&quot;: &quot;https://www.xiaohongshu.com/discovery/item/6a674cdf000000000503bdad&quot;, &quot;author_id&quot;: &quot;5eec40280000000001001758&quot;, &quot;category&quot;: &quot;产品种草&quot;, &quot;format&quot;: &quot;视频&quot;, &quot;published&quot;: &quot;2026-07-27&quot;, &quot;reads&quot;: 308005, &quot;likes&quot;: 903, &quot;collects&quot;: 77, &quot;comments&quot;: 143, &quot;shares&quot;: 30, &quot;new_fans&quot;: 11, &quot;account&quot;: &quot;Coodoo&quot;}, {&quot;note_id&quot;: &quot;6a50c7db000000001c0262c5&quot;, &quot;title&quot;: &quot;不同价位打出来的“地球”还不一样吗？&quot;, &quot;url&quot;: &quot;https://www.xiaohongshu.com/discovery/item/6a50c7db000000001c0262c5&quot;, &quot;author_id&quot;: &quot;62b2c1450000000019029aa4&quot;, &quot;category&quot;: &quot;其他&quot;, &quot;format&quot;: &quot;视频&quot;, &quot;published&quot;: &quot;2026-07-10&quot;, &quot;reads&quot;: 278739, &quot;likes&quot;: 1164, &quot;collects&quot;: 156, &quot;comments&quot;: 16344, &quot;shares&quot;: 22, &quot;new_fans&quot;: 18, &quot;account&quot;: &quot;ONEZERO&quot;}, {&quot;note_id&quot;: &quot;6a561046000000000f01c48d&quot;, &quot;title&quot;: &quot;iPhone 用户：据说每个人打出来都不一样??&quot;, &quot;url&quot;: &quot;https://www.xiaohongshu.com/discovery/item/6a561046000000000f01c48d&quot;, &quot;author_id&quot;: &quot;5de49c83000000000100790f&quot;, &quot;category&quot;: &quot;产品种草&quot;, &quot;format&quot;: &quot;视频&quot;, &quot;published&quot;: &quot;2026-07-14&quot;, &quot;reads&quot;: 256565, &quot;likes&quot;: 1391, &quot;collects&quot;: 162, &quot;comments&quot;: 8874, &quot;shares&quot;: 133, &quot;new_fans&quot;: 62, &quot;account&quot;: &quot;科达通讯&quot;}, {&quot;note_id&quot;: &quot;6a575f76000000001503df95&quot;, &quot;title&quot;: &quot;你问我什么时候最汗流浃背??&quot;, &quot;url&quot;: &quot;https://www.xiaohongshu.com/discovery/item/6a575f76000000001503df95&quot;, &quot;author_id&quot;: &quot;5ee360c200000000010001b1&quot;, &quot;category&quot;: &quot;其他&quot;, &quot;format&quot;: &quot;视频&quot;, &quot;published&quot;: &quot;2026-07-15&quot;, &quot;reads&quot;: 244338, &quot;likes&quot;: 6999, &quot;collects&quot;: 155, &quot;comments&quot;: 98, &quot;shares&quot;: 56, &quot;new_fans&quot;: 34, &quot;account&quot;: &quot;仲璇i:Dea&quot;}, {&quot;note_id&quot;: &quot;6a4e179400000000150253a8&quot;, &quot;title&quot;: &quot;苹果你的输入法好强，能打出????面&quot;, &quot;url&quot;: &quot;https://www.xiaohongshu.com/discovery/item/6a4e179400000000150253a8&quot;, &quot;author_id&quot;: &quot;55c4efc55894466f3e1163ef&quot;, &quot;category&quot;: &quot;使用技巧&quot;, &quot;format&quot;: &quot;视频&quot;, &quot;published&quot;: &quot;2026-07-08&quot;, &quot;reads&quot;: 238272, &quot;likes&quot;: 379, &quot;collects&quot;: 104, &quot;comments&quot;: 9972, &quot;shares&quot;: 16, &quot;new_fans&quot;: 23, &quot;account&quot;: &quot;天音TELLING&quot;}, {&quot;note_id&quot;: &quot;6a45f1ab0000000006033274&quot;, &quot;title&quot;: &quot;千万别忽略iPhone顶部这两个小点‼️&quot;, &quot;url&quot;: &quot;https://www.xiaohongshu.com/discovery/item/6a45f1ab0000000006033274&quot;, &quot;author_id&quot;: &quot;5c6407a50000000012037195&quot;, &quot;category&quot;: &quot;产品种草&quot;, &quot;format&quot;: &quot;图片&quot;, &quot;published&quot;: &quot;2026-07-02&quot;, &quot;reads&quot;: 210907, &quot;likes&quot;: 2516, &quot;collects&quot;: 1677, &quot;comments&quot;: 106, &quot;shares&quot;: 1356, &quot;new_fans&quot;: 25, &quot;account&quot;: &quot;尚派正品渭南万达广场店&quot;}, {&quot;note_id&quot;: &quot;6a4d0f64000000001101fe77&quot;, &quot;title&quot;: &quot;苹果，你藏的好深&quot;, &quot;url&quot;: &quot;https://www.xiaohongshu.com/discovery/item/6a4d0f64000000001101fe77&quot;, &quot;author_id&quot;: &quot;5de49c83000000000100790f&quot;, &quot;category&quot;: &quot;产品种草&quot;, &quot;format&quot;: &quot;视频&quot;, &quot;published&quot;: &quot;2026-07-07&quot;, &quot;reads&quot;: 191517, &quot;likes&quot;: 1845, &quot;collects&quot;: 557, &quot;comments&quot;: 8063, &quot;shares&quot;: 290, &quot;new_fans&quot;: 52, &quot;account&quot;: &quot;科达通讯&quot;}, {&quot;note_id&quot;: &quot;6a604898000000000402894c&quot;, &quot;title&quot;: &quot;一共有多少个7？&quot;, &quot;url&quot;: &quot;https://www.xiaohongshu.com/discovery/item/6a604898000000000402894c&quot;, &quot;author_id&quot;: &quot;62b2c1450000000019029aa4&quot;, &quot;category&quot;: &quot;其他&quot;, &quot;format&quot;: &quot;视频&quot;, &quot;published&quot;: &quot;2026-07-22&quot;, &quot;reads&quot;: 174354, &quot;likes&quot;: 505, &quot;collects&quot;: 242, &quot;comments&quot;: 3166, &quot;shares&quot;: 30, &quot;new_fans&quot;: 43, &quot;account&quot;: &quot;ONEZERO&quot;}, {&quot;note_id&quot;: &quot;6a63083f000000000f009842&quot;, &quot;title&quot;: &quot;macbook的音质也是如此的权威??&quot;, &quot;url&quot;: &quot;https://www.xiaohongshu.com/discovery/item/6a63083f000000000f009842&quot;, &quot;author_id&quot;: &quot;66a44c00000000001b01719d&quot;, &quot;category&quot;: &quot;产品种草&quot;, &quot;format&quot;: &quot;视频&quot;, &quot;published&quot;: &quot;2026-07-24&quot;, &quot;reads&quot;: 163441, &quot;likes&quot;: 499, &quot;collects&quot;: 62, &quot;comments&quot;: 379, &quot;shares&quot;: 117, &quot;new_fans&quot;: 7, &quot;account&quot;: &quot;COOL ROOM纵驰&quot;}, {&quot;note_id&quot;: &quot;6a5608a9000000000f01432b&quot;, &quot;title&quot;: &quot;苹果官方清洗Apple Watch的教程来了！&quot;, &quot;url&quot;: &quot;https://www.xiaohongshu.com/discovery/item/6a5608a9000000000f01432b&quot;, &quot;author_id&quot;: &quot;5cf08f0000000000180258ba&quot;, &quot;category&quot;: &quot;使用技巧&quot;, &quot;format&quot;: &quot;视频&quot;, &quot;published&quot;: &quot;2026-07-14&quot;, &quot;reads&quot;: 160535, &quot;likes&quot;: 5161, &quot;collects&quot;: 3716, &quot;comments&quot;: 218, &quot;shares&quot;: 2112, &quot;new_fans&quot;: 135, &quot;account&quot;: &quot;SUNION新联&quot;}, {&quot;note_id&quot;: &quot;6a55b50e0000000008033043&quot;, &quot;title&quot;: &quot;只有正版iPhone才能让两个表情包强行合体&quot;, &quot;url&quot;: &quot;https://www.xiaohongshu.com/discovery/item/6a55b50e0000000008033043&quot;, &quot;author_id&quot;: &quot;5d106ebb0000000012026c80&quot;, &quot;category&quot;: &quot;产品种草&quot;, &quot;format&quot;: &quot;视频&quot;, &quot;published&quot;: &quot;2026-07-14&quot;, &quot;reads&quot;: 157606, &quot;likes&quot;: 567, &quot;collects&quot;: 384, &quot;comments&quot;: 10556, &quot;shares&quot;: 99, &quot;new_fans&quot;: 49, &quot;account&quot;: &quot;时代印象&quot;}, {&quot;note_id&quot;: &quot;6a5089e000000000060356e3&quot;, &quot;title&quot;: &quot;苹果表情包的重大bug‼️有人发现吗❓&quot;, &quot;url&quot;: &quot;https://www.xiaohongshu.com/discovery/item/6a5089e000000000060356e3&quot;, &quot;author_id&quot;: &quot;5d106ebb0000000012026c80&quot;, &quot;category&quot;: &quot;产品种草&quot;, &quot;format&quot;: &quot;视频&quot;, &quot;published&quot;: &quot;2026-07-10&quot;, &quot;reads&quot;: 142720, &quot;likes&quot;: 273, &quot;collects&quot;: 169, &quot;comments&quot;: 4032, &quot;shares&quot;: 18, &quot;new_fans&quot;: 22, &quot;account&quot;: &quot;时代印象&quot;}, {&quot;note_id&quot;: &quot;6a5f05ae000000001c011659&quot;, &quot;title&quot;: &quot;这个emoji，谁懂！真的很可爱??&quot;, &quot;url&quot;: &quot;https://www.xiaohongshu.com/discovery/item/6a5f05ae000000001c011659&quot;, &quot;author_id&quot;: &quot;65af8deb0000000016003ac4&quot;, &quot;category&quot;: &quot;其他&quot;, &quot;format&quot;: &quot;视频&quot;, &quot;published&quot;: &quot;2026-07-21&quot;, &quot;reads&quot;: 135494, &quot;likes&quot;: 459, &quot;collects&quot;: 108, &quot;comments&quot;: 3196, &quot;shares&quot;: 32, &quot;new_fans&quot;: 124, &quot;account&quot;: &quot;FAST LEAP&quot;}, {&quot;note_id&quot;: &quot;6a448fa5000000000802581d&quot;, &quot;title&quot;: &quot;当我在评论区打出了自己的机型后……&quot;, &quot;url&quot;: &quot;https://www.xiaohongshu.com/discovery/item/6a448fa5000000000802581d&quot;, &quot;author_id&quot;: &quot;5d106ebb0000000012026c80&quot;, &quot;category&quot;: &quot;其他&quot;, &quot;format&quot;: &quot;视频&quot;, &quot;published&quot;: &quot;2026-07-01&quot;, &quot;reads&quot;: 126509, &quot;likes&quot;: 270, &quot;collects&quot;: 97, &quot;comments&quot;: 3865, &quot;shares&quot;: 3, &quot;new_fans&quot;: 24, &quot;account&quot;: &quot;时代印象&quot;}, {&quot;note_id&quot;: &quot;6a550465000000002201585f&quot;, &quot;title&quot;: &quot;全面屏iPad Pro的出现直接爆杀比赛??&quot;, &quot;url&quot;: &quot;https://www.xiaohongshu.com/discovery/item/6a550465000000002201585f&quot;, &quot;author_id&quot;: &quot;65af8deb0000000016003ac4&quot;, &quot;category&quot;: &quot;产品种草&quot;, &quot;format&quot;: &quot;视频&quot;, &quot;published&quot;: &quot;2026-07-13&quot;, &quot;reads&quot;: 116376, &quot;likes&quot;: 869, &quot;collects&quot;: 95, &quot;comments&quot;: 316, &quot;shares&quot;: 44, &quot;new_fans&quot;: 27, &quot;account&quot;: &quot;FAST LEAP&quot;}, {&quot;note_id&quot;: &quot;6a5883b10000000011015969&quot;, &quot;title&quot;: &quot;iPhone以前的包装盒和配件&quot;, &quot;url&quot;: &quot;https://www.xiaohongshu.com/discovery/item/6a5883b10000000011015969&quot;, &quot;author_id&quot;: &quot;64f178000000000006030522&quot;, &quot;category&quot;: &quot;产品种草&quot;, &quot;format&quot;: &quot;视频&quot;, &quot;published&quot;: &quot;2026-07-16&quot;, &quot;reads&quot;: 107717, &quot;likes&quot;: 21369, &quot;collects&quot;: 286, &quot;comments&quot;: 53, &quot;shares&quot;: 353, &quot;new_fans&quot;: 11, &quot;account&quot;: &quot;PEEZ&quot;}], &quot;top_accounts&quot;: [{&quot;name&quot;: &quot;时代印象&quot;, &quot;dealer&quot;: &quot;成都时代印象科技有限公司&quot;, &quot;reads&quot;: 1766341, &quot;interactions&quot;: 71839, &quot;new_fans&quot;: 456}, {&quot;name&quot;: &quot;仲璇i:Dea&quot;, &quot;dealer&quot;: &quot;上海仲璇电子科技有限公司&quot;, &quot;reads&quot;: 762893, &quot;interactions&quot;: 53370, &quot;new_fans&quot;: 403}, {&quot;name&quot;: &quot;Coodoo&quot;, &quot;dealer&quot;: &quot;深圳市酷动数码有限公司&quot;, &quot;reads&quot;: 717116, &quot;interactions&quot;: 24910, &quot;new_fans&quot;: 734}, {&quot;name&quot;: &quot;科达通讯&quot;, &quot;dealer&quot;: &quot;浙江迈风网络科技有限公司&quot;, &quot;reads&quot;: 711089, &quot;interactions&quot;: 31398, &quot;new_fans&quot;: 905}, {&quot;name&quot;: &quot;ONEZERO&quot;, &quot;dealer&quot;: &quot;浙江美承数码科技集团有限公司&quot;, &quot;reads&quot;: 679158, &quot;interactions&quot;: 28889, &quot;new_fans&quot;: 146}, {&quot;name&quot;: &quot;SUNION新联&quot;, &quot;dealer&quot;: &quot;广东新联移动通信有限公司&quot;, &quot;reads&quot;: 613228, &quot;interactions&quot;: 130090, &quot;new_fans&quot;: 680}, {&quot;name&quot;: &quot;PEEZ&quot;, &quot;dealer&quot;: &quot;上海佩知信息科技有限公司&quot;, &quot;reads&quot;: 597001, &quot;interactions&quot;: 69706, &quot;new_fans&quot;: 1275}, {&quot;name&quot;: &quot;COOL ROOM纵驰&quot;, &quot;dealer&quot;: &quot;无锡市纵驰传媒有限公司&quot;, &quot;reads&quot;: 538685, &quot;interactions&quot;: 24239, &quot;new_fans&quot;: 427}], &quot;account_performance&quot;: [{&quot;name&quot;: &quot;时代印象&quot;, &quot;dealer&quot;: &quot;成都时代印象科技有限公司&quot;, &quot;notes&quot;: 37, &quot;reads&quot;: 1555676, &quot;avg_reads&quot;: 42045, &quot;viral_rate&quot;: 0.24324324324324326, &quot;cohort&quot;: &quot;S&quot;}, {&quot;name&quot;: &quot;仲璇i:Dea&quot;, &quot;dealer&quot;: &quot;上海仲璇电子科技有限公司&quot;, &quot;notes&quot;: 36, &quot;reads&quot;: 748132, &quot;avg_reads&quot;: 20781, &quot;viral_rate&quot;: 0.1111111111111111, &quot;cohort&quot;: &quot;S&quot;}, {&quot;name&quot;: &quot;PEEZ&quot;, &quot;dealer&quot;: &quot;上海佩知信息科技有限公司&quot;, &quot;notes&quot;: 27, &quot;reads&quot;: 497273, &quot;avg_reads&quot;: 18418, &quot;viral_rate&quot;: 0.1111111111111111, &quot;cohort&quot;: &quot;S&quot;}, {&quot;name&quot;: &quot;尚派正品渭南万达广场店&quot;, &quot;dealer&quot;: &quot;北京尚派正品科技有限公司&quot;, &quot;notes&quot;: 13, &quot;reads&quot;: 213158, &quot;avg_reads&quot;: 16397, &quot;viral_rate&quot;: 0.07692307692307693, &quot;cohort&quot;: &quot;S&quot;}, {&quot;name&quot;: &quot;Coodoo&quot;, &quot;dealer&quot;: &quot;深圳市酷动数码有限公司&quot;, &quot;notes&quot;: 30, &quot;reads&quot;: 459028, &quot;avg_reads&quot;: 15301, &quot;viral_rate&quot;: 0.13333333333333333, &quot;cohort&quot;: &quot;S&quot;}, {&quot;name&quot;: &quot;天音TELLING&quot;, &quot;dealer&quot;: &quot;天音信息服务（北京）有限公司&quot;, &quot;notes&quot;: 21, &quot;reads&quot;: 320489, &quot;avg_reads&quot;: 15261, &quot;viral_rate&quot;: 0.14285714285714285, &quot;cohort&quot;: &quot;S&quot;}, {&quot;name&quot;: &quot;FAST LEAP&quot;, &quot;dealer&quot;: &quot;四川新跃创为科技有限公司&quot;, &quot;notes&quot;: 22, &quot;reads&quot;: 309356, &quot;avg_reads&quot;: 14062, &quot;viral_rate&quot;: 0.13636363636363635, &quot;cohort&quot;: &quot;S&quot;}, {&quot;name&quot;: &quot;REYIBO&quot;, &quot;dealer&quot;: &quot;上海睿毅博科技有限公司&quot;, &quot;notes&quot;: 20, &quot;reads&quot;: 280141, &quot;avg_reads&quot;: 14007, &quot;viral_rate&quot;: 0.3, &quot;cohort&quot;: &quot;S&quot;}, {&quot;name&quot;: &quot;ONEZERO&quot;, &quot;dealer&quot;: &quot;浙江美承数码科技集团有限公司&quot;, &quot;notes&quot;: 43, &quot;reads&quot;: 589835, &quot;avg_reads&quot;: 13717, &quot;viral_rate&quot;: 0.13953488372093023, &quot;cohort&quot;: &quot;S&quot;}, {&quot;name&quot;: &quot;COOL ROOM纵驰&quot;, &quot;dealer&quot;: &quot;无锡市纵驰传媒有限公司&quot;, &quot;notes&quot;: 28, &quot;reads&quot;: 375797, &quot;avg_reads&quot;: 13421, &quot;viral_rate&quot;: 0.32142857142857145, &quot;cohort&quot;: &quot;S&quot;}, {&quot;name&quot;: &quot;科达通讯&quot;, &quot;dealer&quot;: &quot;浙江迈风网络科技有限公司&quot;, &quot;notes&quot;: 45, &quot;reads&quot;: 560995, &quot;avg_reads&quot;: 12467, &quot;viral_rate&quot;: 0.08888888888888889, &quot;cohort&quot;: &quot;S&quot;}, {&quot;name&quot;: &quot;SUNION新联&quot;, &quot;dealer&quot;: &quot;广东新联移动通信有限公司&quot;, &quot;notes&quot;: 26, &quot;reads&quot;: 287802, &quot;avg_reads&quot;: 11069, &quot;viral_rate&quot;: 0.11538461538461539, &quot;cohort&quot;: &quot;S&quot;}, {&quot;name&quot;: &quot;科达通讯滨海万达广场店&quot;, &quot;dealer&quot;: &quot;浙江迈风网络科技有限公司&quot;, &quot;notes&quot;: 13, &quot;reads&quot;: 106992, &quot;avg_reads&quot;: 8230, &quot;viral_rate&quot;: 0.07692307692307693, &quot;cohort&quot;: &quot;S&quot;}, {&quot;name&quot;: &quot;品丰 T-WORLD&quot;, &quot;dealer&quot;: &quot;杭州品丰科技有限公司&quot;, &quot;notes&quot;: 21, &quot;reads&quot;: 145390, &quot;avg_reads&quot;: 6923, &quot;viral_rate&quot;: 0.38095238095238093, &quot;cohort&quot;: &quot;S&quot;}, {&quot;name&quot;: &quot;尚派正品&quot;, &quot;dealer&quot;: &quot;北京尚派正品科技有限公司&quot;, &quot;notes&quot;: 11, &quot;reads&quot;: 69504, &quot;avg_reads&quot;: 6319, &quot;viral_rate&quot;: 0.09090909090909091, &quot;cohort&quot;: &quot;S&quot;}, {&quot;name&quot;: &quot;时代印象成都IFS店&quot;, &quot;dealer&quot;: &quot;成都时代印象科技有限公司&quot;, &quot;notes&quot;: 22, &quot;reads&quot;: 88553, &quot;avg_reads&quot;: 4025, &quot;viral_rate&quot;: 0.09090909090909091, &quot;cohort&quot;: &quot;A&quot;}, {&quot;name&quot;: &quot;时代印象南充王府井店&quot;, &quot;dealer&quot;: &quot;成都时代印象科技有限公司&quot;, &quot;notes&quot;: 20, &quot;reads&quot;: 77148, &quot;avg_reads&quot;: 3857, &quot;viral_rate&quot;: 0.05, &quot;cohort&quot;: &quot;A&quot;}, {&quot;name&quot;: &quot;爱果数码&quot;, &quot;dealer&quot;: &quot;南京隆宝数码科技有限公司&quot;, &quot;notes&quot;: 17, &quot;reads&quot;: 57309, &quot;avg_reads&quot;: 3371, &quot;viral_rate&quot;: 0.11764705882352941, &quot;cohort&quot;: &quot;A&quot;}, {&quot;name&quot;: &quot;新新光崇左大新新光通讯店&quot;, &quot;dealer&quot;: &quot;天音信息服务（北京）有限公司&quot;, &quot;notes&quot;: 12, &quot;reads&quot;: 37316, &quot;avg_reads&quot;: 3110, &quot;viral_rate&quot;: 0.08333333333333333, &quot;cohort&quot;: &quot;A&quot;}, {&quot;name&quot;: &quot;纵驰传媒苏州吴江新乐时尚生活广场&quot;, &quot;dealer&quot;: &quot;无锡市纵驰传媒有限公司&quot;, &quot;notes&quot;: 20, &quot;reads&quot;: 57752, &quot;avg_reads&quot;: 2888, &quot;viral_rate&quot;: 0.05, &quot;cohort&quot;: &quot;A&quot;}, {&quot;name&quot;: &quot;居然智慧家内蒙中商世界里店&quot;, &quot;dealer&quot;: &quot;北京居然智慧家艾谱科技有限公司&quot;, &quot;notes&quot;: 14, &quot;reads&quot;: 38408, &quot;avg_reads&quot;: 2743, &quot;viral_rate&quot;: 0.07142857142857142, &quot;cohort&quot;: &quot;A&quot;}, {&quot;name&quot;: &quot;仲璇上海浦江万达广场店&quot;, &quot;dealer&quot;: &quot;上海仲璇电子科技有限公司&quot;, &quot;notes&quot;: 8, &quot;reads&quot;: 20932, &quot;avg_reads&quot;: 2616, &quot;viral_rate&quot;: 0.125, &quot;cohort&quot;: &quot;A&quot;}, {&quot;name&quot;: &quot;时代印象乐山万达店&quot;, &quot;dealer&quot;: &quot;成都时代印象科技有限公司&quot;, &quot;notes&quot;: 20, &quot;reads&quot;: 48239, &quot;avg_reads&quot;: 2412, &quot;viral_rate&quot;: 0.1, &quot;cohort&quot;: &quot;A&quot;}, {&quot;name&quot;: &quot;SUNMON丨轩明&quot;, &quot;dealer&quot;: &quot;河南轩明好彩商贸有限公司&quot;, &quot;notes&quot;: 21, &quot;reads&quot;: 46908, &quot;avg_reads&quot;: 2234, &quot;viral_rate&quot;: 0.047619047619047616, &quot;cohort&quot;: &quot;A&quot;}, {&quot;name&quot;: &quot;Super杭州临平万达广场店&quot;, &quot;dealer&quot;: &quot;北京酷联通讯科技有限公司&quot;, &quot;notes&quot;: 13, &quot;reads&quot;: 27395, &quot;avg_reads&quot;: 2107, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;A&quot;}, {&quot;name&quot;: &quot;居然智慧家&quot;, &quot;dealer&quot;: &quot;北京居然智慧家艾谱科技有限公司&quot;, &quot;notes&quot;: 16, &quot;reads&quot;: 30807, &quot;avg_reads&quot;: 1925, &quot;viral_rate&quot;: 0.0625, &quot;cohort&quot;: &quot;B&quot;}, {&quot;name&quot;: &quot;酷动长沙珠江星环购物中心店&quot;, &quot;dealer&quot;: &quot;深圳市酷动数码有限公司&quot;, &quot;notes&quot;: 23, &quot;reads&quot;: 40903, &quot;avg_reads&quot;: 1778, &quot;viral_rate&quot;: 0.043478260869565216, &quot;cohort&quot;: &quot;B&quot;}, {&quot;name&quot;: &quot;SaaBoo&quot;, &quot;dealer&quot;: &quot;河南飒铂电子科技有限公司&quot;, &quot;notes&quot;: 11, &quot;reads&quot;: 18641, &quot;avg_reads&quot;: 1695, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;B&quot;}, {&quot;name&quot;: &quot;畅航CHANG&quot;, &quot;dealer&quot;: &quot;广东畅航计算机有限公司&quot;, &quot;notes&quot;: 20, &quot;reads&quot;: 30560, &quot;avg_reads&quot;: 1528, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;B&quot;}, {&quot;name&quot;: &quot;尚派正品西安王府井百货熙地港店&quot;, &quot;dealer&quot;: &quot;北京尚派正品科技有限公司&quot;, &quot;notes&quot;: 17, &quot;reads&quot;: 25833, &quot;avg_reads&quot;: 1520, &quot;viral_rate&quot;: 0.058823529411764705, &quot;cohort&quot;: &quot;B&quot;}, {&quot;name&quot;: &quot;HJKJ-海佳科技&quot;, &quot;dealer&quot;: &quot;成都海佳科技有限公司&quot;, &quot;notes&quot;: 10, &quot;reads&quot;: 14726, &quot;avg_reads&quot;: 1473, &quot;viral_rate&quot;: 0.1, &quot;cohort&quot;: &quot;B&quot;}, {&quot;name&quot;: &quot;星凯电子湛江霞山华都汇店&quot;, &quot;dealer&quot;: &quot;天音信息服务（北京）有限公司&quot;, &quot;notes&quot;: 8, &quot;reads&quot;: 11407, &quot;avg_reads&quot;: 1426, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;B&quot;}, {&quot;name&quot;: &quot;STUDIO A&quot;, &quot;dealer&quot;: &quot;昆山富港电子贸易有限公司&quot;, &quot;notes&quot;: 29, &quot;reads&quot;: 37571, &quot;avg_reads&quot;: 1296, &quot;viral_rate&quot;: 0.034482758620689655, &quot;cohort&quot;: &quot;B&quot;}, {&quot;name&quot;: &quot;新胜长沙高铁吾悦广场店&quot;, &quot;dealer&quot;: &quot;湖北新胜科技有限公司&quot;, &quot;notes&quot;: 1, &quot;reads&quot;: 1203, &quot;avg_reads&quot;: 1203, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;B&quot;}, {&quot;name&quot;: &quot;万家通海宁长安城市广场店&quot;, &quot;dealer&quot;: &quot;天音信息服务（北京）有限公司&quot;, &quot;notes&quot;: 16, &quot;reads&quot;: 19169, &quot;avg_reads&quot;: 1198, &quot;viral_rate&quot;: 0.0625, &quot;cohort&quot;: &quot;B&quot;}, {&quot;name&quot;: &quot;尚派正品郑州盛华里购物中心店&quot;, &quot;dealer&quot;: &quot;北京尚派正品科技有限公司&quot;, &quot;notes&quot;: 14, &quot;reads&quot;: 16261, &quot;avg_reads&quot;: 1162, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;B&quot;}, {&quot;name&quot;: &quot;科达通讯温州平阳银泰城店&quot;, &quot;dealer&quot;: &quot;浙江迈风网络科技有限公司&quot;, &quot;notes&quot;: 7, &quot;reads&quot;: 6822, &quot;avg_reads&quot;: 975, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;B&quot;}, {&quot;name&quot;: &quot;时代印象宜宾万象汇店&quot;, &quot;dealer&quot;: &quot;成都时代印象科技有限公司&quot;, &quot;notes&quot;: 22, &quot;reads&quot;: 21388, &quot;avg_reads&quot;: 972, &quot;viral_rate&quot;: 0.045454545454545456, &quot;cohort&quot;: &quot;B&quot;}, {&quot;name&quot;: &quot;时代印象绵阳万达店&quot;, &quot;dealer&quot;: &quot;成都时代印象科技有限公司&quot;, &quot;notes&quot;: 20, &quot;reads&quot;: 19149, &quot;avg_reads&quot;: 957, &quot;viral_rate&quot;: 0.05, &quot;cohort&quot;: &quot;B&quot;}, {&quot;name&quot;: &quot;祜宁通讯泰安岱岳五矿泰安·Live店&quot;, &quot;dealer&quot;: &quot;天音信息服务（北京）有限公司&quot;, &quot;notes&quot;: 18, &quot;reads&quot;: 14402, &quot;avg_reads&quot;: 800, &quot;viral_rate&quot;: 0.05555555555555555, &quot;cohort&quot;: &quot;B&quot;}, {&quot;name&quot;: &quot;SHANGBAO尚宝&quot;, &quot;dealer&quot;: &quot;辽宁尚宝数码有限公司&quot;, &quot;notes&quot;: 14, &quot;reads&quot;: 10599, &quot;avg_reads&quot;: 757, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;B&quot;}, {&quot;name&quot;: &quot;KULIAN酷联&quot;, &quot;dealer&quot;: &quot;西藏酷爱通信有限公司&quot;, &quot;notes&quot;: 7, &quot;reads&quot;: 5301, &quot;avg_reads&quot;: 757, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;B&quot;}, {&quot;name&quot;: &quot;红宇浩锐&quot;, &quot;dealer&quot;: &quot;新疆本尚智讯电子科技有限公司&quot;, &quot;notes&quot;: 2, &quot;reads&quot;: 1443, &quot;avg_reads&quot;: 722, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;B&quot;}, {&quot;name&quot;: &quot;福州仓山万达广场店&quot;, &quot;dealer&quot;: &quot;广东新联移动通信有限公司&quot;, &quot;notes&quot;: 11, &quot;reads&quot;: 7844, &quot;avg_reads&quot;: 713, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;B&quot;}, {&quot;name&quot;: &quot;ZWHOLE 众合&quot;, &quot;dealer&quot;: &quot;陕西众合品牌管理有限公司&quot;, &quot;notes&quot;: 19, &quot;reads&quot;: 12682, &quot;avg_reads&quot;: 667, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;B&quot;}, {&quot;name&quot;: &quot;尚派正品银川建发阅彩城店&quot;, &quot;dealer&quot;: &quot;北京尚派正品科技有限公司&quot;, &quot;notes&quot;: 15, &quot;reads&quot;: 9946, &quot;avg_reads&quot;: 663, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;B&quot;}, {&quot;name&quot;: &quot;纵驰传媒丹阳八佰伴购物中心店&quot;, &quot;dealer&quot;: &quot;无锡市纵驰传媒有限公司&quot;, &quot;notes&quot;: 10, &quot;reads&quot;: 6267, &quot;avg_reads&quot;: 627, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;B&quot;}, {&quot;name&quot;: &quot;尚派正品成都群光广场店&quot;, &quot;dealer&quot;: &quot;北京尚派正品科技有限公司&quot;, &quot;notes&quot;: 25, &quot;reads&quot;: 15161, &quot;avg_reads&quot;: 606, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;B&quot;}, {&quot;name&quot;: &quot;广州雄峰城店&quot;, &quot;dealer&quot;: &quot;广东新联移动通信有限公司&quot;, &quot;notes&quot;: 17, &quot;reads&quot;: 9630, &quot;avg_reads&quot;: 566, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;B&quot;}, {&quot;name&quot;: &quot;COOL ROOM靖江印象城店&quot;, &quot;dealer&quot;: &quot;无锡市纵驰传媒有限公司&quot;, &quot;notes&quot;: 16, &quot;reads&quot;: 8811, &quot;avg_reads&quot;: 551, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;B&quot;}, {&quot;name&quot;: &quot;Airwave飞翔电讯吉林昌邑万达广场店&quot;, &quot;dealer&quot;: &quot;天音信息服务（北京）有限公司&quot;, &quot;notes&quot;: 5, &quot;reads&quot;: 2749, &quot;avg_reads&quot;: 550, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;B&quot;}, {&quot;name&quot;: &quot;ONEZERO美承湘江新区永旺梦乐城店&quot;, &quot;dealer&quot;: &quot;浙江美承数码科技集团有限公司&quot;, &quot;notes&quot;: 25, &quot;reads&quot;: 12802, &quot;avg_reads&quot;: 512, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;B&quot;}, {&quot;name&quot;: &quot;Onezero美承泉州中骏世界城店&quot;, &quot;dealer&quot;: &quot;浙江美承数码科技集团有限公司&quot;, &quot;notes&quot;: 15, &quot;reads&quot;: 7455, &quot;avg_reads&quot;: 497, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;武汉摩尔城店&quot;, &quot;dealer&quot;: &quot;广东新联移动通信有限公司&quot;, &quot;notes&quot;: 18, &quot;reads&quot;: 8953, &quot;avg_reads&quot;: 497, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;尚派正品重庆渝北SKLP店&quot;, &quot;dealer&quot;: &quot;北京尚派正品科技有限公司&quot;, &quot;notes&quot;: 8, &quot;reads&quot;: 3737, &quot;avg_reads&quot;: 467, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;Super海宁杭海万朵城店&quot;, &quot;dealer&quot;: &quot;北京酷联通讯科技有限公司&quot;, &quot;notes&quot;: 24, &quot;reads&quot;: 10750, &quot;avg_reads&quot;: 448, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;DREAM ROOM&quot;, &quot;dealer&quot;: &quot;北京中恒驿站数码信息技术有限公司&quot;, &quot;notes&quot;: 4, &quot;reads&quot;: 1522, &quot;avg_reads&quot;: 380, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;onezero美承长沙国金街店&quot;, &quot;dealer&quot;: &quot;浙江美承数码科技集团有限公司&quot;, &quot;notes&quot;: 34, &quot;reads&quot;: 12847, &quot;avg_reads&quot;: 378, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;Onezero美承长沙河西王府井店&quot;, &quot;dealer&quot;: &quot;浙江美承数码科技集团有限公司&quot;, &quot;notes&quot;: 15, &quot;reads&quot;: 5630, &quot;avg_reads&quot;: 375, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;尚派正品昆明呈贡吾悦广场店&quot;, &quot;dealer&quot;: &quot;北京尚派正品科技有限公司&quot;, &quot;notes&quot;: 13, &quot;reads&quot;: 4821, &quot;avg_reads&quot;: 371, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;纵驰传媒苏州平江万达广场店&quot;, &quot;dealer&quot;: &quot;无锡市纵驰传媒有限公司&quot;, &quot;notes&quot;: 11, &quot;reads&quot;: 4084, &quot;avg_reads&quot;: 371, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;尚派正品西安立丰国际购物广场店&quot;, &quot;dealer&quot;: &quot;北京尚派正品科技有限公司&quot;, &quot;notes&quot;: 13, &quot;reads&quot;: 4705, &quot;avg_reads&quot;: 362, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;芒果鱼科技晋江万达广场店&quot;, &quot;dealer&quot;: &quot;天音信息服务（北京）有限公司&quot;, &quot;notes&quot;: 7, &quot;reads&quot;: 2486, &quot;avg_reads&quot;: 355, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;火唛&quot;, &quot;dealer&quot;: &quot;山东火唛智能科技有限公司&quot;, &quot;notes&quot;: 29, &quot;reads&quot;: 10294, &quot;avg_reads&quot;: 355, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;居然智慧家武汉中商世界里店&quot;, &quot;dealer&quot;: &quot;北京居然智慧家艾谱科技有限公司&quot;, &quot;notes&quot;: 7, &quot;reads&quot;: 2444, &quot;avg_reads&quot;: 349, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;酷动深圳龙华壹方城店&quot;, &quot;dealer&quot;: &quot;深圳市酷动数码有限公司&quot;, &quot;notes&quot;: 7, &quot;reads&quot;: 2398, &quot;avg_reads&quot;: 343, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;纵驰传媒南通港闸万达广场店&quot;, &quot;dealer&quot;: &quot;无锡市纵驰传媒有限公司&quot;, &quot;notes&quot;: 20, &quot;reads&quot;: 6766, &quot;avg_reads&quot;: 338, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;广州白云万达店&quot;, &quot;dealer&quot;: &quot;广东新联移动通信有限公司&quot;, &quot;notes&quot;: 7, &quot;reads&quot;: 2280, &quot;avg_reads&quot;: 326, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;昕佳悦&quot;, &quot;dealer&quot;: &quot;福建昕佳悦信息科技有限公司&quot;, &quot;notes&quot;: 6, &quot;reads&quot;: 1957, &quot;avg_reads&quot;: 326, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;北京金麦克发&quot;, &quot;dealer&quot;: &quot;北京金麦克发科技有限公司&quot;, &quot;notes&quot;: 18, &quot;reads&quot;: 5777, &quot;avg_reads&quot;: 321, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;仲璇宝山花园城店&quot;, &quot;dealer&quot;: &quot;上海仲璇电子科技有限公司&quot;, &quot;notes&quot;: 12, &quot;reads&quot;: 3771, &quot;avg_reads&quot;: 314, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;Onezero美承厦门大悦城店&quot;, &quot;dealer&quot;: &quot;浙江美承数码科技集团有限公司&quot;, &quot;notes&quot;: 12, &quot;reads&quot;: 3428, &quot;avg_reads&quot;: 286, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;Onezero美承长沙方兴金茂店&quot;, &quot;dealer&quot;: &quot;浙江美承数码科技集团有限公司&quot;, &quot;notes&quot;: 30, &quot;reads&quot;: 8554, &quot;avg_reads&quot;: 285, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;ONEZERO美承武汉梦时代店&quot;, &quot;dealer&quot;: &quot;浙江美承数码科技集团有限公司&quot;, &quot;notes&quot;: 7, &quot;reads&quot;: 1968, &quot;avg_reads&quot;: 281, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;果音和悦&quot;, &quot;dealer&quot;: &quot;果音和悦（北京）科技有限公司&quot;, &quot;notes&quot;: 28, &quot;reads&quot;: 7745, &quot;avg_reads&quot;: 277, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;尚派正品曲靖万达广场店&quot;, &quot;dealer&quot;: &quot;北京尚派正品科技有限公司&quot;, &quot;notes&quot;: 13, &quot;reads&quot;: 3583, &quot;avg_reads&quot;: 276, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;尚派正品银川新华百货宁阳广场店&quot;, &quot;dealer&quot;: &quot;北京尚派正品科技有限公司&quot;, &quot;notes&quot;: 14, &quot;reads&quot;: 3829, &quot;avg_reads&quot;: 274, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;Onezero美承厦门集美银泰百货店&quot;, &quot;dealer&quot;: &quot;浙江美承数码科技集团有限公司&quot;, &quot;notes&quot;: 12, &quot;reads&quot;: 3265, &quot;avg_reads&quot;: 272, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;信誉楼电子&quot;, &quot;dealer&quot;: &quot;河北劲草商贸有限公司&quot;, &quot;notes&quot;: 6, &quot;reads&quot;: 1588, &quot;avg_reads&quot;: 265, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;Shenhui 神汇&quot;, &quot;dealer&quot;: &quot;上海神汇通信科技有限公司&quot;, &quot;notes&quot;: 6, &quot;reads&quot;: 1569, &quot;avg_reads&quot;: 262, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;天诺数码湖州南浔吾悦广场店&quot;, &quot;dealer&quot;: &quot;浙江迈风网络科技有限公司&quot;, &quot;notes&quot;: 14, &quot;reads&quot;: 3667, &quot;avg_reads&quot;: 262, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;新燕海&quot;, &quot;dealer&quot;: &quot;海南新燕海佳通信有限公司&quot;, &quot;notes&quot;: 11, &quot;reads&quot;: 2798, &quot;avg_reads&quot;: 254, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;桂林高新万达店&quot;, &quot;dealer&quot;: &quot;广东新联移动通信有限公司&quot;, &quot;notes&quot;: 11, &quot;reads&quot;: 2721, &quot;avg_reads&quot;: 247, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;ONEZERO美承泉州南益广场店&quot;, &quot;dealer&quot;: &quot;浙江美承数码科技集团有限公司&quot;, &quot;notes&quot;: 25, &quot;reads&quot;: 6173, &quot;avg_reads&quot;: 247, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;光线iLight&quot;, &quot;dealer&quot;: &quot;哈尔滨光线科技开发有限公司&quot;, &quot;notes&quot;: 6, &quot;reads&quot;: 1469, &quot;avg_reads&quot;: 245, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;纵驰传媒龙湖南京河西天街店&quot;, &quot;dealer&quot;: &quot;无锡市纵驰传媒有限公司&quot;, &quot;notes&quot;: 23, &quot;reads&quot;: 5576, &quot;avg_reads&quot;: 242, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;新胜南昌王府井购物中心店&quot;, &quot;dealer&quot;: &quot;湖北新胜科技有限公司&quot;, &quot;notes&quot;: 2, &quot;reads&quot;: 478, &quot;avg_reads&quot;: 239, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;长虹佳华信息科技&quot;, &quot;dealer&quot;: &quot;北京长虹佳华信息科技有限公司&quot;, &quot;notes&quot;: 15, &quot;reads&quot;: 3537, &quot;avg_reads&quot;: 236, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;iGallery&quot;, &quot;dealer&quot;: &quot;北京鑫耀瑞达科技有限公司&quot;, &quot;notes&quot;: 32, &quot;reads&quot;: 7488, &quot;avg_reads&quot;: 234, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;Onezero美承武汉凯德1818店&quot;, &quot;dealer&quot;: &quot;浙江美承数码科技集团有限公司&quot;, &quot;notes&quot;: 10, &quot;reads&quot;: 2293, &quot;avg_reads&quot;: 229, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;EWAY亿维&quot;, &quot;dealer&quot;: &quot;山东亿维数码有限公司&quot;, &quot;notes&quot;: 36, &quot;reads&quot;: 8221, &quot;avg_reads&quot;: 228, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;Onezero美承武汉天地壹方南馆店&quot;, &quot;dealer&quot;: &quot;浙江美承数码科技集团有限公司&quot;, &quot;notes&quot;: 4, &quot;reads&quot;: 912, &quot;avg_reads&quot;: 228, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;君临数码聊城万达广场店&quot;, &quot;dealer&quot;: &quot;北京酷联通讯科技有限公司&quot;, &quot;notes&quot;: 3, &quot;reads&quot;: 679, &quot;avg_reads&quot;: 226, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;时代印象成都蜀都万达店&quot;, &quot;dealer&quot;: &quot;成都时代印象科技有限公司&quot;, &quot;notes&quot;: 15, &quot;reads&quot;: 3366, &quot;avg_reads&quot;: 224, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;酷动天津永旺购物中心店&quot;, &quot;dealer&quot;: &quot;深圳市酷动数码有限公司&quot;, &quot;notes&quot;: 23, &quot;reads&quot;: 5142, &quot;avg_reads&quot;: 224, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;ONEZERO美承武汉武商亚贸广场店&quot;, &quot;dealer&quot;: &quot;浙江美承数码科技集团有限公司&quot;, &quot;notes&quot;: 9, &quot;reads&quot;: 1958, &quot;avg_reads&quot;: 218, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;新胜南昌武商广场店&quot;, &quot;dealer&quot;: &quot;湖北新胜科技有限公司&quot;, &quot;notes&quot;: 9, &quot;reads&quot;: 1941, &quot;avg_reads&quot;: 216, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;时代印象昆明欣都龙城VCpark店&quot;, &quot;dealer&quot;: &quot;成都时代印象科技有限公司&quot;, &quot;notes&quot;: 22, &quot;reads&quot;: 4719, &quot;avg_reads&quot;: 214, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;成都时代印象科技有限公司六分店&quot;, &quot;dealer&quot;: &quot;成都时代印象科技有限公司&quot;, &quot;notes&quot;: 21, &quot;reads&quot;: 4465, &quot;avg_reads&quot;: 213, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;漳州万达店&quot;, &quot;dealer&quot;: &quot;广东新联移动通信有限公司&quot;, &quot;notes&quot;: 17, &quot;reads&quot;: 3607, &quot;avg_reads&quot;: 212, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;酷动长沙新城吾悦广场店&quot;, &quot;dealer&quot;: &quot;深圳市酷动数码有限公司&quot;, &quot;notes&quot;: 39, &quot;reads&quot;: 8167, &quot;avg_reads&quot;: 209, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;莆田万达店&quot;, &quot;dealer&quot;: &quot;广东新联移动通信有限公司&quot;, &quot;notes&quot;: 16, &quot;reads&quot;: 3330, &quot;avg_reads&quot;: 208, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;天元美的城时代广场店&quot;, &quot;dealer&quot;: &quot;北京酷联通讯科技有限公司&quot;, &quot;notes&quot;: 8, &quot;reads&quot;: 1662, &quot;avg_reads&quot;: 208, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;仲璇上海龙湖虹桥天街店&quot;, &quot;dealer&quot;: &quot;上海仲璇电子科技有限公司&quot;, &quot;notes&quot;: 8, &quot;reads&quot;: 1664, &quot;avg_reads&quot;: 208, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;时代印象泸州万象汇店&quot;, &quot;dealer&quot;: &quot;成都时代印象科技有限公司&quot;, &quot;notes&quot;: 23, &quot;reads&quot;: 4451, &quot;avg_reads&quot;: 194, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;SCHUANG盛创&quot;, &quot;dealer&quot;: &quot;盛创(广州) 数码科技有限公司&quot;, &quot;notes&quot;: 4, &quot;reads&quot;: 776, &quot;avg_reads&quot;: 194, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;聚时科技&quot;, &quot;dealer&quot;: &quot;海南聚时科技有限公司&quot;, &quot;notes&quot;: 4, &quot;reads&quot;: 777, &quot;avg_reads&quot;: 194, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;科达通讯温州苍南银泰城店&quot;, &quot;dealer&quot;: &quot;浙江迈风网络科技有限公司&quot;, &quot;notes&quot;: 9, &quot;reads&quot;: 1718, &quot;avg_reads&quot;: 191, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;尚派正品遵义国贸购物中心店&quot;, &quot;dealer&quot;: &quot;北京尚派正品科技有限公司&quot;, &quot;notes&quot;: 12, &quot;reads&quot;: 2294, &quot;avg_reads&quot;: 191, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;Xinsun&quot;, &quot;dealer&quot;: &quot;湖北新胜科技投资有限公司&quot;, &quot;notes&quot;: 20, &quot;reads&quot;: 3824, &quot;avg_reads&quot;: 191, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;居然智慧家茂名茂南华侨城购物广场店&quot;, &quot;dealer&quot;: &quot;北京居然智慧家艾谱科技有限公司&quot;, &quot;notes&quot;: 3, &quot;reads&quot;: 566, &quot;avg_reads&quot;: 189, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;酷动北京大兴凯德Mall店&quot;, &quot;dealer&quot;: &quot;深圳市酷动数码有限公司&quot;, &quot;notes&quot;: 23, &quot;reads&quot;: 4119, &quot;avg_reads&quot;: 179, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;广州龙归金铂广场店&quot;, &quot;dealer&quot;: &quot;广东新联移动通信有限公司&quot;, &quot;notes&quot;: 10, &quot;reads&quot;: 1789, &quot;avg_reads&quot;: 179, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;尚派正品西安金辉广场店&quot;, &quot;dealer&quot;: &quot;北京尚派正品科技有限公司&quot;, &quot;notes&quot;: 10, &quot;reads&quot;: 1778, &quot;avg_reads&quot;: 178, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;江门江海万达广场店&quot;, &quot;dealer&quot;: &quot;广东新联移动通信有限公司&quot;, &quot;notes&quot;: 8, &quot;reads&quot;: 1428, &quot;avg_reads&quot;: 178, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;星辰通信桂林叠彩万达广场店&quot;, &quot;dealer&quot;: &quot;天音信息服务（北京）有限公司&quot;, &quot;notes&quot;: 8, &quot;reads&quot;: 1427, &quot;avg_reads&quot;: 178, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;酷动孝感银泰城店&quot;, &quot;dealer&quot;: &quot;深圳市酷动数码有限公司&quot;, &quot;notes&quot;: 16, &quot;reads&quot;: 2783, &quot;avg_reads&quot;: 174, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;PHOGO&quot;, &quot;dealer&quot;: &quot;江苏蜂果电子科技有限公司&quot;, &quot;notes&quot;: 16, &quot;reads&quot;: 2746, &quot;avg_reads&quot;: 172, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;湖北澳易通商贸有限公司&quot;, &quot;dealer&quot;: &quot;湖北澳易通商贸有限公司&quot;, &quot;notes&quot;: 4, &quot;reads&quot;: 690, &quot;avg_reads&quot;: 172, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;尚派正品银川悠阅城店&quot;, &quot;dealer&quot;: &quot;北京尚派正品科技有限公司&quot;, &quot;notes&quot;: 20, &quot;reads&quot;: 3338, &quot;avg_reads&quot;: 167, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;coolroom锂享广场店&quot;, &quot;dealer&quot;: &quot;北京酷联通讯科技有限公司&quot;, &quot;notes&quot;: 3, &quot;reads&quot;: 500, &quot;avg_reads&quot;: 167, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;居然智慧家包头华联店&quot;, &quot;dealer&quot;: &quot;北京居然智慧家艾谱科技有限公司&quot;, &quot;notes&quot;: 9, &quot;reads&quot;: 1480, &quot;avg_reads&quot;: 164, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;新胜襄阳万达广场店&quot;, &quot;dealer&quot;: &quot;湖北新胜科技有限公司&quot;, &quot;notes&quot;: 4, &quot;reads&quot;: 651, &quot;avg_reads&quot;: 163, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;酷动南昌赣电九方购物中心店&quot;, &quot;dealer&quot;: &quot;深圳市酷动数码有限公司&quot;, &quot;notes&quot;: 24, &quot;reads&quot;: 3885, &quot;avg_reads&quot;: 162, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;时代印象宜宾万达店&quot;, &quot;dealer&quot;: &quot;成都时代印象科技有限公司&quot;, &quot;notes&quot;: 19, &quot;reads&quot;: 3060, &quot;avg_reads&quot;: 161, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;MyTo中科迈向&quot;, &quot;dealer&quot;: &quot;北京中科星迈科技有限公司&quot;, &quot;notes&quot;: 10, &quot;reads&quot;: 1594, &quot;avg_reads&quot;: 159, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;时代印象拉萨纳金万达店&quot;, &quot;dealer&quot;: &quot;成都时代印象科技有限公司&quot;, &quot;notes&quot;: 20, &quot;reads&quot;: 3165, &quot;avg_reads&quot;: 158, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;莆田正荣财富店&quot;, &quot;dealer&quot;: &quot;广东新联移动通信有限公司&quot;, &quot;notes&quot;: 10, &quot;reads&quot;: 1579, &quot;avg_reads&quot;: 158, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;时代印象成都银泰中心in99店&quot;, &quot;dealer&quot;: &quot;成都时代印象科技有限公司&quot;, &quot;notes&quot;: 19, &quot;reads&quot;: 2919, &quot;avg_reads&quot;: 154, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;时代印象成都城西优品道广场&quot;, &quot;dealer&quot;: &quot;成都时代印象科技有限公司&quot;, &quot;notes&quot;: 18, &quot;reads&quot;: 2733, &quot;avg_reads&quot;: 152, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;酷动长沙凯德壹中心店&quot;, &quot;dealer&quot;: &quot;深圳市酷动数码有限公司&quot;, &quot;notes&quot;: 24, &quot;reads&quot;: 3642, &quot;avg_reads&quot;: 152, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;酷动海口万象城店&quot;, &quot;dealer&quot;: &quot;深圳市酷动数码有限公司&quot;, &quot;notes&quot;: 25, &quot;reads&quot;: 3782, &quot;avg_reads&quot;: 151, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;厦门集美万达店&quot;, &quot;dealer&quot;: &quot;广东新联移动通信有限公司&quot;, &quot;notes&quot;: 23, &quot;reads&quot;: 3442, &quot;avg_reads&quot;: 150, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;仲璇上海美罗城店&quot;, &quot;dealer&quot;: &quot;上海仲璇电子科技有限公司&quot;, &quot;notes&quot;: 10, &quot;reads&quot;: 1461, &quot;avg_reads&quot;: 146, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;酷动天津水游城店&quot;, &quot;dealer&quot;: &quot;深圳市酷动数码有限公司&quot;, &quot;notes&quot;: 7, &quot;reads&quot;: 1011, &quot;avg_reads&quot;: 144, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;百动数码&quot;, &quot;dealer&quot;: &quot;广西百动数码科技有限公司&quot;, &quot;notes&quot;: 1, &quot;reads&quot;: 143, &quot;avg_reads&quot;: 143, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;酷动北京大兴绿地缤纷城店&quot;, &quot;dealer&quot;: &quot;深圳市酷动数码有限公司&quot;, &quot;notes&quot;: 17, &quot;reads&quot;: 2412, &quot;avg_reads&quot;: 142, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;时代印象成都世茂广场店&quot;, &quot;dealer&quot;: &quot;成都时代印象科技有限公司&quot;, &quot;notes&quot;: 11, &quot;reads&quot;: 1535, &quot;avg_reads&quot;: 140, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;福州五四in象店&quot;, &quot;dealer&quot;: &quot;广东新联移动通信有限公司&quot;, &quot;notes&quot;: 17, &quot;reads&quot;: 2372, &quot;avg_reads&quot;: 140, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;科达通讯嵊州吾悦广场店&quot;, &quot;dealer&quot;: &quot;浙江迈风网络科技有限公司&quot;, &quot;notes&quot;: 16, &quot;reads&quot;: 2227, &quot;avg_reads&quot;: 139, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;Onezero美承武汉武昌万象城店&quot;, &quot;dealer&quot;: &quot;浙江美承数码科技集团有限公司&quot;, &quot;notes&quot;: 3, &quot;reads&quot;: 417, &quot;avg_reads&quot;: 139, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;科达通讯桐乡吾悦广场店&quot;, &quot;dealer&quot;: &quot;浙江迈风网络科技有限公司&quot;, &quot;notes&quot;: 7, &quot;reads&quot;: 965, &quot;avg_reads&quot;: 138, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;新胜桂林吾悦广场店&quot;, &quot;dealer&quot;: &quot;湖北新胜科技有限公司&quot;, &quot;notes&quot;: 2, &quot;reads&quot;: 274, &quot;avg_reads&quot;: 137, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;新胜南昌百盛购物中心店&quot;, &quot;dealer&quot;: &quot;湖北新胜科技有限公司&quot;, &quot;notes&quot;: 2, &quot;reads&quot;: 270, &quot;avg_reads&quot;: 135, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;仲璇苏州吴中永旺店&quot;, &quot;dealer&quot;: &quot;上海仲璇电子科技有限公司&quot;, &quot;notes&quot;: 8, &quot;reads&quot;: 1070, &quot;avg_reads&quot;: 134, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;仲璇南京燕子矶万象汇店&quot;, &quot;dealer&quot;: &quot;上海仲璇电子科技有限公司&quot;, &quot;notes&quot;: 9, &quot;reads&quot;: 1180, &quot;avg_reads&quot;: 131, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;酷动长沙洋湖龙湖天街店&quot;, &quot;dealer&quot;: &quot;深圳市酷动数码有限公司&quot;, &quot;notes&quot;: 22, &quot;reads&quot;: 2839, &quot;avg_reads&quot;: 129, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;无锡纵驰宜兴八佰伴购物中心店&quot;, &quot;dealer&quot;: &quot;无锡市纵驰传媒有限公司&quot;, &quot;notes&quot;: 14, &quot;reads&quot;: 1785, &quot;avg_reads&quot;: 128, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;尚派正品重庆光环购物公园店&quot;, &quot;dealer&quot;: &quot;北京尚派正品科技有限公司&quot;, &quot;notes&quot;: 9, &quot;reads&quot;: 1122, &quot;avg_reads&quot;: 125, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;居然智慧家长春砂之船奥莱店&quot;, &quot;dealer&quot;: &quot;北京居然智慧家艾谱科技有限公司&quot;, &quot;notes&quot;: 12, &quot;reads&quot;: 1476, &quot;avg_reads&quot;: 123, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;酷动汕头中骏世界城店&quot;, &quot;dealer&quot;: &quot;深圳市酷动数码有限公司&quot;, &quot;notes&quot;: 37, &quot;reads&quot;: 4446, &quot;avg_reads&quot;: 120, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;VANBUY&quot;, &quot;dealer&quot;: &quot;福建北辰智慧科技有限公司&quot;, &quot;notes&quot;: 12, &quot;reads&quot;: 1427, &quot;avg_reads&quot;: 119, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;酷动北京昌平沙河万达店&quot;, &quot;dealer&quot;: &quot;深圳市酷动数码有限公司&quot;, &quot;notes&quot;: 9, &quot;reads&quot;: 1054, &quot;avg_reads&quot;: 117, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;新胜合肥保利广场店&quot;, &quot;dealer&quot;: &quot;湖北新胜科技有限公司&quot;, &quot;notes&quot;: 6, &quot;reads&quot;: 702, &quot;avg_reads&quot;: 117, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;居然智慧家长春欧亚新生活购物广场店&quot;, &quot;dealer&quot;: &quot;北京居然智慧家艾谱科技有限公司&quot;, &quot;notes&quot;: 5, &quot;reads&quot;: 580, &quot;avg_reads&quot;: 116, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;永兴通讯娄底氐星路店&quot;, &quot;dealer&quot;: &quot;北京酷联通讯科技有限公司&quot;, &quot;notes&quot;: 6, &quot;reads&quot;: 689, &quot;avg_reads&quot;: 115, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;酷果星创数码&quot;, &quot;dealer&quot;: &quot;深圳市酷果星创数码有限公司&quot;, &quot;notes&quot;: 8, &quot;reads&quot;: 916, &quot;avg_reads&quot;: 114, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;创鑫通讯温州龙湾宝龙广场店&quot;, &quot;dealer&quot;: &quot;浙江迈风网络科技有限公司&quot;, &quot;notes&quot;: 12, &quot;reads&quot;: 1346, &quot;avg_reads&quot;: 112, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;酷动海口远大购物中心店&quot;, &quot;dealer&quot;: &quot;深圳市酷动数码有限公司&quot;, &quot;notes&quot;: 17, &quot;reads&quot;: 1872, &quot;avg_reads&quot;: 110, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;传天羽&quot;, &quot;dealer&quot;: &quot;上海天羽冠智科技有限公司&quot;, &quot;notes&quot;: 5, &quot;reads&quot;: 545, &quot;avg_reads&quot;: 109, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;酷动天津滨海金隅店&quot;, &quot;dealer&quot;: &quot;深圳市酷动数码有限公司&quot;, &quot;notes&quot;: 35, &quot;reads&quot;: 3653, &quot;avg_reads&quot;: 104, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;居然智慧家长春欧亚购物中心店&quot;, &quot;dealer&quot;: &quot;北京居然智慧家艾谱科技有限公司&quot;, &quot;notes&quot;: 7, &quot;reads&quot;: 723, &quot;avg_reads&quot;: 103, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;酷动信阳天润广场店&quot;, &quot;dealer&quot;: &quot;深圳市酷动数码有限公司&quot;, &quot;notes&quot;: 9, &quot;reads&quot;: 903, &quot;avg_reads&quot;: 100, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;时代印象重庆大渡口万象汇店&quot;, &quot;dealer&quot;: &quot;成都时代印象科技有限公司&quot;, &quot;notes&quot;: 22, &quot;reads&quot;: 2169, &quot;avg_reads&quot;: 99, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;仲璇苏州昆山万象汇店&quot;, &quot;dealer&quot;: &quot;上海仲璇电子科技有限公司&quot;, &quot;notes&quot;: 9, &quot;reads&quot;: 892, &quot;avg_reads&quot;: 99, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;仲璇南京江北虹悦城店&quot;, &quot;dealer&quot;: &quot;上海仲璇电子科技有限公司&quot;, &quot;notes&quot;: 10, &quot;reads&quot;: 991, &quot;avg_reads&quot;: 99, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;居然智慧家长春居然之家生活MALL店&quot;, &quot;dealer&quot;: &quot;北京居然智慧家艾谱科技有限公司&quot;, &quot;notes&quot;: 9, &quot;reads&quot;: 879, &quot;avg_reads&quot;: 98, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;永兴通讯娄底五江碧桂园城市广场店&quot;, &quot;dealer&quot;: &quot;北京酷联通讯科技有限公司&quot;, &quot;notes&quot;: 6, &quot;reads&quot;: 589, &quot;avg_reads&quot;: 98, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;酷动东莞松山湖万象汇店&quot;, &quot;dealer&quot;: &quot;深圳市酷动数码有限公司&quot;, &quot;notes&quot;: 21, &quot;reads&quot;: 2039, &quot;avg_reads&quot;: 97, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;创鑫通讯龙泉万达广场店&quot;, &quot;dealer&quot;: &quot;浙江迈风网络科技有限公司&quot;, &quot;notes&quot;: 14, &quot;reads&quot;: 1338, &quot;avg_reads&quot;: 96, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;MEITENG东阳第一百货店&quot;, &quot;dealer&quot;: &quot;北京酷联通讯科技有限公司&quot;, &quot;notes&quot;: 9, &quot;reads&quot;: 849, &quot;avg_reads&quot;: 94, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;尚派正品曲靖美麒麟商业中心店&quot;, &quot;dealer&quot;: &quot;北京尚派正品科技有限公司&quot;, &quot;notes&quot;: 5, &quot;reads&quot;: 469, &quot;avg_reads&quot;: 94, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;仲璇南京仙林万达茂&quot;, &quot;dealer&quot;: &quot;上海仲璇电子科技有限公司&quot;, &quot;notes&quot;: 9, &quot;reads&quot;: 844, &quot;avg_reads&quot;: 94, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;酷动合肥天鹅湖万达店&quot;, &quot;dealer&quot;: &quot;深圳市酷动数码有限公司&quot;, &quot;notes&quot;: 23, &quot;reads&quot;: 2118, &quot;avg_reads&quot;: 92, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;SANHUAN龙海万达广场店&quot;, &quot;dealer&quot;: &quot;天音信息服务（北京）有限公司&quot;, &quot;notes&quot;: 9, &quot;reads&quot;: 828, &quot;avg_reads&quot;: 92, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;雨知时节淄博淄川SM城市广场店&quot;, &quot;dealer&quot;: &quot;天音信息服务（北京）有限公司&quot;, &quot;notes&quot;: 3, &quot;reads&quot;: 272, &quot;avg_reads&quot;: 91, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;新胜武汉盘龙城万达广场店&quot;, &quot;dealer&quot;: &quot;湖北新胜科技有限公司&quot;, &quot;notes&quot;: 3, &quot;reads&quot;: 272, &quot;avg_reads&quot;: 91, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;易禾通讯济宁充州百意购物中心店&quot;, &quot;dealer&quot;: &quot;北京酷联通讯科技有限公司&quot;, &quot;notes&quot;: 6, &quot;reads&quot;: 547, &quot;avg_reads&quot;: 91, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;西藏星宇通讯科技股份有限公司&quot;, &quot;dealer&quot;: &quot;西藏星宇通讯科技股份有限公司&quot;, &quot;notes&quot;: 6, &quot;reads&quot;: 541, &quot;avg_reads&quot;: 90, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;科达通讯绍兴新昌县万达广场店&quot;, &quot;dealer&quot;: &quot;浙江迈风网络科技有限公司&quot;, &quot;notes&quot;: 13, &quot;reads&quot;: 1170, &quot;avg_reads&quot;: 90, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;居然智慧家鄂尔多斯COCO CITY店&quot;, &quot;dealer&quot;: &quot;北京居然智慧家艾谱科技有限公司&quot;, &quot;notes&quot;: 14, &quot;reads&quot;: 1256, &quot;avg_reads&quot;: 90, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;龙腾i-Zone&quot;, &quot;dealer&quot;: &quot;青岛龙腾瀚宇信息技术有限公司&quot;, &quot;notes&quot;: 16, &quot;reads&quot;: 1399, &quot;avg_reads&quot;: 87, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;酷动石家庄裕华万达店&quot;, &quot;dealer&quot;: &quot;深圳市酷动数码有限公司&quot;, &quot;notes&quot;: 23, &quot;reads&quot;: 2004, &quot;avg_reads&quot;: 87, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;辰涵科技恩施意利时代广场店&quot;, &quot;dealer&quot;: &quot;天音信息服务（北京）有限公司&quot;, &quot;notes&quot;: 6, &quot;reads&quot;: 523, &quot;avg_reads&quot;: 87, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;时代印象贵阳万象汇&quot;, &quot;dealer&quot;: &quot;成都时代印象科技有限公司&quot;, &quot;notes&quot;: 22, &quot;reads&quot;: 1884, &quot;avg_reads&quot;: 86, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;COOL ROOM常州金坛新天地购物中心店&quot;, &quot;dealer&quot;: &quot;无锡市纵驰传媒有限公司&quot;, &quot;notes&quot;: 7, &quot;reads&quot;: 596, &quot;avg_reads&quot;: 85, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;贵州鑫高维通讯设备有限公司&quot;, &quot;dealer&quot;: &quot;贵州鑫高维通讯设备有限公司&quot;, &quot;notes&quot;: 6, &quot;reads&quot;: 511, &quot;avg_reads&quot;: 85, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;顶橙电子阜阳颍州阜阳商厦时代广场店&quot;, &quot;dealer&quot;: &quot;天音信息服务（北京）有限公司&quot;, &quot;notes&quot;: 2, &quot;reads&quot;: 168, &quot;avg_reads&quot;: 84, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;神达鸿业洛阳洛宁神达电子店&quot;, &quot;dealer&quot;: &quot;天音信息服务（北京）有限公司&quot;, &quot;notes&quot;: 3, &quot;reads&quot;: 252, &quot;avg_reads&quot;: 84, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;智顺通讯武威凉州东巷子街区广场店&quot;, &quot;dealer&quot;: &quot;天音信息服务（北京）有限公司&quot;, &quot;notes&quot;: 4, &quot;reads&quot;: 332, &quot;avg_reads&quot;: 83, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;华宇通讯平凉新世纪商厦店&quot;, &quot;dealer&quot;: &quot;北京酷联通讯科技有限公司&quot;, &quot;notes&quot;: 4, &quot;reads&quot;: 326, &quot;avg_reads&quot;: 82, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;恒沙HS&quot;, &quot;dealer&quot;: &quot;恒沙（天津）电子产品有限公司&quot;, &quot;notes&quot;: 5, &quot;reads&quot;: 411, &quot;avg_reads&quot;: 82, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;尚派正品西安赛格国际购物中心店&quot;, &quot;dealer&quot;: &quot;北京尚派正品科技有限公司&quot;, &quot;notes&quot;: 8, &quot;reads&quot;: 642, &quot;avg_reads&quot;: 80, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;仲璇上海曹路花园店&quot;, &quot;dealer&quot;: &quot;上海仲璇电子科技有限公司&quot;, &quot;notes&quot;: 9, &quot;reads&quot;: 711, &quot;avg_reads&quot;: 79, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;酷动长沙海信广场店&quot;, &quot;dealer&quot;: &quot;深圳市酷动数码有限公司&quot;, &quot;notes&quot;: 27, &quot;reads&quot;: 2096, &quot;avg_reads&quot;: 78, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;居然智慧家长春北湖吾悦广场店&quot;, &quot;dealer&quot;: &quot;北京居然智慧家艾谱科技有限公司&quot;, &quot;notes&quot;: 17, &quot;reads&quot;: 1310, &quot;avg_reads&quot;: 77, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;居然智慧家长春绿园吾悦广场店&quot;, &quot;dealer&quot;: &quot;北京居然智慧家艾谱科技有限公司&quot;, &quot;notes&quot;: 6, &quot;reads&quot;: 456, &quot;avg_reads&quot;: 76, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;新胜黄冈万达广场店&quot;, &quot;dealer&quot;: &quot;湖北新胜科技有限公司&quot;, &quot;notes&quot;: 1, &quot;reads&quot;: 76, &quot;avg_reads&quot;: 76, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;广州雲门New Park店&quot;, &quot;dealer&quot;: &quot;广东新联移动通信有限公司&quot;, &quot;notes&quot;: 11, &quot;reads&quot;: 811, &quot;avg_reads&quot;: 74, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;COOL ROOM扬州宝龙广场店&quot;, &quot;dealer&quot;: &quot;无锡市纵驰传媒有限公司&quot;, &quot;notes&quot;: 19, &quot;reads&quot;: 1395, &quot;avg_reads&quot;: 73, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;COOL ROOM江阴印象汇店&quot;, &quot;dealer&quot;: &quot;无锡市纵驰传媒有限公司&quot;, &quot;notes&quot;: 5, &quot;reads&quot;: 365, &quot;avg_reads&quot;: 73, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;酷动长沙泊富国际广场店&quot;, &quot;dealer&quot;: &quot;深圳市酷动数码有限公司&quot;, &quot;notes&quot;: 23, &quot;reads&quot;: 1670, &quot;avg_reads&quot;: 73, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;英龙华辰 Dragonstar&quot;, &quot;dealer&quot;: &quot;北京英龙华辰科技有限公司&quot;, &quot;notes&quot;: 16, &quot;reads&quot;: 1171, &quot;avg_reads&quot;: 73, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;仲璇上海漕河泾印象城店&quot;, &quot;dealer&quot;: &quot;上海仲璇电子科技有限公司&quot;, &quot;notes&quot;: 11, &quot;reads&quot;: 788, &quot;avg_reads&quot;: 72, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;悦动荆州人信汇广场店&quot;, &quot;dealer&quot;: &quot;天音信息服务（北京）有限公司&quot;, &quot;notes&quot;: 4, &quot;reads&quot;: 282, &quot;avg_reads&quot;: 70, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;仲璇无锡江阴万达广场店&quot;, &quot;dealer&quot;: &quot;上海仲璇电子科技有限公司&quot;, &quot;notes&quot;: 9, &quot;reads&quot;: 630, &quot;avg_reads&quot;: 70, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;酷动杭州萧山万象汇店&quot;, &quot;dealer&quot;: &quot;深圳市酷动数码有限公司&quot;, &quot;notes&quot;: 23, &quot;reads&quot;: 1585, &quot;avg_reads&quot;: 69, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;长沙步步高店&quot;, &quot;dealer&quot;: &quot;广东新联移动通信有限公司&quot;, &quot;notes&quot;: 21, &quot;reads&quot;: 1374, &quot;avg_reads&quot;: 65, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;纵驰传媒常州星耀城吾悦广场店&quot;, &quot;dealer&quot;: &quot;无锡市纵驰传媒有限公司&quot;, &quot;notes&quot;: 10, &quot;reads&quot;: 651, &quot;avg_reads&quot;: 65, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;Super杭州临安锦南宝龙广场店&quot;, &quot;dealer&quot;: &quot;北京酷联通讯科技有限公司&quot;, &quot;notes&quot;: 13, &quot;reads&quot;: 833, &quot;avg_reads&quot;: 64, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;酷动唐山万达广场店&quot;, &quot;dealer&quot;: &quot;深圳市酷动数码有限公司&quot;, &quot;notes&quot;: 27, &quot;reads&quot;: 1736, &quot;avg_reads&quot;: 64, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;汇科丰联铜川荣盛广场店&quot;, &quot;dealer&quot;: &quot;北京酷联通讯科技有限公司&quot;, &quot;notes&quot;: 11, &quot;reads&quot;: 694, &quot;avg_reads&quot;: 63, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;COOL ROOM溧阳吾悦广场店&quot;, &quot;dealer&quot;: &quot;无锡市纵驰传媒有限公司&quot;, &quot;notes&quot;: 13, &quot;reads&quot;: 818, &quot;avg_reads&quot;: 63, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;居然智慧家长春欧亚卖场店&quot;, &quot;dealer&quot;: &quot;北京居然智慧家艾谱科技有限公司&quot;, &quot;notes&quot;: 7, &quot;reads&quot;: 433, &quot;avg_reads&quot;: 62, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;东莞民盈国贸城店&quot;, &quot;dealer&quot;: &quot;广东新联移动通信有限公司&quot;, &quot;notes&quot;: 10, &quot;reads&quot;: 603, &quot;avg_reads&quot;: 60, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;Onezero美承长沙万象城店&quot;, &quot;dealer&quot;: &quot;浙江美承数码科技集团有限公司&quot;, &quot;notes&quot;: 22, &quot;reads&quot;: 1297, &quot;avg_reads&quot;: 59, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;仲璇苏州昆山万达广场店&quot;, &quot;dealer&quot;: &quot;上海仲璇电子科技有限公司&quot;, &quot;notes&quot;: 9, &quot;reads&quot;: 522, &quot;avg_reads&quot;: 58, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;CHOOSING恒洲&quot;, &quot;dealer&quot;: &quot;恒洲（天津）电子产品有限公司&quot;, &quot;notes&quot;: 2, &quot;reads&quot;: 111, &quot;avg_reads&quot;: 56, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;COOL ROOM宜兴宝龙广场店&quot;, &quot;dealer&quot;: &quot;无锡市纵驰传媒有限公司&quot;, &quot;notes&quot;: 13, &quot;reads&quot;: 718, &quot;avg_reads&quot;: 55, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;COOL ROOM常州宝龙广场店&quot;, &quot;dealer&quot;: &quot;无锡市纵驰传媒有限公司&quot;, &quot;notes&quot;: 17, &quot;reads&quot;: 942, &quot;avg_reads&quot;: 55, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;新胜南昌铜锣湾广场店&quot;, &quot;dealer&quot;: &quot;湖北新胜科技有限公司&quot;, &quot;notes&quot;: 1, &quot;reads&quot;: 54, &quot;avg_reads&quot;: 54, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;大嘉城通讯宁波北仑区富邦世纪广场店&quot;, &quot;dealer&quot;: &quot;天音信息服务（北京）有限公司&quot;, &quot;notes&quot;: 7, &quot;reads&quot;: 371, &quot;avg_reads&quot;: 53, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;酷动常德万达店&quot;, &quot;dealer&quot;: &quot;深圳市酷动数码有限公司&quot;, &quot;notes&quot;: 30, &quot;reads&quot;: 1532, &quot;avg_reads&quot;: 51, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;明讯天辰&quot;, &quot;dealer&quot;: &quot;成都明讯天辰贸易有限公司&quot;, &quot;notes&quot;: 6, &quot;reads&quot;: 303, &quot;avg_reads&quot;: 50, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;纵驰传媒常州金坛吾悦广场店&quot;, &quot;dealer&quot;: &quot;无锡市纵驰传媒有限公司&quot;, &quot;notes&quot;: 25, &quot;reads&quot;: 1239, &quot;avg_reads&quot;: 50, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;新胜武汉青山印象城店&quot;, &quot;dealer&quot;: &quot;湖北新胜科技有限公司&quot;, &quot;notes&quot;: 3, &quot;reads&quot;: 144, &quot;avg_reads&quot;: 48, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;居然智慧家赤峰松山万达店&quot;, &quot;dealer&quot;: &quot;北京居然智慧家艾谱科技有限公司&quot;, &quot;notes&quot;: 8, &quot;reads&quot;: 369, &quot;avg_reads&quot;: 46, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;仲璇上海嘉定大融城店&quot;, &quot;dealer&quot;: &quot;上海仲璇电子科技有限公司&quot;, &quot;notes&quot;: 8, &quot;reads&quot;: 369, &quot;avg_reads&quot;: 46, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;浙江奇易网络&quot;, &quot;dealer&quot;: &quot;浙江奇易网络技术有限公司&quot;, &quot;notes&quot;: 2, &quot;reads&quot;: 85, &quot;avg_reads&quot;: 42, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;居然智慧家湛江廉江鑫源国际店&quot;, &quot;dealer&quot;: &quot;北京居然智慧家艾谱科技有限公司&quot;, &quot;notes&quot;: 10, &quot;reads&quot;: 408, &quot;avg_reads&quot;: 41, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;秋林电讯安康万达广场店&quot;, &quot;dealer&quot;: &quot;天音信息服务（北京）有限公司&quot;, &quot;notes&quot;: 3, &quot;reads&quot;: 121, &quot;avg_reads&quot;: 40, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;酷动上海松江九亭金地广场店&quot;, &quot;dealer&quot;: &quot;深圳市酷动数码有限公司&quot;, &quot;notes&quot;: 22, &quot;reads&quot;: 852, &quot;avg_reads&quot;: 39, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;溧阳大器集团&quot;, &quot;dealer&quot;: &quot;北京酷联通讯科技有限公司&quot;, &quot;notes&quot;: 4, &quot;reads&quot;: 152, &quot;avg_reads&quot;: 38, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;新胜柳州柳南万达广场店&quot;, &quot;dealer&quot;: &quot;湖北新胜科技有限公司&quot;, &quot;notes&quot;: 4, &quot;reads&quot;: 154, &quot;avg_reads&quot;: 38, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;仲璇徐州铜山万达广场店&quot;, &quot;dealer&quot;: &quot;上海仲璇电子科技有限公司&quot;, &quot;notes&quot;: 8, &quot;reads&quot;: 300, &quot;avg_reads&quot;: 38, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;居然智慧家长春中东新天地店&quot;, &quot;dealer&quot;: &quot;北京居然智慧家艾谱科技有限公司&quot;, &quot;notes&quot;: 8, &quot;reads&quot;: 264, &quot;avg_reads&quot;: 33, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;酷动上海闵行百联南方购物中心店&quot;, &quot;dealer&quot;: &quot;深圳市酷动数码有限公司&quot;, &quot;notes&quot;: 20, &quot;reads&quot;: 619, &quot;avg_reads&quot;: 31, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;新胜长沙砂之船奥特莱斯店&quot;, &quot;dealer&quot;: &quot;湖北新胜科技有限公司&quot;, &quot;notes&quot;: 1, &quot;reads&quot;: 28, &quot;avg_reads&quot;: 28, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;新胜恩施九立方国际购物中心店&quot;, &quot;dealer&quot;: &quot;湖北新胜科技有限公司&quot;, &quot;notes&quot;: 8, &quot;reads&quot;: 226, &quot;avg_reads&quot;: 28, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;居然智慧家长春卓展店&quot;, &quot;dealer&quot;: &quot;北京居然智慧家艾谱科技有限公司&quot;, &quot;notes&quot;: 12, &quot;reads&quot;: 327, &quot;avg_reads&quot;: 27, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;ONEZERO美承合肥正大广场&quot;, &quot;dealer&quot;: &quot;浙江美承数码科技集团有限公司&quot;, &quot;notes&quot;: 11, &quot;reads&quot;: 273, &quot;avg_reads&quot;: 25, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;酷动上海长宁金虹桥广场店&quot;, &quot;dealer&quot;: &quot;深圳市酷动数码有限公司&quot;, &quot;notes&quot;: 23, &quot;reads&quot;: 585, &quot;avg_reads&quot;: 25, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;广州金沙洲永旺店&quot;, &quot;dealer&quot;: &quot;广东新联移动通信有限公司&quot;, &quot;notes&quot;: 13, &quot;reads&quot;: 301, &quot;avg_reads&quot;: 23, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;酷动西安赛高世纪金花店&quot;, &quot;dealer&quot;: &quot;深圳市酷动数码有限公司&quot;, &quot;notes&quot;: 11, &quot;reads&quot;: 241, &quot;avg_reads&quot;: 22, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;新胜武汉新唐万芊荟店&quot;, &quot;dealer&quot;: &quot;湖北新胜科技有限公司&quot;, &quot;notes&quot;: 1, &quot;reads&quot;: 19, &quot;avg_reads&quot;: 19, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}, {&quot;name&quot;: &quot;新胜长沙芙蓉龙湖天街店&quot;, &quot;dealer&quot;: &quot;湖北新胜科技有限公司&quot;, &quot;notes&quot;: 2, &quot;reads&quot;: 10, &quot;avg_reads&quot;: 5, &quot;viral_rate&quot;: 0.0, &quot;cohort&quot;: &quot;C&quot;}], &quot;insights&quot;: [&quot;2026-07 有 246 个账号发布笔记，累计阅读 782.5万，互动 36.6万。&quot;, &quot;2026-07 发布的笔记共 3,370 条；产品种草 是当月阅读规模最大的分类，占当月阅读 43.4%&quot;, &quot;节日营销 已发布 66 条，但单篇平均阅读为 371；应优先复盘选题与封面，而不是只增加频次。&quot;, &quot;2026-07 有 86 条笔记达到 1.0万 阅读阈值，占当月笔记 2.6%&quot;]});
+    const render = data =&gt; {
+      const { source, summary, monthly, categories, formats, top_notes: topNotes, top_accounts: topAccounts, insights } = data;
+      const life = summary.lifetime;
+      const current = summary.current_month;
+      const maxMonthlyReads = Math.max(...monthly.map(row =&gt; row.reads), 1);
+      const maxCategoryReads = Math.max(...categories.map(row =&gt; row.reads), 1);
+      const maxFormatCount = Math.max(...formats.map(row =&gt; row.count), 1);
+      const trendRows = monthly.map(row =&gt; `&lt;div class=&quot;chart-row&quot;&gt;&lt;span&gt;${escapeHtml(row.month.slice(2))}&lt;/span&gt;&lt;div class=&quot;bar-track&quot;&gt;&lt;i style=&quot;width:${scale(row.reads, maxMonthlyReads)}&quot;&gt;&lt;/i&gt;&lt;/div&gt;&lt;b&gt;${format(row.reads)}&lt;/b&gt;&lt;/div&gt;`).join(&quot;&quot;);
+      const categoryRows = categories.map(row =&gt; `&lt;div class=&quot;chart-row&quot;&gt;&lt;span&gt;${escapeHtml(row.category)}&lt;/span&gt;&lt;div class=&quot;bar-track gold&quot;&gt;&lt;i style=&quot;width:${scale(row.reads, maxCategoryReads)}&quot;&gt;&lt;/i&gt;&lt;/div&gt;&lt;b&gt;${format(row.reads)}&lt;/b&gt;&lt;/div&gt;`).join(&quot;&quot;);
+      const formatRows = formats.map(row =&gt; `&lt;div class=&quot;format-item&quot;&gt;&lt;b&gt;${escapeHtml(row.name)}&lt;/b&gt;&lt;strong&gt;${format(row.count)} 条&lt;/strong&gt;&lt;div&gt;&lt;i style=&quot;width:${scale(row.count, maxFormatCount)}&quot;&gt;&lt;/i&gt;&lt;/div&gt;&lt;/div&gt;`).join(&quot;&quot;);
+      const noteRows = topNotes.map((row, index) =&gt; `&lt;tr&gt;&lt;td&gt;${index + 1}&lt;/td&gt;&lt;td&gt;&lt;strong&gt;${escapeHtml(row.title || &quot;未命名笔记&quot;)}&lt;/strong&gt;&lt;small&gt;${escapeHtml(row.account)} · ${escapeHtml(row.published)}&lt;/small&gt;&lt;/td&gt;&lt;td&gt;${escapeHtml(row.category)}&lt;/td&gt;&lt;td&gt;${format(row.reads)}&lt;/td&gt;&lt;td&gt;${format(row.likes + row.collects + row.comments)}&lt;/td&gt;&lt;/tr&gt;`).join(&quot;&quot;);
+      const accountRows = topAccounts.map((row, index) =&gt; `&lt;tr&gt;&lt;td&gt;${index + 1}&lt;/td&gt;&lt;td&gt;&lt;strong&gt;${escapeHtml(row.name)}&lt;/strong&gt;&lt;small&gt;${escapeHtml(row.dealer || &quot;未标注经销商&quot;)}&lt;/small&gt;&lt;/td&gt;&lt;td&gt;${format(row.reads)}&lt;/td&gt;&lt;td&gt;${format(row.interactions)}&lt;/td&gt;&lt;td&gt;${format(row.new_fans)}&lt;/td&gt;&lt;/tr&gt;`).join(&quot;&quot;);
+      document.title = `小红书矩阵笔记商业分析报告 · ${source.fiscal_period}`;
+      document.body.innerHTML = `
+        &lt;style&gt;
+          :root{--ink:#18212f;--muted:#64748b;--line:#dfe7ef;--blue:#0071e3;--blue-soft:#e8f3ff;--green:#1f9d55;--amber:#bc7a00;--surface:#fff;--bg:#eef3f8}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Microsoft YaHei&quot;,sans-serif;line-height:1.5}.report{max-width:1380px;margin:0 auto;padding:34px 32px 56px}.report-head{padding:12px 0 26px;border-bottom:1px solid var(--line)}.eyebrow{color:var(--blue);font-size:13px;font-weight:700;letter-spacing:.04em}.report-head h1{font-size:32px;margin:8px 0 6px;letter-spacing:0}.report-head p{margin:0;color:var(--muted)}.meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.meta span,.badge{background:var(--blue-soft);color:#1668b8;border:1px solid #c9e3ff;border-radius:999px;padding:5px 10px;font-size:12px}.section{margin-top:30px}.section-title{font-size:22px;margin:0 0 6px}.section-note{margin:0 0 16px;color:var(--muted);font-size:14px}.grid{display:grid;gap:16px}.kpis{grid-template-columns:repeat(4,minmax(0,1fr))}.two{grid-template-columns:1.15fr .85fr}.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px;box-shadow:0 1px 2px rgba(15,23,42,.03)}.metric-label{color:var(--muted);font-size:14px}.metric-value{font-size:30px;font-weight:750;margin:7px 0}.metric-foot{font-size:13px;color:var(--muted)}.metric-foot strong{color:var(--ink)}.chart-row{display:grid;grid-template-columns:76px 1fr 78px;gap:10px;align-items:center;margin:10px 0;font-size:13px}.chart-row span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--muted)}.chart-row b{text-align:right;font-variant-numeric:tabular-nums}.bar-track{height:9px;background:#edf3f8;border-radius:99px;overflow:hidden}.bar-track i{display:block;height:100%;background:var(--blue);border-radius:99px}.bar-track.gold i{background:#d69b22}.format-item{margin:13px 0}.format-item strong{float:right;font-size:13px}.format-item div{clear:both;height:8px;background:#edf3f8;border-radius:99px;margin-top:6px;overflow:hidden}.format-item i{height:100%;display:block;background:#42a5f5;border-radius:99px}.insight-list{margin:0;padding:0;list-style:none}.insight-list li{padding:14px 0;border-bottom:1px solid var(--line);font-size:15px}.insight-list li:last-child{border-bottom:0}.insight-list li:before{content:&quot;&quot;;display:inline-block;width:7px;height:7px;background:var(--blue);border-radius:50%;margin:0 9px 2px 0}table{width:100%;border-collapse:collapse;font-size:14px}th{text-align:left;color:var(--muted);font-weight:600;border-bottom:1px solid var(--line);padding:0 8px 10px}td{padding:12px 8px;border-bottom:1px solid var(--line);vertical-align:top}td:not(:nth-child(2)){font-variant-numeric:tabular-nums}td small{display:block;color:var(--muted);margin-top:3px}.report-footer{color:var(--muted);font-size:12px;border-top:1px solid var(--line);padding-top:16px;margin-top:30px}@media(max-width:860px){.report{padding:24px 16px}.kpis,.two{grid-template-columns:1fr 1fr}.report-head h1{font-size:26px}}@media(max-width:560px){.kpis,.two{grid-template-columns:1fr}.chart-row{grid-template-columns:54px 1fr 66px}table{font-size:12px}th,td{padding:9px 4px}}
+        &lt;/style&gt;
+        &lt;main class=&quot;report&quot;&gt;
+          &lt;header class=&quot;report-head&quot;&gt;&lt;div class=&quot;eyebrow&quot;&gt;MONO 渠道 · ${escapeHtml(source.fiscal_period)}&lt;/div&gt;&lt;h1&gt;小红书矩阵笔记商业分析报告&lt;/h1&gt;&lt;p&gt;以 ${escapeHtml(source.workbook)} 为数据源，按笔记发布时间与当月账号增量生成。&lt;/p&gt;&lt;div class=&quot;meta&quot;&gt;&lt;span&gt;数据截止：${escapeHtml(source.cutoff)}&lt;/span&gt;&lt;span&gt;${format(life.notes)} 条累计笔记&lt;/span&gt;&lt;span&gt;${format(summary.accounts)} 个账号&lt;/span&gt;&lt;span&gt;生成时间：${escapeHtml(data.generated_at)}&lt;/span&gt;&lt;/div&gt;&lt;/header&gt;
+          &lt;section class=&quot;section&quot;&gt;&lt;h2 class=&quot;section-title&quot;&gt;整体数据表现（${escapeHtml(source.fiscal_period)}）&lt;/h2&gt;&lt;p class=&quot;section-note&quot;&gt;当月经营快照来自「小红书总数据」月度增量；内容趋势按笔记发布时间归档。&lt;/p&gt;&lt;div class=&quot;grid kpis&quot;&gt;&lt;article class=&quot;card&quot;&gt;&lt;div class=&quot;metric-label&quot;&gt;本月总浏览&lt;/div&gt;&lt;div class=&quot;metric-value&quot;&gt;${format(current.reads)}&lt;/div&gt;&lt;div class=&quot;metric-foot&quot;&gt;${format(summary.active_accounts)} 个活跃账号的月度增量&lt;/div&gt;&lt;/article&gt;&lt;article class=&quot;card&quot;&gt;&lt;div class=&quot;metric-label&quot;&gt;本月互动量&lt;/div&gt;&lt;div class=&quot;metric-value&quot;&gt;${format(current.interactions)}&lt;/div&gt;&lt;div class=&quot;metric-foot&quot;&gt;互动率 &lt;strong&gt;${rate(current.interactions, current.reads)}&lt;/strong&gt;&lt;/div&gt;&lt;/article&gt;&lt;article class=&quot;card&quot;&gt;&lt;div class=&quot;metric-label&quot;&gt;本月新增粉丝&lt;/div&gt;&lt;div class=&quot;metric-value&quot;&gt;${format(current.new_fans)}&lt;/div&gt;&lt;div class=&quot;metric-foot&quot;&gt;每万浏览涨粉 &lt;strong&gt;${current.reads ? (current.new_fans / current.reads * 10000).toFixed(1) : &quot;-&quot;}&lt;/strong&gt;&lt;/div&gt;&lt;/article&gt;&lt;article class=&quot;card&quot;&gt;&lt;div class=&quot;metric-label&quot;&gt;累计爆款笔记&lt;/div&gt;&lt;div class=&quot;metric-value&quot;&gt;${format(summary.viral_notes)}&lt;/div&gt;&lt;div class=&quot;metric-foot&quot;&gt;阅读 ${format(summary.viral_threshold)} 以上，占 &lt;strong&gt;${rate(summary.viral_notes, life.notes)}&lt;/strong&gt;&lt;/div&gt;&lt;/article&gt;&lt;/div&gt;&lt;/section&gt;
+          &lt;section class=&quot;section&quot;&gt;&lt;div class=&quot;grid two&quot;&gt;&lt;article class=&quot;card&quot;&gt;&lt;h2 class=&quot;section-title&quot;&gt;近 12 个月内容趋势&lt;/h2&gt;&lt;p class=&quot;section-note&quot;&gt;按笔记发布时间归档的累计阅读&lt;/p&gt;${trendRows}&lt;/article&gt;&lt;article class=&quot;card&quot;&gt;&lt;h2 class=&quot;section-title&quot;&gt;笔记形式分布&lt;/h2&gt;&lt;p class=&quot;section-note&quot;&gt;累计笔记数量&lt;/p&gt;${formatRows}&lt;/article&gt;&lt;/div&gt;&lt;/section&gt;
+          &lt;section class=&quot;section&quot;&gt;&lt;h2 class=&quot;section-title&quot;&gt;维度二：分类与内容机会&lt;/h2&gt;&lt;p class=&quot;section-note&quot;&gt;分类按累计阅读排序，帮助识别应该加码与需要优化的内容方向。&lt;/p&gt;&lt;div class=&quot;grid two&quot;&gt;&lt;article class=&quot;card&quot;&gt;&lt;h3&gt;分类阅读规模&lt;/h3&gt;${categoryRows}&lt;/article&gt;&lt;article class=&quot;card&quot;&gt;&lt;h3&gt;运营洞察与建议&lt;/h3&gt;&lt;ul class=&quot;insight-list&quot;&gt;${insights.map(item =&gt; `&lt;li&gt;${escapeHtml(item)}&lt;/li&gt;`).join(&quot;&quot;)}&lt;/ul&gt;&lt;/article&gt;&lt;/div&gt;&lt;/section&gt;
+          &lt;section class=&quot;section&quot;&gt;&lt;h2 class=&quot;section-title&quot;&gt;维度三：高表现笔记&lt;/h2&gt;&lt;p class=&quot;section-note&quot;&gt;按累计阅读排序，供选题与内容复盘使用。&lt;/p&gt;&lt;article class=&quot;card&quot;&gt;&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;#&lt;/th&gt;&lt;th&gt;笔记&lt;/th&gt;&lt;th&gt;分类&lt;/th&gt;&lt;th&gt;阅读&lt;/th&gt;&lt;th&gt;互动&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;${noteRows}&lt;/tbody&gt;&lt;/table&gt;&lt;/article&gt;&lt;/section&gt;
+          &lt;section class=&quot;section&quot;&gt;&lt;h2 class=&quot;section-title&quot;&gt;维度四：账号月度贡献&lt;/h2&gt;&lt;p class=&quot;section-note&quot;&gt;来自当月总数据表的增量指标，不与累计笔记库混用。&lt;/p&gt;&lt;article class=&quot;card&quot;&gt;&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;#&lt;/th&gt;&lt;th&gt;账号 / 经销商&lt;/th&gt;&lt;th&gt;总浏览&lt;/th&gt;&lt;th&gt;互动&lt;/th&gt;&lt;th&gt;新增粉丝&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;${accountRows}&lt;/tbody&gt;&lt;/table&gt;&lt;/article&gt;&lt;/section&gt;
+          &lt;section class=&quot;section&quot;&gt;&lt;h2 class=&quot;section-title&quot;&gt;商业机会验证&lt;/h2&gt;&lt;p class=&quot;section-note&quot;&gt;从需求验证、竞争格局、内容机会三个维度系统评估。&lt;/p&gt;&lt;article class=&quot;card&quot;&gt;&lt;ul class=&quot;insight-list&quot;&gt;&lt;li&gt;&lt;strong&gt;需求验证：&lt;/strong&gt;累计 ${format(life.reads)} 阅读与 ${format(life.interactions)} 次互动表明已有稳定内容消费基础，应围绕高阅读分类持续验证细分选题。&lt;/li&gt;&lt;li&gt;&lt;strong&gt;竞争格局：&lt;/strong&gt;先复盘高表现笔记的标题、发布时间和互动结构，再将可复制要素应用到表现偏弱的分类与账号。&lt;/li&gt;&lt;li&gt;&lt;strong&gt;内容机会：&lt;/strong&gt;用本月的新增粉丝和主页访客数据追踪转化，避免只以累计阅读判断内容价值。&lt;/li&gt;&lt;/ul&gt;&lt;/article&gt;&lt;/section&gt;
+          &lt;footer class=&quot;report-footer&quot;&gt;数据来源：${escapeHtml(source.workbook)} · 报告按 ${escapeHtml(source.month)} 快照生成 · 运行 build_xhs_report.py --month ${escapeHtml(source.month)} 可刷新。&lt;/footer&gt;
+        &lt;/main&gt;`;
+    };
+    const hydrateLegacy = data =&gt; {
+      const { source, summary, monthly, formats, categories, top_notes: topNotes, account_performance: accounts, insights } = data;
+      const life = summary.lifetime;
+      const current = summary.current_month;
+      const set = (selector, text) =&gt; { const node = document.querySelector(selector); if (node) node.textContent = text; };
+      const compact = format;
+      document.title = `小红书矩阵笔记商业分析报告 · ${source.fiscal_period}`;
+      set(&#x27;.header h1&#x27;, &#x27;小红书矩阵笔记商业分析报告&#x27;);
+      set(&#x27;.header p:nth-of-type(1)&#x27;, `Mono渠道 · ${source.fiscal_period}`);
+      set(&#x27;.header p:nth-of-type(2)&#x27;, `数据截止：${source.cutoff} · 共 ${compact(life.notes)} 条笔记 · ${compact(summary.accounts)} 个账号`);
+      const titles = document.querySelectorAll(&#x27;.section-title&#x27;);
+      if (titles[0]) titles[0].textContent = `整体数据表现（${source.fiscal_period}）`;
+      const cardValues = [life.reads, life.notes, summary.viral_notes, life.interactions, current.new_fans, life.notes ? Math.round(life.reads / life.notes) : 0, summary.active_accounts, life.notes ? `${((formats.find(item =&gt; item.name === &#x27;图片&#x27;) || formats[0] || { count: 0 }).count / life.notes * 100).toFixed(1)}%` : &#x27;-&#x27;];
+      const cards = document.querySelectorAll(&#x27;.kpi-card&#x27;);
+      cards.forEach((card, index) =&gt; {
+        const value = card.querySelector(&#x27;.value&#x27;);
+        if (value &amp;&amp; cardValues[index] !== undefined) value.textContent = typeof cardValues[index] === &#x27;string&#x27; ? cardValues[index] : compact(cardValues[index]);
+      });
+      const trends = document.querySelectorAll(&#x27;.kpi-card .trend&#x27;);
+      const imageFormat = formats.find(item =&gt; item.name === &#x27;图片&#x27;) || formats[0] || { name: &#x27;未标注&#x27;, count: 0 };
+      const trendCopy = [
+        `数据截止 ${source.cutoff}`,
+        &#x27;笔记库累计快照&#x27;,
+        `阅读 ${compact(summary.viral_threshold)} 以上`,
+        &#x27;点赞 + 收藏 + 评论 + 分享&#x27;,
+        &#x27;当月账号增量&#x27;,
+        &#x27;累计阅读 / 累计笔记&#x27;,
+        &#x27;当月有可观测指标的账号&#x27;,
+        `${imageFormat.name} ${compact(imageFormat.count)} 条`,
+      ];
+      trends.forEach((node, index) =&gt; { if (trendCopy[index]) node.textContent = trendCopy[index]; });
+      const headings = document.querySelectorAll(&#x27;.chart-box h3&#x27;);
+      if (headings[0]) headings[0].textContent = &#x27;矩阵月度核心指标趋势（按笔记发布时间归档）&#x27;;
+      if (headings[1]) headings[1].textContent = &#x27;Apple 财季环比增长率（%）&#x27;;
+      if (headings[2]) headings[2].textContent = &#x27;笔记类型分布&#x27;;
+      if (headings[4]) headings[4].textContent = `账号发布频率分布（Top ${Math.min(30, accounts.length)}，按发布笔记数）`;
+      if (headings[5]) headings[5].textContent = `7 月发布账号数据总览（${accounts.length} 个账号）`;
+      const frequencyBox = document.getElementById(&#x27;chartFreq&#x27;)?.closest(&#x27;.chart-box&#x27;);
+      if (frequencyBox) {
+        const frequencyHeading = frequencyBox.querySelector(&#x27;h3&#x27;);
+        let scope = frequencyBox.querySelector(&#x27;.frequency-scope&#x27;);
+        if (!scope) {
+          scope = document.createElement(&#x27;p&#x27;);
+          scope.className = &#x27;frequency-scope&#x27;;
+          scope.style.cssText = &#x27;margin:0 0 10px;color:#667085;font-size:12px;&#x27;;
+          frequencyHeading?.insertAdjacentElement(&#x27;afterend&#x27;, scope);
+        }
+        scope.textContent = `统计范围：小红书笔记数据库中笔记发布时间为 ${source.month} 的记录；按账号发布笔记数降序排列，不代表当月账号快照发布量。`;
+      }
+      const fansBox = document.getElementById(&#x27;chartFans&#x27;)?.closest(&#x27;.chart-box&#x27;);
+      if (fansBox) {
+        const fansHeading = fansBox.querySelector(&#x27;h3&#x27;);
+        if (fansHeading) fansHeading.textContent = &#x27;全矩阵笔记涨粉合计趋势（按笔记发布时间归档）&#x27;;
+        let scope = fansBox.querySelector(&#x27;.chart-scope&#x27;);
+        if (!scope) {
+          scope = document.createElement(&#x27;p&#x27;);
+          scope.className = &#x27;chart-scope&#x27;;
+          scope.style.cssText = &#x27;margin:0 0 10px;color:#667085;font-size:12px;&#x27;;
+          fansHeading?.insertAdjacentElement(&#x27;afterend&#x27;, scope);
+        }
+        scope.textContent = `范围：${summary.accounts} 个账号的累计笔记；不代表单一账号，也不等同于月度账号总数据增量。`;
+      }
+      const destroy = id =&gt; { const chart = window.Chart &amp;&amp; Chart.getChart ? Chart.getChart(id) : null; if (chart) chart.destroy(); };
+      const baseOptions = { responsive: true, maintainAspectRatio: true, plugins: { legend: { labels: { color: &#x27;#667085&#x27; } } }, scales: { x: { ticks: { color: &#x27;#667085&#x27;, maxRotation: 45 }, grid: { color: &#x27;#e7edf3&#x27; } }, y: { ticks: { color: &#x27;#667085&#x27; }, grid: { color: &#x27;#e7edf3&#x27; } } } };
+      if (window.Chart) {
+        destroy(&#x27;chartMonthly&#x27;);
+        new Chart(document.getElementById(&#x27;chartMonthly&#x27;), { type: &#x27;line&#x27;, data: { labels: monthly.map(row =&gt; row.month), datasets: [{ label: &#x27;累计阅读&#x27;, data: monthly.map(row =&gt; row.reads), borderColor: &#x27;#0071e3&#x27;, backgroundColor: &#x27;rgba(0,113,227,.10)&#x27;, tension: .35 }, { label: &#x27;互动量&#x27;, data: monthly.map(row =&gt; row.interactions), borderColor: &#x27;#34a853&#x27;, backgroundColor: &#x27;rgba(52,168,83,.08)&#x27;, tension: .35 }, { label: &#x27;发布笔记数&#x27;, data: monthly.map(row =&gt; row.notes), borderColor: &#x27;#f5a623&#x27;, backgroundColor: &#x27;rgba(245,166,35,.08)&#x27;, tension: .35, yAxisID: &#x27;y2&#x27; }] }, options: { ...baseOptions, scales: { ...baseOptions.scales, y2: { position: &#x27;right&#x27;, ticks: { color: &#x27;#667085&#x27; }, grid: { drawOnChartArea: false } } } } });
+        const fiscalKey = month =&gt; { const [year, rawMonth] = month.split(&#x27;-&#x27;).map(Number); const fiscalYear = rawMonth &gt;= 10 ? year + 1 : year; const fiscalMonth = ((rawMonth - 10 + 12) % 12) + 1; return `FY${String(fiscalYear).slice(-2)} Q${Math.ceil(fiscalMonth / 3)}`; };
+        const quarters = {};
+        monthly.forEach(row =&gt; { const key = fiscalKey(row.month); quarters[key] ||= { reads: 0, interactions: 0, notes: 0 }; quarters[key].reads += row.reads; quarters[key].interactions += row.interactions; quarters[key].notes += row.notes; });
+        const quarterLabels = Object.keys(quarters).slice(-4); const percentChange = key =&gt; quarterLabels.map((label, index) =&gt; index ? ((quarters[label][key] - quarters[quarterLabels[index - 1]][key]) / Math.max(1, quarters[quarterLabels[index - 1]][key]) * 100).toFixed(0) : 0);
+        destroy(&#x27;chartQoQ&#x27;); new Chart(document.getElementById(&#x27;chartQoQ&#x27;), { type: &#x27;bar&#x27;, data: { labels: quarterLabels, datasets: [{ label: &#x27;阅读量环比&#x27;, data: percentChange(&#x27;reads&#x27;), backgroundColor: &#x27;rgba(0,113,227,.70)&#x27; }, { label: &#x27;互动量环比&#x27;, data: percentChange(&#x27;interactions&#x27;), backgroundColor: &#x27;rgba(52,168,83,.70)&#x27; }, { label: &#x27;发布量环比&#x27;, data: percentChange(&#x27;notes&#x27;), backgroundColor: &#x27;rgba(245,166,35,.75)&#x27; }] }, options: { ...baseOptions, scales: { ...baseOptions.scales, y: { ...baseOptions.scales.y, ticks: { color: &#x27;#667085&#x27;, callback: value =&gt; `${value}%` } } } } });
+        destroy(&#x27;chartType&#x27;); new Chart(document.getElementById(&#x27;chartType&#x27;), { type: &#x27;doughnut&#x27;, data: { labels: formats.map(item =&gt; item.name), datasets: [{ data: formats.map(item =&gt; item.count), backgroundColor: [&#x27;#0071e3&#x27;, &#x27;#34a853&#x27;, &#x27;#f5a623&#x27;, &#x27;#af52de&#x27;], borderWidth: 0 }] }, options: { responsive: true, plugins: { legend: { labels: { color: &#x27;#667085&#x27; } } } } });
+        destroy(&#x27;chartScatter&#x27;); const cohortColor = { S: &#x27;#34a853&#x27;, A: &#x27;#0071e3&#x27;, B: &#x27;#f5a623&#x27;, C: &#x27;#8e8e93&#x27; }; new Chart(document.getElementById(&#x27;chartScatter&#x27;), { type: &#x27;scatter&#x27;, data: { datasets: [&#x27;S&#x27;,&#x27;A&#x27;,&#x27;B&#x27;,&#x27;C&#x27;].map(cohort =&gt; ({ label: `${cohort}档`, data: accounts.filter(item =&gt; item.cohort === cohort).map(item =&gt; ({ x: item.notes, y: item.avg_reads, accountName: item.name })), backgroundColor: cohortColor[cohort], pointRadius: 6 })) }, options: { ...baseOptions, interaction: { mode: &#x27;nearest&#x27;, intersect: true }, plugins: { legend: { labels: { color: &#x27;#667085&#x27; } }, tooltip: { callbacks: { title: context =&gt; context[0]?.raw?.accountName || &#x27;账号&#x27;, label: context =&gt; `发布笔记：${compact(context.raw.x)} · 篇均阅读：${compact(context.raw.y)}` } } }, scales: { ...baseOptions.scales, x: { ...baseOptions.scales.x, title: { display: true, text: &#x27;发布笔记数&#x27; } }, y: { ...baseOptions.scales.y, title: { display: true, text: &#x27;篇均阅读&#x27; } } } } });
+        destroy(&#x27;chartFreq&#x27;); const top = accounts.slice().sort((left, right) =&gt; right.notes - left.notes).slice(0, 30); new Chart(document.getElementById(&#x27;chartFreq&#x27;), { type: &#x27;bar&#x27;, data: { labels: top.map(item =&gt; item.name.slice(0, 14)), datasets: [{ label: &#x27;发布笔记数&#x27;, data: top.map(item =&gt; item.notes), backgroundColor: &#x27;#0071e3&#x27; }] }, options: { ...baseOptions, indexAxis: &#x27;y&#x27;, plugins: { legend: { display: false }, tooltip: { callbacks: { title: context =&gt; top[context[0]?.dataIndex]?.name || &#x27;账号&#x27;, label: context =&gt; `发布笔记：${compact(context.raw)}` } } } } });
+        const renderTopNoteLinks = chart =&gt; {
+          const canvas = chart.canvas;
+          const container = canvas.parentElement;
+          if (!container) return;
+          container.style.position = &#x27;relative&#x27;;
+          let overlay = container.querySelector(&#x27;.top-note-axis-links&#x27;);
+          if (!overlay) {
+            overlay = document.createElement(&#x27;div&#x27;);
+            overlay.className = &#x27;top-note-axis-links&#x27;;
+            overlay.style.cssText = &#x27;position:absolute;inset:0;pointer-events:none;&#x27;;
+            container.appendChild(overlay);
+          }
+          overlay.innerHTML = &#x27;&#x27;;
+          topNotes.forEach((item, index) =&gt; {
+            if (!item.url) return;
+            const label = document.createElement(&#x27;div&#x27;);
+            label.style.cssText = `position:absolute;left:${canvas.offsetLeft}px;top:${canvas.offsetTop + chart.scales.y.getPixelForValue(index) - 14}px;width:${Math.max(175, chart.chartArea.left - 12)}px;overflow:hidden;font-size:12px;line-height:15px;pointer-events:auto;`;
+            const link = document.createElement(&#x27;a&#x27;);
+            link.href = item.url;
+            link.target = &#x27;_blank&#x27;;
+            link.rel = &#x27;noopener noreferrer&#x27;;
+            link.textContent = item.title.slice(0, 17);
+            link.title = `${item.title} · 发布账号：${item.account || &#x27;未匹配账号&#x27;}`;
+            link.style.cssText = &#x27;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#0071e3;text-decoration:underline;&#x27;;
+            const account = document.createElement(&#x27;span&#x27;);
+            account.textContent = `发布账号：${item.account || &#x27;未匹配账号&#x27;}`;
+            account.style.cssText = &#x27;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#6e6e73;font-size:11px;&#x27;;
+            label.append(link, account);
+            overlay.appendChild(label);
+          });
+        };
+        const topNotesBox = document.getElementById(&#x27;chartTop20&#x27;)?.closest(&#x27;.chart-box&#x27;);
+        const topNotesHeading = topNotesBox?.querySelector(&#x27;h3&#x27;);
+        if (topNotesHeading) topNotesHeading.textContent = `Top ${Math.min(20, topNotes.length)} ${source.month} 爆款笔记阅读数排行`;
+        destroy(&#x27;chartTop20&#x27;); const topNotesChart = new Chart(document.getElementById(&#x27;chartTop20&#x27;), { type: &#x27;bar&#x27;, data: { labels: topNotes.map(item =&gt; item.title.slice(0, 16)), datasets: [{ label: `${source.month} 阅读`, data: topNotes.map(item =&gt; item.reads), backgroundColor: &#x27;#0071e3&#x27; }] }, options: { ...baseOptions, indexAxis: &#x27;y&#x27;, plugins: { legend: { display: false } }, scales: { ...baseOptions.scales, y: { ...baseOptions.scales.y, ticks: { color: &#x27;transparent&#x27; } } } } }); setTimeout(() =&gt; renderTopNoteLinks(topNotesChart), 0);
+        destroy(&#x27;chartInteraction&#x27;); new Chart(document.getElementById(&#x27;chartInteraction&#x27;), { type: &#x27;doughnut&#x27;, data: { labels: [&#x27;点赞&#x27;, &#x27;收藏&#x27;, &#x27;评论&#x27;, &#x27;分享&#x27;], datasets: [{ data: [life.likes, life.collects, life.comments, life.shares], backgroundColor: [&#x27;#0071e3&#x27;, &#x27;#34a853&#x27;, &#x27;#f5a623&#x27;, &#x27;#af52de&#x27;], borderWidth: 0 }] }, options: { responsive: true, plugins: { legend: { labels: { color: &#x27;#667085&#x27; } } } } });
+        destroy(&#x27;chartFans&#x27;); new Chart(document.getElementById(&#x27;chartFans&#x27;), { type: &#x27;bar&#x27;, data: { labels: monthly.map(item =&gt; item.month), datasets: [{ label: &#x27;全矩阵笔记涨粉合计&#x27;, data: monthly.map(item =&gt; item.new_fans), backgroundColor: &#x27;#34a853&#x27; }] }, options: baseOptions });
+      }
+      const tbody = document.querySelector(&#x27;.data-table tbody&#x27;);
+      if (tbody) tbody.innerHTML = accounts.map((item, index) =&gt; `&lt;tr&gt;&lt;td&gt;${index + 1}&lt;/td&gt;&lt;td&gt;${escapeHtml(item.name)}&lt;/td&gt;&lt;td&gt;${compact(item.notes)}&lt;/td&gt;&lt;td&gt;${compact(item.avg_reads)}&lt;/td&gt;&lt;td&gt;${(item.viral_rate * 100).toFixed(1)}%&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;badge badge-${item.cohort.toLowerCase()}&quot;&gt;${item.cohort}&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;`).join(&#x27;&#x27;);
+      const blocks = document.querySelectorAll(&#x27;.attribution-block&#x27;);
+      if (blocks[0]) blocks[0].innerHTML = `&lt;h4&gt;关键增长归因&lt;/h4&gt;${insights.map(item =&gt; `&lt;p&gt;${escapeHtml(item)}&lt;/p&gt;`).join(&#x27;&#x27;)}`;
+      if (blocks[1]) blocks[1].innerHTML = `&lt;h4&gt;经销商矩阵效能分布&lt;/h4&gt;&lt;p&gt;按篇均阅读划分：S档 ${accounts.filter(item =&gt; item.cohort === &#x27;S&#x27;).length} 个，A档 ${accounts.filter(item =&gt; item.cohort === &#x27;A&#x27;).length} 个，B档 ${accounts.filter(item =&gt; item.cohort === &#x27;B&#x27;).length} 个，C档 ${accounts.filter(item =&gt; item.cohort === &#x27;C&#x27;).length} 个。&lt;/p&gt;`;
+      if (blocks[2]) blocks[2].innerHTML = `&lt;h4&gt;发布行为分析&lt;/h4&gt;&lt;p&gt;${escapeHtml(accounts[0] ? `${accounts[0].name} 的篇均阅读为 ${compact(accounts[0].avg_reads)}，可作为高效选题和内容结构的复盘对象。` : &#x27;暂无可用账号表现数据。&#x27;)}&lt;/p&gt;`;
+      const categoryLead = categories[0] || { category: &#x27;未分类&#x27;, reads: 0, avg_reads: 0 };
+      const narrative = [
+        { title: &#x27;内容同质化风险&#x27;, text: `${categoryLead.category} 已累计获得 ${compact(categoryLead.reads)} 阅读。应以高表现分类的标题、封面和场景为参考，避免各账号重复发布相似选题。` },
+        { title: &#x27;爆款内容复盘&#x27;, text: topNotes[0] ? `当前累计阅读最高的笔记是「${topNotes[0].title}」，累计阅读 ${compact(topNotes[0].reads)}。建议围绕其选题结构和内容形式进行复盘。` : &#x27;暂无可复盘的高表现笔记。&#x27; },
+        { title: &#x27;内容机会&#x27;, text: `以 ${compact(summary.viral_threshold)} 阅读为爆款阈值，累计已有 ${compact(summary.viral_notes)} 条笔记达标；下一步应将高阅读分类的表达方式复制到低效分类。` },
+        { title: &#x27;互动与转化信号&#x27;, text: `累计互动 ${compact(life.interactions)}，其中收藏 ${compact(life.collects)}、评论 ${compact(life.comments)}。收藏和评论应进入选题与线索跟进的优先队列。` },
+      ];
+      blocks.forEach((node, index) =&gt; {
+        if (index &lt; 3) return;
+        const item = narrative[(index - 3) % narrative.length];
+        node.innerHTML = `&lt;h4&gt;${item.title}&lt;/h4&gt;&lt;p&gt;${escapeHtml(item.text)}&lt;/p&gt;`;
+      });
+      document.querySelectorAll(&#x27;.formula-box, .insight-block&#x27;).forEach((node, index) =&gt; {
+        const item = narrative[index % narrative.length];
+        node.innerHTML = `&lt;h4&gt;${item.title}&lt;/h4&gt;&lt;p&gt;${escapeHtml(item.text)}&lt;/p&gt;`;
+      });
+      const footer = document.querySelector(&#x27;.container &gt; div[style*=&quot;text-align:center&quot;]&#x27;);
+      if (footer) footer.textContent = `报告生成时间：${data.generated_at} · 数据来源：${source.workbook} · ${source.fiscal_period} 数据快照`;
+    };
+    fetchReport().then(hydrateLegacy).catch(error =&gt; {
+      console.error(&quot;Unable to hydrate source-backed legacy report&quot;, error);
+      const notice = document.querySelector(&#x27;.header p:nth-of-type(2)&#x27;);
+      if (notice) notice.textContent = `报告数据加载失败：${error.message}`;
+    });
+  })();
+&lt;/script&gt;
+&lt;script&gt;
+  if (document.documentElement.dataset.embed === &quot;apple&quot; &amp;&amp; window.parent !== window) {
+    const reportHeight = () =&gt; window.parent.postMessage({
+      type: &quot;history-report-height&quot;,
+      height: Math.max(document.body.scrollHeight, document.documentElement.scrollHeight),
+    }, window.location.origin);
+    new ResizeObserver(reportHeight).observe(document.body);
+    window.addEventListener(&quot;load&quot;, reportHeight);
+    setTimeout(reportHeight, 300);
+  }
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe></section>
+</main></div><script>const frame=document.getElementById('full-report');function resize(){try{const doc=frame.contentDocument;if(doc)frame.style.height=Math.max(1200,doc.documentElement.scrollHeight,doc.body.scrollHeight)+24+'px';}catch(_e){}}frame.addEventListener('load',()=>{resize();[200,800,1800,3500].forEach(delay=>setTimeout(resize,delay));});</script></body></html>

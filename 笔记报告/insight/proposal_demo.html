@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>小红书经销商运营 Insight Proposal Demo</title>
+  <title>运营数据分析 Proposal Demo</title>
   <style>
     :root {
       --bg: #eef3f8;
@@ -141,6 +141,21 @@
     .hidden { display: none !important; }
     .loading, .error { padding: 28px; border-radius: 8px; background: white; box-shadow: var(--shadow); }
     .error { color: var(--red); }
+    .embedded-view { min-height: calc(100vh - 118px); }
+    .embedded-intro { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin: 0 0 12px; }
+    .embedded-intro h2 { margin: 0; font-size: 20px; }
+    .embedded-intro p { margin: 0; color: var(--muted); font-size: 13px; }
+    .embedded-frame {
+      display: block;
+      width: 100%;
+      min-height: calc(100vh - 178px);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+    .overview-frame { min-height: 700px; }
+    .history-frame { min-height: 480px; }
   </style>
 </head>
 <body>
@@ -148,18 +163,18 @@
     <aside class="side">
       <div class="brand">
         <div class="mark">XI</div>
-        <div><strong>小红书 Insight</strong><span>Proposal Demo</span></div>
+        <div><strong>运营数据分析</strong><span>Proposal Demo</span></div>
       </div>
       <nav class="nav">
-        <button class="active" data-view="apple">Apple 方视角</button>
-        <button data-view="dealer">经销商视角</button>
+        <button class="active" data-view="apple">Apple Insight</button>
+        <button data-view="dealer">经销商 Insight</button>
       </nav>
       <p class="side-note">所有洞察均从月度爬虫数据、历史数据与 FY26 KPI 产物生成。未来可按登录账号自动切换视角。</p>
     </aside>
 
     <main class="main">
       <div class="toolbar">
-        <h1>小红书经销商运营 Insight</h1>
+        <h1>运营数据分析</h1>
         <div class="toolbar-meta">
           <span class="pill blue" id="period-pill">加载中</span>
           <span class="pill" id="freshness-pill">数据刷新中</span>
@@ -271,57 +286,9 @@
 
     function renderApple() {
       const root = document.getElementById("apple-view");
-      const payload = state.apple;
-      const apple = payload.apple;
-      const risks = apple.risk_dealers || [];
-      const topRegions = topBy(apple.regional_summaries, "account_count", 5);
-      const topCategories = topBy(apple.category_mix_performance, "reads_per_note", 6);
-      const critical = risks.filter(row => row.status === "critical").length;
-      const totalAccounts = n(apple.account_counts.core_kpi) + n(apple.account_counts.expanded_store);
-      const bestCategory = topCategories[0] || {};
-      const unassigned = (apple.regional_summaries || []).find(row => row.region === "unassigned");
-
       root.innerHTML = `
-        <div class="hero">
-          <div class="hero-main">
-            <div class="eyebrow">Apple 方视角</div>
-            <h2>从全网数据判断：资源要投向哪里，风险要先处理谁。</h2>
-            <p>本页把 56 家经销商、246 个账号与 FY26 Q4 KPI 放在同一个经营网络中观察。重点不是罗列报表，而是识别“哪些经销商需要跟进、哪些区域需要差异化策略、哪些内容分类值得复制”。</p>
-          </div>
-          <div class="hero-side">
-            <article class="metric blue"><label>经销商数量</label><strong>${num((payload.apple.risk_dealers || []).length || 56)}</strong><small>当前网络管理对象</small></article>
-            <article class="metric green"><label>账号覆盖</label><strong>${num(totalAccounts)}</strong><small>核心 KPI + 扩展门店</small></article>
-            <article class="metric orange"><label>高风险经销商</label><strong>${num(critical)}</strong><small>KPI pacing 严重滞后</small></article>
-            <article class="metric pink"><label>强势分类</label><strong>${escapeHtml(bestCategory.category || "-")}</strong><small>按单篇阅读效率识别</small></article>
-          </div>
-        </div>
-
-        <div class="section-title"><h3>AI 洞察主线</h3><span>由证据包生成，页面再按角色改写为演示语言</span></div>
-        <div class="grid">${insightCards(apple.ai_insights.insights, apple.evidence, "apple").replaceAll('class="insight-card"', 'class="insight-card span-4"')}</div>
-
-        <div class="section-title"><h3>经营判断</h3><span>Apple 关注网络资源分配和可复制打法</span></div>
-        <div class="grid">
-          <section class="panel span-6">
-            <h3>全网 KPI 节奏</h3>
-            <div class="hero-side">${kpiMetrics(apple.network_kpis)}</div>
-          </section>
-          <section class="panel span-6">
-            <h3>区域差异化提示</h3>
-            <p>${unassigned ? `仍有 ${num(unassigned.account_count)} 个账号区域未识别，Apple 方应先推动账号城市归因补齐，否则区域策略会被低估。` : "区域识别较完整，可进入城市差异化策略判断。"}</p>
-            ${bars(topRegions, "region", "account_count")}
-          </section>
-          <section class="list-panel span-7">
-            <h3>优先跟进经销商</h3>
-            <table><thead><tr><th>经销商</th><th>状态</th><th>最弱节奏差</th></tr></thead><tbody>
-              ${risks.slice(0, 8).map(row => `<tr><td><strong>${escapeHtml(row.name)}</strong></td><td><span class="status ${statusClass(row.status)}">${statusText(row.status)}</span></td><td>${percent(row.worst_pacing_gap)}</td></tr>`).join("")}
-            </tbody></table>
-          </section>
-          <section class="panel span-5">
-            <h3>内容分类机会</h3>
-            <p>${escapeHtml(bestCategory.category || "高效分类")} 的单篇阅读效率领先，应作为素材复用、选题模板和区域训练样本的候选方向。</p>
-            ${bars(topCategories, "category", "reads_per_note")}
-          </section>
-        </div>`;
+        <iframe class="embedded-frame overview-frame" title="Apple 数据总览" src="apple_insight.html?embed=overview&demo=1&v=20260808-2#network-overview"></iframe>
+        <iframe class="embedded-frame history-frame" title="小红书矩阵笔记商业分析报告" scrolling="no" src="../xhs_report.html?embed=apple&v=20260809-16"></iframe>`;
     }
 
     function dealerSummary(dealer) {
@@ -347,6 +314,8 @@
 
     function renderDealer() {
       const root = document.getElementById("dealer-view");
+      root.innerHTML = `<iframe class="embedded-frame history-frame" title="经销商 Insight" scrolling="no" src="dealer_report.html?month=${state.month}&v=20260809-8"></iframe>`;
+      return;
       const payload = state.dealerPayload;
       const dealer = payload.dealer;
       const summary = dealerSummary(dealer);
@@ -368,7 +337,7 @@
         </div>
         <div class="hero">
           <div class="hero-main">
-            <div class="eyebrow">经销商视角</div>
+            <div class="eyebrow">经销商 Insight</div>
             <h2>${escapeHtml(dealer.name)}</h2>
             <p>本页只展示该经销商自己的账号、城市、分类和 KPI 证据。老板演示时可以强调：未来登录账号不同，同一个 Insight 页面自动切换为不同数据权限和洞察语言。</p>
           </div>
@@ -451,9 +420,17 @@
     function showView(view) {
       state.view = view;
       document.querySelectorAll(".nav button").forEach(button => button.classList.toggle("active", button.dataset.view === view));
-      document.getElementById("apple-view").classList.toggle("hidden", view !== "apple");
-      document.getElementById("dealer-view").classList.toggle("hidden", view !== "dealer");
+      ["apple", "dealer"].forEach(name => {
+        document.getElementById(`${name}-view`).classList.toggle("hidden", view !== name);
+      });
     }
+    window.addEventListener("message", event => {
+      if (event.origin !== window.location.origin || !["history-report-height", "dealer-report-height"].includes(event.data?.type)) return;
+      const frame = event.data.type === "dealer-report-height"
+        ? document.querySelector('iframe[title="经销商 Insight"]')
+        : document.querySelector('iframe[title="小红书矩阵笔记商业分析报告"]');
+      if (frame && Number.isFinite(event.data.height)) frame.style.height = `${Math.ceil(event.data.height) + 2}px`;
+    });
     document.querySelectorAll(".nav button").forEach(button => button.addEventListener("click", () => showView(button.dataset.view)));
     init();
   </script>

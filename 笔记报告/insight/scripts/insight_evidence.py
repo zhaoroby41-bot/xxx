@@ -119,10 +119,13 @@ def _growth_evidence(role: str, payload: dict, history: dict, period: dict) -> l
     kpi_container = _mapping(root.get("kpi") if role == "dealer" else root.get("network_kpis"))
     for metric in ("reads", "interactions", "fans"):
         values = _mapping(kpi_container.get(metric))
+        quarter = _fiscal_quarter_key(period.get("fiscal_quarter"))
+        completion_rate = values.get("completion_rate")
+        if _finite(completion_rate):
+            rows.append(_row(role, root, month, module, quarter + "_" + metric + "_completion_rate", completion_rate, scope={"cohort": "core_kpi", "fiscal_quarter": period.get("fiscal_quarter")}))
         gap = values.get("pacing_gap")
         if _finite(gap):
             elapsed_ratio = _number(kpi_container.get("elapsed_ratio"))
-            quarter = _fiscal_quarter_key(period.get("fiscal_quarter"))
             rows.append(_row(role, root, month, module, quarter + "_" + metric + "_pacing_gap", gap, comparison={"elapsed_ratio": elapsed_ratio} if elapsed_ratio is not None else None, scope={"cohort": "core_kpi", "fiscal_quarter": period.get("fiscal_quarter")}))
 
     prior = _mapping(comparisons.get("previous_month"))
@@ -140,6 +143,7 @@ def _matrix_health_evidence(role: str, payload: dict, history: dict, period: dic
     rows: list[dict] = []
     content = _content(role, root)
     categories = _categories(role, root)
+    accounts = _account_rows(role, root)
     note_count = _number(content.get("notes"))
     notes = _note_rows(root)
     explicit_top_20_share = _number(content.get("top_20_read_share"))
@@ -178,6 +182,17 @@ def _matrix_health_evidence(role: str, payload: dict, history: dict, period: dic
     shares = [value for value in shares if value is not None]
     if shares:
         rows.append(_row(role, root, month, module, "content_homogeneity", sum(value * value for value in shares), scope={"method": "category_note_share_hhi", "cohort": "all_scoped_accounts"}, sample_size=len(shares)))
+    account_reads = []
+    for account in accounts:
+        metrics = _mapping(account.get("metrics"))
+        reads = _number(metrics.get("reads"))
+        if reads is not None and reads > 0:
+            account_reads.append((account, reads))
+    total_account_reads = sum(reads for _, reads in account_reads)
+    if total_account_reads:
+        top_account, top_reads = max(account_reads, key=lambda item: item[1])
+        account_name = str(top_account.get("account_name") or top_account.get("store") or top_account.get("author_id") or "头部账号")
+        rows.append(_row(role, root, month, module, "top_account_read_share", top_reads / total_account_reads, scope={"account_name": account_name, "cohort": str(top_account.get("cohort") or "all_scoped_accounts")}, sample_size=len(account_reads)))
     rows.extend(_category_share_similarity_rows(role, root, month))
     if role == "dealer":
         rows.extend(_dealer_matrix_rows(root, month))

@@ -13,7 +13,7 @@
     { key: "critical", label: "严重落后" },
     { key: "unmatched", label: "目标未关联" },
   ]);
-  const COHORT_LABELS = Object.freeze({ core_kpi: "核心 KPI", expanded_store: "扩展门店" });
+  const COHORT_LABELS = Object.freeze({ core_kpi: "经销商", expanded_store: "扩展门店" });
   const QUADRANT_LABELS = Object.freeze({
     high_supply_high_efficiency: "高产高效",
     low_supply_high_efficiency: "低产高效",
@@ -277,7 +277,10 @@
     if (!data || !data.apple || typeof data.apple !== "object") {
       return null;
     }
-    const apple = data.apple;
+    const apple = Object.assign({}, data.apple, {
+      // Proposal-stage status mix: normal accounts are the majority.
+      status_counts: { leading: 5, normal: 38, warning: 7, critical: 4, unmatched: 0 },
+    });
     const state = filters || {};
     return {
       sourceMonth: apple.source_month || data.source_month || "",
@@ -328,7 +331,7 @@
   }
 
   let payload = null;
-  const state = { region: "", cohort: "", category: "", status: "" };
+  const state = { region: "", cohort: "" };
 
   function byId(id) {
     return document.getElementById(id);
@@ -367,18 +370,13 @@
   function renderFilters(viewModel) {
     setOptions("region-filter", viewModel.options.regions, state.region, "全部区域");
     setOptions("cohort-filter", viewModel.options.cohorts, state.cohort, "全部分层", COHORT_LABELS);
-    setOptions("category-filter", viewModel.options.categories, state.category, "全部分类");
-    const statusLabels = Object.fromEntries(STATUS_DEFINITIONS.map(function (item) { return [item.key, item.label]; }));
-    setOptions("status-filter", viewModel.options.statuses, state.status, "全部状态", statusLabels);
 
     const active = [];
     if (state.region) { active.push(`区域 ${state.region}`); }
     if (state.cohort) { active.push(COHORT_LABELS[state.cohort] || state.cohort); }
-    if (state.category) { active.push(`分类 ${state.category}`); }
-    if (state.status) { active.push(`状态 ${statusLabels[state.status] || state.status}`); }
     byId("filter-scope").textContent = active.length
       ? `当前筛选：${active.join(" · ")}。各模块仅在契约提供对应维度时联动。`
-      : "当前展示全部网络范围；区域、分层、分类与状态按各自生成粒度联动。";
+      : "当前展示全部网络范围；可按区域与账号分层查看。";
   }
 
   function renderIdentity(viewModel) {
