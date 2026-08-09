@@ -1,0 +1,4121 @@
+{
+  "schema_version": "2.0",
+  "source_month": "2026-07",
+  "period": {
+    "calendar_month": "2026-07",
+    "fiscal_year": "FY26",
+    "fiscal_quarter": "Q4",
+    "fiscal_month": 1
+  },
+  "generated_at": "2026-08-09T09:24:13Z",
+  "data_freshness": {
+    "source_snapshot_at": "2026-08-01",
+    "basis": "note_export_timestamp",
+    "is_fallback": false
+  },
+  "quality": {
+    "quality_status": "ready_with_warnings",
+    "errors": []
+  },
+  "history": {
+    "previous_month": null,
+    "year_ago": null,
+    "rolling_baseline": {
+      "reads": null,
+      "notes": null,
+      "interactions": null,
+      "new_fans": null,
+      "viral_rate": null
+    },
+    "comparisons": {
+      "previous_month": {
+        "reads": {
+          "absolute_change": null,
+          "ratio_change": null
+        },
+        "notes": {
+          "absolute_change": null,
+          "ratio_change": null
+        },
+        "interactions": {
+          "absolute_change": null,
+          "ratio_change": null
+        },
+        "new_fans": {
+          "absolute_change": null,
+          "ratio_change": null
+        },
+        "viral_rate": {
+          "absolute_change": null,
+          "ratio_change": null
+        }
+      },
+      "year_ago": {
+        "reads": {
+          "absolute_change": null,
+          "ratio_change": null
+        },
+        "notes": {
+          "absolute_change": null,
+          "ratio_change": null
+        },
+        "interactions": {
+          "absolute_change": null,
+          "ratio_change": null
+        },
+        "new_fans": {
+          "absolute_change": null,
+          "ratio_change": null
+        },
+        "viral_rate": {
+          "absolute_change": null,
+          "ratio_change": null
+        }
+      },
+      "rolling_baseline": {
+        "reads": {
+          "absolute_change": null,
+          "ratio_change": null
+        },
+        "notes": {
+          "absolute_change": null,
+          "ratio_change": null
+        },
+        "interactions": {
+          "absolute_change": null,
+          "ratio_change": null
+        },
+        "new_fans": {
+          "absolute_change": null,
+          "ratio_change": null
+        },
+        "viral_rate": {
+          "absolute_change": null,
+          "ratio_change": null
+        }
+      }
+    },
+    "coverage": {
+      "first_month": null,
+      "months": 0
+    }
+  },
+  "dealer": {
+    "dealer_id": "dealer-8a64cb07120b",
+    "name": "上海仲璇电子科技有限公司",
+    "cohort": "core_kpi",
+    "accounts": [
+      {
+        "author_id": "5e304b7300000000010005ca",
+        "xhs_id": "63057694270",
+        "account_name": "仲璇苏州吴中永旺店",
+        "store": "仲璇苏州吴中永旺店",
+        "cohort": "expanded_store",
+        "city": "苏州",
+        "province": "江苏省",
+        "region": "华东",
+        "confidence": "inferred",
+        "metrics": {
+          "reads": 15620.0,
+          "likes": 44.0,
+          "collects": 26.0,
+          "comments": 11.0,
+          "shares": 0.0,
+          "new_fans": 2.0,
+          "visitors": 207.0
+        }
+      },
+      {
+        "author_id": "5ee360c200000000010001b1",
+        "xhs_id": "95852111550",
+        "account_name": "仲璇i:Dea",
+        "store": "",
+        "cohort": "core_kpi",
+        "city": "上海",
+        "province": "上海市",
+        "region": "华东",
+        "confidence": "inferred",
+        "metrics": {
+          "reads": 762893.0,
+          "likes": 20840.0,
+          "collects": 2492.0,
+          "comments": 30038.0,
+          "shares": 0.0,
+          "new_fans": 403.0,
+          "visitors": 2625.0
+        }
+      },
+      {
+        "author_id": "624f1f47000000001000b585",
+        "xhs_id": "63034041809",
+        "account_name": "仲璇南京江北虹悦城店",
+        "store": "仲璇南京江北虹悦城店",
+        "cohort": "expanded_store",
+        "city": "南京",
+        "province": "江苏省",
+        "region": "华东",
+        "confidence": "inferred",
+        "metrics": {
+          "reads": 22295.0,
+          "likes": 100.0,
+          "collects": 43.0,
+          "comments": 26.0,
+          "shares": 0.0,
+          "new_fans": 19.0,
+          "visitors": 263.0
+        }
+      },
+      {
+        "author_id": "6268ce5d0000000010008c51",
+        "xhs_id": "63033599491",
+        "account_name": "仲璇上海曹路花园店",
+        "store": "仲璇上海曹路花园店",
+        "cohort": "expanded_store",
+        "city": "上海",
+        "province": "上海市",
+        "region": "华东",
+        "confidence": "inferred",
+        "metrics": {
+          "reads": 1629.0,
+          "likes": 18.0,
+          "collects": 6.0,
+          "comments": 10.0,
+          "shares": 0.0,
+          "new_fans": 0.0,
+          "visitors": 71.0
+        }
+      },
+      {
+        "author_id": "648f5ce7000000001001cef9",
+        "xhs_id": "63033691108",
+        "account_name": "仲璇上海嘉定大融城店",
+        "store": "仲璇上海嘉定大融城店",
+        "cohort": "expanded_store",
+        "city": "上海",
+        "province": "上海市",
+        "region": "华东",
+        "confidence": "inferred",
+        "metrics": {
+          "reads": 1534.0,
+          "likes": 7.0,
+          "collects": 11.0,
+          "comments": 8.0,
+          "shares": 0.0,
+          "new_fans": 2.0,
+          "visitors": 56.0
+        }
+      },
+      {
+        "author_id": "648fe0ce000000001100283c",
+        "xhs_id": "63057812699",
+        "account_name": "仲璇上海龙湖虹桥天街店",
+        "store": "仲璇上海龙湖虹桥天街店",
+        "cohort": "expanded_store",
+        "city": "上海",
+        "province": "上海市",
+        "region": "华东",
+        "confidence": "inferred",
+        "metrics": {
+          "reads": 3346.0,
+          "likes": 63.0,
+          "collects": 41.0,
+          "comments": 4.0,
+          "shares": 0.0,
+          "new_fans": 1.0,
+          "visitors": 52.0
+        }
+      },
+      {
+        "author_id": "64a7a6d7000000000b014526",
+        "xhs_id": "63046154273",
+        "account_name": "仲璇徐州铜山万达广场店",
+        "store": "仲璇徐州铜山万达广场店",
+        "cohort": "expanded_store",
+        "city": "上海",
+        "province": "上海市",
+        "region": "华东",
+        "confidence": "inferred",
+        "metrics": {
+          "reads": 1096.0,
+          "likes": 9.0,
+          "collects": 1.0,
+          "comments": 2.0,
+          "shares": 0.0,
+          "new_fans": 1.0,
+          "visitors": 52.0
+        }
+      },
+      {
+        "author_id": "64a7aa20000000001c028362",
+        "xhs_id": "63057891165",
+        "account_name": "仲璇无锡江阴万达广场店",
+        "store": "仲璇无锡江阴万达广场店",
+        "cohort": "expanded_store",
+        "city": "无锡",
+        "province": "江苏省",
+        "region": "华东",
+        "confidence": "inferred",
+        "metrics": {
+          "reads": 2180.0,
+          "likes": 14.0,
+          "collects": 7.0,
+          "comments": 0.0,
+          "shares": 0.0,
+          "new_fans": 3.0,
+          "visitors": 44.0
+        }
+      },
+      {
+        "author_id": "64a7f6b2000000000a02067e",
+        "xhs_id": "49328996231",
+        "account_name": "仲璇上海美罗城店",
+        "store": "仲璇上海美罗城店",
+        "cohort": "expanded_store",
+        "city": "上海",
+        "province": "上海市",
+        "region": "华东",
+        "confidence": "inferred",
+        "metrics": {
+          "reads": 2606.0,
+          "likes": 81.0,
+          "collects": 13.0,
+          "comments": 9.0,
+          "shares": 0.0,
+          "new_fans": 4.0,
+          "visitors": 111.0
+        }
+      },
+      {
+        "author_id": "64ad0c61000000001f0072ce",
+        "xhs_id": "63024274279",
+        "account_name": "仲璇上海漕河泾印象城店",
+        "store": "仲璇上海漕河泾印象城店",
+        "cohort": "expanded_store",
+        "city": "上海",
+        "province": "上海市",
+        "region": "华东",
+        "confidence": "inferred",
+        "metrics": {
+          "reads": 5370.0,
+          "likes": 65.0,
+          "collects": 42.0,
+          "comments": 3.0,
+          "shares": 0.0,
+          "new_fans": 0.0,
+          "visitors": 83.0
+        }
+      },
+      {
+        "author_id": "64c73709000000000b00548b",
+        "xhs_id": "63034509529",
+        "account_name": "仲璇上海浦江万达广场店",
+        "store": "仲璇上海浦江万达广场店",
+        "cohort": "expanded_store",
+        "city": "上海",
+        "province": "上海市",
+        "region": "华东",
+        "confidence": "inferred",
+        "metrics": {
+          "reads": 24088.0,
+          "likes": 1517.0,
+          "collects": 1745.0,
+          "comments": 8.0,
+          "shares": 0.0,
+          "new_fans": 31.0,
+          "visitors": 216.0
+        }
+      },
+      {
+        "author_id": "6500241900000000040252d6",
+        "xhs_id": "63083721804",
+        "account_name": "仲璇苏州昆山万达广场店",
+        "store": "仲璇苏州昆山万达广场店",
+        "cohort": "expanded_store",
+        "city": "苏州",
+        "province": "江苏省",
+        "region": "华东",
+        "confidence": "inferred",
+        "metrics": {
+          "reads": 3794.0,
+          "likes": 21.0,
+          "collects": 2.0,
+          "comments": 4.0,
+          "shares": 0.0,
+          "new_fans": 3.0,
+          "visitors": 57.0
+        }
+      },
+      {
+        "author_id": "650030bc00000000050004ec",
+        "xhs_id": "63078332630",
+        "account_name": "仲璇苏州昆山万象汇店",
+        "store": "仲璇苏州昆山万象汇店",
+        "cohort": "expanded_store",
+        "city": "苏州",
+        "province": "江苏省",
+        "region": "华东",
+        "confidence": "inferred",
+        "metrics": {
+          "reads": 1203.0,
+          "likes": 12.0,
+          "collects": 2.0,
+          "comments": 1.0,
+          "shares": 0.0,
+          "new_fans": 1.0,
+          "visitors": 50.0
+        }
+      },
+      {
+        "author_id": "652666f1000000002a036f33",
+        "xhs_id": "63078674266",
+        "account_name": "仲璇南京仙林万达茂",
+        "store": "仲璇南京仙林万达茂",
+        "cohort": "expanded_store",
+        "city": "南京",
+        "province": "江苏省",
+        "region": "华东",
+        "confidence": "inferred",
+        "metrics": {
+          "reads": 1353.0,
+          "likes": 59.0,
+          "collects": 14.0,
+          "comments": 2.0,
+          "shares": 0.0,
+          "new_fans": 1.0,
+          "visitors": 71.0
+        }
+      },
+      {
+        "author_id": "654463f9000000000d006b3d",
+        "xhs_id": "63044672690",
+        "account_name": "仲璇宝山花园城店",
+        "store": "仲璇宝山花园城店",
+        "cohort": "expanded_store",
+        "city": "上海",
+        "province": "上海市",
+        "region": "华东",
+        "confidence": "inferred",
+        "metrics": {
+          "reads": 16944.0,
+          "likes": 136.0,
+          "collects": 73.0,
+          "comments": 26.0,
+          "shares": 0.0,
+          "new_fans": 2.0,
+          "visitors": 141.0
+        }
+      },
+      {
+        "author_id": "65af2f010000000014006e5c",
+        "xhs_id": "63034164266",
+        "account_name": "仲璇南京燕子矶万象汇店",
+        "store": "仲璇南京燕子矶万象汇店",
+        "cohort": "expanded_store",
+        "city": "南京",
+        "province": "江苏省",
+        "region": "华东",
+        "confidence": "inferred",
+        "metrics": {
+          "reads": 1696.0,
+          "likes": 15.0,
+          "collects": 3.0,
+          "comments": 6.0,
+          "shares": 0.0,
+          "new_fans": 2.0,
+          "visitors": 63.0
+        }
+      }
+    ],
+    "kpi": {
+      "reads": {
+        "actual": 762893.0,
+        "target": 589688.0,
+        "completion_rate": 1.2937231213794413,
+        "pacing_gap": 0.9603897880461081,
+        "status": "leading"
+      },
+      "interactions": {
+        "actual": 53370.0,
+        "target": 39720.0,
+        "completion_rate": 1.343655589123867,
+        "pacing_gap": 1.0103222557905338,
+        "status": "leading"
+      },
+      "fans": {
+        "actual": 403.0,
+        "target": 1084.0,
+        "completion_rate": 0.37177121771217714,
+        "pacing_gap": 0.03843788437884382,
+        "status": "normal"
+      },
+      "elapsed_ratio": 0.3333333333333333,
+      "account_statuses": [
+        {
+          "author_id": "5ee360c200000000010001b1",
+          "status": "normal",
+          "actual_source_months": [
+            "2026-07"
+          ]
+        }
+      ],
+      "overall_status": "normal"
+    },
+    "expanded_store_metrics": {
+      "reads": 104754.0,
+      "notes": 0.0,
+      "interactions": 4310.0,
+      "reads_per_note": null,
+      "interaction_rate": 0.041144013593752984,
+      "fans_per_10k_reads": 6.873245890371728,
+      "visitor_rate": 0.014672470740974091,
+      "shares": 0.0
+    },
+    "content": {
+      "reads": 784257.0,
+      "notes": 173.0,
+      "interactions": 56110.0,
+      "reads_per_note": 4533.277456647399,
+      "interaction_rate": 0.07154542452282861,
+      "fans_per_10k_reads": 4.972859662075059,
+      "visitor_rate": 0.0,
+      "shares": 825.0,
+      "new_fans": 390.0,
+      "methodology_note": "当月新发笔记使用当前累计快照指标，不解读为当月因果增量。",
+      "image_notes": 110,
+      "video_notes": 63,
+      "image_share": 0.6358381502890174,
+      "video_share": 0.36416184971098264,
+      "raw_category_counts": {
+        "产品种草": 60,
+        "使用技巧": 17,
+        "促销优惠": 9,
+        "其他": 49,
+        "系统功能": 1,
+        "节日营销": 2,
+        "营销活动": 35
+      },
+      "categories": [
+        {
+          "category": "产品功能与使用技巧",
+          "raw_categories": {
+            "使用技巧": 17
+          },
+          "notes": 17.0,
+          "note_share": 0.09826589595375723,
+          "reads": 368172.0,
+          "interactions": 28727.0,
+          "shares": 95.0,
+          "new_fans": 19.0,
+          "reads_per_note": 21657.176470588234,
+          "interaction_rate": 0.07802603131145226,
+          "fans_per_10k_reads": 0.5160631443999001,
+          "mapping_completeness": 1.0,
+          "blank_category_notes": 0,
+          "benchmark_note_share": 0.17727272727272728,
+          "benchmark_reads_per_note": 319.0,
+          "benchmark_interaction_rate": 0.038202247191011236,
+          "benchmark_confidence": "supported",
+          "benchmark_sample_size": 43
+        },
+        {
+          "category": "产品种草",
+          "raw_categories": {
+            "产品种草": 60
+          },
+          "notes": 60.0,
+          "note_share": 0.3468208092485549,
+          "reads": 149994.0,
+          "interactions": 18720.0,
+          "shares": 474.0,
+          "new_fans": 314.0,
+          "reads_per_note": 2499.9,
+          "interaction_rate": 0.12480499219968799,
+          "fans_per_10k_reads": 20.934170700161342,
+          "mapping_completeness": 1.0,
+          "blank_category_notes": 0,
+          "benchmark_note_share": 0.34,
+          "benchmark_reads_per_note": 330.0,
+          "benchmark_interaction_rate": 0.027777777777777776,
+          "benchmark_confidence": "supported",
+          "benchmark_sample_size": 51
+        },
+        {
+          "category": "促销优惠",
+          "raw_categories": {
+            "促销优惠": 9
+          },
+          "notes": 9.0,
+          "note_share": 0.05202312138728324,
+          "reads": 1018.0,
+          "interactions": 17.0,
+          "shares": 9.0,
+          "new_fans": 1.0,
+          "reads_per_note": 113.11111111111111,
+          "interaction_rate": 0.01669941060903733,
+          "fans_per_10k_reads": 9.823182711198427,
+          "mapping_completeness": 1.0,
+          "blank_category_notes": 0,
+          "benchmark_note_share": 0.0625,
+          "benchmark_reads_per_note": 145.0,
+          "benchmark_interaction_rate": 0.03333333333333333,
+          "benchmark_confidence": "supported",
+          "benchmark_sample_size": 25
+        },
+        {
+          "category": "其他",
+          "raw_categories": {
+            "其他": 49
+          },
+          "notes": 49.0,
+          "note_share": 0.2832369942196532,
+          "reads": 257147.0,
+          "interactions": 8072.0,
+          "shares": 148.0,
+          "new_fans": 47.0,
+          "reads_per_note": 5247.897959183673,
+          "interaction_rate": 0.03139060537358009,
+          "fans_per_10k_reads": 1.8277483307213385,
+          "mapping_completeness": 1.0,
+          "blank_category_notes": 0,
+          "benchmark_note_share": 0.25,
+          "benchmark_reads_per_note": 236.42857142857142,
+          "benchmark_interaction_rate": 0.04583862770012707,
+          "benchmark_confidence": "supported",
+          "benchmark_sample_size": 43
+        },
+        {
+          "category": "系统功能",
+          "raw_categories": {
+            "系统功能": 1
+          },
+          "notes": 1.0,
+          "note_share": 0.005780346820809248,
+          "reads": 379.0,
+          "interactions": 11.0,
+          "shares": 2.0,
+          "new_fans": 0.0,
+          "reads_per_note": 379.0,
+          "interaction_rate": 0.029023746701846966,
+          "fans_per_10k_reads": 0.0,
+          "mapping_completeness": 1.0,
+          "blank_category_notes": 0,
+          "benchmark_note_share": 0.013450502152080344,
+          "benchmark_reads_per_note": 241.0,
+          "benchmark_interaction_rate": 0.025846702317290554,
+          "benchmark_confidence": "supported",
+          "benchmark_sample_size": 14
+        },
+        {
+          "category": "节日与节点营销",
+          "raw_categories": {
+            "节日营销": 2
+          },
+          "notes": 2.0,
+          "note_share": 0.011560693641618497,
+          "reads": 1860.0,
+          "interactions": 435.0,
+          "shares": 3.0,
+          "new_fans": 1.0,
+          "reads_per_note": 930.0,
+          "interaction_rate": 0.23387096774193547,
+          "fans_per_10k_reads": 5.376344086021505,
+          "mapping_completeness": 1.0,
+          "blank_category_notes": 0,
+          "benchmark_note_share": 0.05,
+          "benchmark_reads_per_note": 203.0,
+          "benchmark_interaction_rate": 0.08370044052863436,
+          "benchmark_confidence": "supported",
+          "benchmark_sample_size": 25
+        },
+        {
+          "category": "营销活动",
+          "raw_categories": {
+            "营销活动": 35
+          },
+          "notes": 35.0,
+          "note_share": 0.2023121387283237,
+          "reads": 5687.0,
+          "interactions": 128.0,
+          "shares": 94.0,
+          "new_fans": 8.0,
+          "reads_per_note": 162.4857142857143,
+          "interaction_rate": 0.022507473184455777,
+          "fans_per_10k_reads": 14.06717074028486,
+          "mapping_completeness": 1.0,
+          "blank_category_notes": 0,
+          "benchmark_note_share": 0.19375,
+          "benchmark_reads_per_note": 239.11111111111111,
+          "benchmark_interaction_rate": 0.03944501060102776,
+          "benchmark_confidence": "supported",
+          "benchmark_sample_size": 46
+        }
+      ],
+      "by_region": [
+        {
+          "region": "华东",
+          "categories": [
+            {
+              "category": "产品功能与使用技巧",
+              "raw_categories": {
+                "使用技巧": 17
+              },
+              "notes": 17.0,
+              "note_share": 0.09826589595375723,
+              "reads": 368172.0,
+              "interactions": 28727.0,
+              "shares": 95.0,
+              "new_fans": 19.0,
+              "reads_per_note": 21657.176470588234,
+              "interaction_rate": 0.07802603131145226,
+              "fans_per_10k_reads": 0.5160631443999001,
+              "mapping_completeness": 1.0,
+              "blank_category_notes": 0
+            },
+            {
+              "category": "产品种草",
+              "raw_categories": {
+                "产品种草": 60
+              },
+              "notes": 60.0,
+              "note_share": 0.3468208092485549,
+              "reads": 149994.0,
+              "interactions": 18720.0,
+              "shares": 474.0,
+              "new_fans": 314.0,
+              "reads_per_note": 2499.9,
+              "interaction_rate": 0.12480499219968799,
+              "fans_per_10k_reads": 20.934170700161342,
+              "mapping_completeness": 1.0,
+              "blank_category_notes": 0
+            },
+            {
+              "category": "促销优惠",
+              "raw_categories": {
+                "促销优惠": 9
+              },
+              "notes": 9.0,
+              "note_share": 0.05202312138728324,
+              "reads": 1018.0,
+              "interactions": 17.0,
+              "shares": 9.0,
+              "new_fans": 1.0,
+              "reads_per_note": 113.11111111111111,
+              "interaction_rate": 0.01669941060903733,
+              "fans_per_10k_reads": 9.823182711198427,
+              "mapping_completeness": 1.0,
+              "blank_category_notes": 0
+            },
+            {
+              "category": "其他",
+              "raw_categories": {
+                "其他": 49
+              },
+              "notes": 49.0,
+              "note_share": 0.2832369942196532,
+              "reads": 257147.0,
+              "interactions": 8072.0,
+              "shares": 148.0,
+              "new_fans": 47.0,
+              "reads_per_note": 5247.897959183673,
+              "interaction_rate": 0.03139060537358009,
+              "fans_per_10k_reads": 1.8277483307213385,
+              "mapping_completeness": 1.0,
+              "blank_category_notes": 0
+            },
+            {
+              "category": "系统功能",
+              "raw_categories": {
+                "系统功能": 1
+              },
+              "notes": 1.0,
+              "note_share": 0.005780346820809248,
+              "reads": 379.0,
+              "interactions": 11.0,
+              "shares": 2.0,
+              "new_fans": 0.0,
+              "reads_per_note": 379.0,
+              "interaction_rate": 0.029023746701846966,
+              "fans_per_10k_reads": 0.0,
+              "mapping_completeness": 1.0,
+              "blank_category_notes": 0
+            },
+            {
+              "category": "节日与节点营销",
+              "raw_categories": {
+                "节日营销": 2
+              },
+              "notes": 2.0,
+              "note_share": 0.011560693641618497,
+              "reads": 1860.0,
+              "interactions": 435.0,
+              "shares": 3.0,
+              "new_fans": 1.0,
+              "reads_per_note": 930.0,
+              "interaction_rate": 0.23387096774193547,
+              "fans_per_10k_reads": 5.376344086021505,
+              "mapping_completeness": 1.0,
+              "blank_category_notes": 0
+            },
+            {
+              "category": "营销活动",
+              "raw_categories": {
+                "营销活动": 35
+              },
+              "notes": 35.0,
+              "note_share": 0.2023121387283237,
+              "reads": 5687.0,
+              "interactions": 128.0,
+              "shares": 94.0,
+              "new_fans": 8.0,
+              "reads_per_note": 162.4857142857143,
+              "interaction_rate": 0.022507473184455777,
+              "fans_per_10k_reads": 14.06717074028486,
+              "mapping_completeness": 1.0,
+              "blank_category_notes": 0
+            }
+          ]
+        }
+      ],
+      "by_region_cohort": [
+        {
+          "region": "华东",
+          "cohort": "core_kpi",
+          "categories": [
+            {
+              "category": "产品功能与使用技巧",
+              "raw_categories": {
+                "使用技巧": 2
+              },
+              "notes": 2.0,
+              "note_share": 0.05555555555555555,
+              "reads": 363198.0,
+              "interactions": 28445.0,
+              "shares": 64.0,
+              "new_fans": 15.0,
+              "reads_per_note": 181599.0,
+              "interaction_rate": 0.07831816254494793,
+              "fans_per_10k_reads": 0.41299786893099627,
+              "mapping_completeness": 1.0,
+              "blank_category_notes": 0
+            },
+            {
+              "category": "产品种草",
+              "raw_categories": {
+                "产品种草": 16
+              },
+              "notes": 16.0,
+              "note_share": 0.4444444444444444,
+              "reads": 125935.0,
+              "interactions": 15527.0,
+              "shares": 211.0,
+              "new_fans": 285.0,
+              "reads_per_note": 7870.9375,
+              "interaction_rate": 0.12329376265533808,
+              "fans_per_10k_reads": 22.630722197959262,
+              "mapping_completeness": 1.0,
+              "blank_category_notes": 0
+            },
+            {
+              "category": "其他",
+              "raw_categories": {
+                "其他": 13
+              },
+              "notes": 13.0,
+              "note_share": 0.3611111111111111,
+              "reads": 254636.0,
+              "interactions": 7978.0,
+              "shares": 83.0,
+              "new_fans": 40.0,
+              "reads_per_note": 19587.384615384617,
+              "interaction_rate": 0.03133099797357797,
+              "fans_per_10k_reads": 1.5708697906030569,
+              "mapping_completeness": 1.0,
+              "blank_category_notes": 0
+            },
+            {
+              "category": "系统功能",
+              "raw_categories": {
+                "系统功能": 1
+              },
+              "notes": 1.0,
+              "note_share": 0.027777777777777776,
+              "reads": 379.0,
+              "interactions": 11.0,
+              "shares": 2.0,
+              "new_fans": 0.0,
+              "reads_per_note": 379.0,
+              "interaction_rate": 0.029023746701846966,
+              "fans_per_10k_reads": 0.0,
+              "mapping_completeness": 1.0,
+              "blank_category_notes": 0
+            },
+            {
+              "category": "节日与节点营销",
+              "raw_categories": {
+                "节日营销": 1
+              },
+              "notes": 1.0,
+              "note_share": 0.027777777777777776,
+              "reads": 1827.0,
+              "interactions": 435.0,
+              "shares": 2.0,
+              "new_fans": 1.0,
+              "reads_per_note": 1827.0,
+              "interaction_rate": 0.23809523809523808,
+              "fans_per_10k_reads": 5.473453749315818,
+              "mapping_completeness": 1.0,
+              "blank_category_notes": 0
+            },
+            {
+              "category": "营销活动",
+              "raw_categories": {
+                "营销活动": 3
+              },
+              "notes": 3.0,
+              "note_share": 0.08333333333333333,
+              "reads": 2157.0,
+              "interactions": 65.0,
+              "shares": 12.0,
+              "new_fans": 6.0,
+              "reads_per_note": 719.0,
+              "interaction_rate": 0.03013444598980065,
+              "fans_per_10k_reads": 27.816411682892905,
+              "mapping_completeness": 1.0,
+              "blank_category_notes": 0
+            }
+          ]
+        },
+        {
+          "region": "华东",
+          "cohort": "expanded_store",
+          "categories": [
+            {
+              "category": "产品功能与使用技巧",
+              "raw_categories": {
+                "使用技巧": 15
+              },
+              "notes": 15.0,
+              "note_share": 0.10948905109489052,
+              "reads": 4974.0,
+              "interactions": 282.0,
+              "shares": 31.0,
+              "new_fans": 4.0,
+              "reads_per_note": 331.6,
+              "interaction_rate": 0.05669481302774427,
+              "fans_per_10k_reads": 8.041817450743867,
+              "mapping_completeness": 1.0,
+              "blank_category_notes": 0
+            },
+            {
+              "category": "产品种草",
+              "raw_categories": {
+                "产品种草": 44
+              },
+              "notes": 44.0,
+              "note_share": 0.32116788321167883,
+              "reads": 24059.0,
+              "interactions": 3193.0,
+              "shares": 263.0,
+              "new_fans": 29.0,
+              "reads_per_note": 546.7954545454545,
+              "interaction_rate": 0.13271540795544287,
+              "fans_per_10k_reads": 12.053701317594246,
+              "mapping_completeness": 1.0,
+              "blank_category_notes": 0
+            },
+            {
+              "category": "促销优惠",
+              "raw_categories": {
+                "促销优惠": 9
+              },
+              "notes": 9.0,
+              "note_share": 0.06569343065693431,
+              "reads": 1018.0,
+              "interactions": 17.0,
+              "shares": 9.0,
+              "new_fans": 1.0,
+              "reads_per_note": 113.11111111111111,
+              "interaction_rate": 0.01669941060903733,
+              "fans_per_10k_reads": 9.823182711198427,
+              "mapping_completeness": 1.0,
+              "blank_category_notes": 0
+            },
+            {
+              "category": "其他",
+              "raw_categories": {
+                "其他": 36
+              },
+              "notes": 36.0,
+              "note_share": 0.26277372262773724,
+              "reads": 2511.0,
+              "interactions": 94.0,
+              "shares": 65.0,
+              "new_fans": 7.0,
+              "reads_per_note": 69.75,
+              "interaction_rate": 0.037435284747112704,
+              "fans_per_10k_reads": 27.877339705296695,
+              "mapping_completeness": 1.0,
+              "blank_category_notes": 0
+            },
+            {
+              "category": "节日与节点营销",
+              "raw_categories": {
+                "节日营销": 1
+              },
+              "notes": 1.0,
+              "note_share": 0.0072992700729927005,
+              "reads": 33.0,
+              "interactions": 0.0,
+              "shares": 1.0,
+              "new_fans": 0.0,
+              "reads_per_note": 33.0,
+              "interaction_rate": 0.0,
+              "fans_per_10k_reads": 0.0,
+              "mapping_completeness": 1.0,
+              "blank_category_notes": 0
+            },
+            {
+              "category": "营销活动",
+              "raw_categories": {
+                "营销活动": 32
+              },
+              "notes": 32.0,
+              "note_share": 0.23357664233576642,
+              "reads": 3530.0,
+              "interactions": 63.0,
+              "shares": 82.0,
+              "new_fans": 2.0,
+              "reads_per_note": 110.3125,
+              "interaction_rate": 0.017847025495750707,
+              "fans_per_10k_reads": 5.665722379603399,
+              "mapping_completeness": 1.0,
+              "blank_category_notes": 0
+            }
+          ]
+        }
+      ],
+      "by_city_cohort": [
+        {
+          "city": "上海",
+          "region": "华东",
+          "cohort": "core_kpi",
+          "content": {
+            "reads": 748132.0,
+            "notes": 36.0,
+            "interactions": 52461.0,
+            "reads_per_note": 20781.444444444445,
+            "interaction_rate": 0.07012265215229398,
+            "fans_per_10k_reads": 4.63821892393321,
+            "visitor_rate": 0.0,
+            "shares": 374.0,
+            "new_fans": 347.0,
+            "methodology_note": "当月新发笔记使用当前累计快照指标，不解读为当月因果增量。",
+            "image_notes": 5,
+            "video_notes": 31,
+            "image_share": 0.1388888888888889,
+            "video_share": 0.8611111111111112,
+            "raw_category_counts": {
+              "产品种草": 16,
+              "使用技巧": 2,
+              "其他": 13,
+              "系统功能": 1,
+              "节日营销": 1,
+              "营销活动": 3
+            },
+            "categories": [
+              {
+                "category": "产品功能与使用技巧",
+                "raw_categories": {
+                  "使用技巧": 2
+                },
+                "notes": 2.0,
+                "note_share": 0.05555555555555555,
+                "reads": 363198.0,
+                "interactions": 28445.0,
+                "shares": 64.0,
+                "new_fans": 15.0,
+                "reads_per_note": 181599.0,
+                "interaction_rate": 0.07831816254494793,
+                "fans_per_10k_reads": 0.41299786893099627,
+                "mapping_completeness": 1.0,
+                "blank_category_notes": 0
+              },
+              {
+                "category": "产品种草",
+                "raw_categories": {
+                  "产品种草": 16
+                },
+                "notes": 16.0,
+                "note_share": 0.4444444444444444,
+                "reads": 125935.0,
+                "interactions": 15527.0,
+                "shares": 211.0,
+                "new_fans": 285.0,
+                "reads_per_note": 7870.9375,
+                "interaction_rate": 0.12329376265533808,
+                "fans_per_10k_reads": 22.630722197959262,
+                "mapping_completeness": 1.0,
+                "blank_category_notes": 0
+              },
+              {
+                "category": "其他",
+                "raw_categories": {
+                  "其他": 13
+                },
+                "notes": 13.0,
+                "note_share": 0.3611111111111111,
+                "reads": 254636.0,
+                "interactions": 7978.0,
+                "shares": 83.0,
+                "new_fans": 40.0,
+                "reads_per_note": 19587.384615384617,
+                "interaction_rate": 0.03133099797357797,
+                "fans_per_10k_reads": 1.5708697906030569,
+                "mapping_completeness": 1.0,
+                "blank_category_notes": 0
+              },
+              {
+                "category": "系统功能",
+                "raw_categories": {
+                  "系统功能": 1
+                },
+                "notes": 1.0,
+                "note_share": 0.027777777777777776,
+                "reads": 379.0,
+                "interactions": 11.0,
+                "shares": 2.0,
+                "new_fans": 0.0,
+                "reads_per_note": 379.0,
+                "interaction_rate": 0.029023746701846966,
+                "fans_per_10k_reads": 0.0,
+                "mapping_completeness": 1.0,
+                "blank_category_notes": 0
+              },
+              {
+                "category": "节日与节点营销",
+                "raw_categories": {
+                  "节日营销": 1
+                },
+                "notes": 1.0,
+                "note_share": 0.027777777777777776,
+                "reads": 1827.0,
+                "interactions": 435.0,
+                "shares": 2.0,
+                "new_fans": 1.0,
+                "reads_per_note": 1827.0,
+                "interaction_rate": 0.23809523809523808,
+                "fans_per_10k_reads": 5.473453749315818,
+                "mapping_completeness": 1.0,
+                "blank_category_notes": 0
+              },
+              {
+                "category": "营销活动",
+                "raw_categories": {
+                  "营销活动": 3
+                },
+                "notes": 3.0,
+                "note_share": 0.08333333333333333,
+                "reads": 2157.0,
+                "interactions": 65.0,
+                "shares": 12.0,
+                "new_fans": 6.0,
+                "reads_per_note": 719.0,
+                "interaction_rate": 0.03013444598980065,
+                "fans_per_10k_reads": 27.816411682892905,
+                "mapping_completeness": 1.0,
+                "blank_category_notes": 0
+              }
+            ]
+          }
+        },
+        {
+          "city": "上海",
+          "region": "华东",
+          "cohort": "expanded_store",
+          "content": {
+            "reads": 29996.0,
+            "notes": 74.0,
+            "interactions": 3497.0,
+            "reads_per_note": 405.35135135135135,
+            "interaction_rate": 0.11658221096146153,
+            "fans_per_10k_reads": 12.001600213361781,
+            "visitor_rate": 0.0,
+            "shares": 338.0,
+            "new_fans": 36.0,
+            "methodology_note": "当月新发笔记使用当前累计快照指标，不解读为当月因果增量。",
+            "image_notes": 59,
+            "video_notes": 15,
+            "image_share": 0.7972972972972973,
+            "video_share": 0.20270270270270271,
+            "raw_category_counts": {
+              "产品种草": 24,
+              "使用技巧": 11,
+              "促销优惠": 4,
+              "其他": 21,
+              "营销活动": 14
+            },
+            "categories": [
+              {
+                "category": "产品功能与使用技巧",
+                "raw_categories": {
+                  "使用技巧": 11
+                },
+                "notes": 11.0,
+                "note_share": 0.14864864864864866,
+                "reads": 4760.0,
+                "interactions": 278.0,
+                "shares": 27.0,
+                "new_fans": 2.0,
+                "reads_per_note": 432.72727272727275,
+                "interaction_rate": 0.058403361344537816,
+                "fans_per_10k_reads": 4.201680672268908,
+                "mapping_completeness": 1.0,
+                "blank_category_notes": 0
+              },
+              {
+                "category": "产品种草",
+                "raw_categories": {
+                  "产品种草": 24
+                },
+                "notes": 24.0,
+                "note_share": 0.32432432432432434,
+                "reads": 21900.0,
+                "interactions": 3105.0,
+                "shares": 239.0,
+                "new_fans": 28.0,
+                "reads_per_note": 912.5,
+                "interaction_rate": 0.14178082191780822,
+                "fans_per_10k_reads": 12.785388127853881,
+                "mapping_completeness": 1.0,
+                "blank_category_notes": 0
+              },
+              {
+                "category": "促销优惠",
+                "raw_categories": {
+                  "促销优惠": 4
+                },
+                "notes": 4.0,
+                "note_share": 0.05405405405405406,
+                "reads": 448.0,
+                "interactions": 12.0,
+                "shares": 3.0,
+                "new_fans": 0.0,
+                "reads_per_note": 112.0,
+                "interaction_rate": 0.026785714285714284,
+                "fans_per_10k_reads": 0.0,
+                "mapping_completeness": 1.0,
+                "blank_category_notes": 0
+              },
+              {
+                "category": "其他",
+                "raw_categories": {
+                  "其他": 21
+                },
+                "notes": 21.0,
+                "note_share": 0.28378378378378377,
+                "reads": 1517.0,
+                "interactions": 64.0,
+                "shares": 36.0,
+                "new_fans": 5.0,
+                "reads_per_note": 72.23809523809524,
+                "interaction_rate": 0.04218852999340804,
+                "fans_per_10k_reads": 32.95978905735003,
+                "mapping_completeness": 1.0,
+                "blank_category_notes": 0
+              },
+              {
+                "category": "营销活动",
+                "raw_categories": {
+                  "营销活动": 14
+                },
+                "notes": 14.0,
+                "note_share": 0.1891891891891892,
+                "reads": 1371.0,
+                "interactions": 38.0,
+                "shares": 33.0,
+                "new_fans": 1.0,
+                "reads_per_note": 97.92857142857143,
+                "interaction_rate": 0.027716994894237783,
+                "fans_per_10k_reads": 7.293946024799417,
+                "mapping_completeness": 1.0,
+                "blank_category_notes": 0
+              }
+            ]
+          }
+        },
+        {
+          "city": "南京",
+          "region": "华东",
+          "cohort": "expanded_store",
+          "content": {
+            "reads": 3015.0,
+            "notes": 28.0,
+            "interactions": 96.0,
+            "reads_per_note": 107.67857142857143,
+            "interaction_rate": 0.031840796019900496,
+            "fans_per_10k_reads": 13.266998341625207,
+            "visitor_rate": 0.0,
+            "shares": 43.0,
+            "new_fans": 4.0,
+            "methodology_note": "当月新发笔记使用当前累计快照指标，不解读为当月因果增量。",
+            "image_notes": 18,
+            "video_notes": 10,
+            "image_share": 0.6428571428571429,
+            "video_share": 0.35714285714285715,
+            "raw_category_counts": {
+              "产品种草": 8,
+              "使用技巧": 3,
+              "促销优惠": 4,
+              "其他": 3,
+              "营销活动": 10
+            },
+            "categories": [
+              {
+                "category": "产品功能与使用技巧",
+                "raw_categories": {
+                  "使用技巧": 3
+                },
+                "notes": 3.0,
+                "note_share": 0.10714285714285714,
+                "reads": 171.0,
+                "interactions": 4.0,
+                "shares": 3.0,
+                "new_fans": 2.0,
+                "reads_per_note": 57.0,
+                "interaction_rate": 0.023391812865497075,
+                "fans_per_10k_reads": 116.95906432748538,
+                "mapping_completeness": 1.0,
+                "blank_category_notes": 0
+              },
+              {
+                "category": "产品种草",
+                "raw_categories": {
+                  "产品种草": 8
+                },
+                "notes": 8.0,
+                "note_share": 0.2857142857142857,
+                "reads": 964.0,
+                "interactions": 73.0,
+                "shares": 8.0,
+                "new_fans": 1.0,
+                "reads_per_note": 120.5,
+                "interaction_rate": 0.07572614107883817,
+                "fans_per_10k_reads": 10.37344398340249,
+                "mapping_completeness": 1.0,
+                "blank_category_notes": 0
+              },
+              {
+                "category": "促销优惠",
+                "raw_categories": {
+                  "促销优惠": 4
+                },
+                "notes": 4.0,
+                "note_share": 0.14285714285714285,
+                "reads": 482.0,
+                "interactions": 2.0,
+                "shares": 5.0,
+                "new_fans": 0.0,
+                "reads_per_note": 120.5,
+                "interaction_rate": 0.004149377593360996,
+                "fans_per_10k_reads": 0.0,
+                "mapping_completeness": 1.0,
+                "blank_category_notes": 0
+              },
+              {
+                "category": "其他",
+                "raw_categories": {
+                  "其他": 3
+                },
+                "notes": 3.0,
+                "note_share": 0.10714285714285714,
+                "reads": 225.0,
+                "interactions": 4.0,
+                "shares": 8.0,
+                "new_fans": 0.0,
+                "reads_per_note": 75.0,
+                "interaction_rate": 0.017777777777777778,
+                "fans_per_10k_reads": 0.0,
+                "mapping_completeness": 1.0,
+                "blank_category_notes": 0
+              },
+              {
+                "category": "营销活动",
+                "raw_categories": {
+                  "营销活动": 10
+                },
+                "notes": 10.0,
+                "note_share": 0.35714285714285715,
+                "reads": 1173.0,
+                "interactions": 13.0,
+                "shares": 19.0,
+                "new_fans": 1.0,
+                "reads_per_note": 117.3,
+                "interaction_rate": 0.011082693947144074,
+                "fans_per_10k_reads": 8.525149190110827,
+                "mapping_completeness": 1.0,
+                "blank_category_notes": 0
+              }
+            ]
+          }
+        },
+        {
+          "city": "无锡",
+          "region": "华东",
+          "cohort": "expanded_store",
+          "content": {
+            "reads": 630.0,
+            "notes": 9.0,
+            "interactions": 14.0,
+            "reads_per_note": 70.0,
+            "interaction_rate": 0.022222222222222223,
+            "fans_per_10k_reads": 15.873015873015873,
+            "visitor_rate": 0.0,
+            "shares": 16.0,
+            "new_fans": 1.0,
+            "methodology_note": "当月新发笔记使用当前累计快照指标，不解读为当月因果增量。",
+            "image_notes": 9,
+            "video_notes": 0,
+            "image_share": 1.0,
+            "video_share": 0.0,
+            "raw_category_counts": {
+              "产品种草": 2,
+              "促销优惠": 1,
+              "其他": 4,
+              "营销活动": 2
+            },
+            "categories": [
+              {
+                "category": "产品种草",
+                "raw_categories": {
+                  "产品种草": 2
+                },
+                "notes": 2.0,
+                "note_share": 0.2222222222222222,
+                "reads": 195.0,
+                "interactions": 3.0,
+                "shares": 4.0,
+                "new_fans": 0.0,
+                "reads_per_note": 97.5,
+                "interaction_rate": 0.015384615384615385,
+                "fans_per_10k_reads": 0.0,
+                "mapping_completeness": 1.0,
+                "blank_category_notes": 0
+              },
+              {
+                "category": "促销优惠",
+                "raw_categories": {
+                  "促销优惠": 1
+                },
+                "notes": 1.0,
+                "note_share": 0.1111111111111111,
+                "reads": 88.0,
+                "interactions": 3.0,
+                "shares": 1.0,
+                "new_fans": 1.0,
+                "reads_per_note": 88.0,
+                "interaction_rate": 0.03409090909090909,
+                "fans_per_10k_reads": 113.63636363636364,
+                "mapping_completeness": 1.0,
+                "blank_category_notes": 0
+              },
+              {
+                "category": "其他",
+                "raw_categories": {
+                  "其他": 4
+                },
+                "notes": 4.0,
+                "note_share": 0.4444444444444444,
+                "reads": 155.0,
+                "interactions": 4.0,
+                "shares": 5.0,
+                "new_fans": 0.0,
+                "reads_per_note": 38.75,
+                "interaction_rate": 0.025806451612903226,
+                "fans_per_10k_reads": 0.0,
+                "mapping_completeness": 1.0,
+                "blank_category_notes": 0
+              },
+              {
+                "category": "营销活动",
+                "raw_categories": {
+                  "营销活动": 2
+                },
+                "notes": 2.0,
+                "note_share": 0.2222222222222222,
+                "reads": 192.0,
+                "interactions": 4.0,
+                "shares": 6.0,
+                "new_fans": 0.0,
+                "reads_per_note": 96.0,
+                "interaction_rate": 0.020833333333333332,
+                "fans_per_10k_reads": 0.0,
+                "mapping_completeness": 1.0,
+                "blank_category_notes": 0
+              }
+            ]
+          }
+        },
+        {
+          "city": "苏州",
+          "region": "华东",
+          "cohort": "expanded_store",
+          "content": {
+            "reads": 2484.0,
+            "notes": 26.0,
+            "interactions": 42.0,
+            "reads_per_note": 95.53846153846153,
+            "interaction_rate": 0.016908212560386472,
+            "fans_per_10k_reads": 8.051529790660226,
+            "visitor_rate": 0.0,
+            "shares": 54.0,
+            "new_fans": 2.0,
+            "methodology_note": "当月新发笔记使用当前累计快照指标，不解读为当月因果增量。",
+            "image_notes": 19,
+            "video_notes": 7,
+            "image_share": 0.7307692307692307,
+            "video_share": 0.2692307692307692,
+            "raw_category_counts": {
+              "产品种草": 10,
+              "使用技巧": 1,
+              "其他": 8,
+              "节日营销": 1,
+              "营销活动": 6
+            },
+            "categories": [
+              {
+                "category": "产品功能与使用技巧",
+                "raw_categories": {
+                  "使用技巧": 1
+                },
+                "notes": 1.0,
+                "note_share": 0.038461538461538464,
+                "reads": 43.0,
+                "interactions": 0.0,
+                "shares": 1.0,
+                "new_fans": 0.0,
+                "reads_per_note": 43.0,
+                "interaction_rate": 0.0,
+                "fans_per_10k_reads": 0.0,
+                "mapping_completeness": 1.0,
+                "blank_category_notes": 0
+              },
+              {
+                "category": "产品种草",
+                "raw_categories": {
+                  "产品种草": 10
+                },
+                "notes": 10.0,
+                "note_share": 0.38461538461538464,
+                "reads": 1000.0,
+                "interactions": 12.0,
+                "shares": 12.0,
+                "new_fans": 0.0,
+                "reads_per_note": 100.0,
+                "interaction_rate": 0.012,
+                "fans_per_10k_reads": 0.0,
+                "mapping_completeness": 1.0,
+                "blank_category_notes": 0
+              },
+              {
+                "category": "其他",
+                "raw_categories": {
+                  "其他": 8
+                },
+                "notes": 8.0,
+                "note_share": 0.3076923076923077,
+                "reads": 614.0,
+                "interactions": 22.0,
+                "shares": 16.0,
+                "new_fans": 2.0,
+                "reads_per_note": 76.75,
+                "interaction_rate": 0.035830618892508145,
+                "fans_per_10k_reads": 32.57328990228013,
+                "mapping_completeness": 1.0,
+                "blank_category_notes": 0
+              },
+              {
+                "category": "节日与节点营销",
+                "raw_categories": {
+                  "节日营销": 1
+                },
+                "notes": 1.0,
+                "note_share": 0.038461538461538464,
+                "reads": 33.0,
+                "interactions": 0.0,
+                "shares": 1.0,
+                "new_fans": 0.0,
+                "reads_per_note": 33.0,
+                "interaction_rate": 0.0,
+                "fans_per_10k_reads": 0.0,
+                "mapping_completeness": 1.0,
+                "blank_category_notes": 0
+              },
+              {
+                "category": "营销活动",
+                "raw_categories": {
+                  "营销活动": 6
+                },
+                "notes": 6.0,
+                "note_share": 0.23076923076923078,
+                "reads": 794.0,
+                "interactions": 8.0,
+                "shares": 24.0,
+                "new_fans": 0.0,
+                "reads_per_note": 132.33333333333334,
+                "interaction_rate": 0.010075566750629723,
+                "fans_per_10k_reads": 0.0,
+                "mapping_completeness": 1.0,
+                "blank_category_notes": 0
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "content_by_cohort": {
+      "core_kpi": {
+        "reads": 748132.0,
+        "notes": 36.0,
+        "interactions": 52461.0,
+        "reads_per_note": 20781.444444444445,
+        "interaction_rate": 0.07012265215229398,
+        "fans_per_10k_reads": 4.63821892393321,
+        "visitor_rate": 0.0,
+        "shares": 374.0,
+        "new_fans": 347.0,
+        "methodology_note": "当月新发笔记使用当前累计快照指标，不解读为当月因果增量。",
+        "image_notes": 5,
+        "video_notes": 31,
+        "image_share": 0.1388888888888889,
+        "video_share": 0.8611111111111112,
+        "raw_category_counts": {
+          "产品种草": 16,
+          "使用技巧": 2,
+          "其他": 13,
+          "系统功能": 1,
+          "节日营销": 1,
+          "营销活动": 3
+        },
+        "categories": [
+          {
+            "category": "产品功能与使用技巧",
+            "raw_categories": {
+              "使用技巧": 2
+            },
+            "notes": 2.0,
+            "note_share": 0.05555555555555555,
+            "reads": 363198.0,
+            "interactions": 28445.0,
+            "shares": 64.0,
+            "new_fans": 15.0,
+            "reads_per_note": 181599.0,
+            "interaction_rate": 0.07831816254494793,
+            "fans_per_10k_reads": 0.41299786893099627,
+            "mapping_completeness": 1.0,
+            "blank_category_notes": 0
+          },
+          {
+            "category": "产品种草",
+            "raw_categories": {
+              "产品种草": 16
+            },
+            "notes": 16.0,
+            "note_share": 0.4444444444444444,
+            "reads": 125935.0,
+            "interactions": 15527.0,
+            "shares": 211.0,
+            "new_fans": 285.0,
+            "reads_per_note": 7870.9375,
+            "interaction_rate": 0.12329376265533808,
+            "fans_per_10k_reads": 22.630722197959262,
+            "mapping_completeness": 1.0,
+            "blank_category_notes": 0
+          },
+          {
+            "category": "其他",
+            "raw_categories": {
+              "其他": 13
+            },
+            "notes": 13.0,
+            "note_share": 0.3611111111111111,
+            "reads": 254636.0,
+            "interactions": 7978.0,
+            "shares": 83.0,
+            "new_fans": 40.0,
+            "reads_per_note": 19587.384615384617,
+            "interaction_rate": 0.03133099797357797,
+            "fans_per_10k_reads": 1.5708697906030569,
+            "mapping_completeness": 1.0,
+            "blank_category_notes": 0
+          },
+          {
+            "category": "系统功能",
+            "raw_categories": {
+              "系统功能": 1
+            },
+            "notes": 1.0,
+            "note_share": 0.027777777777777776,
+            "reads": 379.0,
+            "interactions": 11.0,
+            "shares": 2.0,
+            "new_fans": 0.0,
+            "reads_per_note": 379.0,
+            "interaction_rate": 0.029023746701846966,
+            "fans_per_10k_reads": 0.0,
+            "mapping_completeness": 1.0,
+            "blank_category_notes": 0
+          },
+          {
+            "category": "节日与节点营销",
+            "raw_categories": {
+              "节日营销": 1
+            },
+            "notes": 1.0,
+            "note_share": 0.027777777777777776,
+            "reads": 1827.0,
+            "interactions": 435.0,
+            "shares": 2.0,
+            "new_fans": 1.0,
+            "reads_per_note": 1827.0,
+            "interaction_rate": 0.23809523809523808,
+            "fans_per_10k_reads": 5.473453749315818,
+            "mapping_completeness": 1.0,
+            "blank_category_notes": 0
+          },
+          {
+            "category": "营销活动",
+            "raw_categories": {
+              "营销活动": 3
+            },
+            "notes": 3.0,
+            "note_share": 0.08333333333333333,
+            "reads": 2157.0,
+            "interactions": 65.0,
+            "shares": 12.0,
+            "new_fans": 6.0,
+            "reads_per_note": 719.0,
+            "interaction_rate": 0.03013444598980065,
+            "fans_per_10k_reads": 27.816411682892905,
+            "mapping_completeness": 1.0,
+            "blank_category_notes": 0
+          }
+        ]
+      },
+      "expanded_store": {
+        "reads": 36125.0,
+        "notes": 137.0,
+        "interactions": 3649.0,
+        "reads_per_note": 263.6861313868613,
+        "interaction_rate": 0.10101038062283738,
+        "fans_per_10k_reads": 11.903114186851212,
+        "visitor_rate": 0.0,
+        "shares": 451.0,
+        "new_fans": 43.0,
+        "methodology_note": "当月新发笔记使用当前累计快照指标，不解读为当月因果增量。",
+        "image_notes": 105,
+        "video_notes": 32,
+        "image_share": 0.7664233576642335,
+        "video_share": 0.23357664233576642,
+        "raw_category_counts": {
+          "产品种草": 44,
+          "使用技巧": 15,
+          "促销优惠": 9,
+          "其他": 36,
+          "节日营销": 1,
+          "营销活动": 32
+        },
+        "categories": [
+          {
+            "category": "产品功能与使用技巧",
+            "raw_categories": {
+              "使用技巧": 15
+            },
+            "notes": 15.0,
+            "note_share": 0.10948905109489052,
+            "reads": 4974.0,
+            "interactions": 282.0,
+            "shares": 31.0,
+            "new_fans": 4.0,
+            "reads_per_note": 331.6,
+            "interaction_rate": 0.05669481302774427,
+            "fans_per_10k_reads": 8.041817450743867,
+            "mapping_completeness": 1.0,
+            "blank_category_notes": 0
+          },
+          {
+            "category": "产品种草",
+            "raw_categories": {
+              "产品种草": 44
+            },
+            "notes": 44.0,
+            "note_share": 0.32116788321167883,
+            "reads": 24059.0,
+            "interactions": 3193.0,
+            "shares": 263.0,
+            "new_fans": 29.0,
+            "reads_per_note": 546.7954545454545,
+            "interaction_rate": 0.13271540795544287,
+            "fans_per_10k_reads": 12.053701317594246,
+            "mapping_completeness": 1.0,
+            "blank_category_notes": 0
+          },
+          {
+            "category": "促销优惠",
+            "raw_categories": {
+              "促销优惠": 9
+            },
+            "notes": 9.0,
+            "note_share": 0.06569343065693431,
+            "reads": 1018.0,
+            "interactions": 17.0,
+            "shares": 9.0,
+            "new_fans": 1.0,
+            "reads_per_note": 113.11111111111111,
+            "interaction_rate": 0.01669941060903733,
+            "fans_per_10k_reads": 9.823182711198427,
+            "mapping_completeness": 1.0,
+            "blank_category_notes": 0
+          },
+          {
+            "category": "其他",
+            "raw_categories": {
+              "其他": 36
+            },
+            "notes": 36.0,
+            "note_share": 0.26277372262773724,
+            "reads": 2511.0,
+            "interactions": 94.0,
+            "shares": 65.0,
+            "new_fans": 7.0,
+            "reads_per_note": 69.75,
+            "interaction_rate": 0.037435284747112704,
+            "fans_per_10k_reads": 27.877339705296695,
+            "mapping_completeness": 1.0,
+            "blank_category_notes": 0
+          },
+          {
+            "category": "节日与节点营销",
+            "raw_categories": {
+              "节日营销": 1
+            },
+            "notes": 1.0,
+            "note_share": 0.0072992700729927005,
+            "reads": 33.0,
+            "interactions": 0.0,
+            "shares": 1.0,
+            "new_fans": 0.0,
+            "reads_per_note": 33.0,
+            "interaction_rate": 0.0,
+            "fans_per_10k_reads": 0.0,
+            "mapping_completeness": 1.0,
+            "blank_category_notes": 0
+          },
+          {
+            "category": "营销活动",
+            "raw_categories": {
+              "营销活动": 32
+            },
+            "notes": 32.0,
+            "note_share": 0.23357664233576642,
+            "reads": 3530.0,
+            "interactions": 63.0,
+            "shares": 82.0,
+            "new_fans": 2.0,
+            "reads_per_note": 110.3125,
+            "interaction_rate": 0.017847025495750707,
+            "fans_per_10k_reads": 5.665722379603399,
+            "mapping_completeness": 1.0,
+            "blank_category_notes": 0
+          }
+        ]
+      }
+    },
+    "recommendations": [
+      {
+        "id": "category-031d297317ff",
+        "rule_id": "category_validate",
+        "type": "category",
+        "title": "验证系统功能内容样本",
+        "action": "下月补齐系统功能至少3篇后复核供给与阅读效率。",
+        "confidence": "validate",
+        "priority": "low",
+        "evidence": [
+          {
+            "metric": "note_share",
+            "value": 0.005780346820809248,
+            "benchmark": 0.013450502152080344,
+            "scope": "same_cohort"
+          },
+          {
+            "metric": "reads_per_note",
+            "value": 379.0,
+            "benchmark": 241.0,
+            "scope": "same_cohort"
+          },
+          {
+            "metric": "notes",
+            "value": 1.0,
+            "benchmark": 3,
+            "scope": "dealer_category"
+          }
+        ],
+        "target": {
+          "category": "系统功能",
+          "city": "",
+          "account_id": ""
+        }
+      },
+      {
+        "id": "category-0aabfa9ea6c2",
+        "rule_id": "category_validate",
+        "type": "category",
+        "title": "验证促销优惠内容效率",
+        "action": "下月保持促销优惠小范围测试，确认供给与效率关系。",
+        "confidence": "validate",
+        "priority": "low",
+        "evidence": [
+          {
+            "metric": "note_share",
+            "value": 0.05202312138728324,
+            "benchmark": 0.0625,
+            "scope": "same_cohort"
+          },
+          {
+            "metric": "reads_per_note",
+            "value": 113.11111111111111,
+            "benchmark": 145.0,
+            "scope": "same_cohort"
+          },
+          {
+            "metric": "notes",
+            "value": 9.0,
+            "benchmark": 3,
+            "scope": "dealer_category"
+          }
+        ],
+        "target": {
+          "category": "促销优惠",
+          "city": "",
+          "account_id": ""
+        }
+      },
+      {
+        "id": "category-35207ba3bcae",
+        "rule_id": "category_validate",
+        "type": "category",
+        "title": "验证节日与节点营销内容样本",
+        "action": "下月补齐节日与节点营销至少3篇后复核供给与阅读效率。",
+        "confidence": "validate",
+        "priority": "low",
+        "evidence": [
+          {
+            "metric": "note_share",
+            "value": 0.011560693641618497,
+            "benchmark": 0.05,
+            "scope": "same_cohort"
+          },
+          {
+            "metric": "reads_per_note",
+            "value": 930.0,
+            "benchmark": 203.0,
+            "scope": "same_cohort"
+          },
+          {
+            "metric": "notes",
+            "value": 2.0,
+            "benchmark": 3,
+            "scope": "dealer_category"
+          }
+        ],
+        "target": {
+          "category": "节日与节点营销",
+          "city": "",
+          "account_id": ""
+        }
+      },
+      {
+        "id": "category-a8c89b553674",
+        "rule_id": "category_optimize",
+        "type": "category",
+        "title": "优化营销活动内容",
+        "action": "保持营销活动供给，测试选题与封面以提升单篇阅读。",
+        "confidence": "supported",
+        "priority": "medium",
+        "evidence": [
+          {
+            "metric": "note_share",
+            "value": 0.2023121387283237,
+            "benchmark": 0.19375,
+            "scope": "same_cohort"
+          },
+          {
+            "metric": "reads_per_note",
+            "value": 162.4857142857143,
+            "benchmark": 239.11111111111111,
+            "scope": "same_cohort"
+          },
+          {
+            "metric": "notes",
+            "value": 35.0,
+            "benchmark": 3,
+            "scope": "dealer_category"
+          }
+        ],
+        "target": {
+          "category": "营销活动",
+          "city": "",
+          "account_id": ""
+        }
+      },
+      {
+        "id": "category-e54c5945fd5a",
+        "rule_id": "category_maintain",
+        "type": "category",
+        "title": "稳定保持其他",
+        "action": "继续保持其他供给节奏，并记录可复用素材。",
+        "confidence": "signal",
+        "priority": "low",
+        "evidence": [
+          {
+            "metric": "note_share",
+            "value": 0.2832369942196532,
+            "benchmark": 0.25,
+            "scope": "same_cohort"
+          },
+          {
+            "metric": "reads_per_note",
+            "value": 5247.897959183673,
+            "benchmark": 236.42857142857142,
+            "scope": "same_cohort"
+          },
+          {
+            "metric": "notes",
+            "value": 49.0,
+            "benchmark": 3,
+            "scope": "dealer_category"
+          }
+        ],
+        "target": {
+          "category": "其他",
+          "city": "",
+          "account_id": ""
+        }
+      },
+      {
+        "id": "category-ec94dd5554ca",
+        "rule_id": "category_maintain",
+        "type": "category",
+        "title": "稳定保持产品种草",
+        "action": "继续保持产品种草供给节奏，并记录可复用素材。",
+        "confidence": "signal",
+        "priority": "low",
+        "evidence": [
+          {
+            "metric": "note_share",
+            "value": 0.3468208092485549,
+            "benchmark": 0.34,
+            "scope": "same_cohort"
+          },
+          {
+            "metric": "reads_per_note",
+            "value": 2499.9,
+            "benchmark": 330.0,
+            "scope": "same_cohort"
+          },
+          {
+            "metric": "notes",
+            "value": 60.0,
+            "benchmark": 3,
+            "scope": "dealer_category"
+          }
+        ],
+        "target": {
+          "category": "产品种草",
+          "city": "",
+          "account_id": ""
+        }
+      },
+      {
+        "id": "category-f39b3babe884",
+        "rule_id": "category_scale",
+        "type": "category",
+        "title": "值得加码产品功能与使用技巧",
+        "action": "下月增加产品功能与使用技巧供给至同队列中位水平。",
+        "confidence": "supported",
+        "priority": "medium",
+        "evidence": [
+          {
+            "metric": "note_share",
+            "value": 0.09826589595375723,
+            "benchmark": 0.17727272727272728,
+            "scope": "same_cohort"
+          },
+          {
+            "metric": "reads_per_note",
+            "value": 21657.176470588234,
+            "benchmark": 319.0,
+            "scope": "same_cohort"
+          },
+          {
+            "metric": "notes",
+            "value": 17.0,
+            "benchmark": 3,
+            "scope": "dealer_category"
+          }
+        ],
+        "target": {
+          "category": "产品功能与使用技巧",
+          "city": "",
+          "account_id": ""
+        }
+      }
+    ],
+    "evidence": [
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:growth_diagnosis:core_kpi:current_fans",
+        "module": "growth_diagnosis",
+        "metric": "current_fans",
+        "value": 403.0,
+        "comparison": null,
+        "scope": {
+          "cohort": "core_kpi"
+        },
+        "sample_size": null,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:growth_diagnosis:core_kpi:current_interactions",
+        "module": "growth_diagnosis",
+        "metric": "current_interactions",
+        "value": 53370.0,
+        "comparison": null,
+        "scope": {
+          "cohort": "core_kpi"
+        },
+        "sample_size": null,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:growth_diagnosis:core_kpi:current_reads",
+        "module": "growth_diagnosis",
+        "metric": "current_reads",
+        "value": 762893.0,
+        "comparison": null,
+        "scope": {
+          "cohort": "core_kpi"
+        },
+        "sample_size": null,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:growth_diagnosis:core_kpi:q4_fans_completion_rate",
+        "module": "growth_diagnosis",
+        "metric": "q4_fans_completion_rate",
+        "value": 0.37177121771217714,
+        "comparison": null,
+        "scope": {
+          "cohort": "core_kpi",
+          "fiscal_quarter": "Q4"
+        },
+        "sample_size": null,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:growth_diagnosis:core_kpi:q4_fans_pacing_gap",
+        "module": "growth_diagnosis",
+        "metric": "q4_fans_pacing_gap",
+        "value": 0.03843788437884382,
+        "comparison": {
+          "elapsed_ratio": 0.3333333333333333
+        },
+        "scope": {
+          "cohort": "core_kpi",
+          "fiscal_quarter": "Q4"
+        },
+        "sample_size": null,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:growth_diagnosis:core_kpi:q4_interactions_completion_rate",
+        "module": "growth_diagnosis",
+        "metric": "q4_interactions_completion_rate",
+        "value": 1.343655589123867,
+        "comparison": null,
+        "scope": {
+          "cohort": "core_kpi",
+          "fiscal_quarter": "Q4"
+        },
+        "sample_size": null,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:growth_diagnosis:core_kpi:q4_interactions_pacing_gap",
+        "module": "growth_diagnosis",
+        "metric": "q4_interactions_pacing_gap",
+        "value": 1.0103222557905338,
+        "comparison": {
+          "elapsed_ratio": 0.3333333333333333
+        },
+        "scope": {
+          "cohort": "core_kpi",
+          "fiscal_quarter": "Q4"
+        },
+        "sample_size": null,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:growth_diagnosis:core_kpi:q4_reads_completion_rate",
+        "module": "growth_diagnosis",
+        "metric": "q4_reads_completion_rate",
+        "value": 1.2937231213794413,
+        "comparison": null,
+        "scope": {
+          "cohort": "core_kpi",
+          "fiscal_quarter": "Q4"
+        },
+        "sample_size": null,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:growth_diagnosis:core_kpi:q4_reads_pacing_gap",
+        "module": "growth_diagnosis",
+        "metric": "q4_reads_pacing_gap",
+        "value": 0.9603897880461081,
+        "comparison": {
+          "elapsed_ratio": 0.3333333333333333
+        },
+        "scope": {
+          "cohort": "core_kpi",
+          "fiscal_quarter": "Q4"
+        },
+        "sample_size": null,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:matrix_health:all_scoped_accounts:content_homogeneity",
+        "module": "matrix_health",
+        "metric": "content_homogeneity",
+        "value": 0.2539677236125497,
+        "comparison": null,
+        "scope": {
+          "method": "category_note_share_hhi",
+          "cohort": "all_scoped_accounts"
+        },
+        "sample_size": 7,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:matrix_health:all_scoped_accounts:long_tail_note_share",
+        "module": "matrix_health",
+        "metric": "long_tail_note_share",
+        "value": 0.26011560693641617,
+        "comparison": null,
+        "scope": {
+          "cohort": "all_scoped_accounts"
+        },
+        "sample_size": null,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:matrix_health:all_scoped_accounts:top_20_read_share_unavailable",
+        "module": "matrix_health",
+        "metric": "top_20_read_share_unavailable",
+        "value": 0,
+        "comparison": null,
+        "scope": {
+          "evidence_basis": "note_rows_or_explicit_top20_aggregate",
+          "cohort": "all_scoped_accounts",
+          "availability": "insufficient_data"
+        },
+        "sample_size": null,
+        "confidence": "validate"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:matrix_health:core_kpi:5ee360c200000000010001b1:account_matrix_unavailable",
+        "module": "matrix_health",
+        "metric": "account_matrix_unavailable",
+        "value": 0,
+        "comparison": null,
+        "scope": {
+          "cohort": "core_kpi",
+          "account_id": "5ee360c200000000010001b1",
+          "evidence_basis": "account_reads_and_notes",
+          "availability": "insufficient_data"
+        },
+        "sample_size": null,
+        "confidence": "validate"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:matrix_health:core_kpi:top_account_read_share",
+        "module": "matrix_health",
+        "metric": "top_account_read_share",
+        "value": 0.879266568085869,
+        "comparison": null,
+        "scope": {
+          "account_name": "仲璇i:Dea",
+          "cohort": "core_kpi"
+        },
+        "sample_size": 16,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:matrix_health:expanded_store:5e304b7300000000010005ca:account_matrix_unavailable",
+        "module": "matrix_health",
+        "metric": "account_matrix_unavailable",
+        "value": 0,
+        "comparison": null,
+        "scope": {
+          "cohort": "expanded_store",
+          "account_id": "5e304b7300000000010005ca",
+          "evidence_basis": "account_reads_and_notes",
+          "availability": "insufficient_data"
+        },
+        "sample_size": null,
+        "confidence": "validate"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:matrix_health:expanded_store:624f1f47000000001000b585:account_matrix_unavailable",
+        "module": "matrix_health",
+        "metric": "account_matrix_unavailable",
+        "value": 0,
+        "comparison": null,
+        "scope": {
+          "cohort": "expanded_store",
+          "account_id": "624f1f47000000001000b585",
+          "evidence_basis": "account_reads_and_notes",
+          "availability": "insufficient_data"
+        },
+        "sample_size": null,
+        "confidence": "validate"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:matrix_health:expanded_store:6268ce5d0000000010008c51:account_matrix_unavailable",
+        "module": "matrix_health",
+        "metric": "account_matrix_unavailable",
+        "value": 0,
+        "comparison": null,
+        "scope": {
+          "cohort": "expanded_store",
+          "account_id": "6268ce5d0000000010008c51",
+          "evidence_basis": "account_reads_and_notes",
+          "availability": "insufficient_data"
+        },
+        "sample_size": null,
+        "confidence": "validate"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:matrix_health:expanded_store:648f5ce7000000001001cef9:account_matrix_unavailable",
+        "module": "matrix_health",
+        "metric": "account_matrix_unavailable",
+        "value": 0,
+        "comparison": null,
+        "scope": {
+          "cohort": "expanded_store",
+          "account_id": "648f5ce7000000001001cef9",
+          "evidence_basis": "account_reads_and_notes",
+          "availability": "insufficient_data"
+        },
+        "sample_size": null,
+        "confidence": "validate"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:matrix_health:expanded_store:648fe0ce000000001100283c:account_matrix_unavailable",
+        "module": "matrix_health",
+        "metric": "account_matrix_unavailable",
+        "value": 0,
+        "comparison": null,
+        "scope": {
+          "cohort": "expanded_store",
+          "account_id": "648fe0ce000000001100283c",
+          "evidence_basis": "account_reads_and_notes",
+          "availability": "insufficient_data"
+        },
+        "sample_size": null,
+        "confidence": "validate"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:matrix_health:expanded_store:64a7a6d7000000000b014526:account_matrix_unavailable",
+        "module": "matrix_health",
+        "metric": "account_matrix_unavailable",
+        "value": 0,
+        "comparison": null,
+        "scope": {
+          "cohort": "expanded_store",
+          "account_id": "64a7a6d7000000000b014526",
+          "evidence_basis": "account_reads_and_notes",
+          "availability": "insufficient_data"
+        },
+        "sample_size": null,
+        "confidence": "validate"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:matrix_health:expanded_store:64a7aa20000000001c028362:account_matrix_unavailable",
+        "module": "matrix_health",
+        "metric": "account_matrix_unavailable",
+        "value": 0,
+        "comparison": null,
+        "scope": {
+          "cohort": "expanded_store",
+          "account_id": "64a7aa20000000001c028362",
+          "evidence_basis": "account_reads_and_notes",
+          "availability": "insufficient_data"
+        },
+        "sample_size": null,
+        "confidence": "validate"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:matrix_health:expanded_store:64a7f6b2000000000a02067e:account_matrix_unavailable",
+        "module": "matrix_health",
+        "metric": "account_matrix_unavailable",
+        "value": 0,
+        "comparison": null,
+        "scope": {
+          "cohort": "expanded_store",
+          "account_id": "64a7f6b2000000000a02067e",
+          "evidence_basis": "account_reads_and_notes",
+          "availability": "insufficient_data"
+        },
+        "sample_size": null,
+        "confidence": "validate"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:matrix_health:expanded_store:64ad0c61000000001f0072ce:account_matrix_unavailable",
+        "module": "matrix_health",
+        "metric": "account_matrix_unavailable",
+        "value": 0,
+        "comparison": null,
+        "scope": {
+          "cohort": "expanded_store",
+          "account_id": "64ad0c61000000001f0072ce",
+          "evidence_basis": "account_reads_and_notes",
+          "availability": "insufficient_data"
+        },
+        "sample_size": null,
+        "confidence": "validate"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:matrix_health:expanded_store:64c73709000000000b00548b:account_matrix_unavailable",
+        "module": "matrix_health",
+        "metric": "account_matrix_unavailable",
+        "value": 0,
+        "comparison": null,
+        "scope": {
+          "cohort": "expanded_store",
+          "account_id": "64c73709000000000b00548b",
+          "evidence_basis": "account_reads_and_notes",
+          "availability": "insufficient_data"
+        },
+        "sample_size": null,
+        "confidence": "validate"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:matrix_health:expanded_store:6500241900000000040252d6:account_matrix_unavailable",
+        "module": "matrix_health",
+        "metric": "account_matrix_unavailable",
+        "value": 0,
+        "comparison": null,
+        "scope": {
+          "cohort": "expanded_store",
+          "account_id": "6500241900000000040252d6",
+          "evidence_basis": "account_reads_and_notes",
+          "availability": "insufficient_data"
+        },
+        "sample_size": null,
+        "confidence": "validate"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:matrix_health:expanded_store:650030bc00000000050004ec:account_matrix_unavailable",
+        "module": "matrix_health",
+        "metric": "account_matrix_unavailable",
+        "value": 0,
+        "comparison": null,
+        "scope": {
+          "cohort": "expanded_store",
+          "account_id": "650030bc00000000050004ec",
+          "evidence_basis": "account_reads_and_notes",
+          "availability": "insufficient_data"
+        },
+        "sample_size": null,
+        "confidence": "validate"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:matrix_health:expanded_store:652666f1000000002a036f33:account_matrix_unavailable",
+        "module": "matrix_health",
+        "metric": "account_matrix_unavailable",
+        "value": 0,
+        "comparison": null,
+        "scope": {
+          "cohort": "expanded_store",
+          "account_id": "652666f1000000002a036f33",
+          "evidence_basis": "account_reads_and_notes",
+          "availability": "insufficient_data"
+        },
+        "sample_size": null,
+        "confidence": "validate"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:matrix_health:expanded_store:654463f9000000000d006b3d:account_matrix_unavailable",
+        "module": "matrix_health",
+        "metric": "account_matrix_unavailable",
+        "value": 0,
+        "comparison": null,
+        "scope": {
+          "cohort": "expanded_store",
+          "account_id": "654463f9000000000d006b3d",
+          "evidence_basis": "account_reads_and_notes",
+          "availability": "insufficient_data"
+        },
+        "sample_size": null,
+        "confidence": "validate"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:matrix_health:expanded_store:65af2f010000000014006e5c:account_matrix_unavailable",
+        "module": "matrix_health",
+        "metric": "account_matrix_unavailable",
+        "value": 0,
+        "comparison": null,
+        "scope": {
+          "cohort": "expanded_store",
+          "account_id": "65af2f010000000014006e5c",
+          "evidence_basis": "account_reads_and_notes",
+          "availability": "insufficient_data"
+        },
+        "sample_size": null,
+        "confidence": "validate"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:content_patterns:core_kpi:aggregate_content:aggregate_note_count",
+        "module": "content_patterns",
+        "metric": "aggregate_note_count",
+        "value": 36.0,
+        "comparison": null,
+        "scope": {
+          "cohort": "core_kpi",
+          "evidence_basis": "content_by_cohort",
+          "pattern_type": "aggregate_content"
+        },
+        "sample_size": 36,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:content_patterns:core_kpi:aggregate_content:aggregate_reads_per_note",
+        "module": "content_patterns",
+        "metric": "aggregate_reads_per_note",
+        "value": 20781.444444444445,
+        "comparison": null,
+        "scope": {
+          "cohort": "core_kpi",
+          "evidence_basis": "content_by_cohort",
+          "pattern_type": "aggregate_content"
+        },
+        "sample_size": 36,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:content_patterns:core_kpi:format_performance:image:format_note_share",
+        "module": "content_patterns",
+        "metric": "format_note_share",
+        "value": 0.1388888888888889,
+        "comparison": null,
+        "scope": {
+          "cohort": "core_kpi",
+          "evidence_basis": "content_by_cohort",
+          "format": "image",
+          "pattern_type": "format_performance"
+        },
+        "sample_size": 36,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:content_patterns:core_kpi:format_performance:video:format_note_share",
+        "module": "content_patterns",
+        "metric": "format_note_share",
+        "value": 0.8611111111111112,
+        "comparison": null,
+        "scope": {
+          "cohort": "core_kpi",
+          "evidence_basis": "content_by_cohort",
+          "format": "video",
+          "pattern_type": "format_performance"
+        },
+        "sample_size": 36,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:content_patterns:core_kpi:hotspot:hotspot_recency_unavailable",
+        "module": "content_patterns",
+        "metric": "hotspot_recency_unavailable",
+        "value": 0,
+        "comparison": null,
+        "scope": {
+          "cohort": "core_kpi",
+          "evidence_basis": "publication_date",
+          "pattern_type": "hotspot",
+          "availability": "insufficient_data"
+        },
+        "sample_size": null,
+        "confidence": "validate"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:content_patterns:core_kpi:long_tail:long_tail_note_count",
+        "module": "content_patterns",
+        "metric": "long_tail_note_count",
+        "value": 5.0,
+        "comparison": null,
+        "scope": {
+          "cohort": "core_kpi",
+          "evidence_basis": "content_by_cohort",
+          "pattern_type": "long_tail"
+        },
+        "sample_size": 36,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:content_patterns:core_kpi:title_tokens:title_tokens_unavailable",
+        "module": "content_patterns",
+        "metric": "title_tokens_unavailable",
+        "value": 0,
+        "comparison": null,
+        "scope": {
+          "cohort": "core_kpi",
+          "evidence_basis": "note_titles",
+          "pattern_type": "title_tokens",
+          "availability": "insufficient_data"
+        },
+        "sample_size": null,
+        "confidence": "validate"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:content_patterns:core_kpi:top_20:top_20_notes_unavailable",
+        "module": "content_patterns",
+        "metric": "top_20_notes_unavailable",
+        "value": 0,
+        "comparison": null,
+        "scope": {
+          "cohort": "core_kpi",
+          "evidence_basis": "note_rows",
+          "pattern_type": "top_20",
+          "availability": "insufficient_data"
+        },
+        "sample_size": null,
+        "confidence": "validate"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:content_patterns:core_kpi:viral:viral_category_proxy_rate",
+        "module": "content_patterns",
+        "metric": "viral_category_proxy_rate",
+        "value": 0.16666666666666666,
+        "comparison": null,
+        "scope": {
+          "cohort": "core_kpi",
+          "evidence_basis": "category_aggregate_proxy",
+          "pattern_type": "viral"
+        },
+        "sample_size": 6,
+        "confidence": "validate"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:content_patterns:core_kpi:产品功能与使用技巧:category_performance:category_reads_per_note",
+        "module": "content_patterns",
+        "metric": "category_reads_per_note",
+        "value": 181599.0,
+        "comparison": {
+          "interaction_rate": 0.07831816254494793
+        },
+        "scope": {
+          "cohort": "core_kpi",
+          "evidence_basis": "content_by_cohort",
+          "category": "产品功能与使用技巧",
+          "region": "",
+          "pattern_type": "category_performance"
+        },
+        "sample_size": 2,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:content_patterns:core_kpi:产品种草:category_performance:category_reads_per_note",
+        "module": "content_patterns",
+        "metric": "category_reads_per_note",
+        "value": 7870.9375,
+        "comparison": {
+          "interaction_rate": 0.12329376265533808
+        },
+        "scope": {
+          "cohort": "core_kpi",
+          "evidence_basis": "content_by_cohort",
+          "category": "产品种草",
+          "region": "",
+          "pattern_type": "category_performance"
+        },
+        "sample_size": 16,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:content_patterns:core_kpi:其他:category_performance:category_reads_per_note",
+        "module": "content_patterns",
+        "metric": "category_reads_per_note",
+        "value": 19587.384615384617,
+        "comparison": {
+          "interaction_rate": 0.03133099797357797
+        },
+        "scope": {
+          "cohort": "core_kpi",
+          "evidence_basis": "content_by_cohort",
+          "category": "其他",
+          "region": "",
+          "pattern_type": "category_performance"
+        },
+        "sample_size": 13,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:content_patterns:core_kpi:系统功能:category_performance:category_reads_per_note",
+        "module": "content_patterns",
+        "metric": "category_reads_per_note",
+        "value": 379.0,
+        "comparison": {
+          "interaction_rate": 0.029023746701846966
+        },
+        "scope": {
+          "cohort": "core_kpi",
+          "evidence_basis": "content_by_cohort",
+          "category": "系统功能",
+          "region": "",
+          "pattern_type": "category_performance"
+        },
+        "sample_size": 1,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:content_patterns:core_kpi:节日与节点营销:category_performance:category_reads_per_note",
+        "module": "content_patterns",
+        "metric": "category_reads_per_note",
+        "value": 1827.0,
+        "comparison": {
+          "interaction_rate": 0.23809523809523808
+        },
+        "scope": {
+          "cohort": "core_kpi",
+          "evidence_basis": "content_by_cohort",
+          "category": "节日与节点营销",
+          "region": "",
+          "pattern_type": "category_performance"
+        },
+        "sample_size": 1,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:content_patterns:core_kpi:营销活动:category_performance:category_reads_per_note",
+        "module": "content_patterns",
+        "metric": "category_reads_per_note",
+        "value": 719.0,
+        "comparison": {
+          "interaction_rate": 0.03013444598980065
+        },
+        "scope": {
+          "cohort": "core_kpi",
+          "evidence_basis": "content_by_cohort",
+          "category": "营销活动",
+          "region": "",
+          "pattern_type": "category_performance"
+        },
+        "sample_size": 3,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:content_patterns:expanded_store:aggregate_content:aggregate_note_count",
+        "module": "content_patterns",
+        "metric": "aggregate_note_count",
+        "value": 137.0,
+        "comparison": null,
+        "scope": {
+          "cohort": "expanded_store",
+          "evidence_basis": "content_by_cohort",
+          "pattern_type": "aggregate_content"
+        },
+        "sample_size": 137,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:content_patterns:expanded_store:aggregate_content:aggregate_reads_per_note",
+        "module": "content_patterns",
+        "metric": "aggregate_reads_per_note",
+        "value": 263.6861313868613,
+        "comparison": null,
+        "scope": {
+          "cohort": "expanded_store",
+          "evidence_basis": "content_by_cohort",
+          "pattern_type": "aggregate_content"
+        },
+        "sample_size": 137,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:content_patterns:expanded_store:format_performance:image:format_note_share",
+        "module": "content_patterns",
+        "metric": "format_note_share",
+        "value": 0.7664233576642335,
+        "comparison": null,
+        "scope": {
+          "cohort": "expanded_store",
+          "evidence_basis": "content_by_cohort",
+          "format": "image",
+          "pattern_type": "format_performance"
+        },
+        "sample_size": 137,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:content_patterns:expanded_store:format_performance:video:format_note_share",
+        "module": "content_patterns",
+        "metric": "format_note_share",
+        "value": 0.23357664233576642,
+        "comparison": null,
+        "scope": {
+          "cohort": "expanded_store",
+          "evidence_basis": "content_by_cohort",
+          "format": "video",
+          "pattern_type": "format_performance"
+        },
+        "sample_size": 137,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:content_patterns:expanded_store:hotspot:hotspot_recency_unavailable",
+        "module": "content_patterns",
+        "metric": "hotspot_recency_unavailable",
+        "value": 0,
+        "comparison": null,
+        "scope": {
+          "cohort": "expanded_store",
+          "evidence_basis": "publication_date",
+          "pattern_type": "hotspot",
+          "availability": "insufficient_data"
+        },
+        "sample_size": null,
+        "confidence": "validate"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:content_patterns:expanded_store:long_tail:long_tail_note_count",
+        "module": "content_patterns",
+        "metric": "long_tail_note_count",
+        "value": 69.0,
+        "comparison": null,
+        "scope": {
+          "cohort": "expanded_store",
+          "evidence_basis": "content_by_cohort",
+          "pattern_type": "long_tail"
+        },
+        "sample_size": 137,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:content_patterns:expanded_store:title_tokens:title_tokens_unavailable",
+        "module": "content_patterns",
+        "metric": "title_tokens_unavailable",
+        "value": 0,
+        "comparison": null,
+        "scope": {
+          "cohort": "expanded_store",
+          "evidence_basis": "note_titles",
+          "pattern_type": "title_tokens",
+          "availability": "insufficient_data"
+        },
+        "sample_size": null,
+        "confidence": "validate"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:content_patterns:expanded_store:top_20:top_20_notes_unavailable",
+        "module": "content_patterns",
+        "metric": "top_20_notes_unavailable",
+        "value": 0,
+        "comparison": null,
+        "scope": {
+          "cohort": "expanded_store",
+          "evidence_basis": "note_rows",
+          "pattern_type": "top_20",
+          "availability": "insufficient_data"
+        },
+        "sample_size": null,
+        "confidence": "validate"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:content_patterns:expanded_store:viral:viral_category_proxy_rate",
+        "module": "content_patterns",
+        "metric": "viral_category_proxy_rate",
+        "value": 0.16666666666666666,
+        "comparison": null,
+        "scope": {
+          "cohort": "expanded_store",
+          "evidence_basis": "category_aggregate_proxy",
+          "pattern_type": "viral"
+        },
+        "sample_size": 6,
+        "confidence": "validate"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:content_patterns:expanded_store:产品功能与使用技巧:category_performance:category_reads_per_note",
+        "module": "content_patterns",
+        "metric": "category_reads_per_note",
+        "value": 331.6,
+        "comparison": {
+          "interaction_rate": 0.05669481302774427
+        },
+        "scope": {
+          "cohort": "expanded_store",
+          "evidence_basis": "content_by_cohort",
+          "category": "产品功能与使用技巧",
+          "region": "",
+          "pattern_type": "category_performance"
+        },
+        "sample_size": 15,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:content_patterns:expanded_store:产品种草:category_performance:category_reads_per_note",
+        "module": "content_patterns",
+        "metric": "category_reads_per_note",
+        "value": 546.7954545454545,
+        "comparison": {
+          "interaction_rate": 0.13271540795544287
+        },
+        "scope": {
+          "cohort": "expanded_store",
+          "evidence_basis": "content_by_cohort",
+          "category": "产品种草",
+          "region": "",
+          "pattern_type": "category_performance"
+        },
+        "sample_size": 44,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:content_patterns:expanded_store:促销优惠:category_performance:category_reads_per_note",
+        "module": "content_patterns",
+        "metric": "category_reads_per_note",
+        "value": 113.11111111111111,
+        "comparison": {
+          "interaction_rate": 0.01669941060903733
+        },
+        "scope": {
+          "cohort": "expanded_store",
+          "evidence_basis": "content_by_cohort",
+          "category": "促销优惠",
+          "region": "",
+          "pattern_type": "category_performance"
+        },
+        "sample_size": 9,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:content_patterns:expanded_store:其他:category_performance:category_reads_per_note",
+        "module": "content_patterns",
+        "metric": "category_reads_per_note",
+        "value": 69.75,
+        "comparison": {
+          "interaction_rate": 0.037435284747112704
+        },
+        "scope": {
+          "cohort": "expanded_store",
+          "evidence_basis": "content_by_cohort",
+          "category": "其他",
+          "region": "",
+          "pattern_type": "category_performance"
+        },
+        "sample_size": 36,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:content_patterns:expanded_store:节日与节点营销:category_performance:category_reads_per_note",
+        "module": "content_patterns",
+        "metric": "category_reads_per_note",
+        "value": 33.0,
+        "comparison": {
+          "interaction_rate": 0.0
+        },
+        "scope": {
+          "cohort": "expanded_store",
+          "evidence_basis": "content_by_cohort",
+          "category": "节日与节点营销",
+          "region": "",
+          "pattern_type": "category_performance"
+        },
+        "sample_size": 1,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:content_patterns:expanded_store:营销活动:category_performance:category_reads_per_note",
+        "module": "content_patterns",
+        "metric": "category_reads_per_note",
+        "value": 110.3125,
+        "comparison": {
+          "interaction_rate": 0.017847025495750707
+        },
+        "scope": {
+          "cohort": "expanded_store",
+          "evidence_basis": "content_by_cohort",
+          "category": "营销活动",
+          "region": "",
+          "pattern_type": "category_performance"
+        },
+        "sample_size": 32,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:user_signals:core_kpi:anomaly_candidate_count",
+        "module": "user_signals",
+        "metric": "anomaly_candidate_count",
+        "value": 0,
+        "comparison": null,
+        "scope": {
+          "cohort": "core_kpi",
+          "evidence_basis": "account_metrics",
+          "signal": "interactions_without_reads",
+          "candidate_unit": "account"
+        },
+        "sample_size": 1,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:user_signals:core_kpi:collects_per_read",
+        "module": "user_signals",
+        "metric": "collects_per_read",
+        "value": 0.0032665131283155045,
+        "comparison": null,
+        "scope": {
+          "cohort": "core_kpi",
+          "evidence_basis": "account_metrics",
+          "signal": "collects"
+        },
+        "sample_size": 1,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:user_signals:core_kpi:comments_per_read",
+        "module": "user_signals",
+        "metric": "comments_per_read",
+        "value": 0.039373804714422596,
+        "comparison": null,
+        "scope": {
+          "cohort": "core_kpi",
+          "evidence_basis": "account_metrics",
+          "signal": "comments"
+        },
+        "sample_size": 1,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:user_signals:core_kpi:fans_per_read",
+        "module": "user_signals",
+        "metric": "fans_per_read",
+        "value": 0.0005282523237203644,
+        "comparison": null,
+        "scope": {
+          "cohort": "core_kpi",
+          "evidence_basis": "account_metrics",
+          "signal": "fan_conversion"
+        },
+        "sample_size": 1,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:user_signals:core_kpi:high_comment_candidate_count",
+        "module": "user_signals",
+        "metric": "high_comment_candidate_count",
+        "value": 0,
+        "comparison": null,
+        "scope": {
+          "cohort": "core_kpi",
+          "evidence_basis": "account_metrics",
+          "signal": "high_comment",
+          "candidate_unit": "account"
+        },
+        "sample_size": 1,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:user_signals:core_kpi:high_save_candidate_count",
+        "module": "user_signals",
+        "metric": "high_save_candidate_count",
+        "value": 0,
+        "comparison": null,
+        "scope": {
+          "cohort": "core_kpi",
+          "evidence_basis": "account_metrics",
+          "signal": "high_save",
+          "candidate_unit": "account"
+        },
+        "sample_size": 1,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:user_signals:core_kpi:likes_per_read",
+        "module": "user_signals",
+        "metric": "likes_per_read",
+        "value": 0.027317068055415374,
+        "comparison": null,
+        "scope": {
+          "cohort": "core_kpi",
+          "evidence_basis": "account_metrics",
+          "signal": "likes"
+        },
+        "sample_size": 1,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:user_signals:core_kpi:shares_per_read",
+        "module": "user_signals",
+        "metric": "shares_per_read",
+        "value": 0.0,
+        "comparison": null,
+        "scope": {
+          "cohort": "core_kpi",
+          "evidence_basis": "account_metrics",
+          "signal": "shares"
+        },
+        "sample_size": 1,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:user_signals:expanded_store:anomaly_candidate_count",
+        "module": "user_signals",
+        "metric": "anomaly_candidate_count",
+        "value": 0,
+        "comparison": null,
+        "scope": {
+          "cohort": "expanded_store",
+          "evidence_basis": "account_metrics",
+          "signal": "interactions_without_reads",
+          "candidate_unit": "account"
+        },
+        "sample_size": 15,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:user_signals:expanded_store:collects_per_read",
+        "module": "user_signals",
+        "metric": "collects_per_read",
+        "value": 0.01936918876606144,
+        "comparison": null,
+        "scope": {
+          "cohort": "expanded_store",
+          "evidence_basis": "account_metrics",
+          "signal": "collects"
+        },
+        "sample_size": 15,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:user_signals:expanded_store:comments_per_read",
+        "module": "user_signals",
+        "metric": "comments_per_read",
+        "value": 0.0011455409817286214,
+        "comparison": null,
+        "scope": {
+          "cohort": "expanded_store",
+          "evidence_basis": "account_metrics",
+          "signal": "comments"
+        },
+        "sample_size": 15,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:user_signals:expanded_store:fans_per_read",
+        "module": "user_signals",
+        "metric": "fans_per_read",
+        "value": 0.0006873245890371728,
+        "comparison": null,
+        "scope": {
+          "cohort": "expanded_store",
+          "evidence_basis": "account_metrics",
+          "signal": "fan_conversion"
+        },
+        "sample_size": 15,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:user_signals:expanded_store:high_comment_candidate_count",
+        "module": "user_signals",
+        "metric": "high_comment_candidate_count",
+        "value": 7,
+        "comparison": null,
+        "scope": {
+          "cohort": "expanded_store",
+          "evidence_basis": "account_metrics",
+          "signal": "high_comment",
+          "candidate_unit": "account"
+        },
+        "sample_size": 15,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:user_signals:expanded_store:high_save_candidate_count",
+        "module": "user_signals",
+        "metric": "high_save_candidate_count",
+        "value": 7,
+        "comparison": null,
+        "scope": {
+          "cohort": "expanded_store",
+          "evidence_basis": "account_metrics",
+          "signal": "high_save",
+          "candidate_unit": "account"
+        },
+        "sample_size": 15,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:user_signals:expanded_store:likes_per_read",
+        "module": "user_signals",
+        "metric": "likes_per_read",
+        "value": 0.020629283845962923,
+        "comparison": null,
+        "scope": {
+          "cohort": "expanded_store",
+          "evidence_basis": "account_metrics",
+          "signal": "likes"
+        },
+        "sample_size": 15,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:user_signals:expanded_store:shares_per_read",
+        "module": "user_signals",
+        "metric": "shares_per_read",
+        "value": 0.0,
+        "comparison": null,
+        "scope": {
+          "cohort": "expanded_store",
+          "evidence_basis": "account_metrics",
+          "signal": "shares"
+        },
+        "sample_size": 15,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:regional_strategy:core_kpi:上海:华东:city_content_efficiency",
+        "module": "regional_strategy",
+        "metric": "city_content_efficiency",
+        "value": 20781.444444444445,
+        "comparison": {
+          "notes": 36
+        },
+        "scope": {
+          "city": "上海",
+          "region": "华东",
+          "cohort": "core_kpi",
+          "recommendation_mode": "test_only"
+        },
+        "sample_size": 1,
+        "confidence": "validate"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:regional_strategy:core_kpi:上海:华东:产品功能与使用技巧:city_category_efficiency",
+        "module": "regional_strategy",
+        "metric": "city_category_efficiency",
+        "value": 181599.0,
+        "comparison": null,
+        "scope": {
+          "city": "上海",
+          "region": "华东",
+          "cohort": "core_kpi",
+          "recommendation_mode": "test_only",
+          "category": "产品功能与使用技巧"
+        },
+        "sample_size": 1,
+        "confidence": "validate"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:regional_strategy:core_kpi:上海:华东:产品种草:city_category_efficiency",
+        "module": "regional_strategy",
+        "metric": "city_category_efficiency",
+        "value": 7870.9375,
+        "comparison": null,
+        "scope": {
+          "city": "上海",
+          "region": "华东",
+          "cohort": "core_kpi",
+          "recommendation_mode": "test_only",
+          "category": "产品种草"
+        },
+        "sample_size": 1,
+        "confidence": "validate"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:regional_strategy:core_kpi:上海:华东:其他:city_category_efficiency",
+        "module": "regional_strategy",
+        "metric": "city_category_efficiency",
+        "value": 19587.384615384617,
+        "comparison": null,
+        "scope": {
+          "city": "上海",
+          "region": "华东",
+          "cohort": "core_kpi",
+          "recommendation_mode": "test_only",
+          "category": "其他"
+        },
+        "sample_size": 1,
+        "confidence": "validate"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:regional_strategy:core_kpi:上海:华东:系统功能:city_category_efficiency",
+        "module": "regional_strategy",
+        "metric": "city_category_efficiency",
+        "value": 379.0,
+        "comparison": null,
+        "scope": {
+          "city": "上海",
+          "region": "华东",
+          "cohort": "core_kpi",
+          "recommendation_mode": "test_only",
+          "category": "系统功能"
+        },
+        "sample_size": 1,
+        "confidence": "validate"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:regional_strategy:core_kpi:上海:华东:节日与节点营销:city_category_efficiency",
+        "module": "regional_strategy",
+        "metric": "city_category_efficiency",
+        "value": 1827.0,
+        "comparison": null,
+        "scope": {
+          "city": "上海",
+          "region": "华东",
+          "cohort": "core_kpi",
+          "recommendation_mode": "test_only",
+          "category": "节日与节点营销"
+        },
+        "sample_size": 1,
+        "confidence": "validate"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:regional_strategy:core_kpi:上海:华东:营销活动:city_category_efficiency",
+        "module": "regional_strategy",
+        "metric": "city_category_efficiency",
+        "value": 719.0,
+        "comparison": null,
+        "scope": {
+          "city": "上海",
+          "region": "华东",
+          "cohort": "core_kpi",
+          "recommendation_mode": "test_only",
+          "category": "营销活动"
+        },
+        "sample_size": 1,
+        "confidence": "validate"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:regional_strategy:expanded_store:上海:华东:city_content_efficiency",
+        "module": "regional_strategy",
+        "metric": "city_content_efficiency",
+        "value": 405.35135135135135,
+        "comparison": {
+          "notes": 74
+        },
+        "scope": {
+          "city": "上海",
+          "region": "华东",
+          "cohort": "expanded_store",
+          "recommendation_mode": "supported"
+        },
+        "sample_size": 8,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:regional_strategy:expanded_store:上海:华东:产品功能与使用技巧:city_category_efficiency",
+        "module": "regional_strategy",
+        "metric": "city_category_efficiency",
+        "value": 432.72727272727275,
+        "comparison": null,
+        "scope": {
+          "city": "上海",
+          "region": "华东",
+          "cohort": "expanded_store",
+          "recommendation_mode": "supported",
+          "category": "产品功能与使用技巧"
+        },
+        "sample_size": 8,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:regional_strategy:expanded_store:上海:华东:产品种草:city_category_efficiency",
+        "module": "regional_strategy",
+        "metric": "city_category_efficiency",
+        "value": 912.5,
+        "comparison": null,
+        "scope": {
+          "city": "上海",
+          "region": "华东",
+          "cohort": "expanded_store",
+          "recommendation_mode": "supported",
+          "category": "产品种草"
+        },
+        "sample_size": 8,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:regional_strategy:expanded_store:上海:华东:促销优惠:city_category_efficiency",
+        "module": "regional_strategy",
+        "metric": "city_category_efficiency",
+        "value": 112.0,
+        "comparison": null,
+        "scope": {
+          "city": "上海",
+          "region": "华东",
+          "cohort": "expanded_store",
+          "recommendation_mode": "supported",
+          "category": "促销优惠"
+        },
+        "sample_size": 8,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:regional_strategy:expanded_store:上海:华东:其他:city_category_efficiency",
+        "module": "regional_strategy",
+        "metric": "city_category_efficiency",
+        "value": 72.23809523809524,
+        "comparison": null,
+        "scope": {
+          "city": "上海",
+          "region": "华东",
+          "cohort": "expanded_store",
+          "recommendation_mode": "supported",
+          "category": "其他"
+        },
+        "sample_size": 8,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:regional_strategy:expanded_store:上海:华东:营销活动:city_category_efficiency",
+        "module": "regional_strategy",
+        "metric": "city_category_efficiency",
+        "value": 97.92857142857143,
+        "comparison": null,
+        "scope": {
+          "city": "上海",
+          "region": "华东",
+          "cohort": "expanded_store",
+          "recommendation_mode": "supported",
+          "category": "营销活动"
+        },
+        "sample_size": 8,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:regional_strategy:expanded_store:南京:华东:city_content_efficiency",
+        "module": "regional_strategy",
+        "metric": "city_content_efficiency",
+        "value": 107.67857142857143,
+        "comparison": {
+          "notes": 28
+        },
+        "scope": {
+          "city": "南京",
+          "region": "华东",
+          "cohort": "expanded_store",
+          "recommendation_mode": "supported"
+        },
+        "sample_size": 3,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:regional_strategy:expanded_store:南京:华东:产品功能与使用技巧:city_category_efficiency",
+        "module": "regional_strategy",
+        "metric": "city_category_efficiency",
+        "value": 57.0,
+        "comparison": null,
+        "scope": {
+          "city": "南京",
+          "region": "华东",
+          "cohort": "expanded_store",
+          "recommendation_mode": "supported",
+          "category": "产品功能与使用技巧"
+        },
+        "sample_size": 3,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:regional_strategy:expanded_store:南京:华东:产品种草:city_category_efficiency",
+        "module": "regional_strategy",
+        "metric": "city_category_efficiency",
+        "value": 120.5,
+        "comparison": null,
+        "scope": {
+          "city": "南京",
+          "region": "华东",
+          "cohort": "expanded_store",
+          "recommendation_mode": "supported",
+          "category": "产品种草"
+        },
+        "sample_size": 3,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:regional_strategy:expanded_store:南京:华东:促销优惠:city_category_efficiency",
+        "module": "regional_strategy",
+        "metric": "city_category_efficiency",
+        "value": 120.5,
+        "comparison": null,
+        "scope": {
+          "city": "南京",
+          "region": "华东",
+          "cohort": "expanded_store",
+          "recommendation_mode": "supported",
+          "category": "促销优惠"
+        },
+        "sample_size": 3,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:regional_strategy:expanded_store:南京:华东:其他:city_category_efficiency",
+        "module": "regional_strategy",
+        "metric": "city_category_efficiency",
+        "value": 75.0,
+        "comparison": null,
+        "scope": {
+          "city": "南京",
+          "region": "华东",
+          "cohort": "expanded_store",
+          "recommendation_mode": "supported",
+          "category": "其他"
+        },
+        "sample_size": 3,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:regional_strategy:expanded_store:南京:华东:营销活动:city_category_efficiency",
+        "module": "regional_strategy",
+        "metric": "city_category_efficiency",
+        "value": 117.3,
+        "comparison": null,
+        "scope": {
+          "city": "南京",
+          "region": "华东",
+          "cohort": "expanded_store",
+          "recommendation_mode": "supported",
+          "category": "营销活动"
+        },
+        "sample_size": 3,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:regional_strategy:expanded_store:无锡:华东:city_content_efficiency",
+        "module": "regional_strategy",
+        "metric": "city_content_efficiency",
+        "value": 70.0,
+        "comparison": {
+          "notes": 9
+        },
+        "scope": {
+          "city": "无锡",
+          "region": "华东",
+          "cohort": "expanded_store",
+          "recommendation_mode": "test_only"
+        },
+        "sample_size": 1,
+        "confidence": "validate"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:regional_strategy:expanded_store:无锡:华东:产品种草:city_category_efficiency",
+        "module": "regional_strategy",
+        "metric": "city_category_efficiency",
+        "value": 97.5,
+        "comparison": null,
+        "scope": {
+          "city": "无锡",
+          "region": "华东",
+          "cohort": "expanded_store",
+          "recommendation_mode": "test_only",
+          "category": "产品种草"
+        },
+        "sample_size": 1,
+        "confidence": "validate"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:regional_strategy:expanded_store:无锡:华东:促销优惠:city_category_efficiency",
+        "module": "regional_strategy",
+        "metric": "city_category_efficiency",
+        "value": 88.0,
+        "comparison": null,
+        "scope": {
+          "city": "无锡",
+          "region": "华东",
+          "cohort": "expanded_store",
+          "recommendation_mode": "test_only",
+          "category": "促销优惠"
+        },
+        "sample_size": 1,
+        "confidence": "validate"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:regional_strategy:expanded_store:无锡:华东:其他:city_category_efficiency",
+        "module": "regional_strategy",
+        "metric": "city_category_efficiency",
+        "value": 38.75,
+        "comparison": null,
+        "scope": {
+          "city": "无锡",
+          "region": "华东",
+          "cohort": "expanded_store",
+          "recommendation_mode": "test_only",
+          "category": "其他"
+        },
+        "sample_size": 1,
+        "confidence": "validate"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:regional_strategy:expanded_store:无锡:华东:营销活动:city_category_efficiency",
+        "module": "regional_strategy",
+        "metric": "city_category_efficiency",
+        "value": 96.0,
+        "comparison": null,
+        "scope": {
+          "city": "无锡",
+          "region": "华东",
+          "cohort": "expanded_store",
+          "recommendation_mode": "test_only",
+          "category": "营销活动"
+        },
+        "sample_size": 1,
+        "confidence": "validate"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:regional_strategy:expanded_store:苏州:华东:city_content_efficiency",
+        "module": "regional_strategy",
+        "metric": "city_content_efficiency",
+        "value": 95.53846153846153,
+        "comparison": {
+          "notes": 26
+        },
+        "scope": {
+          "city": "苏州",
+          "region": "华东",
+          "cohort": "expanded_store",
+          "recommendation_mode": "supported"
+        },
+        "sample_size": 3,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:regional_strategy:expanded_store:苏州:华东:产品功能与使用技巧:city_category_efficiency",
+        "module": "regional_strategy",
+        "metric": "city_category_efficiency",
+        "value": 43.0,
+        "comparison": null,
+        "scope": {
+          "city": "苏州",
+          "region": "华东",
+          "cohort": "expanded_store",
+          "recommendation_mode": "supported",
+          "category": "产品功能与使用技巧"
+        },
+        "sample_size": 3,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:regional_strategy:expanded_store:苏州:华东:产品种草:city_category_efficiency",
+        "module": "regional_strategy",
+        "metric": "city_category_efficiency",
+        "value": 100.0,
+        "comparison": null,
+        "scope": {
+          "city": "苏州",
+          "region": "华东",
+          "cohort": "expanded_store",
+          "recommendation_mode": "supported",
+          "category": "产品种草"
+        },
+        "sample_size": 3,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:regional_strategy:expanded_store:苏州:华东:其他:city_category_efficiency",
+        "module": "regional_strategy",
+        "metric": "city_category_efficiency",
+        "value": 76.75,
+        "comparison": null,
+        "scope": {
+          "city": "苏州",
+          "region": "华东",
+          "cohort": "expanded_store",
+          "recommendation_mode": "supported",
+          "category": "其他"
+        },
+        "sample_size": 3,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:regional_strategy:expanded_store:苏州:华东:节日与节点营销:city_category_efficiency",
+        "module": "regional_strategy",
+        "metric": "city_category_efficiency",
+        "value": 33.0,
+        "comparison": null,
+        "scope": {
+          "city": "苏州",
+          "region": "华东",
+          "cohort": "expanded_store",
+          "recommendation_mode": "supported",
+          "category": "节日与节点营销"
+        },
+        "sample_size": 3,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:regional_strategy:expanded_store:苏州:华东:营销活动:city_category_efficiency",
+        "module": "regional_strategy",
+        "metric": "city_category_efficiency",
+        "value": 132.33333333333334,
+        "comparison": null,
+        "scope": {
+          "city": "苏州",
+          "region": "华东",
+          "cohort": "expanded_store",
+          "recommendation_mode": "supported",
+          "category": "营销活动"
+        },
+        "sample_size": 3,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:action_plan:30:action_candidate_count",
+        "module": "action_plan",
+        "metric": "action_candidate_count",
+        "value": 7,
+        "comparison": {
+          "measurable_outcome": "pacing_gap_or_reads_per_note"
+        },
+        "scope": {
+          "horizon_days": 30,
+          "rule_ids": [
+            "category_maintain",
+            "category_maintain",
+            "category_optimize",
+            "category_scale",
+            "category_validate",
+            "category_validate",
+            "category_validate"
+          ]
+        },
+        "sample_size": 7,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:action_plan:60:action_candidate_count",
+        "module": "action_plan",
+        "metric": "action_candidate_count",
+        "value": 7,
+        "comparison": {
+          "measurable_outcome": "pacing_gap_or_reads_per_note"
+        },
+        "scope": {
+          "horizon_days": 60,
+          "rule_ids": [
+            "category_maintain",
+            "category_maintain",
+            "category_optimize",
+            "category_scale",
+            "category_validate",
+            "category_validate",
+            "category_validate"
+          ]
+        },
+        "sample_size": 7,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:action_plan:90:action_candidate_count",
+        "module": "action_plan",
+        "metric": "action_candidate_count",
+        "value": 7,
+        "comparison": {
+          "measurable_outcome": "pacing_gap_or_reads_per_note"
+        },
+        "scope": {
+          "horizon_days": 90,
+          "rule_ids": [
+            "category_maintain",
+            "category_maintain",
+            "category_optimize",
+            "category_scale",
+            "category_validate",
+            "category_validate",
+            "category_validate"
+          ]
+        },
+        "sample_size": 7,
+        "confidence": "supported"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:business_opportunities:core_kpi:installment_value:scenario_demand_share",
+        "module": "business_opportunities",
+        "metric": "scenario_demand_share",
+        "value": 0.0,
+        "comparison": {
+          "supply_share": 0.0,
+          "supply_gap": 0.0,
+          "competition_concentration": 0
+        },
+        "scope": {
+          "scenario": "installment_value",
+          "revalidation_required": true,
+          "cohort": "core_kpi",
+          "evidence_basis": "content_by_cohort"
+        },
+        "sample_size": 0,
+        "confidence": "validate"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:business_opportunities:core_kpi:local_service:scenario_demand_share",
+        "module": "business_opportunities",
+        "metric": "scenario_demand_share",
+        "value": 0.0,
+        "comparison": {
+          "supply_share": 0.0,
+          "supply_gap": 0.0,
+          "competition_concentration": 0
+        },
+        "scope": {
+          "scenario": "local_service",
+          "revalidation_required": true,
+          "cohort": "core_kpi",
+          "evidence_basis": "content_by_cohort"
+        },
+        "sample_size": 0,
+        "confidence": "validate"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:business_opportunities:core_kpi:student:scenario_demand_share",
+        "module": "business_opportunities",
+        "metric": "scenario_demand_share",
+        "value": 0.0,
+        "comparison": {
+          "supply_share": 0.0,
+          "supply_gap": 0.0,
+          "competition_concentration": 0
+        },
+        "scope": {
+          "scenario": "student",
+          "revalidation_required": true,
+          "cohort": "core_kpi",
+          "evidence_basis": "content_by_cohort"
+        },
+        "sample_size": 0,
+        "confidence": "validate"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:business_opportunities:core_kpi:trade_in:scenario_demand_share",
+        "module": "business_opportunities",
+        "metric": "scenario_demand_share",
+        "value": 0.0,
+        "comparison": {
+          "supply_share": 0.0,
+          "supply_gap": 0.0,
+          "competition_concentration": 0
+        },
+        "scope": {
+          "scenario": "trade_in",
+          "revalidation_required": true,
+          "cohort": "core_kpi",
+          "evidence_basis": "content_by_cohort"
+        },
+        "sample_size": 0,
+        "confidence": "validate"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:business_opportunities:core_kpi:women:scenario_demand_share",
+        "module": "business_opportunities",
+        "metric": "scenario_demand_share",
+        "value": 0.0,
+        "comparison": {
+          "supply_share": 0.0,
+          "supply_gap": 0.0,
+          "competition_concentration": 0
+        },
+        "scope": {
+          "scenario": "women",
+          "revalidation_required": true,
+          "cohort": "core_kpi",
+          "evidence_basis": "content_by_cohort"
+        },
+        "sample_size": 0,
+        "confidence": "validate"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:business_opportunities:expanded_store:installment_value:scenario_demand_share",
+        "module": "business_opportunities",
+        "metric": "scenario_demand_share",
+        "value": 0.0,
+        "comparison": {
+          "supply_share": 0.0,
+          "supply_gap": 0.0,
+          "competition_concentration": 0
+        },
+        "scope": {
+          "scenario": "installment_value",
+          "revalidation_required": true,
+          "cohort": "expanded_store",
+          "evidence_basis": "content_by_cohort"
+        },
+        "sample_size": 0,
+        "confidence": "validate"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:business_opportunities:expanded_store:local_service:scenario_demand_share",
+        "module": "business_opportunities",
+        "metric": "scenario_demand_share",
+        "value": 0.0,
+        "comparison": {
+          "supply_share": 0.0,
+          "supply_gap": 0.0,
+          "competition_concentration": 0
+        },
+        "scope": {
+          "scenario": "local_service",
+          "revalidation_required": true,
+          "cohort": "expanded_store",
+          "evidence_basis": "content_by_cohort"
+        },
+        "sample_size": 0,
+        "confidence": "validate"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:business_opportunities:expanded_store:student:scenario_demand_share",
+        "module": "business_opportunities",
+        "metric": "scenario_demand_share",
+        "value": 0.0,
+        "comparison": {
+          "supply_share": 0.0,
+          "supply_gap": 0.0,
+          "competition_concentration": 0
+        },
+        "scope": {
+          "scenario": "student",
+          "revalidation_required": true,
+          "cohort": "expanded_store",
+          "evidence_basis": "content_by_cohort"
+        },
+        "sample_size": 0,
+        "confidence": "validate"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:business_opportunities:expanded_store:trade_in:scenario_demand_share",
+        "module": "business_opportunities",
+        "metric": "scenario_demand_share",
+        "value": 0.0,
+        "comparison": {
+          "supply_share": 0.0,
+          "supply_gap": 0.0,
+          "competition_concentration": 0
+        },
+        "scope": {
+          "scenario": "trade_in",
+          "revalidation_required": true,
+          "cohort": "expanded_store",
+          "evidence_basis": "content_by_cohort"
+        },
+        "sample_size": 0,
+        "confidence": "validate"
+      },
+      {
+        "evidence_id": "dealer:dealer-8a64cb07120b:2026-07:business_opportunities:expanded_store:women:scenario_demand_share",
+        "module": "business_opportunities",
+        "metric": "scenario_demand_share",
+        "value": 0.0,
+        "comparison": {
+          "supply_share": 0.0,
+          "supply_gap": 0.0,
+          "competition_concentration": 0
+        },
+        "scope": {
+          "scenario": "women",
+          "revalidation_required": true,
+          "cohort": "expanded_store",
+          "evidence_basis": "content_by_cohort"
+        },
+        "sample_size": 0,
+        "confidence": "validate"
+      }
+    ],
+    "ai_insights": {
+      "executive_summary": "本报告根据本期经销商经营数据生成，聚焦增长节奏、内容效率、互动转化与区域打法。",
+      "generation": {
+        "mode": "rule_fallback",
+        "provider": "data_grounded_rules_v2"
+      },
+      "insights": [
+        {
+          "id": "rule-growth_diagnosis",
+          "module": "growth_diagnosis",
+          "title": "growth_diagnosis",
+          "judgement": "增长不是流量不足，而是粉丝沉淀不足：阅读 KPI 已完成 129.4%，互动完成 134.4%，新增粉丝仅完成 37.2%。",
+          "why": "内容能把用户带进来并产生互动，但笔记结尾、主页定位和门店咨询入口没有把兴趣稳定转化为关注。",
+          "impact": "继续单纯加大发布量，会放大阅读与粉丝之间的缺口；下一阶段应把增长目标从曝光转向有效关注。",
+          "statement_type": "inference",
+          "evidence_ids": [
+            "dealer:dealer-8a64cb07120b:2026-07:growth_diagnosis:core_kpi:q4_reads_completion_rate",
+            "dealer:dealer-8a64cb07120b:2026-07:growth_diagnosis:core_kpi:q4_interactions_completion_rate",
+            "dealer:dealer-8a64cb07120b:2026-07:growth_diagnosis:core_kpi:q4_fans_completion_rate"
+          ],
+          "confidence": "medium",
+          "scope": {},
+          "actions": [
+            {
+              "owner": "渠道运营",
+              "action": "将高互动笔记统一补充关注理由、系列内容预告和门店咨询入口，并单独复盘每类内容的涨粉效率。",
+              "deadline": "下一个月度周期",
+              "success_metric": "形成可复用的内容与运营复盘结论。"
+            }
+          ]
+        },
+        {
+          "id": "rule-matrix_health",
+          "module": "matrix_health",
+          "title": "matrix_health",
+          "judgement": "矩阵呈现“单账号驱动”特征：仲璇i:Dea 贡献了 87.9% 的可观测阅读，另有 26.0% 的笔记处于长尾表现。",
+          "why": "主账号承担了大部分流量，而门店账号没有形成清晰的本地内容角色，导致账号数量没有转化为稳定的覆盖能力。",
+          "impact": "一旦头部账号内容失速，整体曝光会明显波动；门店账号需要从转发式供给转为到店服务、城市活动和本地问题解答。",
+          "statement_type": "inference",
+          "evidence_ids": [
+            "dealer:dealer-8a64cb07120b:2026-07:matrix_health:all_scoped_accounts:content_homogeneity",
+            "dealer:dealer-8a64cb07120b:2026-07:matrix_health:all_scoped_accounts:long_tail_note_share",
+            "dealer:dealer-8a64cb07120b:2026-07:matrix_health:core_kpi:top_account_read_share"
+          ],
+          "confidence": "medium",
+          "scope": {},
+          "actions": [
+            {
+              "owner": "渠道运营",
+              "action": "保留主账号负责新品与功能内容，门店账号改为本地到店、售后和活动场景，并按城市建立差异化选题清单。",
+              "deadline": "下一个月度周期",
+              "success_metric": "形成可复用的内容与运营复盘结论。"
+            }
+          ]
+        },
+        {
+          "id": "rule-content_patterns",
+          "module": "content_patterns",
+          "title": "content_patterns",
+          "judgement": "内容投入产出差异很大：产品功能与使用技巧 的篇均阅读为 181599，而 节日与节点营销 仅为 33。",
+          "why": "产品功能与使用技巧 更接近用户主动搜索和决策前了解的需求；节日与节点营销 的内容形式或利益点没有建立足够的点击理由。",
+          "impact": "不应平均分配内容资源：高效分类承担破圈，低效分类只有在改版后才值得继续投入。",
+          "statement_type": "inference",
+          "evidence_ids": [
+            "dealer:dealer-8a64cb07120b:2026-07:content_patterns:core_kpi:产品功能与使用技巧:category_performance:category_reads_per_note",
+            "dealer:dealer-8a64cb07120b:2026-07:content_patterns:expanded_store:节日与节点营销:category_performance:category_reads_per_note"
+          ],
+          "confidence": "medium",
+          "scope": {},
+          "actions": [
+            {
+              "owner": "渠道运营",
+              "action": "将 产品功能与使用技巧 沉淀为标题、封面和讲解结构模板；节日与节点营销 暂停扩量，先测试更具体的场景、利益点与首图。",
+              "deadline": "下一个月度周期",
+              "success_metric": "形成可复用的内容与运营复盘结论。"
+            }
+          ]
+        },
+        {
+          "id": "rule-user_signals",
+          "module": "user_signals",
+          "title": "user_signals",
+          "judgement": "用户反馈偏“自己留存”而非“主动传播”：收藏率 1.9% 高于评论率 0.1%，分享率只有 0.0%，阅读转粉也仅 0.1%。",
+          "why": "现有内容提供了有用信息，却没有把信息价值延伸为关注、转发或门店咨询的下一步动作。",
+          "impact": "内容会持续产生一次性阅读，但难以沉淀可触达的人群资产，也不利于门店线索转化。",
+          "statement_type": "inference",
+          "evidence_ids": [
+            "dealer:dealer-8a64cb07120b:2026-07:user_signals:expanded_store:collects_per_read",
+            "dealer:dealer-8a64cb07120b:2026-07:user_signals:expanded_store:comments_per_read",
+            "dealer:dealer-8a64cb07120b:2026-07:user_signals:expanded_store:fans_per_read",
+            "dealer:dealer-8a64cb07120b:2026-07:user_signals:expanded_store:shares_per_read"
+          ],
+          "confidence": "medium",
+          "scope": {},
+          "actions": [
+            {
+              "owner": "渠道运营",
+              "action": "在高收藏选题中加入“关注后可持续获得什么”的承诺；为攻略类内容增加可转发清单，为种草类内容增加到店咨询入口。",
+              "deadline": "下一个月度周期",
+              "success_metric": "形成可复用的内容与运营复盘结论。"
+            }
+          ]
+        },
+        {
+          "id": "rule-regional_strategy",
+          "module": "regional_strategy",
+          "title": "regional_strategy",
+          "judgement": "上海 不适合“一套内容发所有门店”：产品功能与使用技巧 的篇均阅读为 181599，而 节日与节点营销 为 33。",
+          "why": "同一城市中，用户对功能讲解、种草和活动信息的响应不同，说明内容主题比单纯增加门店数量更影响效果。",
+          "impact": "城市策略应先明确主推内容，再让门店围绕本地活动和服务补充，而不是按相同频率发布同类素材。",
+          "statement_type": "inference",
+          "evidence_ids": [
+            "dealer:dealer-8a64cb07120b:2026-07:regional_strategy:core_kpi:上海:华东:产品功能与使用技巧:city_category_efficiency",
+            "dealer:dealer-8a64cb07120b:2026-07:regional_strategy:expanded_store:苏州:华东:节日与节点营销:city_category_efficiency"
+          ],
+          "confidence": "medium",
+          "scope": {},
+          "actions": [
+            {
+              "owner": "渠道运营",
+              "action": "上海 门店以 产品功能与使用技巧 做内容主线；节日与节点营销 仅保留小比例，并以本地活动、到店权益或服务问题重写。",
+              "deadline": "下一个月度周期",
+              "success_metric": "形成可复用的内容与运营复盘结论。"
+            }
+          ]
+        },
+        {
+          "id": "rule-action_plan",
+          "module": "action_plan",
+          "title": "action_plan",
+          "judgement": "当前已形成 7 项可执行动作，重点不在增加更多项目，而在把高效内容复制和低效内容止损排进同一张内容日历。",
+          "why": "增长、内容与互动信号已经指向同一优先级：先解决粉丝承接，再扩大高效内容供给。",
+          "impact": "若行动平均铺开，团队会继续花时间在低效分类上，无法改善粉丝增长与矩阵贡献的核心问题。",
+          "statement_type": "inference",
+          "evidence_ids": [
+            "dealer:dealer-8a64cb07120b:2026-07:action_plan:90:action_candidate_count"
+          ],
+          "confidence": "medium",
+          "scope": {},
+          "actions": [
+            {
+              "owner": "渠道运营",
+              "action": "将行动拆为“高效内容复制、低效分类改版、涨粉承接上线”三条工作流，并在月末按阅读、互动、涨粉复盘。",
+              "deadline": "下一个月度周期",
+              "success_metric": "形成可复用的内容与运营复盘结论。"
+            }
+          ]
+        },
+        {
+          "id": "rule-business_opportunities",
+          "module": "business_opportunities",
+          "title": "business_opportunities",
+          "judgement": "分期价值、本地服务、学生客群 等业务场景尚不能直接被称为“已验证商机”，因为当前内容数据没有把场景、咨询和到店结果连起来。",
+          "why": "现在能看到内容表现，却看不到用户因哪个场景产生咨询、预约或成交，商业价值仍停留在假设阶段。",
+          "impact": "若不补齐线索标记，内容团队会把高阅读误判为高商机，无法判断哪些场景值得持续投放。",
+          "statement_type": "inference",
+          "evidence_ids": [
+            "dealer:dealer-8a64cb07120b:2026-07:business_opportunities:core_kpi:installment_value:scenario_demand_share",
+            "dealer:dealer-8a64cb07120b:2026-07:business_opportunities:core_kpi:local_service:scenario_demand_share",
+            "dealer:dealer-8a64cb07120b:2026-07:business_opportunities:core_kpi:student:scenario_demand_share",
+            "dealer:dealer-8a64cb07120b:2026-07:business_opportunities:core_kpi:trade_in:scenario_demand_share",
+            "dealer:dealer-8a64cb07120b:2026-07:business_opportunities:core_kpi:women:scenario_demand_share",
+            "dealer:dealer-8a64cb07120b:2026-07:business_opportunities:expanded_store:installment_value:scenario_demand_share",
+            "dealer:dealer-8a64cb07120b:2026-07:business_opportunities:expanded_store:local_service:scenario_demand_share",
+            "dealer:dealer-8a64cb07120b:2026-07:business_opportunities:expanded_store:student:scenario_demand_share",
+            "dealer:dealer-8a64cb07120b:2026-07:business_opportunities:expanded_store:trade_in:scenario_demand_share",
+            "dealer:dealer-8a64cb07120b:2026-07:business_opportunities:expanded_store:women:scenario_demand_share"
+          ],
+          "confidence": "medium",
+          "scope": {},
+          "actions": [
+            {
+              "owner": "渠道运营",
+              "action": "为场景型笔记设置统一关键词和咨询入口，门店记录咨询来源；下个周期用收藏、私信、到店三类信号判断是否扩大测试。",
+              "deadline": "下一个月度周期",
+              "success_metric": "形成可复用的内容与运营复盘结论。"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
