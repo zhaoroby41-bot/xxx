@@ -210,8 +210,12 @@
   <script src="assets/apple-dashboard.js?v=20260813-2"></script>
   <script>
     if (document.documentElement.dataset.embed === "overview") {
-      const notifyHeight = () => window.parent.postMessage({ type: "apple-overview-height", height: document.documentElement.scrollHeight }, window.location.origin);
-      new ResizeObserver(notifyHeight).observe(document.body);
+      const reportContent = document.querySelector(".main-canvas");
+      const notifyHeight = () => window.parent.postMessage({
+        type: "apple-overview-height",
+        height: Math.ceil(reportContent ? reportContent.getBoundingClientRect().height : document.documentElement.scrollHeight)
+      }, window.location.origin);
+      new ResizeObserver(notifyHeight).observe(reportContent || document.body);
       window.addEventListener("load", notifyHeight, { once: true });
     }
   </script>

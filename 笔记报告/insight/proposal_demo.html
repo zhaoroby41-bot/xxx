@@ -4,6 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>运营数据分析 Proposal Demo</title>
+  <script>
+    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+    window.addEventListener("pageshow", event => {
+      if (!event.persisted) window.scrollTo(0, 0);
+    });
+  </script>
   <style>
     :root {
       --bg: #eef3f8;
@@ -153,6 +159,7 @@
       border-radius: var(--radius);
       background: #fff;
       box-shadow: var(--shadow);
+      overflow-anchor: none;
     }
     .overview-frame { min-height: 700px; }
     .history-frame { min-height: 480px; }
@@ -292,7 +299,7 @@
     function renderApple() {
       const root = document.getElementById("apple-view");
       root.innerHTML = `
-        <div class="apple-overview-wrap"><iframe class="embedded-frame overview-frame" title="Apple 数据总览" src="apple_insight.html?embed=overview&demo=1&v=20260813-2#network-overview"></iframe></div>
+        <div class="apple-overview-wrap"><iframe class="embedded-frame overview-frame" title="Apple 数据总览" src="apple_insight.html?embed=overview&demo=1&v=20260813-2"></iframe></div>
         <iframe class="embedded-frame history-frame" title="小红书矩阵笔记商业分析报告" scrolling="no" src="../xhs_report.html?embed=apple&v=20260813-1"></iframe>`;
     }
 
@@ -436,7 +443,7 @@
         : event.data.type === "apple-overview-height"
           ? document.querySelector('iframe[title="Apple 数据总览"]')
         : document.querySelector('iframe[title="小红书矩阵笔记商业分析报告"]');
-      if (frame && Number.isFinite(event.data.height)) frame.style.height = `${Math.ceil(event.data.height) + 2}px`;
+      if (frame && Number.isFinite(event.data.height)) frame.style.height = `${Math.ceil(event.data.height)}px`;
     });
     document.querySelectorAll(".nav button").forEach(button => button.addEventListener("click", () => showView(button.dataset.view)));
     init();
