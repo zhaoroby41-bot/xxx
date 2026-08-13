@@ -65,6 +65,9 @@ body {
 .trend-up { color: #248a3d; }
 .trend-down { color: #d94141; }
 .chart-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
+.frequency-row { align-items: stretch; }
+.frequency-row > .chart-box { height: 980px; min-height: 980px; }
+.frequency-row .scroll-table { height: 900px; max-height: 900px; }
 .chart-box {
   background: #f7f9fb;
   border-radius: 8px;
@@ -134,6 +137,38 @@ body {
 }
 .insight-block h4 { color: #b42342; margin-bottom: 8px; }
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.copy-library { background: #fff; border: 1px solid #dfe5ec; border-radius: 8px; padding: 28px; margin-bottom: 28px; }
+.copy-library[hidden] { display: none; }
+.copy-summary { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin: 18px 0 24px; }
+.copy-summary-item { background: #f7f9fb; border: 1px solid #e2e8f0; border-radius: 8px; padding: 15px; }
+.copy-summary-item b { display: block; font-size: 1.5em; color: #1d1d1f; }
+.copy-summary-item span { color: #6e6e73; font-size: .82em; }
+.copy-insight { background: #fff3f5; border-left: 3px solid #ff2442; padding: 14px 16px; color: #54212c; border-radius: 6px; margin-bottom: 20px; }
+.copy-formulas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-bottom: 24px; }
+.copy-formula { border: 1px solid #dfe5ec; border-radius: 8px; padding: 16px; background: #fff; }
+.copy-formula h4 { color: #b42342; margin-bottom: 8px; }
+.copy-formula p { color: #59636f; font-size: .9em; margin: 6px 0; }
+.copy-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin: 0 0 16px; }
+.copy-tab { border: 1px solid #d6dde7; border-radius: 6px; background: #fff; color: #4b5563; padding: 7px 13px; cursor: pointer; font: inherit; font-size: .88em; }
+.copy-tab.active { background: #ff2442; border-color: #ff2442; color: #fff; }
+.copy-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.copy-card { position: relative; overflow: hidden; border: 1px solid #dfe5ec; border-radius: 8px; background: #fff; padding: 20px; }
+.copy-card:before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: #ff2442; }
+.copy-card h4 { padding-right: 64px; margin: 6px 0 12px; font-size: 1.05em; color: #1d1d1f; }
+.copy-card p { white-space: pre-line; color: #3f4650; font-size: .92em; line-height: 1.75; }
+.copy-title-options { display:grid; gap:6px; margin:8px 0 14px; padding:11px 12px; border-radius:6px; background:#fff5f6; border:1px solid #ffd8df; }.copy-title-options span { color:#b42342; font-size:.75em; font-weight:700; }.copy-title-options em { color:#3f4650; font-size:.88em; font-style:normal; line-height:1.45; }
+.copy-tags { color: #b42342; font-size: .82em; margin: 12px 0; line-height: 1.7; }
+.copy-image { color: #6e6e73; font-size: .82em; border-top: 1px solid #e8edf3; padding-top: 12px; }
+.copy-copy { position: absolute; top: 14px; right: 14px; border: 0; background: #fff0f2; color: #c71f3a; border-radius: 6px; padding: 5px 9px; cursor: pointer; font: inherit; font-size: .78em; }
+.copy-attribution { background: #f7f9fb; border-radius: 6px; padding: 10px; margin-top: 14px; display: flex; gap: 6px; flex-wrap: wrap; }
+.copy-badge { font-size: .73em; border-radius: 999px; padding: 4px 7px; }
+.copy-badge.formula { background: #e8f3ff; color: #0b63b6; }.copy-badge.insight { background: #eaf8ef; color: #248a3d; }.copy-badge.interaction { background: #fff4df; color: #a05a00; }.copy-badge.account { background: #f1ecff; color: #714bc4; }
+.copy-calendar { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin:14px 0 24px; }.hotspot-card { border:1px solid #dfe5ec; border-radius:8px; padding:14px; background:#fff; }.hotspot-card.urgent { border-top:3px solid #ff453a; }.hotspot-card.near { border-top:3px solid #ff9f0a; }.hotspot-card.later { border-top:3px solid #007aff; }.hotspot-time { font-size:.76em; font-weight:700; color:#6e6e73; }.hotspot-card h4 { margin:5px 0; color:#1d1d1f; }.hotspot-card p { color:#59636f; font-size:.84em; line-height:1.55; }
+.filter-panel { background:#172033; border:1px solid #2b3850; border-radius:12px; padding:10px 16px; margin:0 0 16px; }.filter-row { display:flex; align-items:center; gap:8px; flex-wrap:wrap; padding:10px 0; border-bottom:1px solid rgba(255,255,255,.11); }.filter-row:last-child { border-bottom:0; }.filter-row-label { color:#cbd5e1; width:108px; font-size:.84em; font-weight:700; }.filter-button { border:1px solid #40506a; border-radius:999px; color:#d9e2ef; background:transparent; padding:5px 9px; cursor:pointer; font:inherit; font-size:.78em; }.filter-button.active { color:#fff; background:#ff2442; border-color:#ff2442; }.filter-button.active-formula { color:#fff; background:#4facfe; border-color:#4facfe; }.filter-button.active-insight { color:#103d27; background:#43e97b; border-color:#43e97b; }.filter-button.active-hotspot { color:#432a00; background:#fbbf24; border-color:#fbbf24; }.filter-result { display:flex; align-items:center; justify-content:space-between; color:#6e6e73; font-size:.84em; margin:-2px 0 14px; }.filter-reset { border:0; background:transparent; color:#007aff; cursor:pointer; font:inherit; font-size:inherit; }.copy-card.hidden { display:none; }.copy-badge { border:0; cursor:pointer; font:inherit; }.copy-badge.hotspot { background:#fff4df; color:#a05a00; }
+.theme-free-input { min-width:220px; flex:1; max-width:420px; border:1px solid #40506a; background:#111827; color:#f8fafc; border-radius:7px; padding:7px 10px; font:inherit; font-size:.8em; outline:none; }.theme-free-input:focus { border-color:#ff2442; box-shadow:0 0 0 2px rgba(255,36,66,.18); }.theme-free-input::placeholder { color:#8793a8; }
+.cohort-summary { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin:0 0 16px; }.cohort-chip { border:1px solid #dfe5ec; border-radius:8px; padding:14px; background:#fff; }.cohort-chip b { display:block; font-size:1.5em; color:#1d1d1f; }.cohort-chip span { font-size:.82em; color:#6e6e73; }.cohort-chip.s { border-top:3px solid #34c759; }.cohort-chip.a { border-top:3px solid #0a84ff; }.cohort-chip.b { border-top:3px solid #ff9f0a; }.cohort-chip.c { border-top:3px solid #8e8e93; }.efficiency-matrix { display:grid; grid-template-columns:1fr 1fr; border:1px solid #dfe5ec; border-radius:8px; overflow:hidden; background:#fff; }.matrix-cell { min-height:190px; padding:18px; border-right:1px solid #dfe5ec; border-bottom:1px solid #dfe5ec; }.matrix-cell:nth-child(2n) { border-right:0; }.matrix-cell:nth-last-child(-n+2) { border-bottom:0; }.matrix-cell h4 { color:#1d1d1f; margin:0 0 5px; }.matrix-cell p { color:#64748b; font-size:.85em; margin:0 0 12px; }.matrix-cell.scale { background:#effbf3; }.matrix-cell.optimize { background:#eff6ff; }.matrix-cell.activate { background:#fff8e8; }.matrix-cell.review { background:#f7f8fa; }.matrix-account { display:flex; justify-content:space-between; gap:10px; padding:6px 0; border-top:1px solid rgba(100,116,139,.15); font-size:.82em; }.matrix-account span { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }.matrix-account b { white-space:nowrap; color:#1d1d1f; }.matrix-axis { display:flex; justify-content:space-between; color:#6e6e73; font-size:.78em; margin:10px 2px 0; }.matrix-legacy-canvas { display:none !important; }
+.top-notes-ranking { display:grid; gap:10px; }.top-note-row { display:grid; grid-template-columns:270px minmax(0,1fr) 82px; gap:14px; align-items:center; min-height:42px; }.top-note-meta { min-width:0; }.top-note-title { display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:#007aff; font-size:.86em; text-decoration:underline; }.top-note-account { display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:#6e6e73; font-size:.76em; margin-top:3px; }.top-note-track { height:20px; background:#e9f0f7; border-radius:3px; overflow:hidden; }.top-note-fill { height:100%; background:#0071e3; border-radius:3px; }.top-note-value { text-align:right; color:#1d1d1f; font-size:.82em; font-variant-numeric:tabular-nums; font-weight:700; }@media(max-width:768px){.top-note-row{grid-template-columns:150px minmax(0,1fr) 58px;gap:8px}.top-note-title{font-size:.78em}}
+.copy-generator { margin-top:28px; padding-top:26px; border-top:1px solid #dfe5ec; }.copy-generator-head { display:flex; align-items:flex-end; justify-content:space-between; gap:16px; margin-bottom:16px; }.copy-generator-head h3 { margin:0; color:#1d1d1f; font-size:1.12em; }.copy-generator-head p { margin:4px 0 0; color:#6e6e73; font-size:.84em; }.copy-generator-form { display:grid; grid-template-columns:1.45fr 1fr 1fr auto; gap:12px; align-items:end; padding:16px; border:1px solid #dfe5ec; border-radius:8px; background:#f7f9fb; }.generator-field { min-width:0; }.generator-field label { display:block; margin-bottom:7px; color:#4b5563; font-size:.8em; font-weight:700; }.generator-field input,.generator-field select { width:100%; height:40px; border:1px solid #cfd8e3; border-radius:6px; padding:0 11px; color:#1d1d1f; background:#fff; font:inherit; font-size:.88em; }.generator-field input:focus,.generator-field select:focus { outline:0; border-color:#007aff; box-shadow:0 0 0 3px rgba(0,122,255,.12); }.generator-button { height:40px; min-width:116px; border:0; border-radius:6px; background:#ff2442; color:#fff; padding:0 15px; cursor:pointer; font:inherit; font-weight:700; font-size:.86em; }.generator-button:hover { background:#e9203c; }.generator-result { display:grid; grid-template-columns:minmax(230px, .55fr) minmax(0, 1fr); gap:18px; margin-top:16px; }.generator-result[hidden] { display:none; }.generator-cover { position:relative; display:flex; flex-direction:column; justify-content:space-between; aspect-ratio:3 / 4; overflow:hidden; border-radius:8px; padding:20px; color:#fff; background:linear-gradient(145deg,#ff2442 0%,#ff6b4a 48%,#ffb34a 100%); }.generator-cover.image-ready { background-position:center; background-size:cover; color:#1d1d1f; }.generator-cover:before { content:""; position:absolute; inset:0; opacity:.28; background:repeating-linear-gradient(135deg,rgba(255,255,255,.38) 0 2px,transparent 2px 17px); }.generator-cover.image-ready:before { opacity:1; background:linear-gradient(180deg,rgba(255,255,255,.72) 0%,rgba(255,255,255,.22) 38%,rgba(20,18,18,.14) 100%); }.generator-cover > * { position:relative; z-index:1; }.cover-chip { display:inline-flex; align-self:flex-start; background:rgba(255,255,255,.2); border:1px solid rgba(255,255,255,.36); border-radius:999px; padding:5px 9px; font-size:.72em; font-weight:700; }.image-ready .cover-chip { background:rgba(255,255,255,.75); border-color:rgba(29,29,31,.12); }.cover-text { margin:18px 0; font-size:clamp(25px,2.1vw,38px); line-height:1.18; letter-spacing:0; font-weight:850; word-break:break-word; text-shadow:0 2px 12px rgba(83,18,20,.24); }.image-ready .cover-text { text-shadow:0 1px 12px rgba(255,255,255,.72); }.cover-foot { font-size:.74em; opacity:.92; }.generator-copy { border:1px solid #dfe5ec; border-radius:8px; background:#fff; padding:20px; }.generator-copy-top { display:flex; gap:12px; align-items:flex-start; justify-content:space-between; }.generator-copy h4 { margin:0; color:#1d1d1f; font-size:1.14em; line-height:1.45; }.generator-copy-body { white-space:pre-line; margin:14px 0; color:#3f4650; font-size:.92em; line-height:1.75; }.generator-meta { display:flex; flex-wrap:wrap; gap:7px; padding-top:13px; border-top:1px solid #e8edf3; color:#6e6e73; font-size:.8em; }.generator-meta span { padding:4px 7px; border-radius:999px; background:#f2f6fa; }.generator-copy-button { flex:0 0 auto; border:1px solid #c9d8e8; border-radius:6px; background:#fff; color:#007aff; padding:6px 9px; cursor:pointer; font:inherit; font-size:.78em; }.generator-caption { margin:10px 0 0; color:#6e6e73; font-size:.79em; }.generator-empty { margin-top:14px; padding:13px; color:#a23a4b; background:#fff2f3; border-radius:6px; font-size:.84em; }@media(max-width:850px){.copy-generator-form{grid-template-columns:1fr 1fr}.generator-button{width:100%}.generator-result{grid-template-columns:1fr}.generator-cover{max-width:320px}}@media(max-width:520px){.copy-generator-form{grid-template-columns:1fr}.copy-generator-head{display:block}.copy-generator-head p{margin-bottom:12px}}
 html[data-embed="apple"] body { padding: 0; background: transparent; }
 html[data-embed="apple"] .container { max-width: none; margin: 0; }
 html[data-embed="apple"] .header {
@@ -168,6 +203,10 @@ html[data-embed="apple"] a { color: #007aff; }
 @media (max-width: 768px) {
   .chart-row, .two-col { grid-template-columns: 1fr; }
   .chart-box.full { grid-column: 1; }
+  .frequency-row > .chart-box { height: auto; min-height: 0; }
+  .frequency-row .scroll-table { height: auto; max-height: 600px; }
+  .copy-summary, .copy-formulas, .copy-grid, .copy-calendar, .cohort-summary, .efficiency-matrix { grid-template-columns: 1fr; }
+  .filter-row-label { width:100%; }
 }
 </style>
 </head>
@@ -266,15 +305,17 @@ html[data-embed="apple"] a { color: #007aff; }
 
   <div class="chart-row">
     <div class="chart-box full" style="min-height:500px;">
-      <h3>🎯 账号效能分布散点图（X轴=发布数量，Y轴=均阅读数，按梯队分色）</h3>
-      <canvas id="chartScatter" style="max-height:460px;"></canvas>
+      <h3>🎯 账号梯队效能矩阵</h3>
+      <p class="section-note" style="margin-bottom:14px;">横向看发布活跃度，纵向看篇均阅读效率；每个象限直接对应运营动作。</p>
+      <div id="efficiency-matrix"></div>
+      <canvas id="chartScatter" class="matrix-legacy-canvas" aria-hidden="true"></canvas>
     </div>
   </div>
 
-  <div class="chart-row">
-    <div class="chart-box" style="min-height:720px;">
+  <div class="chart-row frequency-row">
+  <div class="chart-box" id="frequency-chart-box">
       <h3>📊 各账号发布频率分布（Top 30）</h3>
-      <canvas id="chartFreq" style="max-height:680px;"></canvas>
+      <canvas id="chartFreq"></canvas>
     </div>
     <div class="chart-box">
       <h3>📋 全矩阵账号数据总览（30家）</h3>
@@ -337,9 +378,10 @@ html[data-embed="apple"] a { color: #007aff; }
   <div class="section-title">🔥 维度三：内容监测与爆款归因</div>
 
   <div class="chart-row">
-    <div class="chart-box full" style="min-height:740px;">
+    <div class="chart-box full" id="top-notes-chart-box">
       <h3>🏆 Top 20 爆款笔记阅读数排行</h3>
-      <canvas id="chartTop20" style="max-height:700px;"></canvas>
+      <div id="top-notes-ranking" class="top-notes-ranking"></div>
+      <canvas id="chartTop20" style="display:none;"></canvas>
     </div>
   </div>
 
@@ -519,6 +561,9 @@ html[data-embed="apple"] a { color: #007aff; }
     </div>
   </div>
 </div>
+
+<!-- 文案库：基于合并笔记库生成，作为现有分析报告的下游内容 -->
+<section id="copy-library" class="copy-library" hidden></section>
 
 <div style="text-align:center;padding:20px;color:#555;font-size:0.82em;">
   报告生成时间：2026年6月8日 · 数据来源：on line渠道 2025年至今全部笔记.xlsx · 方法论参考：XHS Business Idea Validator
@@ -819,43 +864,49 @@ new Chart(ctx8, {
         const quarterLabels = Object.keys(quarters).slice(-4); const percentChange = key => quarterLabels.map((label, index) => index ? ((quarters[label][key] - quarters[quarterLabels[index - 1]][key]) / Math.max(1, quarters[quarterLabels[index - 1]][key]) * 100).toFixed(0) : 0);
         destroy('chartQoQ'); new Chart(document.getElementById('chartQoQ'), { type: 'bar', data: { labels: quarterLabels, datasets: [{ label: '阅读量环比', data: percentChange('reads'), backgroundColor: 'rgba(0,113,227,.70)' }, { label: '互动量环比', data: percentChange('interactions'), backgroundColor: 'rgba(52,168,83,.70)' }, { label: '发布量环比', data: percentChange('notes'), backgroundColor: 'rgba(245,166,35,.75)' }] }, options: { ...baseOptions, scales: { ...baseOptions.scales, y: { ...baseOptions.scales.y, ticks: { color: '#667085', callback: value => `${value}%` } } } } });
         destroy('chartType'); new Chart(document.getElementById('chartType'), { type: 'doughnut', data: { labels: formats.map(item => item.name), datasets: [{ data: formats.map(item => item.count), backgroundColor: ['#0071e3', '#34a853', '#f5a623', '#af52de'], borderWidth: 0 }] }, options: { responsive: true, plugins: { legend: { labels: { color: '#667085' } } } } });
-        destroy('chartScatter'); const cohortColor = { S: '#34a853', A: '#0071e3', B: '#f5a623', C: '#8e8e93' }; new Chart(document.getElementById('chartScatter'), { type: 'scatter', data: { datasets: ['S','A','B','C'].map(cohort => ({ label: `${cohort}档`, data: accounts.filter(item => item.cohort === cohort).map(item => ({ x: item.notes, y: item.avg_reads, accountName: item.name })), backgroundColor: cohortColor[cohort], pointRadius: 6 })) }, options: { ...baseOptions, interaction: { mode: 'nearest', intersect: true }, plugins: { legend: { labels: { color: '#667085' } }, tooltip: { callbacks: { title: context => context[0]?.raw?.accountName || '账号', label: context => `发布笔记：${compact(context.raw.x)} · 篇均阅读：${compact(context.raw.y)}` } } }, scales: { ...baseOptions.scales, x: { ...baseOptions.scales.x, title: { display: true, text: '发布笔记数' } }, y: { ...baseOptions.scales.y, title: { display: true, text: '篇均阅读' } } } } });
-        destroy('chartFreq'); const top = accounts.slice().sort((left, right) => right.notes - left.notes).slice(0, 30); new Chart(document.getElementById('chartFreq'), { type: 'bar', data: { labels: top.map(item => item.name.slice(0, 14)), datasets: [{ label: '发布笔记数', data: top.map(item => item.notes), backgroundColor: '#0071e3' }] }, options: { ...baseOptions, indexAxis: 'y', plugins: { legend: { display: false }, tooltip: { callbacks: { title: context => top[context[0]?.dataIndex]?.name || '账号', label: context => `发布笔记：${compact(context.raw)}` } } } } });
-        const renderTopNoteLinks = chart => {
-          const canvas = chart.canvas;
-          const container = canvas.parentElement;
-          if (!container) return;
-          container.style.position = 'relative';
-          let overlay = container.querySelector('.top-note-axis-links');
-          if (!overlay) {
-            overlay = document.createElement('div');
-            overlay.className = 'top-note-axis-links';
-            overlay.style.cssText = 'position:absolute;inset:0;pointer-events:none;';
-            container.appendChild(overlay);
-          }
-          overlay.innerHTML = '';
-          topNotes.forEach((item, index) => {
-            if (!item.url) return;
-            const label = document.createElement('div');
-            label.style.cssText = `position:absolute;left:${canvas.offsetLeft}px;top:${canvas.offsetTop + chart.scales.y.getPixelForValue(index) - 14}px;width:${Math.max(175, chart.chartArea.left - 12)}px;overflow:hidden;font-size:12px;line-height:15px;pointer-events:auto;`;
-            const link = document.createElement('a');
-            link.href = item.url;
-            link.target = '_blank';
-            link.rel = 'noopener noreferrer';
-            link.textContent = item.title.slice(0, 17);
-            link.title = `${item.title} · 发布账号：${item.account || '未匹配账号'}`;
-            link.style.cssText = 'display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#0071e3;text-decoration:underline;';
-            const account = document.createElement('span');
-            account.textContent = `发布账号：${item.account || '未匹配账号'}`;
-            account.style.cssText = 'display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#6e6e73;font-size:11px;';
-            label.append(link, account);
-            overlay.appendChild(label);
-          });
+        destroy('chartScatter');
+        const median = values => { const sorted = values.slice().sort((a, b) => a - b); const mid = Math.floor(sorted.length / 2); return sorted.length % 2 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2; };
+        const noteMedian = median(accounts.map(item => Number(item.notes || 0)));
+        const readMedian = median(accounts.map(item => Number(item.avg_reads || 0)));
+        const quadrants = {
+          scale: { title: '加码复制', text: '高活跃、高效率：优先沉淀内容模板并扩大产能。', rows: [] },
+          optimize: { title: '优化选题', text: '高活跃、低效率：保留发布节奏，重做选题与前 3 秒表达。', rows: [] },
+          activate: { title: '补发布频率', text: '低活跃、高效率：优先补稳定供给，放大已有内容能力。', rows: [] },
+          review: { title: '暂停投入 / 复盘', text: '低活跃、低效率：先诊断定位与内容质量，再决定资源投入。', rows: [] },
         };
+        accounts.forEach(item => {
+          const active = Number(item.notes || 0) >= noteMedian;
+          const efficient = Number(item.avg_reads || 0) >= readMedian;
+          quadrants[efficient && active ? 'scale' : !efficient && active ? 'optimize' : efficient ? 'activate' : 'review'].rows.push(item);
+        });
+        const cohortOrder = ['S', 'A', 'B', 'C'];
+        const cohortSummary = cohortOrder.map(cohort => {
+          const rows = accounts.filter(item => item.cohort === cohort);
+          return `<article class="cohort-chip ${cohort.toLowerCase()}"><b>${rows.length}</b><span>${cohort} 档账号 · ${accounts.length ? (rows.length / accounts.length * 100).toFixed(0) : 0}%</span></article>`;
+        }).join('');
+        const matrixRoot = document.getElementById('efficiency-matrix');
+        if (matrixRoot) {
+          const renderRows = rows => rows.sort((a, b) => Number(b.avg_reads || 0) - Number(a.avg_reads || 0)).slice(0, 4).map(item => `<div class="matrix-account"><span title="${escapeHtml(item.name)}">${escapeHtml(item.name)}</span><b>${compact(item.avg_reads)} / 篇</b></div>`).join('') || '<div class="matrix-account"><span>暂无账号</span></div>';
+          matrixRoot.innerHTML = `<div class="cohort-summary">${cohortSummary}</div><div class="efficiency-matrix">${Object.entries(quadrants).map(([key, item]) => `<article class="matrix-cell ${key}"><h4>${item.title} · ${item.rows.length} 个账号</h4><p>${item.text}</p>${renderRows(item.rows)}</article>`).join('')}</div><div class="matrix-axis"><span>低发布活跃度 ←</span><span>→ 高发布活跃度</span><span>篇均阅读效率分界：${compact(readMedian)}</span></div>`;
+        }
+        const frequencyBox = document.getElementById('frequency-chart-box');
+        const frequencyCanvas = document.getElementById('chartFreq');
+        const topAccounts = accounts.slice().sort((left, right) => right.notes - left.notes).slice(0, 30);
+        if (frequencyBox && frequencyCanvas) {
+  const chartHeight = 900;
+  frequencyBox.style.height = '980px';
+  frequencyBox.style.minHeight = '980px';
+          frequencyCanvas.height = chartHeight;
+          frequencyCanvas.style.height = `${chartHeight}px`;
+          frequencyCanvas.style.maxHeight = 'none';
+        }
+        destroy('chartFreq'); new Chart(frequencyCanvas, { type: 'bar', data: { labels: topAccounts.map(item => item.name.slice(0, 14)), datasets: [{ label: '发布笔记数', data: topAccounts.map(item => item.notes), backgroundColor: '#0071e3' }] }, options: { ...baseOptions, indexAxis: 'y', maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { callbacks: { title: context => topAccounts[context[0]?.dataIndex]?.name || '账号', label: context => `发布笔记：${compact(context.raw)}` } } } } });
         const topNotesBox = document.getElementById('chartTop20')?.closest('.chart-box');
         const topNotesHeading = topNotesBox?.querySelector('h3');
         if (topNotesHeading) topNotesHeading.textContent = `Top ${Math.min(20, topNotes.length)} ${source.month} 爆款笔记阅读数排行`;
-        destroy('chartTop20'); const topNotesChart = new Chart(document.getElementById('chartTop20'), { type: 'bar', data: { labels: topNotes.map(item => item.title.slice(0, 16)), datasets: [{ label: `${source.month} 阅读`, data: topNotes.map(item => item.reads), backgroundColor: '#0071e3' }] }, options: { ...baseOptions, indexAxis: 'y', plugins: { legend: { display: false } }, scales: { ...baseOptions.scales, y: { ...baseOptions.scales.y, ticks: { color: 'transparent' } } } } }); setTimeout(() => renderTopNoteLinks(topNotesChart), 0);
+        const topNotesRoot = document.getElementById('top-notes-ranking');
+        const maxTopNoteReads = Math.max(...topNotes.map(item => Number(item.reads || 0)), 1);
+        if (topNotesRoot) topNotesRoot.innerHTML = topNotes.map((item, index) => `<article class="top-note-row"><div class="top-note-meta"><a class="top-note-title" href="${escapeHtml(item.url || '#')}" target="_blank" rel="noopener noreferrer" title="${escapeHtml(item.title)}">${index + 1}. ${escapeHtml(item.title || '未命名笔记')}</a><span class="top-note-account">发布账号：${escapeHtml(item.account || '未匹配账号')}</span></div><div class="top-note-track"><div class="top-note-fill" style="width:${Math.max(2, Number(item.reads || 0) / maxTopNoteReads * 100)}%"></div></div><div class="top-note-value">${compact(item.reads)}</div></article>`).join('');
         destroy('chartInteraction'); new Chart(document.getElementById('chartInteraction'), { type: 'doughnut', data: { labels: ['点赞', '收藏', '评论', '分享'], datasets: [{ data: [life.likes, life.collects, life.comments, life.shares], backgroundColor: ['#0071e3', '#34a853', '#f5a623', '#af52de'], borderWidth: 0 }] }, options: { responsive: true, plugins: { legend: { labels: { color: '#667085' } } } } });
         destroy('chartFans'); new Chart(document.getElementById('chartFans'), { type: 'bar', data: { labels: monthly.map(item => item.month), datasets: [{ label: '全矩阵笔记涨粉合计', data: monthly.map(item => item.new_fans), backgroundColor: '#34a853' }] }, options: baseOptions });
       }
@@ -872,15 +923,6 @@ new Chart(ctx8, {
         { title: '内容机会', text: `以 ${compact(summary.viral_threshold)} 阅读为爆款阈值，累计已有 ${compact(summary.viral_notes)} 条笔记达标；下一步应将高阅读分类的表达方式复制到低效分类。` },
         { title: '互动与转化信号', text: `累计互动 ${compact(life.interactions)}，其中收藏 ${compact(life.collects)}、评论 ${compact(life.comments)}。收藏和评论应进入选题与线索跟进的优先队列。` },
       ];
-      blocks.forEach((node, index) => {
-        if (index < 3) return;
-        const item = narrative[(index - 3) % narrative.length];
-        node.innerHTML = `<h4>${item.title}</h4><p>${escapeHtml(item.text)}</p>`;
-      });
-      document.querySelectorAll('.formula-box, .insight-block').forEach((node, index) => {
-        const item = narrative[index % narrative.length];
-        node.innerHTML = `<h4>${item.title}</h4><p>${escapeHtml(item.text)}</p>`;
-      });
       const footer = document.querySelector('.container > div[style*="text-align:center"]');
       if (footer) footer.textContent = `报告生成时间：${data.generated_at} · 数据来源：${source.workbook} · ${source.fiscal_period} 数据快照`;
     };
@@ -901,6 +943,208 @@ new Chart(ctx8, {
     window.addEventListener("load", reportHeight);
     setTimeout(reportHeight, 300);
   }
+</script>
+<script>
+  (() => {
+    const escapeHtml = value => String(value ?? "").replace(/[&<>'"]/g, char => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;"
+    })[char]);
+    const compact = value => new Intl.NumberFormat("zh-CN").format(Number(value || 0));
+    const renderCopyLibrary = data => {
+      const root = document.getElementById("copy-library");
+      if (!root || !data?.copies?.length) return;
+      const { summary, formulas, copies, source, generated_at: generatedAt, insights, hotspots } = data;
+      const filters = { type: "all", theme: "all", formula: "all", insight: "all", hotspot: "all", themeText: "" };
+      const typeLabels = { all: "全部", product: "📱 产品种草", store: "🏪 门店体验", promo: "🎁 活动促销" };
+      const themeLabels = { all: "全部主题", festival: "节日营销", campaign: "营销活动", promotion: "促销优惠", system: "系统功能", tips: "使用技巧", product: "产品种草", other: "其他" };
+      const formulaLabels = { all: "全部公式", "1": "#1 痛点数字", "2": "#2 体验分享", "3": "#3 活动紧迫", "4": "#4 开学种草", "1+3": "#1+3 融合" };
+      const insightLabels = { all: "全部", ...Object.fromEntries(insights.map(item => [item.id, item.name])) };
+      const hotspotLabels = { all: "全部热点", ...Object.fromEntries(hotspots.map(item => [item.id, item.title])), "无": "无特定热点" };
+      const makeButtons = (key, labels) => Object.entries(labels).map(([value, label]) => `<button class="filter-button ${value === "all" ? `active${key === "formula" ? "-formula" : key === "insight" ? "-insight" : key === "hotspot" ? "-hotspot" : ""}` : ""}" type="button" data-filter="${key}" data-value="${value}">${escapeHtml(label)}</button>`).join("");
+      const copyWriting = {
+        1: { titles: ["📱 换iPhone前，先避开这3坑", "😭 旧iPhone卡到崩？先别换", "📝 换机前的真实自测清单"], extra: "📌 我会按这 3 点来试：\n① 续航：开着自己常用的地图、社交和相机，看看一天里最焦虑的电量时刻能不能改善；\n② 存储：先看旧机照片和视频占了多少，再决定容量，不要只凭“感觉够用”；\n③ 影像：用室内人像、傍晚街景各拍一张，回看肤色和暗部细节。\n\n真的不用为了换新而换新，把最痛的一个问题解决掉，就很值。" },
+        2: { titles: ["🎒 开学带iPhone，香在这", "📚 学生党换机，我劝你先试", "✨ 开学装备别只看颜值"], extra: "📌 学生党可以现场做这 3 个小测试：\n① 用相机扫一页课件，看看文字边缘和保存速度；\n② 打开备忘录、网盘和常用学习 App，多任务切换会不会卡；\n③ 试拍一段社团活动视频，确认存储和成片是不是自己的预期。\n\n姐妹们，设备不是为了显得“很会买”，是为了赶作业、赶活动时少手忙脚乱。" },
+        3: { titles: ["📱 iPhone18预热，先别急着换", "🤔 现在换还是等18？先看", "✨ 新品前的换机自测表"], extra: "📌 我的判断顺序是：\n① 看旧机电池和存储是不是已经影响每天使用；\n② 写下最近 30 天最常用的 3 个场景，是拍照、通勤还是办公；\n③ 到店只比较这些场景，不被传闻里的参数带跑。\n\n新品季信息很多，先把自己的需求坐标定住，等消息更明确时反而不容易后悔。" },
+        4: { titles: ["⌚ 开学健康搭子，先试这个", "🌙 想入Watch？别只看表盘", "🏃 新学期的自律小帮手"], extra: "📌 试表时别站着看两眼就走：\n① 戴上走一圈，看看抬腕查看时间和通知会不会自然；\n② 连上自己的 iPhone，感受提醒是否会打断正在做的事；\n③ 试不同表带，手腕闷不闷、久戴勒不勒，比第一眼更重要。\n\n能陪你早起、运动和早点放下手机的，才是真的日常搭子。" },
+        5: { titles: ["🛒 双十一换机，先问3句", "💸 大促换iPhone别冲动", "✅ 双十一前的换机清单"], extra: "📌 下单前我会给自己三次确认：\n① 容量是按现在照片视频总量算，还是只看活动页推荐；\n② 尺寸有没有真机握过，单手打字和塞口袋是否舒服；\n③ 配件、迁移和旧机处理有没有一起算进预算。\n\n真的绝了，提前做完这三步，大促当天看到再多优惠也不会乱。" },
+        6: { titles: ["📸 拍照党选iPhone别只看像素", "✨ 试机时，这3张一定要拍", "🤳 手机拍照好不好，现场见"], extra: "📌 试相机我只拍三组：\n① 室内人像，看肤色会不会灰、头发细节会不会糊；\n② 傍晚街景，看亮招牌和暗处能不能同时留住；\n③ 运动中的朋友或宠物，看抓拍和视频防抖够不够稳。\n\n别被展示机里的样张迷住，用你会拍的画面判断，才不会回家后发现不合拍。" },
+        7: { titles: ["📝 学生党换机，先算这笔账", "💰 预算有限怎么选iPhone", "🎒 开学换机别把钱花偏"], extra: "📌 我的预算排序是：\n① 先留够真正需要的存储，不让照片和课程资料天天提醒“空间不足”；\n② 再体验续航和屏幕，这是上课、通勤最常碰到的；\n③ 最后才考虑低频的升级项和配件。\n\n价格敏感不是问题，知道自己每天用在哪里，预算反而更容易花得漂亮。" },
+        8: { titles: ["🏪 开学前，到店试这4项", "⏱️ 10分钟试机清单收好", "🎒 学生党到店别只看参数"], extra: "📌 到店体验可以直接照着做：\n① 用自己的账号登录常用 App，感受输入和切换；\n② 拍一张室内和室外照片，现场回看；\n③ 问清旧机数据迁移需要准备什么；\n④ 选一个常背的包，确认尺寸和重量不会成为负担。\n\n把问题带来，比“你觉得哪款好”更容易得到适合自己的答案。" },
+        9: { titles: ["🏪 iPhone18预热，先做体检", "🔋 旧机该不该换？现场测", "🤔 等新品前，先来试一次"], extra: "📌 这次体验我建议从旧机开始：\n① 看电池状态和剩余存储，先确认痛点是否真实存在；\n② 打开最常用的相机、地图或办公 App，记录哪里最不顺；\n③ 再拿真机比较手感和常用操作，而不是只看外观。\n\n先做体检再做选择，等新品信息落地时你会知道自己究竟在等什么。" },
+        10: { titles: ["⌚ 试Watch，别漏这3动作", "🏃 Apple Watch到店这样试", "✨ 想入表先看真实体验"], extra: "📌 三个动作就能看出适不适合：\n① 快走几分钟，感受重量和表带会不会滑；\n② 抬腕看通知，再放下手继续做事，看交互顺不顺；\n③ 打开运动或健康相关页面，确认你能不能看懂、愿不愿意每天看。\n\n好看的表盘很多，愿意长期戴着的才是自己的那一只。" },
+        11: { titles: ["🏪 双十一前，先问这3件事", "🛒 大促前到店，真的省心", "✅ 换机前的门店提问清单"], extra: "📌 到店时可以直接问：\n① 哪个容量更贴近我现有的照片和视频总量；\n② 数据迁移前要备份哪些内容、需要留多久时间；\n③ 常用配件有没有必要一次配齐。\n\n提前问清不是“麻烦”，而是避免活动期信息太多、最后只凭情绪做决定。" },
+        12: { titles: ["🏪 第一次到店，我这样试", "🙋 数码小白试机不尴尬", "✨ 去授权店前先看这篇"], extra: "📌 不会问参数也没关系，直接讲你的日常：\n① “我照片很多”，就重点问存储和迁移；\n② “我经常拍人”，就现场拍一张看看效果；\n③ “我通勤很久”，就握着真机、开常用 App 感受续航和尺寸。\n\n像和朋友聊天一样说出你的困扰，真的比背型号有用很多。" },
+        13: { titles: ["⏰ 国补窗口，先确认再换", "💸 换新活动别只看优惠", "✅ 国补换机，先做这一步"], extra: "📌 去之前先准备三样：\n① 确认旧机真正的痛点，是电量、容量还是拍照；\n② 带好需要核验的信息，具体资格以门店实际规则为准；\n③ 给自己留出体验时间，不要只看活动海报就决定。\n\n优惠是机会，适合自己才是答案。把这篇存着，到店前再核对一次。" },
+        14: { titles: ["🎒 开学焕新，先解决日常", "📚 开学装备，别买一堆闲置", "✨ 学生党换机先想这3件"], extra: "📌 我把开学场景拆成三类：\n① 上课：拍课件、查资料、记重点够不够顺；\n② 社团：拍活动、剪片、传素材会不会占满存储；\n③ 通勤：单手操作、续航和重量能不能扛住一天。\n\n先把每天会发生的画面想一遍，再选配置，真的比盲跟清单靠谱。" },
+        15: { titles: ["📱 iPhone18前，做完这3步", "🤳 新品季换机，先别焦虑", "✅ 15分钟换机自测收好"], extra: "📌 15 分钟就能做完：\n① 整理旧机存储，看看照片、视频和 App 各占多少；\n② 写下最想改善的三个瞬间，比如夜拍、续航或通勤；\n③ 到店拿真机只试这三项，记下最直接的感受。\n\n这样等新品时，你看见的是“它能不能解决我的问题”，不是一串让人焦虑的参数。" },
+        16: { titles: ["⌚ S12预热，先看3个场景", "🏃 想入Apple Watch先别急", "🌙 Watch值不值，看日常"], extra: "📌 我建议从真实日常判断：\n① 早上起不来，提醒能不能让你少按一次贪睡；\n② 久坐或运动时，数据会不会让你愿意多动一点；\n③ 睡前会不会愿意戴着，佩戴感和续航都要自己试。\n\n不要为了“拥有”买表，能帮你把生活节奏拉回来才是真的香。" },
+        17: { titles: ["🛒 我的换机清单改了3次", "😭 双十一前，我终于想明白", "📱 换iPhone别被参数带跑"], extra: "📌 最后留下的判断标准很简单：\n① 拍照多，就带着自己的拍摄场景去试；\n② 文件多，就按现有内容量算存储；\n③ 通勤久，就把握持、屏幕和续航放在第一位。\n\n不需要每一项都拉满，只要高频需求被照顾好，之后每一天都会觉得“这次没选错”。" },
+        18: { titles: ["✨ 更新前，先收这份清单", "📱 iOS更新别急，先备份", "✅ 手机更新前的5分钟自查"], extra: "📌 更新前花 5 分钟检查：\n① 存储空间够不够，避免下载到一半卡住；\n② 照片、聊天记录和重要文件是否已备份；\n③ 常用 App 有没有待更新，避免第二天打不开。\n\n这些动作看起来很小，但真的能少很多“早知道”。收藏一下，下次更新前回来打勾。" }
+      };
+      const getCopyWriting = item => {
+        const writing = copyWriting[item.id] || { titles: [item.title], extra: "" };
+        return { titles: writing.titles, body: `${item.body}\n\n${writing.extra}`.trim() };
+      };
+      const renderCards = () => copies.map(item => {
+        const writing = getCopyWriting(item);
+        return `
+        <article class="copy-card" data-type="${item.type}" data-theme="${item.theme}" data-formula="${item.formula}" data-insight="${item.insight}" data-hotspot="${item.hotspot}">
+          <button class="copy-copy" type="button" data-copy-id="${item.id}">复制</button>
+          <div style="color:#6e6e73;font-size:.78em;font-weight:700;">文案 #${item.id} · ${escapeHtml(item.type_name)} · ${escapeHtml(item.theme_name)}</div>
+          <h4>标题备选</h4>
+          <div class="copy-title-options"><span>任选其一发布</span>${writing.titles.map((title, index) => `<em>${index + 1}. ${escapeHtml(title)}</em>`).join("")}</div>
+          <p>${escapeHtml(writing.body)}</p>
+          <div class="copy-tags">${item.tags.map(tag => escapeHtml(tag)).join(" ")}</div>
+          <div class="copy-image"><strong>配图方向：</strong>${escapeHtml(item.image_direction)}</div>
+          <div class="copy-attribution">
+            <button class="copy-badge formula" data-badge-filter="formula" data-value="${item.formula}">公式 #${escapeHtml(item.formula)} ${escapeHtml(item.formula_name)}</button>
+            <button class="copy-badge insight" data-badge-filter="insight" data-value="${item.insight}">${escapeHtml(item.insight_name)}</button>
+            <button class="copy-badge hotspot" data-badge-filter="hotspot" data-value="${item.hotspot}">${escapeHtml(hotspotLabels[item.hotspot])}</button>
+          </div>
+        </article>`;
+      }).join("");
+      root.innerHTML = `
+        <div class="section-title">✍️ AI 小红书文案库</div>
+        <p style="color:#6e6e73;font-size:.9em;margin:-8px 0 0;">由爆款笔记样本与当前矩阵内容信号生成，供门店与经销商账号直接发布或微调后使用。</p>
+        <div class="copy-summary">
+          <div class="copy-summary-item"><b>${compact(summary.notes)}</b><span>笔记数据样本</span></div>
+          <div class="copy-summary-item"><b>${summary.top_samples}</b><span>爆款样本</span></div>
+          <div class="copy-summary-item"><b>${summary.formulas}</b><span>提炼结构公式</span></div>
+          <div class="copy-summary-item"><b>${summary.copies}</b><span>生成文案</span></div>
+        </div>
+        <h3 style="font-size:1.05em;margin:0 0 12px;color:#3a3a3c;">Insight 发现</h3>
+        <div class="copy-formulas">${insights.map(item => `<article class="copy-formula"><h4>${escapeHtml(item.name)}</h4><p>${escapeHtml(item.evidence)}</p><p><strong>驱动文案：</strong>${escapeHtml(item.copy)}</p></article>`).join("")}</div>
+        <h3 style="font-size:1.05em;margin:0 0 12px;color:#3a3a3c;">下阶段热点日历</h3>
+        <div class="copy-calendar">${hotspots.map(item => `<article class="hotspot-card ${item.urgency}"><div class="hotspot-time">${escapeHtml(item.time)} · ${escapeHtml(item.type)}</div><h4>${escapeHtml(item.title)}</h4><p>${escapeHtml(item.strategy)}</p></article>`).join("")}</div>
+        <h3 style="font-size:1.05em;margin:0 0 12px;color:#3a3a3c;">爆款结构公式</h3>
+        <div class="copy-formulas">${formulas.map(item => `<article class="copy-formula"><h4>公式 #${escapeHtml(item.id)} ${escapeHtml(item.name)}</h4><p><strong>来源样本：</strong>${escapeHtml(item.sample.title)}</p><p><strong>标题公式：</strong>${escapeHtml(item.title_template)}</p><p><strong>开头钩子：</strong>${escapeHtml(item.hook)} · <strong>CTA：</strong>${escapeHtml(item.cta)}</p><p><strong>正文节奏：</strong>${escapeHtml(item.rhythm)}</p><p><strong>关键词：</strong>${escapeHtml(item.keywords)}</p></article>`).join("")}</div>
+        <h3 style="font-size:1.05em;margin:0 0 12px;color:#3a3a3c;">文案库</h3>
+        <div class="filter-panel">
+          <div class="filter-row"><span class="filter-row-label">内容类型</span>${makeButtons("type", typeLabels)}</div>
+          <div class="filter-row"><span class="filter-row-label">主题选择</span>${makeButtons("theme", themeLabels)}<input id="theme-free-input" class="theme-free-input" type="search" placeholder="自定义主题，例如：毕业季、旅行、女生拍照" aria-label="自定义主题筛选"></div>
+          <div class="filter-row"><span class="filter-row-label">📐 爆款公式</span>${makeButtons("formula", formulaLabels)}</div>
+          <div class="filter-row"><span class="filter-row-label">💡 Insight</span>${makeButtons("insight", insightLabels)}</div>
+          <div class="filter-row"><span class="filter-row-label">🔥 热点借势</span>${makeButtons("hotspot", hotspotLabels)}</div>
+        </div>
+        <div class="filter-result"><span id="copy-filter-result">共 ${copies.length} 条文案</span><button id="copy-filter-reset" class="filter-reset" type="button">✕ 清除筛选</button></div>
+        <div id="copy-grid" class="copy-grid">${renderCards()}</div>
+        <section class="copy-generator" aria-labelledby="copy-generator-title">
+          <div class="copy-generator-head"><div><h3 id="copy-generator-title">✨ 爆款文案生成器</h3><p>填写笔记主题、内容分类与当前热点，生成可直接编辑发布的图文文案。</p></div></div>
+          <form id="copy-generator-form" class="copy-generator-form" novalidate>
+            <div class="generator-field"><label for="generator-topic">笔记主题</label><input id="generator-topic" type="text" maxlength="40" value="iPhone 18 换新机" placeholder="例如：iPhone 18 换机前要知道的事"></div>
+            <div class="generator-field"><label for="generator-category">笔记分类</label><select id="generator-category">${Object.entries(themeLabels).filter(([key]) => key !== "all").map(([key, label]) => `<option value="${escapeHtml(key)}"${key === "campaign" ? " selected" : ""}>${escapeHtml(label)}</option>`).join("")}</select></div>
+            <div class="generator-field"><label for="generator-hotspot">当前热点</label><select id="generator-hotspot"><option value="">不绑定热点</option>${hotspots.map(item => `<option value="${escapeHtml(item.title)}"${item.id === "iPhone18" ? " selected" : ""}>${escapeHtml(item.time)} · ${escapeHtml(item.title)}</option>`).join("")}</select></div>
+            <button class="generator-button" type="submit">生成图文文案</button>
+          </form>
+          <p id="generator-empty" class="generator-empty" hidden></p>
+          <div id="generator-result" class="generator-result" hidden>
+            <div id="generator-cover" class="generator-cover" aria-label="小红书封面预览"><span id="generator-cover-chip" class="cover-chip"></span><strong id="generator-cover-text" class="cover-text"></strong><span id="generator-cover-foot" class="cover-foot"></span></div>
+            <article class="generator-copy"><div class="generator-copy-top"><h4 id="generator-title"></h4><button id="generator-copy-button" class="generator-copy-button" type="button">复制文案</button></div><p id="generator-body" class="generator-copy-body"></p><div id="generator-meta" class="generator-meta"></div><p class="generator-caption">左侧为 3:4 小红书封面文字预览，可交由设计或图像生成工具制作成最终配图。</p></article>
+          </div>
+        </section>
+        <p style="margin:18px 0 0;color:#6e6e73;font-size:.78em;">数据来源：${escapeHtml(source)} · 文案生成时间：${escapeHtml(generatedAt)} · 复制按钮仅复制标题、正文与标签，不含归因标注。</p>`;
+      root.hidden = false;
+      const runFilter = () => {
+        let shown = 0;
+        root.querySelectorAll(".copy-card").forEach(card => {
+          const matchPreset = ["type", "theme", "formula", "insight", "hotspot"].every(key => filters[key] === "all" || card.dataset[key] === filters[key]);
+          const haystack = `${card.querySelector("h4")?.textContent || ""} ${card.querySelector("p")?.textContent || ""} ${card.textContent || ""}`.toLowerCase();
+          const matchFreeText = !filters.themeText || haystack.includes(filters.themeText.toLowerCase());
+          const match = matchPreset && matchFreeText;
+          card.classList.toggle("hidden", !match);
+          if (match) shown += 1;
+        });
+        root.querySelector("#copy-filter-result").textContent = `共 ${shown} 条文案`;
+        root.querySelectorAll("[data-filter]").forEach(button => {
+          const key = button.dataset.filter;
+          const active = button.dataset.value === filters[key];
+          button.className = `filter-button ${active ? `active${key === "formula" ? "-formula" : key === "insight" ? "-insight" : key === "hotspot" ? "-hotspot" : ""}` : ""}`;
+        });
+        notifyEmbedHeight();
+      };
+      root.querySelectorAll("[data-filter]").forEach(button => button.addEventListener("click", () => { filters[button.dataset.filter] = button.dataset.value; runFilter(); }));
+      root.querySelectorAll("[data-badge-filter]").forEach(button => button.addEventListener("click", () => { const key = button.dataset.badgeFilter; filters[key] = filters[key] === button.dataset.value ? "all" : button.dataset.value; runFilter(); root.scrollIntoView({ behavior: "smooth", block: "start" }); }));
+      root.querySelector("#theme-free-input").addEventListener("input", event => { filters.themeText = event.target.value.trim(); runFilter(); });
+      root.querySelector("#copy-filter-reset").addEventListener("click", () => { Object.keys(filters).forEach(key => { filters[key] = key === "themeText" ? "" : "all"; }); root.querySelector("#theme-free-input").value = ""; runFilter(); });
+      root.addEventListener("click", event => {
+        const button = event.target.closest("[data-copy-id]");
+        if (!button) return;
+        const item = copies.find(copy => String(copy.id) === button.dataset.copyId);
+        if (!item) return;
+        const writing = getCopyWriting(item);
+        navigator.clipboard?.writeText(`${writing.titles.map((title, index) => `${index + 1}. ${title}`).join("\n")}\n\n${writing.body}\n\n${item.tags.join(" ")}`);
+        button.textContent = "已复制";
+        setTimeout(() => { button.textContent = "复制"; }, 1400);
+      });
+      const generatorForm = root.querySelector("#copy-generator-form");
+      const categoryNames = Object.fromEntries(Object.entries(themeLabels).filter(([key]) => key !== "all"));
+      const generatorResult = root.querySelector("#generator-result");
+      const generatorEmpty = root.querySelector("#generator-empty");
+      const generatorTemplates = {
+        festival: { hook: "这个节点别只发祝福，真正值得收藏的是这份清单。", angle: "把节日情绪落到具体使用场景" },
+        campaign: { hook: "别急着划走，这次到店体验值得专门留出时间。", angle: "用参与感带动到店与互动" },
+        promotion: { hook: "想换新但不想花冤枉钱，先把这几件事弄明白。", angle: "用决策信息降低价格焦虑" },
+        system: { hook: "更新后才发现，这个功能真的能省下不少时间。", angle: "用真实功能变化制造信息差" },
+        tips: { hook: "这个小技巧知道得太晚了，用过一次就回不去。", angle: "用具体步骤制造收藏价值" },
+        product: { hook: "原来真正影响体验的，不只是参数，而是这个场景。", angle: "用使用场景替代参数堆砌" },
+        other: { hook: "今天想把这个真实感受分享给同样在纠结的人。", angle: "用生活化表达建立共鸣" },
+      };
+      generatorForm.addEventListener("submit", event => {
+        event.preventDefault();
+        const topic = root.querySelector("#generator-topic").value.trim();
+        const category = root.querySelector("#generator-category").value;
+        const hotspot = root.querySelector("#generator-hotspot").value;
+        if (!topic) {
+          generatorResult.hidden = true;
+          generatorEmpty.hidden = false;
+          generatorEmpty.textContent = "请先填写笔记主题，再生成文案。";
+          notifyEmbedHeight();
+          return;
+        }
+        const template = generatorTemplates[category] || generatorTemplates.product;
+        const categoryName = categoryNames[category] || "产品种草";
+        const isIphone18Demo = topic === "iPhone 18 换新机" && category === "campaign" && hotspot === "iPhone 18 预热";
+        const title = isIphone18Demo ? "iPhone 18 要来了｜现在换不换？先看完这份换新清单" : `${topic}｜这几个点别等用了才知道`;
+        const body = isIphone18Demo
+          ? `今年想换新机的先别急着下单！\n\niPhone 18 预热期最容易踩的坑，不是选容量，而是没想清楚自己到底要解决什么问题。\n\n这次到店体验，我建议重点看 3 件事：\n① 旧机现在的续航、存储和拍照，究竟卡在哪一步；\n② 新机的屏幕、影像和日常操作，能不能真的改变你的使用体验；\n③ 换新方案、到店服务和配件搭配，是否适合你的预算节奏。\n\n别只盯着参数表。把旧机带到店里，对比一次手感、拍照和常用 App，答案会更直接。\n\n9 月上旬 iPhone 18 预热已开始，想要一份“到店体验重点清单”的，在评论区打「换新」我发你。`
+          : `${template.hook}\n\n围绕「${topic}」，最值得关注的不是把信息一次看完，而是先确认它是否适合你的日常场景：\n1. 先想清楚自己最常遇到的使用需求；\n2. 到店体验时重点感受真实操作和服务差异；\n3. 把容易忽略的功能、政策或搭配方式记下来，再做决定。\n\n${hotspot ? `趁着「${hotspot}」，这份内容建议先收藏，去门店体验时也更有方向。` : "建议先收藏，下一次换新、体验或对比时会用得上。"}\n\n你最关心「${topic}」的哪一点？留言告诉我，我整理下一篇。`;
+        const tags = isIphone18Demo ? ["#iPhone18", "#iPhone换新", "#新机预热", "#苹果授权店", "#数码换新", "#到店体验"] : [`#${topic.replace(/\s+/g, "")}`, `#${categoryName}`, "#Apple体验", "#数码好物", hotspot ? `#${hotspot.replace(/\s+/g, "")}` : "#换新攻略"];
+        root.querySelector("#generator-title").textContent = title;
+        root.querySelector("#generator-body").textContent = body;
+        root.querySelector("#generator-meta").innerHTML = [`分类：${categoryName}`, `内容角度：${template.angle}`, ...tags].map(item => `<span>${escapeHtml(item)}</span>`).join("");
+        const cover = root.querySelector("#generator-cover");
+        cover.classList.toggle("image-ready", isIphone18Demo);
+        cover.style.backgroundImage = isIphone18Demo ? "url('insight/assets/iphone18-upgrade-cover.png')" : "";
+        root.querySelector("#generator-cover-chip").textContent = isIphone18Demo ? "9 月新机预热" : (hotspot || categoryName);
+        root.querySelector("#generator-cover-text").textContent = isIphone18Demo ? "现在换不换？\niPhone 18 换新清单" : topic;
+        root.querySelector("#generator-cover-foot").textContent = isIphone18Demo ? "先体验，再决定" : "真实体验 · 值得收藏";
+        generatorEmpty.hidden = true;
+        generatorResult.hidden = false;
+        generatorResult.dataset.copyText = `${title}\n\n${body}\n\n${tags.join(" ")}`;
+        notifyEmbedHeight();
+      });
+      root.querySelector("#generator-copy-button").addEventListener("click", event => {
+        const text = generatorResult.dataset.copyText;
+        if (!text) return;
+        navigator.clipboard?.writeText(text);
+        event.currentTarget.textContent = "已复制";
+        setTimeout(() => { event.currentTarget.textContent = "复制文案"; }, 1400);
+      });
+      generatorForm.dispatchEvent(new Event("submit", { cancelable: true }));
+      notifyEmbedHeight();
+    };
+    const notifyEmbedHeight = () => {
+      if (document.documentElement.dataset.embed !== "apple" || window.parent === window) return;
+      window.parent.postMessage({
+        type: "history-report-height",
+        height: Math.max(document.body.scrollHeight, document.documentElement.scrollHeight),
+      }, window.location.origin);
+    };
+    fetch(`insight/generated/copy_library_data.json?v=${Date.now()}`, { cache: "no-store" })
+      .then(response => response.ok ? response.json() : Promise.reject(new Error("copy library unavailable")))
+      .then(renderCopyLibrary)
+      .catch(error => console.warn("Copy library unavailable", error));
+  })();
 </script>
 </body>
 </html>

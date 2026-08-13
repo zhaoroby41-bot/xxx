@@ -156,6 +156,11 @@
     }
     .overview-frame { min-height: 700px; }
     .history-frame { min-height: 480px; }
+    .apple-overview-wrap {
+      width: 100%;
+      max-width: none;
+      margin: 0;
+    }
   </style>
 </head>
 <body>
@@ -287,8 +292,8 @@
     function renderApple() {
       const root = document.getElementById("apple-view");
       root.innerHTML = `
-        <iframe class="embedded-frame overview-frame" title="Apple 数据总览" src="apple_insight.html?embed=overview&demo=1&v=20260808-2#network-overview"></iframe>
-        <iframe class="embedded-frame history-frame" title="小红书矩阵笔记商业分析报告" scrolling="no" src="../xhs_report.html?embed=apple&v=20260809-16"></iframe>`;
+        <div class="apple-overview-wrap"><iframe class="embedded-frame overview-frame" title="Apple 数据总览" src="apple_insight.html?embed=overview&demo=1&v=20260813-2#network-overview"></iframe></div>
+        <iframe class="embedded-frame history-frame" title="小红书矩阵笔记商业分析报告" scrolling="no" src="../xhs_report.html?embed=apple&v=20260813-1"></iframe>`;
     }
 
     function dealerSummary(dealer) {
@@ -425,9 +430,11 @@
       });
     }
     window.addEventListener("message", event => {
-      if (event.origin !== window.location.origin || !["history-report-height", "dealer-report-height"].includes(event.data?.type)) return;
+      if (event.origin !== window.location.origin || !["apple-overview-height", "history-report-height", "dealer-report-height"].includes(event.data?.type)) return;
       const frame = event.data.type === "dealer-report-height"
         ? document.querySelector('iframe[title="经销商 Insight"]')
+        : event.data.type === "apple-overview-height"
+          ? document.querySelector('iframe[title="Apple 数据总览"]')
         : document.querySelector('iframe[title="小红书矩阵笔记商业分析报告"]');
       if (frame && Number.isFinite(event.data.height)) frame.style.height = `${Math.ceil(event.data.height) + 2}px`;
     });

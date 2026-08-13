@@ -17,7 +17,7 @@
     html[data-embed="overview"] .sidebar { display: none; }
     html[data-embed="overview"] .workspace { margin-left: 0; }
     html[data-embed="overview"] .top-toolbar { display: none; }
-    html[data-embed="overview"] .main-canvas { padding: 22px; }
+    html[data-embed="overview"] .main-canvas { width: 100%; max-width: none; padding: 22px; }
     html[data-embed="overview"] #dashboard-content > .section-heading { display: none; }
     html[data-embed="overview"] [data-apple-content] { display: none !important; }
   </style>
@@ -207,6 +207,13 @@
   <script src="assets/insight-core.js?v=20260808-2"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
-  <script src="assets/apple-dashboard.js?v=20260809-2"></script>
+  <script src="assets/apple-dashboard.js?v=20260813-2"></script>
+  <script>
+    if (document.documentElement.dataset.embed === "overview") {
+      const notifyHeight = () => window.parent.postMessage({ type: "apple-overview-height", height: document.documentElement.scrollHeight }, window.location.origin);
+      new ResizeObserver(notifyHeight).observe(document.body);
+      window.addEventListener("load", notifyHeight, { once: true });
+    }
+  </script>
 </body>
 </html>

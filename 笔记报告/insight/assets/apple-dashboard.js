@@ -91,11 +91,17 @@
     });
   }
 
+  function isAssignedRegion(value) {
+    return hasValue(value) && String(value).trim().toLowerCase() !== "unassigned";
+  }
+
   function getFilterOptions(apple) {
     const model = apple || {};
     const statusCounts = model.status_counts || {};
     return {
-      regions: unique(asArray(model.regional_summaries).map(function (row) { return row.region; })),
+      regions: unique(asArray(model.regional_summaries)
+        .map(function (row) { return row.region; })
+        .filter(isAssignedRegion)),
       cohorts: unique(asArray(model.dealer_quadrants).map(function (row) { return row.cohort; })
         .concat(asArray(model.category_mix_performance).map(function (row) { return row.cohort; }))),
       categories: unique(asArray(model.category_mix_performance).map(function (row) { return row.category; })),
@@ -206,6 +212,27 @@
     });
   }
 
+  function buildScopedKpiViewModel(rows, core) {
+    const totals = asArray(rows).reduce(function (summary, row) {
+      summary.reads += Number(row.reads) || 0;
+      summary.interactions += Number(row.interactions) || 0;
+      summary.fans += Number(row.new_fans) || 0;
+      return summary;
+    }, { reads: 0, interactions: 0, fans: 0 });
+    return KPI_DEFINITIONS.map(function (definition) {
+      return {
+        key: definition.key,
+        label: definition.label,
+        actual: core.formatNumber(totals[definition.key]),
+        completion: core.formatNumber(totals[definition.key]),
+        pacingGap: "",
+        status: "normal",
+        statusLabel: "当前筛选",
+        scoped: true,
+      };
+    });
+  }
+
   function buildStatusViewModel(statusCounts, core) {
     const counts = statusCounts || {};
     return STATUS_DEFINITIONS.filter(function (definition) {
@@ -282,13 +309,17 @@
       status_counts: { leading: 5, normal: 38, warning: 7, critical: 4, unmatched: 0 },
     });
     const state = filters || {};
+    const categories = filterCategoryPerformance(apple.category_mix_performance, state);
+    const hasScopeFilter = Boolean(state.region || state.cohort);
     return {
       sourceMonth: apple.source_month || data.source_month || "",
       generatedAt: data.generated_at || "",
       dataFreshness: (data.metadata && data.metadata.data_freshness) || (apple.quality_metadata && apple.quality_metadata.data_freshness) || {},
       options: getFilterOptions(apple),
       filters: Object.assign({ region: "", cohort: "", category: "", status: "" }, state),
-      kpis: buildNetworkKpiViewModel(apple.network_kpis, core),
+      kpis: hasScopeFilter
+        ? buildScopedKpiViewModel(categories, core)
+        : buildNetworkKpiViewModel(apple.network_kpis, core),
       statuses: buildStatusViewModel(apple.status_counts, core),
       scope: buildScopeViewModel(apple, core),
       reconciliation: reconcileAppleContract(apple),
@@ -296,7 +327,7 @@
       risks: selectRiskDealers(apple.risk_dealers, apple.dealer_quadrants, state),
       regions: filterRegionalSummaries(apple.regional_summaries, state.region),
       cities: asArray(apple.city_summaries).slice(),
-      categories: filterCategoryPerformance(apple.category_mix_performance, state),
+      categories: categories,
       cases: filterReplicableCases(apple.replicable_cases, state),
       actions: filterActions(apple.actions, state),
     };
@@ -312,6 +343,7 @@
     filterActions: filterActions,
     filterReplicableCases: filterReplicableCases,
     buildNetworkKpiViewModel: buildNetworkKpiViewModel,
+    buildScopedKpiViewModel: buildScopedKpiViewModel,
     buildStatusViewModel: buildStatusViewModel,
     buildScopeViewModel: buildScopeViewModel,
     formatEvidenceValue: formatEvidenceValue,
@@ -375,7 +407,7 @@
     if (state.region) { active.push(`区域 ${state.region}`); }
     if (state.cohort) { active.push(COHORT_LABELS[state.cohort] || state.cohort); }
     byId("filter-scope").textContent = active.length
-      ? `当前筛选：${active.join(" · ")}。各模块仅在契约提供对应维度时联动。`
+      ? `当前筛选：${active.join(" · ")}。顶部数据卡与区域、分层明细已按当前范围更新。`
       : "当前展示全部网络范围；可按区域与账号分层查看。";
   }
 
@@ -404,14 +436,17 @@
       return;
     }
     root.innerHTML = viewModel.kpis.map(function (item) {
-      return core.renderMetricCard({
-        label: item.label,
-        value: item.completion,
-        status: item.status,
-        context: [
+      const context = item.scoped
+        ? [{ label: "当前筛选范围", value: item.actual }]
+        : [
           { label: "实际 / 目标", value: `${item.actual} / ${item.target}` },
           { label: "节奏偏差", value: item.pacingGap },
-        ],
+        ];
+      return core.renderMetricCard({
+        label: item.label,
+        value: item.scoped ? item.actual : item.completion,
+        status: item.status,
+        context: context,
       });
     }).join("");
   }
